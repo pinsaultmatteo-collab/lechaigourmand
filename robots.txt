@@ -1,0 +1,7 @@
+# Le Chai Gourmand — Cugnaux
+# Tous les robots sont les bienvenus, y compris les crawlers IA.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://lechaigourmand.vercel.app/sitemap.xml

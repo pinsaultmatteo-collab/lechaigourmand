@@ -1,0 +1,32 @@
+# Le Chai Gourmand
+
+> Bar à tapas, cave à vin et épicerie fine à Cugnaux (31270), près de Toulouse, en Occitanie.
+> Deux adresses tenues par deux associés, Adrien Casole (caviste) et Dylan (responsable de salle).
+
+## L'essentiel
+
+- **Le Chai Gourmand — Francazal** : 9 rue Alfred Sauvy, 31270 Cugnaux. Bar à tapas, cave à vin
+  de 300 références et épicerie fine sous le même toit. Ouvert du mardi au samedi
+  (mardi-mercredi 10h-21h, jeudi-samedi 10h-23h), fermé dimanche et lundi. Click & collect disponible.
+- **L'Annexe du Chai Gourmand** : 14 rue de Cezerou, 31270 Cugnaux (centre-ville).
+  Brunch en terrasse tous les samedis midi (formule complète à 25 € par personne, sur réservation)
+  et soirées dégustation œnologique un jeudi sur deux.
+- **Cave** : 300 références de vignerons indépendants, dominante Sud-Ouest (Fronton, Gaillac, Cahors),
+  conseil personnalisé du caviste, épicerie fine (conserves de la mer, charcuteries ibériques,
+  fromages affinés, huiles et douceurs).
+- **Tapas** : recettes maison à partager — croquetas de jamón, planches ibériques, burrata,
+  poulpe grillé, tortilla. Accords mets-vins conseillés par le caviste.
+- **Traiteur** : tapas et vins pour anniversaires, événements d'entreprise, vernissages et apéros,
+  à Cugnaux, Toulouse et alentours (pas de mariages).
+- **Réservations & contact** : Instagram @le_chai_gourmand ou commande en ligne
+  (https://app.eatself.com/4772/accueil).
+
+## Pages
+
+- [Accueil](https://lechaigourmand.vercel.app/) : présentation de la maison et des deux adresses
+- [Bar à tapas](https://lechaigourmand.vercel.app/bar-a-tapas) : la carte des tapas et les prix
+- [Cave à vin](https://lechaigourmand.vercel.app/cave-a-vin) : la cave, l'épicerie fine, le click & collect
+- [Brunch](https://lechaigourmand.vercel.app/brunch) : le brunch du samedi à L'Annexe (menu, prix, réservation)
+- [Traiteur](https://lechaigourmand.vercel.app/traiteur) : le service traiteur tapas & vins
+- [Nos adresses](https://lechaigourmand.vercel.app/nos-adresses) : adresses, horaires et itinéraires des deux établissements
+- [Agenda](https://lechaigourmand.vercel.app/agenda) : brunchs, soirées dégustation et événements à venir
