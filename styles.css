@@ -36,6 +36,7 @@ body{
 ::selection{background:var(--bordeaux);color:var(--creme)}
 a{color:inherit}
 img,svg{display:block;max-width:100%}
+img{height:auto} /* l'attribut height HTML ne doit jamais figer la hauteur quand la largeur est fluide */
 section{position:relative}
 :focus-visible{outline:2px solid var(--or);outline-offset:3px;border-radius:2px}
 
@@ -771,3 +772,153 @@ h2.titre .accent-script{
   font-family:var(--serif);font-style:italic;font-size:1.3rem;
 }
 .s-noir .info-pratique .picto{color:var(--or-clair);border-color:var(--or)}
+
+/* ============================================================
+   AGENDA v2 — prochain rendez-vous, calendrier, aperçu, newsletter
+   ============================================================ */
+
+/* ---------- prochain rendez-vous (mis en avant) ---------- */
+.prochain-rdv{
+  display:grid;grid-template-columns:auto 1fr auto;gap:clamp(1.2rem,3vw,2.4rem);align-items:center;
+  background:linear-gradient(135deg,var(--bordeaux-sombre),#3a0e1f);
+  border:1px solid rgba(201,168,118,.35);border-radius:22px;
+  padding:clamp(1.4rem,3vw,2rem) clamp(1.4rem,3.5vw,2.6rem);
+  color:var(--creme);margin-bottom:clamp(1.6rem,3vw,2.4rem);
+  position:relative;overflow:hidden;
+}
+.prochain-rdv::after{
+  content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;
+  border-radius:50%;border:1px dashed rgba(201,168,118,.3);pointer-events:none;
+}
+.prdv-date{
+  flex:none;width:78px;text-align:center;border-radius:14px;padding:.7rem .2rem;
+  background:rgba(255,255,255,.07);border:1px solid rgba(201,168,118,.4);
+}
+.prdv-date .ev-jour{color:var(--creme);font-size:2rem}
+.prdv-date .ev-mois{color:var(--or-clair)}
+.prdv-date .ev-semaine{color:var(--or)}
+.prdv-tag{
+  display:inline-flex;align-items:center;gap:.5rem;font-size:.62rem;letter-spacing:.26em;
+  text-transform:uppercase;font-weight:500;color:var(--or-clair);
+  border:1px dotted var(--or);border-radius:99px;padding:.3rem .9rem;margin-bottom:.6rem;
+}
+.prdv-corps h3{font-family:var(--serif);font-weight:600;font-size:clamp(1.3rem,2.4vw,1.7rem);color:var(--creme);line-height:1.2}
+.prdv-corps p{font-size:.9rem;color:rgba(246,239,226,.75);margin-top:.35rem;max-width:52ch}
+.prdv-meta{display:flex;flex-wrap:wrap;gap:.9rem;margin-top:.6rem;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--or-clair)}
+.prdv-cta{justify-self:end}
+@media (max-width:860px){
+  .prochain-rdv{grid-template-columns:auto 1fr}
+  .prdv-cta{grid-column:1 / -1;justify-self:start}
+}
+
+/* ---------- calendrier + aperçu ---------- */
+.agenda-calendrier{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(1.2rem,3vw,2rem);align-items:stretch}
+.calendrier{
+  background:var(--papier);border:1px solid rgba(122,99,85,.18);border-radius:22px;
+  padding:clamp(1.2rem,2.5vw,1.8rem);
+}
+.cal-tete{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:.9rem}
+.cal-mois{font-family:var(--serif);font-weight:600;font-size:clamp(1.15rem,2vw,1.45rem);color:var(--brun);text-transform:capitalize}
+.cal-fleches{display:flex;gap:.5rem}
+.cal-fleche{
+  width:38px;height:38px;border-radius:50%;border:1px solid rgba(122,99,85,.35);
+  background:none;color:var(--brun);cursor:pointer;display:grid;place-items:center;
+  font-size:1rem;line-height:1;transition:background .3s,color .3s,border-color .3s;
+}
+.cal-fleche:hover:not(:disabled){background:var(--bordeaux);border-color:var(--bordeaux);color:var(--creme)}
+.cal-fleche:disabled{opacity:.25;cursor:default}
+.cal-grille{display:grid;grid-template-columns:repeat(7,1fr);gap:.25rem}
+.cal-nom-jour{
+  text-align:center;font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--brun-doux);font-weight:500;padding:.35rem 0 .55rem;
+}
+.cal-jour{
+  position:relative;aspect-ratio:1;border:0;background:none;border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--sans);font-size:.92rem;font-weight:400;color:var(--brun);
+  transition:background .25s,color .25s;
+}
+.cal-jour:not(:disabled){cursor:pointer}
+.cal-jour:not(:disabled):hover{background:rgba(124,33,64,.09)}
+.cal-jour.hors-mois{visibility:hidden}
+.cal-jour.passe{opacity:.3}
+.cal-jour.aujourdhui{box-shadow:inset 0 0 0 1px var(--or-sombre)}
+.cal-jour.a-events{background:rgba(124,33,64,.08);font-weight:500}
+.cal-jour.a-events:hover{background:rgba(124,33,64,.18)}
+.cal-jour.selectionne,.cal-jour.selectionne:hover{background:var(--bordeaux);color:var(--creme)}
+.cal-points{position:absolute;bottom:12%;left:50%;transform:translateX(-50%);display:flex;gap:3px}
+.cal-point{width:5px;height:5px;border-radius:50%}
+.cal-point.francazal{background:var(--bordeaux)}
+.cal-point.annexe{background:var(--or-sombre)}
+.cal-jour.selectionne .cal-point.francazal{background:var(--creme)}
+.cal-jour.selectionne .cal-point.annexe{background:var(--or-clair)}
+.cal-legende{
+  display:flex;flex-wrap:wrap;gap:1.2rem;margin-top:1rem;padding-top:.9rem;
+  border-top:1px dotted rgba(122,99,85,.3);
+  font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--brun-doux);
+}
+.cal-legende span{display:inline-flex;align-items:center;gap:.45rem}
+
+/* aperçu du jour sélectionné */
+.apercu-jour{
+  background:var(--papier);border:1px solid rgba(122,99,85,.18);border-radius:22px;
+  padding:clamp(1.4rem,3vw,2rem);display:flex;flex-direction:column;
+}
+.apercu-titre{
+  font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;font-weight:500;
+  color:var(--bordeaux);display:flex;align-items:center;gap:.8rem;
+}
+.apercu-titre::after{content:"";flex:1;height:1px;background:rgba(122,99,85,.25)}
+.apercu-date{font-family:var(--serif);font-weight:600;font-size:clamp(1.3rem,2.2vw,1.6rem);color:var(--brun);margin-top:.5rem;text-transform:capitalize}
+.apercu-ev{padding:1.1rem 0;border-bottom:1px dotted rgba(122,99,85,.3)}
+.apercu-ev:last-child{border-bottom:0}
+.apercu-vide{
+  font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--brun-doux);
+  margin-top:1.2rem;line-height:1.5;
+}
+.apercu-jour .ev-titre{margin-top:.15rem}
+.apercu-cta{margin-top:auto;padding-top:1rem}
+
+/* ---------- newsletter ---------- */
+.newsletter{
+  margin-top:clamp(2rem,4vw,3rem);
+  background:linear-gradient(135deg,var(--brun),#241419);
+  border:1px solid rgba(201,168,118,.3);border-radius:22px;
+  padding:clamp(1.8rem,4vw,2.8rem);color:var(--creme);
+  display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(1.5rem,3.5vw,3rem);align-items:center;
+  position:relative;overflow:hidden;
+}
+.newsletter::before{
+  content:"";position:absolute;left:-70px;bottom:-70px;width:240px;height:240px;
+  border-radius:50%;border:1px dashed rgba(201,168,118,.3);pointer-events:none;
+}
+.newsletter h3{font-family:var(--serif);font-weight:600;font-size:clamp(1.5rem,2.6vw,2.1rem);line-height:1.15}
+.newsletter h3 .accent-script{font-family:var(--script);font-weight:400;font-size:1.2em;color:var(--or-clair)}
+.newsletter .nl-texte p{margin-top:.8rem;font-size:.95rem;color:rgba(246,239,226,.75);max-width:46ch}
+.newsletter-form{display:flex;gap:.6rem;flex-wrap:wrap;position:relative;z-index:2}
+.newsletter-form input[type="email"]{
+  flex:1;min-width:200px;background:rgba(255,255,255,.06);
+  border:1px solid rgba(201,168,118,.45);border-radius:99px;
+  padding:.95rem 1.4rem;color:var(--creme);font-family:var(--sans);font-weight:300;font-size:.92rem;
+}
+.newsletter-form input[type="email"]::placeholder{color:rgba(246,239,226,.45)}
+.newsletter-form .btn{border:0;cursor:pointer;font-family:var(--sans)}
+.newsletter-msg{font-size:.85rem;color:var(--or-clair);margin-top:.8rem;min-height:1.3em}
+.newsletter-note{font-size:.68rem;color:rgba(246,239,226,.4);margin-top:.5rem;letter-spacing:.04em}
+
+/* ---------- cartes google maps ---------- */
+.map-embed{
+  width:100%;height:220px;border:0;border-radius:14px;display:block;
+  margin-top:1.2rem;filter:saturate(.85) contrast(.97);
+  background:var(--noir-3);
+}
+.maps-grille{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;margin-top:clamp(2.5rem,5vw,4rem)}
+.map-carte{border:1px solid rgba(201,168,118,.25);border-radius:18px;padding:1.4rem;background:rgba(255,255,255,.02)}
+.map-carte h3{font-family:var(--serif);font-weight:600;font-size:1.2rem;color:var(--creme)}
+.map-carte .map-embed{height:300px;margin-top:1rem}
+
+@media (max-width:900px){
+  .agenda-calendrier{grid-template-columns:1fr}
+  .newsletter{grid-template-columns:1fr}
+  .maps-grille{grid-template-columns:1fr}
+}

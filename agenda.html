@@ -90,7 +90,22 @@
 <!-- ==================== AGENDA ==================== -->
 <section class="section s-creme">
   <div class="contenu">
-    <div class="agenda-tete rv">
+    <div class="prochain-rdv rv" id="prochainRdv">
+      <!-- généré en JS : le prochain événement chronologique -->
+    </div>
+
+    <div class="agenda-calendrier rv">
+      <div class="calendrier" id="calendrier" aria-label="Calendrier des événements">
+        <!-- généré en JS -->
+      </div>
+      <div class="apercu-jour" id="apercuJour" aria-live="polite">
+        <!-- généré en JS : aperçu du jour sélectionné -->
+      </div>
+    </div>
+
+    <h2 class="sous-titre-cave rv" style="margin-top:clamp(3rem,6vw,4.5rem)">Tous les prochains rendez-vous</h2>
+
+    <div class="agenda-tete rv" style="margin-top:1.8rem">
       <div class="filtres" role="group" aria-label="Filtrer les événements par établissement">
         <button class="filtre actif" data-lieu="tous" type="button">Tous les événements</button>
         <button class="filtre" data-lieu="francazal" type="button">Le Chai — Francazal</button>
@@ -109,6 +124,26 @@
     <p class="agenda-note rv">
       Les rendez-vous récurrents se réservent — les places partent vite, surtout le brunch.
     </p>
+
+    <div class="newsletter rv" id="newsletter">
+      <div class="nl-texte">
+        <h3>Ne ratez plus <span class="accent-script">une soirée.</span></h3>
+        <p>
+          Brunchs, dégustations, vignerons de passage : recevez les prochains rendez-vous
+          des deux Chais directement dans votre boîte mail. Promis, on écrit peu — et toujours
+          pour une bonne raison.
+        </p>
+      </div>
+      <div>
+        <form class="newsletter-form" id="formNewsletter" novalidate>
+          <label for="nlEmail" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Votre adresse e-mail</label>
+          <input type="email" id="nlEmail" name="email" placeholder="votre@email.fr" autocomplete="email" required>
+          <button class="btn btn-plein" type="submit">Recevoir les alertes</button>
+        </form>
+        <p class="newsletter-msg" aria-live="polite"></p>
+        <p class="newsletter-note">Une adresse, zéro spam — désinscription en un clic, comme un bouchon qui saute.</p>
+      </div>
+    </div>
   </div>
 </section>
 
