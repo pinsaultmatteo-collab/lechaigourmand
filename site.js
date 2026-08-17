@@ -9,19 +9,15 @@
   const annee = document.getElementById("annee");
   if(annee) annee.textContent = new Date().getFullYear();
 
-  /* ---------- nav : fond au scroll + jauge + parallaxe hero ---------- */
+  /* ---------- nav : fond au scroll + jauge ---------- */
   const nav = document.getElementById("nav");
   const jauge = document.querySelector(".jauge");
-  const scene = document.getElementById("sceneVerre");
   function surScroll(){
     const y = window.scrollY;
     if(nav) nav.classList.toggle("plein", y > 40);
     if(jauge){
       const h = document.documentElement.scrollHeight - window.innerHeight;
       jauge.style.width = (h > 0 ? (y / h) * 100 : 0) + "%";
-    }
-    if(scene && !reduit && window.innerWidth > 1000){
-      scene.style.transform = "translateY(" + (y * 0.08) + "px)";
     }
   }
   window.addEventListener("scroll", surScroll, {passive:true});
