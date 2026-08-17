@@ -935,3 +935,42 @@ h2.titre .accent-script{
   .newsletter{grid-template-columns:1fr}
   .maps-grille{grid-template-columns:1fr}
 }
+
+/* ============================================================
+   HERO DE PAGE v2 — emblème line-art, pastilles, filet doré
+   ============================================================ */
+.hero-page-grille{
+  display:grid;grid-template-columns:1.1fr .8fr;
+  gap:clamp(2rem,5vw,4.5rem);align-items:center;
+}
+.hero-page-embleme{position:relative;display:flex;justify-content:center}
+.hero-page-embleme .embleme{
+  width:min(310px,30vw);height:auto;
+  filter:drop-shadow(0 24px 50px rgba(124,33,64,.35));
+}
+.anneau{animation:tourner 80s linear infinite;transform-origin:170px 170px}
+.embleme-script{
+  position:absolute;bottom:-14px;left:50%;transform:translateX(-50%) rotate(-4deg);
+  font-family:var(--script);font-size:clamp(1.6rem,2.4vw,2.2rem);
+  color:rgba(230,211,174,.4);white-space:nowrap;pointer-events:none;
+}
+.hero-chips{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.6rem}
+.hero-chip{
+  border:1px solid rgba(201,168,118,.35);background:rgba(201,168,118,.06);
+  color:var(--or-clair);border-radius:99px;padding:.42rem 1.05rem;
+  font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;font-weight:400;
+}
+.hero-filet{
+  position:relative;z-index:2;display:flex;align-items:center;gap:1.2rem;
+  margin-top:clamp(2.2rem,5vw,3.5rem);
+  color:rgba(201,168,118,.75);font-size:.85rem;
+}
+.hero-filet::before,.hero-filet::after{content:"";flex:1;height:1px}
+.hero-filet::before{background:linear-gradient(90deg,transparent,rgba(201,168,118,.45))}
+.hero-filet::after{background:linear-gradient(90deg,rgba(201,168,118,.45),transparent)}
+@media (max-width:900px){
+  .hero-page-grille{grid-template-columns:1fr;gap:1.2rem}
+  .hero-page-embleme{order:-1;margin-bottom:.4rem}
+  .hero-page-embleme .embleme{width:min(165px,44vw)}
+  .embleme-script{display:none}
+}

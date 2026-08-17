@@ -119,20 +119,57 @@
 
 <!-- ==================== HERO DE PAGE ==================== -->
 <section class="hero-page">
-  <div class="contenu">
-    <nav aria-label="Fil d'ariane">
-      <ol class="fil">
-        <li><a href="/">Accueil</a></li>
-        <li><span aria-current="page">Nos adresses</span></li>
-      </ol>
-    </nav>
-    <p class="sur-titre entree">Deux adresses, deux ambiances — Cugnaux, près de Toulouse</p>
-    <h1 class="entree e2">Le Chai <span class="accent-script">&amp; son Annexe</span></h1>
-    <p class="chapeau entree e3">
-      Même maison, même exigence — mais chacune son caractère. À vous de choisir votre camp
-      (ou de ne pas choisir, c'est encore mieux).
-    </p>
+  <div class="contenu hero-page-grille">
+    <div class="hero-page-texte">
+      <nav aria-label="Fil d'ariane">
+        <ol class="fil">
+          <li><a href="/">Accueil</a></li>
+          <li><span aria-current="page">Nos adresses</span></li>
+        </ol>
+      </nav>
+      <p class="sur-titre entree">Deux adresses, deux ambiances — Cugnaux, près de Toulouse</p>
+      <h1 class="entree e2">Le Chai <span class="accent-script">&amp; son Annexe</span></h1>
+      <p class="chapeau entree e3">
+        Même maison, même exigence — mais chacune son caractère. À vous de choisir votre camp
+        (ou de ne pas choisir, c'est encore mieux).
+      </p>
+      <div class="hero-chips entree e4" aria-label="En bref">
+        <span class="hero-chip">Le Chai — Francazal</span>
+        <span class="hero-chip">L'Annexe — Cugnaux centre</span>
+        <span class="hero-chip">Parking facile</span>
+      </div>
+    </div>
+
+    <div class="hero-page-embleme entree e3" aria-hidden="true">
+      <span class="poussiere" style="width:3px;height:3px;left:12%;top:18%;animation-delay:.8s"></span>
+      <span class="poussiere" style="width:2px;height:2px;left:82%;top:30%;animation-delay:2.4s"></span>
+      <span class="poussiere" style="width:3px;height:3px;left:70%;top:80%;animation-delay:4.2s"></span>
+      <svg class="embleme" viewBox="0 0 340 340" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="lueurAdresses" cx="50%" cy="50%" r="55%">
+            <stop offset="0" stop-color="#9d2c50" stop-opacity=".4"/>
+            <stop offset="1" stop-color="#9d2c50" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <circle cx="170" cy="170" r="168" fill="url(#lueurAdresses)"/>
+        <g class="anneau" opacity=".5">
+          <circle cx="170" cy="170" r="148" stroke="#c9a876" stroke-width="5"
+                  stroke-dasharray="40 14 9 14 64 12 24 16" stroke-linecap="round"/>
+        </g>
+        <!-- épingle de carte, verre en cœur -->
+        <g stroke="#e6d3ae" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M170 84 c-38 0 -64 27 -64 60 c0 42 64 112 64 112 c0 0 64 -70 64 -112 c0 -33 -26 -60 -64 -60 z"/>
+          <g stroke-width="4.5">
+            <path d="M150 126 C150 150 158 160 170 160 C182 160 190 150 190 126 Z"/>
+            <path d="M150 126 H190" opacity=".85"/>
+            <path d="M170 160 V182 M158 188 Q170 183 182 188"/>
+          </g>
+        </g>
+      </svg>
+      <span class="embleme-script">Cugnaux</span>
+    </div>
   </div>
+  <div class="hero-filet" aria-hidden="true"><span>✦</span></div>
 </section>
 
 <!-- ==================== LES DEUX CHAIS ==================== -->

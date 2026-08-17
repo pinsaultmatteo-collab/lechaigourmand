@@ -71,20 +71,60 @@
 
 <!-- ==================== HERO DE PAGE ==================== -->
 <section class="hero-page">
-  <div class="contenu">
-    <nav aria-label="Fil d'ariane">
-      <ol class="fil">
-        <li><a href="/">Accueil</a></li>
-        <li><span aria-current="page">Agenda</span></li>
-      </ol>
-    </nav>
-    <p class="sur-titre entree">L'agenda des Chais</p>
-    <h1 class="entree e2">Il se passe toujours<br><span class="accent-script">quelque chose</span> au Chai.</h1>
-    <p class="chapeau entree e3">
-      Deux établissements, deux programmations. Filtrez par adresse pour ne rien manquer —
-      du <a href="/brunch" style="color:var(--or-clair)">brunch du samedi</a> aux soirées œnologiques d'Adrien.
-    </p>
+  <div class="contenu hero-page-grille">
+    <div class="hero-page-texte">
+      <nav aria-label="Fil d'ariane">
+        <ol class="fil">
+          <li><a href="/">Accueil</a></li>
+          <li><span aria-current="page">Agenda</span></li>
+        </ol>
+      </nav>
+      <p class="sur-titre entree">L'agenda des Chais</p>
+      <h1 class="entree e2">Il se passe toujours<br><span class="accent-script">quelque chose</span> au Chai.</h1>
+      <p class="chapeau entree e3">
+        Deux établissements, deux programmations. Filtrez par adresse pour ne rien manquer —
+        du <a href="/brunch" style="color:var(--or-clair)">brunch du samedi</a> aux soirées œnologiques d'Adrien.
+      </p>
+      <div class="hero-chips entree e4" aria-label="En bref">
+        <span class="hero-chip">Brunch du samedi</span>
+        <span class="hero-chip">Soirées œnologie</span>
+        <span class="hero-chip">Vignerons invités</span>
+      </div>
+      <div class="hero-ctas entree e5">
+        <a class="btn btn-ligne" href="#newsletter">Recevoir les alertes</a>
+      </div>
+    </div>
+
+    <div class="hero-page-embleme entree e3" aria-hidden="true">
+      <span class="poussiere" style="width:3px;height:3px;left:12%;top:18%;animation-delay:.8s"></span>
+      <span class="poussiere" style="width:2px;height:2px;left:82%;top:30%;animation-delay:2.4s"></span>
+      <span class="poussiere" style="width:3px;height:3px;left:70%;top:80%;animation-delay:4.2s"></span>
+      <svg class="embleme" viewBox="0 0 340 340" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="lueurAgenda" cx="50%" cy="50%" r="55%">
+            <stop offset="0" stop-color="#9d2c50" stop-opacity=".4"/>
+            <stop offset="1" stop-color="#9d2c50" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <circle cx="170" cy="170" r="168" fill="url(#lueurAgenda)"/>
+        <g class="anneau" opacity=".5">
+          <circle cx="170" cy="170" r="148" stroke="#c9a876" stroke-width="5"
+                  stroke-dasharray="40 14 9 14 64 12 24 16" stroke-linecap="round"/>
+        </g>
+        <!-- feuillet de calendrier -->
+        <g stroke="#e6d3ae" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="102" y="112" width="136" height="124" rx="14"/>
+          <path d="M102 148 H238"/>
+          <path d="M134 112 V92 M206 112 V92"/>
+          <path d="M170 168 l12 18 -12 18 -12 -18 z"/>
+          <circle cx="134" cy="186" r="3" fill="#e6d3ae" stroke="none"/>
+          <circle cx="206" cy="186" r="3" fill="#e6d3ae" stroke="none"/>
+        </g>
+      </svg>
+      <span class="embleme-script">à vos dates</span>
+    </div>
   </div>
+  <div class="hero-filet" aria-hidden="true"><span>✦</span></div>
 </section>
 
 <!-- ==================== AGENDA ==================== -->
