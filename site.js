@@ -42,32 +42,33 @@
     });
   }
 
-  /* ---------- billet du comptoir : statut du jour (horaires Francazal) ---------- */
+  /* ---------- billet du comptoir : statut du jour des deux établissements ---------- */
   const statutEl = document.getElementById("comptoirStatut");
   if(statutEl){
-    const horaires = {0:null, 1:null, 2:[10,21], 3:[10,21], 4:[10,23], 5:[10,23], 6:[10,23]};
-    const nomsJours = ["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"];
+    // horaires réels (0 = dimanche … 6 = samedi ; null = fermé)
+    const lieuxComptoir = [
+      {nom: "Le Chai — Francazal", horaires: {0:null, 1:null, 2:[10,21], 3:[10,21], 4:[10,23], 5:[10,23], 6:[10,23]}},
+      {nom: "L'Annexe",            horaires: {0:null, 1:null, 2:[16,20], 3:[16,20], 4:[16,22], 5:[16,22], 6:[10,22]}}
+    ];
     const maintenant = new Date();
     const jour = maintenant.getDay();
     const heure = maintenant.getHours() + maintenant.getMinutes() / 60;
-    const duJour = horaires[jour];
     function fmtH(n){ return n + "h00"; }
-    let point, texte;
-    if(duJour && heure >= duJour[0] && heure < duJour[1]){
-      point = "ouvert";
-      texte = "Ouvert aujourd'hui · jusqu'à " + fmtH(duJour[1]);
-    }else if(duJour && heure < duJour[0]){
-      point = "bientot";
-      texte = "Ouvre aujourd'hui à " + fmtH(duJour[0]);
-    }else{
-      point = "ferme";
-      let d = (jour + 1) % 7, n = 1;
-      while(!horaires[d]){ d = (d + 1) % 7; n++; }
-      texte = "Fermé " + (duJour ? "ce soir" : "aujourd'hui")
-        + " — rendez-vous " + (n === 1 ? "demain" : nomsJours[d])
-        + " dès " + fmtH(horaires[d][0]);
+    function etatDuJour(horaires){
+      const duJour = horaires[jour];
+      if(duJour && heure >= duJour[0] && heure < duJour[1]){
+        return {point: "ouvert", texte: "ouvert · jusqu'à " + fmtH(duJour[1])};
+      }
+      if(duJour && heure < duJour[0]){
+        return {point: "bientot", texte: "ouvre à " + fmtH(duJour[0])};
+      }
+      return {point: "ferme", texte: duJour ? "fermé ce soir" : "fermé aujourd'hui"};
     }
-    statutEl.innerHTML = '<span class="point-statut ' + point + '" aria-hidden="true"></span>' + texte;
+    statutEl.innerHTML = lieuxComptoir.map(function(l){
+      const e = etatDuJour(l.horaires);
+      return '<span class="statut-ligne"><span class="point-statut ' + e.point + '" aria-hidden="true"></span>'
+        + l.nom + ' · ' + e.texte + '</span>';
+    }).join("");
   }
 
   /* ---------- l'accord du moment : rotation en fondu ---------- */

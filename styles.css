@@ -1022,3 +1022,9 @@ h2.titre .accent-script{
 .s-creme .ligne-horaire strong{color:var(--brun)}
 .s-creme .ligne-horaire .ferme{color:var(--bordeaux-vif)}
 .s-creme .ligne-horaire a{color:var(--bordeaux)}
+
+/* statut deux établissements + téléphone footer */
+.comptoir-statut .statut-ligne{display:block;font-size:.98rem}
+.coord-tel{margin-top:.5rem}
+.coord-tel a{color:var(--or-clair);text-decoration:none;font-size:.92rem;letter-spacing:.06em}
+.coord-tel a:hover{text-decoration:underline}

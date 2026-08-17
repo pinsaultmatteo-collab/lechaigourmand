@@ -44,6 +44,7 @@
       "image": "https://lechaigourmand.vercel.app/images/og-le-chai-gourmand.jpg",
       "servesCuisine": ["Tapas", "Planches à partager"],
       "priceRange": "€€",
+      "telephone": "+33 6 85 36 22 65",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "9 rue Alfred Sauvy",
@@ -67,6 +68,7 @@
       "url": "https://lechaigourmand.vercel.app/brunch",
       "servesCuisine": ["Brunch"],
       "priceRange": "€€",
+      "telephone": "+33 6 85 36 22 65",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "14 rue de Cezerou",
@@ -75,6 +77,11 @@
         "addressRegion": "Occitanie",
         "addressCountry": "FR"
       },
+      "openingHoursSpecification": [
+        {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Tuesday", "Wednesday"], "opens": "16:00", "closes": "20:00"},
+        {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Thursday", "Friday"], "opens": "16:00", "closes": "22:00"},
+        {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Saturday"], "opens": "10:00", "closes": "22:00"}
+      ],
       "sameAs": ["https://www.instagram.com/le_chai_gourmand/"],
       "parentOrganization": {"@id": "https://lechaigourmand.vercel.app/#chai-francazal"}
     }
@@ -202,6 +209,10 @@
             <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
             <span>Du mardi au samedi · fermé dimanche &amp; lundi · click &amp; collect</span>
           </div>
+          <div class="chai-info">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h4l2 5-2.5 1.5a12 12 0 0 0 5 5L16 12l5 2v4a2 2 0 0 1 -2 2A16 16 0 0 1 4 5a2 2 0 0 1 2 -2z"/></svg>
+            <span><a href="tel:+33685362265" style="color:inherit;text-decoration:none">06 85 36 22 65</a></span>
+          </div>
         </div>
         <a class="chai-lien" href="https://www.google.com/maps/search/?api=1&query=9+rue+Alfred+Sauvy+31270+Cugnaux" target="_blank" rel="noopener">Itinéraire <span aria-hidden="true">→</span></a>
         <span class="chai-signature-lieu" aria-hidden="true">Francazal</span>
@@ -228,7 +239,11 @@
           </div>
           <div class="chai-info">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
-            <span>Brunch le samedi midi · œnologie un jeudi sur deux</span>
+            <span>Du mardi au samedi · brunch le samedi midi · œnologie un jeudi sur deux</span>
+          </div>
+          <div class="chai-info">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h4l2 5-2.5 1.5a12 12 0 0 0 5 5L16 12l5 2v4a2 2 0 0 1 -2 2A16 16 0 0 1 4 5a2 2 0 0 1 2 -2z"/></svg>
+            <span><a href="tel:+33685362265" style="color:inherit;text-decoration:none">06 85 36 22 65</a></span>
           </div>
         </div>
         <a class="chai-lien" href="https://www.google.com/maps/search/?api=1&query=14+rue+de+Cezerou+31270+Cugnaux" target="_blank" rel="noopener">Itinéraire <span aria-hidden="true">→</span></a>
@@ -259,9 +274,12 @@
       </div>
       <div class="horaires-carte rv" style="--d:.12s">
         <h3 style="font-family:var(--serif);font-weight:600;font-size:1.2rem;color:var(--brun);margin-bottom:.9rem">L'Annexe du Chai</h3>
-        <div class="ligne-horaire"><strong>Samedi</strong><span>Brunch en terrasse · sur réservation</span></div>
-        <div class="ligne-horaire"><strong>Un jeudi sur deux</strong><span>Soirée dégustation œnologique</span></div>
-        <div class="ligne-horaire"><strong>Programme complet</strong><span><a href="/agenda">voir l'agenda</a></span></div>
+        <div class="ligne-horaire"><strong>Lundi</strong><span class="ferme">Fermé</span></div>
+        <div class="ligne-horaire"><strong>Mardi &amp; mercredi</strong><span>16h00 – 20h00</span></div>
+        <div class="ligne-horaire"><strong>Jeudi &amp; vendredi</strong><span>16h00 – 22h00</span></div>
+        <div class="ligne-horaire"><strong>Samedi</strong><span>10h00 – 22h00 · brunch le midi</span></div>
+        <div class="ligne-horaire"><strong>Dimanche</strong><span class="ferme">Fermé</span></div>
+        <div class="ligne-horaire"><strong>Événements</strong><span><a href="/agenda">voir l'agenda</a></span></div>
       </div>
     </div>
 
@@ -280,7 +298,7 @@
       <div class="info-pratique rv" style="--d:.2s">
         <div class="picto" aria-hidden="true">✎</div>
         <h3>Réserver</h3>
-        <p>Par message sur <a href="https://www.instagram.com/le_chai_gourmand/" target="_blank" rel="noopener" style="color:var(--bordeaux)">Instagram</a>, au comptoir, ou via la <a href="https://app.eatself.com/4772/accueil" target="_blank" rel="noopener" style="color:var(--bordeaux)">carte en ligne</a>.</p>
+        <p>Au <a href="tel:+33685362265" style="color:var(--bordeaux)">06 85 36 22 65</a>, par message sur <a href="https://www.instagram.com/le_chai_gourmand/" target="_blank" rel="noopener" style="color:var(--bordeaux)">Instagram</a>, au comptoir, ou via la <a href="https://app.eatself.com/4772/accueil" target="_blank" rel="noopener" style="color:var(--bordeaux)">carte en ligne</a>.</p>
       </div>
     </div>
   </div>
@@ -297,10 +315,11 @@
     <p class="script-final rv">À bientôt au Chai</p>
     <p class="sous-final rv">
       Une table à réserver, un devis traiteur, une bouteille à mettre de côté ?
-      Passez nous voir, écrivez-nous sur Instagram ou commandez en ligne.
+      Appelez-nous, écrivez-nous sur Instagram ou commandez en ligne.
     </p>
     <div class="final-ctas rv">
       <a class="btn btn-plein" href="https://app.eatself.com/4772/accueil" target="_blank" rel="noopener">Commander en ligne</a>
+      <a class="btn btn-ligne" href="tel:+33685362265">06 85 36 22 65</a>
       <a class="btn btn-ligne" href="https://www.instagram.com/le_chai_gourmand/" target="_blank" rel="noopener">Nous écrire sur Instagram</a>
     </div>
 
@@ -309,12 +328,14 @@
         <span class="ou">Le vaisseau amiral</span>
         <h4>Le Chai Gourmand — Francazal</h4>
         <p>9 rue Alfred Sauvy<br>31270 Cugnaux</p>
+        <p class="coord-tel"><a href="tel:+33685362265">06 85 36 22 65</a></p>
         <a class="itineraire" href="https://www.google.com/maps/search/?api=1&query=9+rue+Alfred+Sauvy+31270+Cugnaux" target="_blank" rel="noopener">Itinéraire <span aria-hidden="true">→</span></a>
       </div>
       <div class="coord-carte rv" style="--d:.12s">
         <span class="ou">L'esprit de quartier</span>
         <h4>L'Annexe du Chai Gourmand</h4>
         <p>14 rue de Cezerou<br>31270 Cugnaux</p>
+        <p class="coord-tel"><a href="tel:+33685362265">06 85 36 22 65</a></p>
         <a class="itineraire" href="https://www.google.com/maps/search/?api=1&query=14+rue+de+Cezerou+31270+Cugnaux" target="_blank" rel="noopener">Itinéraire <span aria-hidden="true">→</span></a>
       </div>
     </div>
