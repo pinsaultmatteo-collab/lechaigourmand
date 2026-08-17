@@ -76,7 +76,7 @@ section{position:relative}
 .logo{display:flex;align-items:center;gap:.7rem;text-decoration:none}
 .logo svg{width:34px;height:34px;flex:none}
 .logo-mot{line-height:1}
-.logo-mot .l1{font-family:var(--script);font-size:1.45rem;color:var(--or-clair);display:block;transform:rotate(-3deg)}
+.logo-mot .l1{font-family:var(--script);font-size:1.45rem;color:var(--or-clair);display:block}
 .logo-mot .l2{font-family:var(--sans);font-weight:500;font-size:.62rem;letter-spacing:.42em;text-transform:uppercase;color:var(--creme);display:block;margin-top:.1rem}
 .nav-liens{display:flex;align-items:center;gap:clamp(1rem,2.4vw,2.2rem);list-style:none}
 .nav-liens a{
@@ -129,7 +129,7 @@ section{position:relative}
 .hero h1 .script{
   font-family:var(--script);font-weight:400;
   font-size:clamp(3.6rem,8vw,6.6rem);
-  color:var(--or-clair);display:block;transform:rotate(-2.5deg);
+  color:var(--or-clair);display:block;
   text-shadow:0 6px 40px rgba(201,168,118,.25);
 }
 .hero h1 .caps{
@@ -289,7 +289,7 @@ h2.titre{
 }
 h2.titre .accent-script{
   font-family:var(--script);font-weight:400;font-size:1.25em;line-height:.8;
-  display:inline-block;transform:rotate(-2deg) translateY(.06em);
+  display:inline-block;transform:translateY(.06em);
 }
 .s-creme h2 .accent-script{color:var(--bordeaux)}
 .s-noir h2 .accent-script{color:var(--or-clair)}
@@ -351,7 +351,7 @@ h2.titre .accent-script{
 }
 .carte-titre{
   text-align:center;font-family:var(--script);font-size:clamp(2rem,3.6vw,2.9rem);
-  color:var(--or-clair);margin-bottom:2.2rem;transform:rotate(-1.5deg);
+  color:var(--or-clair);margin-bottom:2.2rem;
 }
 .carte-colonnes{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.6rem,4vw,3.6rem)}
 .carte-groupe h4{
@@ -484,7 +484,7 @@ h2.titre .accent-script{
 .chai-motif{position:absolute;right:-40px;top:-40px;width:200px;height:200px;opacity:.16;pointer-events:none}
 .chai-signature-lieu{
   position:absolute;bottom:1.2rem;right:1.6rem;font-family:var(--script);
-  font-size:1.6rem;color:rgba(230,211,174,.28);transform:rotate(-4deg);pointer-events:none;
+  font-size:1.6rem;color:rgba(230,211,174,.28);pointer-events:none;
 }
 
 /* ---------- agenda ---------- */
@@ -542,7 +542,7 @@ h2.titre .accent-script{
 }
 .final .script-final{
   font-family:var(--script);font-size:clamp(3rem,7vw,5.5rem);color:var(--or-clair);
-  transform:rotate(-2deg);display:inline-block;line-height:1.1;
+  display:inline-block;line-height:1.1;
 }
 .final .sous-final{max-width:46ch;margin:1.4rem auto 0;color:rgba(246,239,226,.7)}
 .final-ctas{display:flex;justify-content:center;flex-wrap:wrap;gap:1rem;margin-top:2.4rem}
@@ -640,7 +640,7 @@ h2.titre .accent-script{
 }
 .brunch-titre h3{
   font-family:var(--script);font-size:clamp(2.4rem,4.5vw,3.6rem);color:var(--or-clair);
-  line-height:1.05;margin-top:1.1rem;transform:rotate(-2deg);font-weight:400;
+  line-height:1.05;margin-top:1.1rem;font-weight:400;
 }
 .brunch-titre .ou-quand{margin-top:1rem;color:rgba(246,239,226,.75);font-size:.95rem;max-width:34ch}
 .brunch-prix{
@@ -736,7 +736,7 @@ h2.titre .accent-script{
 }
 .hero-page h1 .accent-script{
   font-family:var(--script);font-weight:400;font-size:1.25em;
-  color:var(--or-clair);display:inline-block;transform:rotate(-2deg) translateY(.05em);
+  color:var(--or-clair);display:inline-block;transform:translateY(.05em);
 }
 .hero-page .chapeau{color:rgba(246,239,226,.78)}
 .hero-page .hero-ctas{margin-top:2.2rem}
@@ -980,7 +980,7 @@ h2.titre .accent-script{
 }
 .anneau{animation:tourner 80s linear infinite;transform-origin:170px 170px}
 .embleme-script{
-  position:absolute;bottom:-14px;left:50%;transform:translateX(-50%) rotate(-4deg);
+  position:absolute;bottom:-14px;left:50%;transform:translateX(-50%);
   font-family:var(--script);font-size:clamp(1.6rem,2.4vw,2.2rem);
   color:rgba(230,211,174,.4);white-space:nowrap;pointer-events:none;
 }
