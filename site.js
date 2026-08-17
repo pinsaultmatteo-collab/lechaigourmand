@@ -42,9 +42,58 @@
     });
   }
 
-  /* ---------- bandeau : dupliquer pour boucle parfaite ---------- */
-  const piste = document.getElementById("bandeauPiste");
-  if(piste) piste.innerHTML += piste.innerHTML;
+  /* ---------- billet du comptoir : statut du jour (horaires Francazal) ---------- */
+  const statutEl = document.getElementById("comptoirStatut");
+  if(statutEl){
+    const horaires = {0:null, 1:null, 2:[10,21], 3:[10,21], 4:[10,23], 5:[10,23], 6:[10,23]};
+    const nomsJours = ["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"];
+    const maintenant = new Date();
+    const jour = maintenant.getDay();
+    const heure = maintenant.getHours() + maintenant.getMinutes() / 60;
+    const duJour = horaires[jour];
+    function fmtH(n){ return n + "h00"; }
+    let point, texte;
+    if(duJour && heure >= duJour[0] && heure < duJour[1]){
+      point = "ouvert";
+      texte = "Ouvert aujourd'hui · jusqu'à " + fmtH(duJour[1]);
+    }else if(duJour && heure < duJour[0]){
+      point = "bientot";
+      texte = "Ouvre aujourd'hui à " + fmtH(duJour[0]);
+    }else{
+      point = "ferme";
+      let d = (jour + 1) % 7, n = 1;
+      while(!horaires[d]){ d = (d + 1) % 7; n++; }
+      texte = "Fermé " + (duJour ? "ce soir" : "aujourd'hui")
+        + " — rendez-vous " + (n === 1 ? "demain" : nomsJours[d])
+        + " dès " + fmtH(horaires[d][0]);
+    }
+    statutEl.innerHTML = '<span class="point-statut ' + point + '" aria-hidden="true"></span>' + texte;
+  }
+
+  /* ---------- l'accord du moment : rotation en fondu ---------- */
+  const accordEl = document.getElementById("accordFondu");
+  if(accordEl){
+    const accords = [
+      ["Croquetas de jamón", "un Fronton rouge"],
+      ["Burrata crémeuse", "un Gaillac blanc"],
+      ["Camembert rôti", "un Jurançon moelleux"],
+      ["Planche ibérique", "un Cahors charpenté"],
+      ["Anchois de Cantabrie", "un blanc sec bien frais"],
+      ["Poulpe grillé", "un rosé de caractère"]
+    ];
+    let iAccord = 0;
+    function afficherAccord(){
+      accordEl.innerHTML = accords[iAccord][0]
+        + ' <span class="etoile-accord">✦</span> '
+        + accords[iAccord][1];
+    }
+    setInterval(function(){
+      iAccord = (iAccord + 1) % accords.length;
+      if(reduit){ afficherAccord(); return; }
+      accordEl.style.opacity = "0";
+      setTimeout(function(){ afficherAccord(); accordEl.style.opacity = "1"; }, 600);
+    }, 5000);
+  }
 
   /* ---------- révélations au scroll ---------- */
   const io = new IntersectionObserver(function(entrees){
@@ -135,7 +184,8 @@
   const prochainEl = document.getElementById("prochainRdv");
   const calEl = document.getElementById("calendrier");
   const apercuEl = document.getElementById("apercuJour");
-  if(!listeEl && !prochainEl && !calEl) return;
+  const comptoirRdvEl = document.getElementById("comptoirRdv");
+  if(!listeEl && !prochainEl && !calEl && !comptoirRdvEl) return;
 
   const aujourdHui = new Date();
   aujourdHui.setHours(0,0,0,0);
@@ -273,6 +323,13 @@
         });
       });
     });
+  }
+
+  /* ---------- billet du comptoir : prochain rendez-vous ---------- */
+  if(comptoirRdvEl && evenements.length){
+    const ev = evenements[0];
+    comptoirRdvEl.innerHTML = 'Prochain rendez-vous : <a href="/agenda">'
+      + ev.titre + ' — ' + fmtDateLongue.format(ev.date) + '</a>';
   }
 
   /* ---------- prochain rendez-vous (chronologique) ---------- */
