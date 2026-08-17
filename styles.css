@@ -1005,3 +1005,20 @@ h2.titre .accent-script{
   .embleme-script{display:none}
   .hero-ctas-cote{justify-content:flex-start}
 }
+
+/* ============================================================
+   VARIANTES FOND CLAIR — pages tapas, brunch, adresses
+   (les cartes sombres deviennent des accents bordeaux sur crème)
+   ============================================================ */
+.s-creme .carte-cadre{
+  background:linear-gradient(160deg,var(--bordeaux-sombre),#2e1a21);
+  border-color:rgba(201,168,118,.45);
+  box-shadow:0 34px 60px -30px rgba(78,19,40,.45);
+}
+.s-creme .map-carte{background:var(--papier);border-color:rgba(122,99,85,.25)}
+.s-creme .map-carte h3{color:var(--brun)}
+.s-creme .horaires-carte{background:var(--papier);border-color:rgba(122,99,85,.22)}
+.s-creme .ligne-horaire{color:#4a382f;border-bottom-color:rgba(122,99,85,.3)}
+.s-creme .ligne-horaire strong{color:var(--brun)}
+.s-creme .ligne-horaire .ferme{color:var(--bordeaux-vif)}
+.s-creme .ligne-horaire a{color:var(--bordeaux)}
