@@ -73,11 +73,11 @@ section{position:relative}
   padding:.8rem clamp(1.2rem,4vw,3.5rem);
   box-shadow:0 1px 0 rgba(201,168,118,.18);
 }
-.logo{display:flex;align-items:center;gap:.7rem;text-decoration:none}
-.logo svg{width:34px;height:34px;flex:none}
+.logo{display:flex;align-items:center;gap:.65rem;text-decoration:none}
+.logo svg{width:44px;height:44px;flex:none}
 .logo-mot{line-height:1}
-.logo-mot .l1{font-family:var(--script);font-size:1.45rem;color:var(--or-clair);display:block}
-.logo-mot .l2{font-family:var(--sans);font-weight:500;font-size:.62rem;letter-spacing:.42em;text-transform:uppercase;color:var(--creme);display:block;margin-top:.1rem}
+.logo-mot .l1{font-family:var(--script);font-size:1.5rem;color:var(--or-clair);display:block}
+.logo-mot .l2{font-family:var(--serif);font-weight:500;font-size:.95rem;letter-spacing:.14em;color:var(--creme);display:block;margin-top:.15rem}
 .nav-liens{display:flex;align-items:center;gap:clamp(1rem,2.4vw,2.2rem);list-style:none}
 .nav-liens a{
   text-decoration:none;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;
