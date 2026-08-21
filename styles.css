@@ -1132,7 +1132,7 @@ h2.titre .accent-script{
 }
 .voute{
   position:absolute;left:-8%;top:-6%;width:116%;height:112%;
-  transform-origin:50% 62%;will-change:transform;
+  transform-origin:50% 48%;will-change:transform;
 }
 .lueur-chaude{
   position:absolute;border-radius:50%;filter:blur(60px);

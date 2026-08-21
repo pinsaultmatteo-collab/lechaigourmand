@@ -147,29 +147,30 @@
   <!-- fond : la cave en perspective — voûte qui avance au scroll, objets flottants en profondeur -->
   <div class="cave-fond" id="caveFond" aria-hidden="true">
     <svg class="voute" id="vouteHero" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" fill="none">
-      <!-- arches du chai, du proche au lointain (point de fuite : 720/560) -->
+      <!-- arches du chai, du proche au lointain (point de fuite : 720/430,
+           aligné sur l'axe et le centre du contenu pour une symétrie parfaite) -->
       <g stroke="#c9a876" stroke-linecap="round">
-        <path d="M120 890 L720 560 M1320 890 L720 560" stroke-width="1.5" opacity=".10"/>
-        <path d="M120 890 V500 A600 280 0 0 1 1320 500 V890" stroke-width="2.6" opacity=".26"/>
-        <path d="M252 817 V513 A468 218 0 0 1 1188 513 V817" stroke-width="2.2" opacity=".21"/>
-        <path d="M360 758 V524 A360 168 0 0 1 1080 524 V758" stroke-width="1.9" opacity=".17"/>
-        <path d="M444 712 V532 A276 129 0 0 1 996 532 V712" stroke-width="1.6" opacity=".14"/>
-        <path d="M510 676 V539 A210 98 0 0 1 930 539 V676" stroke-width="1.4" opacity=".11"/>
-        <path d="M558 649 V544 A162 76 0 0 1 882 544 V649" stroke-width="1.2" opacity=".09"/>
+        <path d="M120 890 L720 430 M1320 890 L720 430" stroke-width="1.5" opacity=".10"/>
+        <path d="M120 890 V390 A600 260 0 0 1 1320 390 V890" stroke-width="2.6" opacity=".26"/>
+        <path d="M252 789 V399 A468 203 0 0 1 1188 399 V789" stroke-width="2.2" opacity=".21"/>
+        <path d="M360 706 V406 A360 156 0 0 1 1080 406 V706" stroke-width="1.9" opacity=".17"/>
+        <path d="M444 642 V412 A276 120 0 0 1 996 412 V642" stroke-width="1.6" opacity=".14"/>
+        <path d="M510 591 V416 A210 91 0 0 1 930 416 V591" stroke-width="1.4" opacity=".11"/>
+        <path d="M558 554 V419 A162 70 0 0 1 882 419 V554" stroke-width="1.2" opacity=".09"/>
         <!-- joints du sol -->
-        <path d="M252 817 H1188" stroke-width="1.4" opacity=".10"/>
-        <path d="M360 758 H1080" stroke-width="1.2" opacity=".08"/>
-        <path d="M444 712 H996" stroke-width="1" opacity=".07"/>
+        <path d="M252 789 H1188" stroke-width="1.4" opacity=".10"/>
+        <path d="M360 706 H1080" stroke-width="1.2" opacity=".08"/>
+        <path d="M444 642 H996" stroke-width="1" opacity=".07"/>
         <!-- tonneaux en silhouette le long des murs -->
         <g opacity=".14" stroke-width="2">
-          <circle cx="286" cy="700" r="64"/>
-          <path d="M228 675 h116 M228 725 h116"/>
-          <circle cx="1154" cy="700" r="64"/>
-          <path d="M1096 675 h116 M1096 725 h116"/>
-          <circle cx="452" cy="640" r="40"/>
-          <path d="M416 625 h72 M416 655 h72"/>
-          <circle cx="988" cy="640" r="40"/>
-          <path d="M952 625 h72 M952 655 h72"/>
+          <circle cx="300" cy="745" r="58"/>
+          <path d="M246 723 h108 M246 767 h108"/>
+          <circle cx="1140" cy="745" r="58"/>
+          <path d="M1086 723 h108 M1086 767 h108"/>
+          <circle cx="420" cy="623" r="36"/>
+          <path d="M388 609 h64 M388 637 h64"/>
+          <circle cx="1020" cy="623" r="36"/>
+          <path d="M988 609 h64 M988 637 h64"/>
         </g>
       </g>
     </svg>
