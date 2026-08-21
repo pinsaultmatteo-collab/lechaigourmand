@@ -9,15 +9,28 @@
   const annee = document.getElementById("annee");
   if(annee) annee.textContent = new Date().getFullYear();
 
-  /* ---------- nav : fond au scroll + jauge ---------- */
+  /* ---------- nav : fond au scroll + jauge + verre de la cave ---------- */
   const nav = document.getElementById("nav");
   const jauge = document.querySelector(".jauge");
+  const vinScroll = document.getElementById("vinScroll");
+  const verreSante = document.getElementById("verreSante");
+  const sectionCave = document.getElementById("cave");
   function surScroll(){
     const y = window.scrollY;
     if(nav) nav.classList.toggle("plein", y > 40);
     if(jauge){
       const h = document.documentElement.scrollHeight - window.innerHeight;
       jauge.style.width = (h > 0 ? (y / h) * 100 : 0) + "%";
+    }
+    /* le verre se remplit à mesure qu'on descend la section cave */
+    if(vinScroll && sectionCave){
+      const r = sectionCave.getBoundingClientRect();
+      const vh = window.innerHeight;
+      let p = (vh - r.top) / (r.height + vh * 0.6);
+      p = Math.max(0, Math.min(1, p));
+      if(reduit) p = 1;
+      vinScroll.style.transform = "translateY(" + Math.round((1 - p) * 138) + "px)";
+      if(verreSante) verreSante.classList.toggle("visible", p >= 0.99);
     }
   }
   window.addEventListener("scroll", surScroll, {passive:true});

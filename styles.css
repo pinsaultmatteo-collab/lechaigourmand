@@ -1028,3 +1028,69 @@ h2.titre .accent-script{
 .coord-tel{margin-top:.5rem}
 .coord-tel a{color:var(--or-clair);text-decoration:none;font-size:.92rem;letter-spacing:.06em}
 .coord-tel a:hover{text-decoration:underline}
+
+/* ============================================================
+   HOME v3 — portes pleine photo, fond tablée, verre au scroll,
+   mot du caviste
+   ============================================================ */
+
+/* portes : la photo occupe toute la carte, voile réduit au pied */
+.porte-photo img{opacity:1}
+.porte-voile{background:linear-gradient(180deg,rgba(26,15,20,0) 38%,rgba(26,15,20,.55) 70%,rgba(26,15,20,.92) 100%)}
+.porte.grande{min-height:460px}
+
+/* fond du bloc découvrir : la tablée de L'Annexe sous voile bordeaux
+   (bords haut/bas exactement #241419 pour fondre avec les vagues) */
+#decouvrir{
+  background:
+    linear-gradient(180deg, #241419 0%, rgba(46,17,28,.88) 16%, rgba(78,19,40,.82) 50%, rgba(46,17,28,.9) 84%, #241419 100%),
+    url("/images/tablee-brunch-annexe-cugnaux.webp") center/cover no-repeat;
+}
+
+/* ---------- cave : grille texte + verre sticky ---------- */
+.cave-scroll-grille{
+  display:grid;grid-template-columns:1fr clamp(140px,15vw,200px);
+  gap:clamp(1.5rem,4vw,3.5rem);align-items:stretch;
+}
+.verre-colonne{position:relative}
+.verre-scroll{
+  position:sticky;top:110px;
+  display:flex;flex-direction:column;align-items:center;gap:.4rem;
+}
+.verre-scroll svg{width:100%;max-width:185px;filter:drop-shadow(0 20px 40px rgba(124,33,64,.25))}
+.vin-scroll{transition:transform .35s ease-out}
+.verre-sante{
+  font-family:var(--script);font-size:clamp(1.7rem,2.4vw,2.3rem);color:var(--bordeaux);
+  opacity:0;transform:translateY(10px);transition:opacity .6s var(--transition),transform .6s var(--transition);
+}
+.verre-sante.visible{opacity:1;transform:none}
+@media (max-width:860px){
+  .cave-scroll-grille{grid-template-columns:1fr}
+  .verre-colonne{display:none} /* le verre au scroll est un plaisir d'écran large */
+}
+
+/* ---------- le mot du caviste ---------- */
+.mot-caviste{
+  margin-top:clamp(2.5rem,5vw,4rem);
+  background:var(--papier);border:1px solid rgba(122,99,85,.18);border-radius:22px;
+  padding:clamp(1.5rem,3.5vw,2.6rem);
+  display:grid;grid-template-columns:minmax(170px,230px) 1fr;
+  gap:clamp(1.4rem,3.5vw,2.8rem);align-items:center;
+  position:relative;overflow:hidden;
+}
+.mot-caviste-photo{margin:0;position:relative}
+.mot-caviste-photo img{border-radius:16px;box-shadow:0 22px 44px -20px rgba(51,36,31,.45)}
+.cercle-caviste{
+  position:absolute;inset:auto -34px -34px auto;width:150px;height:150px;border-radius:50%;
+  border:1px dashed rgba(169,136,90,.5);pointer-events:none;z-index:2;
+}
+.mot-caviste blockquote{
+  font-family:var(--serif);font-style:italic;font-weight:500;
+  font-size:clamp(1.2rem,2.1vw,1.5rem);line-height:1.5;color:var(--brun);margin-top:1rem;
+}
+.mot-caviste-qui{margin-top:.9rem;font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;color:var(--bordeaux);font-weight:500}
+.mot-caviste-note{margin-top:.9rem;font-size:.95rem;color:var(--brun-doux);max-width:56ch}
+@media (max-width:700px){
+  .mot-caviste{grid-template-columns:1fr}
+  .mot-caviste-photo{max-width:250px;margin-inline:auto}
+}
