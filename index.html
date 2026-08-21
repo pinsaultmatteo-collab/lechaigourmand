@@ -286,6 +286,31 @@
 
 <!-- ==================== L'ESPRIT DU CHAI ==================== -->
 <section class="section s-creme" id="esprit">
+  <!-- traînée dorée : se dessine en travers de la section au fil du scroll -->
+  <svg class="trainee" viewBox="0 0 1440 1300" preserveAspectRatio="none" aria-hidden="true">
+    <defs>
+      <linearGradient id="orTrainee" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#c9a876" stop-opacity=".25"/>
+        <stop offset=".5" stop-color="#e6d3ae"/>
+        <stop offset="1" stop-color="#a9885a"/>
+      </linearGradient>
+      <filter id="flouTrainee" x="-40%" y="-40%" width="180%" height="180%">
+        <feGaussianBlur stdDeviation="5"/>
+      </filter>
+    </defs>
+    <path class="trainee-halo" pathLength="1"
+      d="M-30 120 C260 40 420 220 720 170 S1180 60 1300 240 C1420 420 1150 520 900 470 S480 380 380 560 C280 740 520 830 820 785 S1240 700 1470 900"/>
+    <path class="trainee-trait" id="traineePath" pathLength="1"
+      d="M-30 120 C260 40 420 220 720 170 S1180 60 1300 240 C1420 420 1150 520 900 470 S480 380 380 560 C280 740 520 830 820 785 S1240 700 1470 900"/>
+    <g fill="#a9885a">
+      <path class="etincelle" data-seuil=".16" d="M720 152 l3.2 8.8 8.8 3.2 -8.8 3.2 -3.2 8.8 -3.2 -8.8 -8.8 -3.2 8.8 -3.2 z"/>
+      <path class="etincelle" data-seuil=".38" d="M1310 222 l3.2 8.8 8.8 3.2 -8.8 3.2 -3.2 8.8 -3.2 -8.8 -8.8 -3.2 8.8 -3.2 z"/>
+      <path class="etincelle" data-seuil=".58" d="M888 448 l3.2 8.8 8.8 3.2 -8.8 3.2 -3.2 8.8 -3.2 -8.8 -8.8 -3.2 8.8 -3.2 z"/>
+      <path class="etincelle" data-seuil=".76" d="M362 546 l3.2 8.8 8.8 3.2 -8.8 3.2 -3.2 8.8 -3.2 -8.8 -8.8 -3.2 8.8 -3.2 z"/>
+      <path class="etincelle" data-seuil=".9" d="M828 764 l3.2 8.8 8.8 3.2 -8.8 3.2 -3.2 8.8 -3.2 -8.8 -8.8 -3.2 8.8 -3.2 z"/>
+    </g>
+    <circle class="trainee-comete" id="traineeComete" r="5" cx="-30" cy="120" fill="#fdf9f0"/>
+  </svg>
   <div class="contenu">
     <div class="esprit-grille">
       <!-- titre inclus dans la colonne sticky : elle se fige dès l'entrée dans la section -->
@@ -308,31 +333,6 @@
           « Un bon vin, c'est d'abord une rencontre. Notre métier, c'est de la provoquer. »
           <footer>La maison — Le Chai Gourmand</footer>
         </blockquote>
-
-        <!-- la grappe qui mûrit en descendant la page -->
-        <div class="grappe-scroll" id="grappeScroll" aria-hidden="true">
-          <svg viewBox="0 0 210 252" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- rameau & vrille -->
-            <path d="M112 10 C112 26 109 42 111 58" stroke="#a9885a" stroke-width="4" stroke-linecap="round"/>
-            <path d="M112 22 C126 20 136 10 138 2" stroke="#a9885a" stroke-width="3" stroke-linecap="round"/>
-            <!-- feuille -->
-            <path d="M108 30 C88 18 66 20 54 34 C66 50 90 52 108 40 Z" stroke="#a9885a" stroke-width="3.5" stroke-linejoin="round"/>
-            <path d="M104 36 C88 32 74 32 62 34" stroke="#a9885a" stroke-width="2.5" stroke-linecap="round"/>
-            <!-- grains (remplis un à un au scroll, du bas vers le haut) -->
-            <g stroke="#a9885a" stroke-width="3.5" fill="#7c2140">
-              <circle class="grain-r" cx="56" cy="78" r="19"/>
-              <circle class="grain-r" cx="94" cy="74" r="19"/>
-              <circle class="grain-r" cx="132" cy="78" r="19"/>
-              <circle class="grain-r" cx="168" cy="86" r="19"/>
-              <circle class="grain-r" cx="75" cy="111" r="19"/>
-              <circle class="grain-r" cx="113" cy="108" r="19"/>
-              <circle class="grain-r" cx="150" cy="115" r="19"/>
-              <circle class="grain-r" cx="94" cy="144" r="19"/>
-              <circle class="grain-r" cx="131" cy="147" r="19"/>
-              <circle class="grain-r" cx="112" cy="180" r="19"/>
-            </g>
-          </svg>
-        </div>
       </div>
 
       <div>
@@ -452,6 +452,7 @@
 <!-- ==================== LA CAVE : SUR L'ÉTAGÈRE ==================== -->
 <section class="section s-creme" id="cave" style="background:var(--creme-2)">
   <div class="contenu">
+    <div class="cave-tete">
     <div class="entete-section rv">
       <p class="eyebrow">La cave &amp; l'épicerie fine</p>
       <h2 class="titre">Sur l'étagère,<br><span class="accent-script">en ce moment.</span></h2>
@@ -495,6 +496,7 @@
               stroke-linecap="round" opacity=".25" fill="none"/>
       </svg>
       <span class="verre-sante" id="verreSante">Santé !</span>
+    </div>
     </div>
 
     <div class="etagere" id="etagere">

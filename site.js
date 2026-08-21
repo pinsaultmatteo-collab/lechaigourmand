@@ -15,8 +15,11 @@
   const vinScroll = document.getElementById("vinScroll");
   const verreSante = document.getElementById("verreSante");
   const verreWrap = document.getElementById("verreScroll");
-  const grappeWrap = document.getElementById("grappeScroll");
-  const grains = grappeWrap ? grappeWrap.querySelectorAll(".grain-r") : [];
+  const traineePath = document.getElementById("traineePath");
+  const traineeHalo = document.querySelector(".trainee-halo");
+  const traineeComete = document.getElementById("traineeComete");
+  const etincelles = document.querySelectorAll(".etincelle");
+  const traineeLongueur = traineePath ? traineePath.getTotalLength() : 0;
   const sectionEsprit = document.getElementById("esprit");
   function surScroll(){
     const y = window.scrollY;
@@ -35,15 +38,22 @@
       vinScroll.style.transform = "translateY(" + Math.round((1 - p) * 138) + "px)";
       if(verreSante) verreSante.classList.toggle("visible", p >= 0.99);
     }
-    /* la grappe mûrit, grain par grain, au fil de la section esprit */
-    if(grains.length && sectionEsprit){
+    /* la traînée dorée se dessine en travers de la section esprit */
+    if(traineePath && sectionEsprit){
       const r = sectionEsprit.getBoundingClientRect();
-      let p = (vh - r.top) / (r.height + vh * 0.15);
+      let p = (vh * 0.9 - r.top) / (r.height + vh * 0.2);
       p = Math.max(0, Math.min(1, p));
       if(reduit) p = 1;
-      const n = Math.round(p * grains.length);
-      grains.forEach(function(g, i){
-        g.classList.toggle("plein", grains.length - i <= n); // du bas vers le haut
+      traineePath.style.strokeDashoffset = 1 - p;
+      if(traineeHalo) traineeHalo.style.strokeDashoffset = 1 - p;
+      if(traineeComete){
+        const pt = traineePath.getPointAtLength(p * traineeLongueur);
+        traineeComete.setAttribute("cx", pt.x);
+        traineeComete.setAttribute("cy", pt.y);
+        traineeComete.style.opacity = (!reduit && p > 0.02 && p < 0.98) ? 1 : 0;
+      }
+      etincelles.forEach(function(e){
+        e.classList.toggle("visible", p >= parseFloat(e.dataset.seuil));
       });
     }
   }

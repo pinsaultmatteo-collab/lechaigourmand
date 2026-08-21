@@ -1047,11 +1047,15 @@ h2.titre .accent-script{
     url("/images/tablee-brunch-annexe-cugnaux.webp") center/cover no-repeat;
 }
 
-/* ---------- cave : le verre centré qui se remplit au scroll ---------- */
+/* ---------- cave : le verre à droite du titre, rempli au scroll ---------- */
+.cave-tete{
+  display:grid;grid-template-columns:1fr auto;align-items:center;
+  gap:clamp(1.5rem,4vw,4.5rem);margin-bottom:clamp(2.2rem,4.5vw,3.5rem);
+}
+.cave-tete .entete-section{margin-bottom:0}
 .verre-scroll{
-  margin:0 auto clamp(2rem,4vw,3rem);
   display:flex;flex-direction:column;align-items:center;gap:.3rem;
-  width:min(170px,44vw);
+  width:min(165px,40vw);
 }
 .verre-scroll svg{width:100%;filter:drop-shadow(0 20px 40px rgba(124,33,64,.25))}
 .vin-scroll{transition:transform .35s ease-out}
@@ -1060,15 +1064,32 @@ h2.titre .accent-script{
   opacity:0;transform:translateY(10px);transition:opacity .6s var(--transition),transform .6s var(--transition);
 }
 .verre-sante.visible{opacity:1;transform:none}
-
-/* ---------- esprit : la grappe qui mûrit au scroll ---------- */
-.grappe-scroll{margin:1.8rem auto 0;width:min(160px,40vw)}
-.grappe-scroll svg{width:100%}
-.grain-r{
-  fill-opacity:0;transform:scale(.82);transform-origin:center;transform-box:fill-box;
-  transition:fill-opacity .45s ease,transform .45s var(--transition);
+@media (max-width:700px){
+  .cave-tete{grid-template-columns:1fr}
+  .verre-scroll{margin-inline:auto}
 }
-.grain-r.plein{fill-opacity:.92;transform:scale(1)}
+
+/* ---------- esprit : la traînée dorée qui traverse la section ---------- */
+.trainee{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
+#esprit .contenu{position:relative;z-index:1}
+.trainee-trait{
+  fill:none;stroke:url(#orTrainee);stroke-width:2.5;stroke-linecap:round;
+  vector-effect:non-scaling-stroke;stroke-dasharray:1;stroke-dashoffset:1;
+}
+.trainee-halo{
+  fill:none;stroke:#c9a876;stroke-width:9;stroke-linecap:round;opacity:.35;
+  vector-effect:non-scaling-stroke;stroke-dasharray:1;stroke-dashoffset:1;
+  filter:url(#flouTrainee);
+}
+.etincelle{
+  opacity:0;transform:scale(.3) rotate(-40deg);transform-origin:center;transform-box:fill-box;
+  transition:opacity .5s ease,transform .6s var(--transition);
+}
+.etincelle.visible{opacity:.85;transform:scale(1) rotate(0deg)}
+.trainee-comete{
+  opacity:0;transition:opacity .3s;
+  filter:drop-shadow(0 0 7px rgba(230,211,174,.95)) drop-shadow(0 0 14px rgba(201,168,118,.6));
+}
 
 /* ---------- en-tête de section centré ---------- */
 .entete-centre{margin-inline:auto;text-align:center}
