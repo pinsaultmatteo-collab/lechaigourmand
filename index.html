@@ -153,61 +153,72 @@
       <span class="poussiere" style="width:3px;height:3px;left:18%;top:64%;animation-delay:4.5s"></span>
       <span class="poussiere" style="width:2px;height:2px;left:50%;top:8%;animation-delay:6s"></span>
 
-      <svg class="verre" viewBox="-25 -5 390 470" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg class="verre" viewBox="0 0 480 420" fill="none" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <clipPath id="bol">
-            <path d="M96 62 C96 178 122 218 170 218 C218 218 244 178 244 62 Z"/>
+            <path d="M202 95 C192 132 186 178 202 207 C218 230 242 236 260 237 C278 236 302 230 318 207 C334 178 328 132 318 95 Z"/>
           </clipPath>
           <linearGradient id="vinGrad" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0" stop-color="#a13154"/>
             <stop offset="1" stop-color="#521330"/>
           </linearGradient>
-          <radialGradient id="lueur" cx="50%" cy="42%" r="62%">
+          <radialGradient id="lueur" cx="50%" cy="46%" r="60%">
             <stop offset="0" stop-color="#9d2c50" stop-opacity=".38"/>
             <stop offset="1" stop-color="#9d2c50" stop-opacity="0"/>
           </radialGradient>
         </defs>
 
         <!-- halo chaleureux -->
-        <circle cx="170" cy="185" r="180" fill="url(#lueur)"/>
+        <circle cx="260" cy="200" r="190" fill="url(#lueur)"/>
 
-        <!-- cercle "dessus de tonneau" du logo, en rotation lente -->
-        <g class="tonneau" opacity=".55">
-          <circle cx="170" cy="176" r="152" stroke="#c9a876" stroke-width="6"
-                  stroke-dasharray="44 16 10 16 70 14 26 18" stroke-linecap="round"/>
-          <g stroke="#c9a876" stroke-width="4" stroke-linecap="round" opacity=".6">
-            <path d="M96 92 L120 68"/>
-            <path d="M232 60 L252 84"/>
-            <path d="M70 200 L90 224"/>
-            <path d="M250 236 L228 260"/>
-            <path d="M150 320 L172 330"/>
+        <!-- cercle de douelles hachuré du logo, en rotation lente -->
+        <g class="tonneau">
+          <circle cx="260" cy="200" r="150" stroke="#d9c3a1" stroke-width="7"
+                  stroke-dasharray="46 16 10 16 66 14 24 17" stroke-linecap="round" opacity=".9"/>
+          <g stroke="#d9c3a1" stroke-width="5" stroke-linecap="round" opacity=".55">
+            <path d="M310 72 l26 26"/>
+            <path d="M352 104 l18 18"/>
+            <path d="M376 156 l12 12"/>
+            <path d="M150 296 l20 20"/>
+            <path d="M196 330 l14 14"/>
+            <path d="M136 240 l14 14"/>
+            <path d="M346 262 l16 16"/>
           </g>
+        </g>
+
+        <!-- sarment & feuilles (fixes, comme sur le logo) -->
+        <g>
+          <path d="M158 322 C118 298 94 256 97 208" stroke="#d9c3a1" stroke-width="6" fill="none" stroke-linecap="round"/>
+          <path d="M158 322 c11 7 9 18 -2 20 c-9 2 -13 -7 -6 -13" stroke="#d9c3a1" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+          <path d="M97 208 C79 204 64 189 62 167 C82 167 97 184 97 208 Z" fill="#d9c3a1"/>
+          <path d="M93 232 C74 239 54 234 43 218 C56 205 80 212 93 232 Z" fill="#d9c3a1"/>
+          <path d="M112 176 C104 162 104 146 112 134 C124 142 126 160 112 176 Z" fill="#d9c3a1" opacity=".85"/>
         </g>
 
         <!-- le vin (masqué par le bol) -->
         <g clip-path="url(#bol)">
           <g class="vin">
-            <rect x="40" y="128" width="260" height="120" fill="url(#vinGrad)"/>
+            <rect x="140" y="146" width="240" height="110" fill="url(#vinGrad)"/>
             <path class="vague v1" fill="#7c2140"
-              d="M-160 122 Q-120 108 -80 122 T0 122 T80 122 T160 122 T240 122 T320 122 T400 122 T480 122 T560 122 L560 240 L-160 240 Z"/>
+              d="M20 140 Q60 124 100 140 T180 140 T260 140 T340 140 T420 140 T500 140 T580 140 L580 260 L20 260 Z"/>
             <path class="vague v2" fill="#b13a5f"
-              d="M-160 126 Q-120 114 -80 126 T0 126 T80 126 T160 126 T240 126 T320 126 T400 126 T480 126 T560 126 L560 240 L-160 240 Z"/>
-            <circle class="bulle" cx="150" cy="200" r="4" fill="rgba(255,255,255,.4)"/>
-            <circle class="bulle b2" cx="182" cy="206" r="3" fill="rgba(255,255,255,.35)"/>
-            <circle class="bulle b3" cx="165" cy="210" r="2.4" fill="rgba(255,255,255,.35)"/>
-            <circle class="bulle b4" cx="196" cy="198" r="2.8" fill="rgba(255,255,255,.3)"/>
+              d="M20 144 Q60 130 100 144 T180 144 T260 144 T340 144 T420 144 T500 144 T580 144 L580 260 L20 260 Z"/>
+            <circle class="bulle" cx="240" cy="205" r="4" fill="rgba(255,255,255,.4)"/>
+            <circle class="bulle b2" cx="272" cy="212" r="3" fill="rgba(255,255,255,.35)"/>
+            <circle class="bulle b3" cx="255" cy="218" r="2.4" fill="rgba(255,255,255,.35)"/>
+            <circle class="bulle b4" cx="286" cy="200" r="2.8" fill="rgba(255,255,255,.3)"/>
           </g>
         </g>
 
-        <!-- le verre en trait or -->
-        <g stroke="#e6d3ae" stroke-width="5.5" stroke-linecap="round" fill="none">
-          <path d="M96 62 C96 178 122 218 170 218 C218 218 244 178 244 62"/>
-          <path d="M96 62 L244 62" opacity=".85"/>
-          <path d="M170 218 L170 334"/>
-          <path d="M116 352 C136 340 204 340 224 352"/>
+        <!-- le verre ballon en trait crème -->
+        <g stroke="#f6efe2" stroke-width="8" stroke-linecap="round" fill="none">
+          <path d="M202 95 C192 132 186 178 202 207 C218 230 242 236 260 237 C278 236 302 230 318 207 C334 178 328 132 318 95"/>
+          <path d="M202 95 L318 95" opacity=".85"/>
+          <path d="M260 237 L260 302"/>
+          <path d="M216 318 C232 306 288 306 304 318"/>
         </g>
         <!-- reflet -->
-        <path d="M116 86 C116 152 128 188 148 202" stroke="#ffffff" stroke-width="4"
+        <path d="M206 112 C200 146 202 180 214 200" stroke="#ffffff" stroke-width="5"
               stroke-linecap="round" opacity=".22" fill="none"/>
       </svg>
     </div>

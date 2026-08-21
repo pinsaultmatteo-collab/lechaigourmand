@@ -168,9 +168,9 @@ section{position:relative}
 
 /* verre animé — réduit, centré au-dessus du titre */
 .hero-visuel{position:relative;z-index:1;display:flex;justify-content:center;margin-bottom:.4rem}
-.scene-verre{position:relative;width:min(175px,45vw,24svh)}
+.scene-verre{position:relative;width:min(250px,58vw,36svh)}
 .verre{width:100%;height:auto;filter:drop-shadow(0 30px 60px rgba(124,33,64,.35))}
-.tonneau{animation:tourner 90s linear infinite;transform-origin:170px 176px}
+.tonneau{animation:tourner 90s linear infinite;transform-origin:260px 200px}
 @keyframes tourner{to{transform:rotate(360deg)}}
 .vin{animation:monter 2.4s var(--transition) .6s both}
 @keyframes monter{from{transform:translateY(150px)}to{transform:translateY(0)}}
@@ -212,7 +212,7 @@ section{position:relative}
 /* écrans peu hauts (portables 13") : hero plus compact */
 @media (max-height:800px){
   .hero{padding-top:5.5rem}
-  .scene-verre{width:min(145px,20svh)}
+  .scene-verre{width:min(200px,28svh)}
   .hero h1 .script{font-size:clamp(3rem,6.5vw,5rem)}
   .hero h1 .caps{font-size:clamp(1.5rem,3.2vw,2.6rem)}
   .hero-adresses{margin-top:1.8rem}
