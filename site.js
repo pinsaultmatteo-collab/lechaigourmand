@@ -21,6 +21,40 @@
   const etincelles = document.querySelectorAll(".etincelle");
   const traineeLongueur = traineePath ? traineePath.getTotalLength() : 0;
   const sectionEsprit = document.getElementById("esprit");
+
+  /* ---------- hero : la cave en perspective ---------- */
+  const fondHero = document.getElementById("caveFond");
+  const vouteHero = document.getElementById("vouteHero");
+  const flottants = fondHero ? fondHero.querySelectorAll(".flottant") : [];
+  let sourisX = 0, sourisY = 0;
+  function majFondHero(){
+    if(!fondHero || reduit) return;
+    const y = window.scrollY;
+    if(y > window.innerHeight * 1.4) return; // hero hors champ : on ne calcule plus
+    if(vouteHero){
+      vouteHero.style.transform = "translateY(" + (y * 0.08) + "px)"
+        + " scale(" + (1 + y * 0.00045) + ")"
+        + " rotateX(" + (sourisY * 1.7).toFixed(2) + "deg)"
+        + " rotateY(" + (-sourisX * 1.7).toFixed(2) + "deg)";
+    }
+    flottants.forEach(function(f){
+      const prof = parseFloat(f.dataset.prof) || .5;
+      f.style.transform = "translate3d("
+        + (sourisX * prof * 30).toFixed(1) + "px,"
+        + (sourisY * prof * 22 - y * prof * 0.3).toFixed(1) + "px,0)";
+    });
+  }
+  if(fondHero && !reduit && window.matchMedia("(pointer:fine)").matches){
+    let rafFond = false;
+    window.addEventListener("mousemove", function(e){
+      sourisX = (e.clientX / window.innerWidth) * 2 - 1;
+      sourisY = (e.clientY / window.innerHeight) * 2 - 1;
+      if(!rafFond){
+        rafFond = true;
+        requestAnimationFrame(function(){ rafFond = false; majFondHero(); });
+      }
+    }, {passive:true});
+  }
   function surScroll(){
     const y = window.scrollY;
     const vh = window.innerHeight;
@@ -38,6 +72,7 @@
       vinScroll.style.transform = "translateY(" + Math.round((1 - p) * 138) + "px)";
       if(verreSante) verreSante.classList.toggle("visible", p >= 0.99);
     }
+    majFondHero();
     /* la traînée dorée se dessine en travers de la section esprit */
     if(traineePath && sectionEsprit){
       const r = sectionEsprit.getBoundingClientRect();
