@@ -38,10 +38,11 @@
       vinScroll.style.transform = "translateY(" + Math.round((1 - p) * 138) + "px)";
       if(verreSante) verreSante.classList.toggle("visible", p >= 0.99);
     }
-    /* la traînée dorée se dessine en travers de la section esprit */
+    /* la traînée dorée se dessine en travers de la section esprit
+       (cadence calée sur le scroll : tracé complet après ~60 % du bloc) */
     if(traineePath && sectionEsprit){
       const r = sectionEsprit.getBoundingClientRect();
-      let p = (vh * 0.9 - r.top) / (r.height + vh * 0.2);
+      let p = (vh * 0.9 - r.top) / (r.height * 0.6);
       p = Math.max(0, Math.min(1, p));
       if(reduit) p = 1;
       traineePath.style.strokeDashoffset = 1 - p;
