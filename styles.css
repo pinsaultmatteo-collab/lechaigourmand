@@ -108,8 +108,9 @@ section{position:relative}
   min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;
   text-align:center;padding:6.5rem clamp(1.2rem,6vw,6rem) 2.5rem;position:relative;overflow:hidden;
   background:
-    radial-gradient(900px 600px at 50% 18%, rgba(124,33,64,.32), transparent 60%),
-    radial-gradient(760px 320px at 50% 104%, rgba(209,148,86,.12), transparent 65%),
+    radial-gradient(900px 600px at 50% 18%, rgba(124,33,64,.28), transparent 60%),
+    linear-gradient(180deg, rgba(26,15,20,.86) 0%, rgba(26,15,20,.62) 42%, rgba(26,15,20,.78) 100%),
+    url("/images/cave-tonneaux-fond-hero.webp") center/cover no-repeat,
     var(--noir);
 }
 .hero::before{ /* vignette au-dessus du fond de cave */
@@ -1121,43 +1122,4 @@ h2.titre .accent-script{
 @media (max-width:700px){
   .mot-caviste{grid-template-columns:1fr}
   .mot-caviste-photo{max-width:250px;margin-inline:auto}
-}
-
-/* ============================================================
-   HERO — la cave en perspective (fond animé au scroll & souris)
-   ============================================================ */
-.cave-fond{
-  position:absolute;inset:0;overflow:hidden;pointer-events:none;
-  perspective:1000px;z-index:0;
-}
-.voute{
-  position:absolute;left:-8%;top:-6%;width:116%;height:112%;
-  transform-origin:50% 48%;will-change:transform;
-}
-.lueur-chaude{
-  position:absolute;border-radius:50%;filter:blur(60px);
-  animation:respirer 7s ease-in-out infinite alternate;
-}
-.lueur-chaude.l1{width:360px;height:360px;left:4%;bottom:2%;background:radial-gradient(circle,rgba(214,150,90,.30),transparent 70%)}
-.lueur-chaude.l2{width:320px;height:320px;right:4%;bottom:8%;background:radial-gradient(circle,rgba(157,44,80,.36),transparent 70%);animation-delay:3.2s}
-.lueur-chaude.l3{width:520px;height:280px;left:50%;top:-90px;transform:translateX(-50%);background:radial-gradient(ellipse,rgba(201,168,118,.16),transparent 70%);animation-delay:5s}
-@keyframes respirer{from{opacity:.45}to{opacity:.85}}
-.flottant{position:absolute;will-change:transform}
-.flottant svg{width:100%;height:auto;fill:none}
-.flottant-bob{animation:flotter3d 6s ease-in-out infinite alternate}
-.f2 .flottant-bob{animation-duration:7.6s;animation-delay:1.1s}
-.f3 .flottant-bob{animation-duration:8.4s;animation-delay:2.3s}
-.f4 .flottant-bob{animation-duration:9.2s;animation-delay:.6s}
-@keyframes flotter3d{
-  from{transform:translateY(-9px) rotate(-2.5deg)}
-  to{transform:translateY(11px) rotate(2.5deg)}
-}
-.flottant.f1{left:10%;top:22%;width:56px;opacity:.55}
-.flottant.f2{right:11%;top:28%;width:50px;opacity:.6}
-.flottant.f3{left:18%;top:63%;width:48px;opacity:.4;filter:blur(1.1px)}
-.flottant.f4{right:19%;top:60%;width:76px;opacity:.32;filter:blur(1.6px)}
-@media (max-width:700px){
-  .flottant.f3,.flottant.f4{display:none}
-  .flottant.f1{left:5%;top:16%;width:42px}
-  .flottant.f2{right:5%;top:19%;width:38px}
 }

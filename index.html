@@ -22,6 +22,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Pinyon+Script&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/styles.css">
+<link rel="preload" href="/images/cave-tonneaux-fond-hero.webp" as="image">
 <script src="/site.js" defer></script>
 <script type="application/ld+json">
 {
@@ -144,79 +145,6 @@
 
 <!-- ==================== HERO ==================== -->
 <section class="hero" id="haut">
-  <!-- fond : la cave en perspective — voûte qui avance au scroll, objets flottants en profondeur -->
-  <div class="cave-fond" id="caveFond" aria-hidden="true">
-    <svg class="voute" id="vouteHero" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" fill="none">
-      <!-- arches du chai, du proche au lointain (point de fuite : 720/430,
-           aligné sur l'axe et le centre du contenu pour une symétrie parfaite) -->
-      <g stroke="#c9a876" stroke-linecap="round">
-        <path d="M120 890 L720 430 M1320 890 L720 430" stroke-width="1.5" opacity=".10"/>
-        <path d="M120 890 V390 A600 260 0 0 1 1320 390 V890" stroke-width="2.6" opacity=".26"/>
-        <path d="M252 789 V399 A468 203 0 0 1 1188 399 V789" stroke-width="2.2" opacity=".21"/>
-        <path d="M360 706 V406 A360 156 0 0 1 1080 406 V706" stroke-width="1.9" opacity=".17"/>
-        <path d="M444 642 V412 A276 120 0 0 1 996 412 V642" stroke-width="1.6" opacity=".14"/>
-        <path d="M510 591 V416 A210 91 0 0 1 930 416 V591" stroke-width="1.4" opacity=".11"/>
-        <path d="M558 554 V419 A162 70 0 0 1 882 419 V554" stroke-width="1.2" opacity=".09"/>
-        <!-- joints du sol -->
-        <path d="M252 789 H1188" stroke-width="1.4" opacity=".10"/>
-        <path d="M360 706 H1080" stroke-width="1.2" opacity=".08"/>
-        <path d="M444 642 H996" stroke-width="1" opacity=".07"/>
-        <!-- tonneaux en silhouette le long des murs -->
-        <g opacity=".14" stroke-width="2">
-          <circle cx="300" cy="745" r="58"/>
-          <path d="M246 723 h108 M246 767 h108"/>
-          <circle cx="1140" cy="745" r="58"/>
-          <path d="M1086 723 h108 M1086 767 h108"/>
-          <circle cx="420" cy="623" r="36"/>
-          <path d="M388 609 h64 M388 637 h64"/>
-          <circle cx="1020" cy="623" r="36"/>
-          <path d="M988 609 h64 M988 637 h64"/>
-        </g>
-      </g>
-    </svg>
-
-    <!-- halos chauds qui respirent -->
-    <span class="lueur-chaude l1"></span>
-    <span class="lueur-chaude l2"></span>
-    <span class="lueur-chaude l3"></span>
-
-    <!-- objets flottants en profondeur (les lointains sont floutés) -->
-    <div class="flottant f1" data-prof=".65">
-      <div class="flottant-bob">
-        <svg viewBox="0 0 60 160" stroke="#c9a876" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M26 6 h8 v26 c0 10 10 13 10 24 v88 a7 7 0 0 1 -7 7 h-14 a7 7 0 0 1 -7 -7 v-88 c0 -11 10 -14 10 -24 z"/>
-          <path d="M20 96 h20" opacity=".7"/>
-        </svg>
-      </div>
-    </div>
-    <div class="flottant f2" data-prof=".8">
-      <div class="flottant-bob">
-        <svg viewBox="0 0 56 108" stroke="#c9a876" stroke-width="4" stroke-linecap="round">
-          <path d="M10 6 C8 28 12 46 28 48 C44 46 48 28 46 6 Z"/>
-          <path d="M28 48 V82 M14 90 Q28 84 42 90"/>
-        </svg>
-      </div>
-    </div>
-    <div class="flottant f3" data-prof=".4">
-      <div class="flottant-bob">
-        <svg viewBox="0 0 84 96" stroke="#c9a876" stroke-width="3.5" stroke-linecap="round">
-          <path d="M42 4 v14"/>
-          <circle cx="26" cy="32" r="12"/><circle cx="58" cy="32" r="12"/>
-          <circle cx="42" cy="54" r="12"/><circle cx="26" cy="76" r="10"/><circle cx="58" cy="76" r="10"/>
-        </svg>
-      </div>
-    </div>
-    <div class="flottant f4" data-prof=".28">
-      <div class="flottant-bob">
-        <svg viewBox="0 0 100 100" stroke="#c9a876" stroke-width="3.5" stroke-linecap="round">
-          <circle cx="50" cy="50" r="44"/>
-          <circle cx="50" cy="50" r="33" stroke-dasharray="10 8" opacity=".7"/>
-          <path d="M12 36 h76 M12 64 h76" opacity=".8"/>
-        </svg>
-      </div>
-    </div>
-  </div>
-
   <div class="hero-visuel entree" aria-hidden="true">
     <div class="scene-verre" id="sceneVerre">
       <!-- poussières de cave -->
