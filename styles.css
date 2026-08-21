@@ -1047,27 +1047,33 @@ h2.titre .accent-script{
     url("/images/tablee-brunch-annexe-cugnaux.webp") center/cover no-repeat;
 }
 
-/* ---------- cave : grille texte + verre sticky ---------- */
-.cave-scroll-grille{
-  display:grid;grid-template-columns:1fr clamp(140px,15vw,200px);
-  gap:clamp(1.5rem,4vw,3.5rem);align-items:stretch;
-}
-.verre-colonne{position:relative}
+/* ---------- cave : le verre centré qui se remplit au scroll ---------- */
 .verre-scroll{
-  position:sticky;top:110px;
-  display:flex;flex-direction:column;align-items:center;gap:.4rem;
+  margin:0 auto clamp(2rem,4vw,3rem);
+  display:flex;flex-direction:column;align-items:center;gap:.3rem;
+  width:min(170px,44vw);
 }
-.verre-scroll svg{width:100%;max-width:185px;filter:drop-shadow(0 20px 40px rgba(124,33,64,.25))}
+.verre-scroll svg{width:100%;filter:drop-shadow(0 20px 40px rgba(124,33,64,.25))}
 .vin-scroll{transition:transform .35s ease-out}
 .verre-sante{
   font-family:var(--script);font-size:clamp(1.7rem,2.4vw,2.3rem);color:var(--bordeaux);
   opacity:0;transform:translateY(10px);transition:opacity .6s var(--transition),transform .6s var(--transition);
 }
 .verre-sante.visible{opacity:1;transform:none}
-@media (max-width:860px){
-  .cave-scroll-grille{grid-template-columns:1fr}
-  .verre-colonne{display:none} /* le verre au scroll est un plaisir d'écran large */
+
+/* ---------- esprit : la grappe qui mûrit au scroll ---------- */
+.grappe-scroll{margin:1.8rem auto 0;width:min(160px,40vw)}
+.grappe-scroll svg{width:100%}
+.grain-r{
+  fill-opacity:0;transform:scale(.82);transform-origin:center;transform-box:fill-box;
+  transition:fill-opacity .45s ease,transform .45s var(--transition);
 }
+.grain-r.plein{fill-opacity:.92;transform:scale(1)}
+
+/* ---------- en-tête de section centré ---------- */
+.entete-centre{margin-inline:auto;text-align:center}
+.entete-centre .chapeau{margin-inline:auto}
+.entete-centre .eyebrow::after{content:"";width:38px;height:1px;background:currentColor}
 
 /* ---------- le mot du caviste ---------- */
 .mot-caviste{

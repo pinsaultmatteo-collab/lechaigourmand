@@ -308,6 +308,31 @@
           « Un bon vin, c'est d'abord une rencontre. Notre métier, c'est de la provoquer. »
           <footer>La maison — Le Chai Gourmand</footer>
         </blockquote>
+
+        <!-- la grappe qui mûrit en descendant la page -->
+        <div class="grappe-scroll" id="grappeScroll" aria-hidden="true">
+          <svg viewBox="0 0 210 252" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- rameau & vrille -->
+            <path d="M112 10 C112 26 109 42 111 58" stroke="#a9885a" stroke-width="4" stroke-linecap="round"/>
+            <path d="M112 22 C126 20 136 10 138 2" stroke="#a9885a" stroke-width="3" stroke-linecap="round"/>
+            <!-- feuille -->
+            <path d="M108 30 C88 18 66 20 54 34 C66 50 90 52 108 40 Z" stroke="#a9885a" stroke-width="3.5" stroke-linejoin="round"/>
+            <path d="M104 36 C88 32 74 32 62 34" stroke="#a9885a" stroke-width="2.5" stroke-linecap="round"/>
+            <!-- grains (remplis un à un au scroll, du bas vers le haut) -->
+            <g stroke="#a9885a" stroke-width="3.5" fill="#7c2140">
+              <circle class="grain-r" cx="56" cy="78" r="19"/>
+              <circle class="grain-r" cx="94" cy="74" r="19"/>
+              <circle class="grain-r" cx="132" cy="78" r="19"/>
+              <circle class="grain-r" cx="168" cy="86" r="19"/>
+              <circle class="grain-r" cx="75" cy="111" r="19"/>
+              <circle class="grain-r" cx="113" cy="108" r="19"/>
+              <circle class="grain-r" cx="150" cy="115" r="19"/>
+              <circle class="grain-r" cx="94" cy="144" r="19"/>
+              <circle class="grain-r" cx="131" cy="147" r="19"/>
+              <circle class="grain-r" cx="112" cy="180" r="19"/>
+            </g>
+          </svg>
+        </div>
       </div>
 
       <div>
@@ -427,8 +452,6 @@
 <!-- ==================== LA CAVE : SUR L'ÉTAGÈRE ==================== -->
 <section class="section s-creme" id="cave" style="background:var(--creme-2)">
   <div class="contenu">
-    <div class="cave-scroll-grille">
-    <div class="cave-scroll-texte">
     <div class="entete-section rv">
       <p class="eyebrow">La cave &amp; l'épicerie fine</p>
       <h2 class="titre">Sur l'étagère,<br><span class="accent-script">en ce moment.</span></h2>
@@ -436,6 +459,42 @@
         Six bouteilles piochées parmi les 300 références de la cave — des vignerons indépendants,
         choisis un par un par Adrien, à des prix qui restent aimables.
       </p>
+    </div>
+
+    <!-- le verre qui se remplit en descendant la page -->
+    <div class="verre-scroll rv" id="verreScroll" aria-hidden="true">
+      <svg viewBox="0 0 240 330" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <clipPath id="bolCave">
+            <path d="M62 28 C62 128 82 162 120 162 C158 162 178 128 178 28 Z"/>
+          </clipPath>
+          <linearGradient id="vinCaveGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#a13154"/>
+            <stop offset="1" stop-color="#521330"/>
+          </linearGradient>
+        </defs>
+        <g clip-path="url(#bolCave)">
+          <g class="vin-scroll" id="vinScroll">
+            <rect x="20" y="80" width="200" height="130" fill="url(#vinCaveGrad)"/>
+            <path class="vague v1" fill="#7c2140"
+              d="M-160 76 Q-120 62 -80 76 T0 76 T80 76 T160 76 T240 76 T320 76 T400 76 T480 76 T560 76 L560 210 L-160 210 Z"/>
+            <path class="vague v2" fill="#b13a5f"
+              d="M-160 80 Q-120 68 -80 80 T0 80 T80 80 T160 80 T240 80 T320 80 T400 80 T480 80 T560 80 L560 210 L-160 210 Z"/>
+            <circle class="bulle" cx="105" cy="150" r="3.4" fill="rgba(255,255,255,.4)"/>
+            <circle class="bulle b2" cx="130" cy="156" r="2.6" fill="rgba(255,255,255,.35)"/>
+            <circle class="bulle b3" cx="118" cy="160" r="2" fill="rgba(255,255,255,.35)"/>
+          </g>
+        </g>
+        <g stroke="#a9885a" stroke-width="4.5" stroke-linecap="round" fill="none">
+          <path d="M62 28 C62 128 82 162 120 162 C158 162 178 128 178 28"/>
+          <path d="M62 28 L178 28" opacity=".85"/>
+          <path d="M120 162 L120 252"/>
+          <path d="M78 266 C94 256 146 256 162 266"/>
+        </g>
+        <path d="M78 48 C78 100 88 130 102 142" stroke="#ffffff" stroke-width="3"
+              stroke-linecap="round" opacity=".25" fill="none"/>
+      </svg>
+      <span class="verre-sante" id="verreSante">Santé !</span>
     </div>
 
     <div class="etagere" id="etagere">
@@ -565,46 +624,6 @@
     <div class="centre-cta rv">
       <a class="btn btn-plein" href="/cave-a-vin">Explorer toute la cave</a>
     </div>
-    </div>
-
-    <!-- le verre qui se remplit en descendant la page -->
-    <div class="verre-colonne" aria-hidden="true">
-      <div class="verre-scroll" id="verreScroll">
-        <svg viewBox="0 0 240 330" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <clipPath id="bolCave">
-              <path d="M62 28 C62 128 82 162 120 162 C158 162 178 128 178 28 Z"/>
-            </clipPath>
-            <linearGradient id="vinCaveGrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#a13154"/>
-              <stop offset="1" stop-color="#521330"/>
-            </linearGradient>
-          </defs>
-          <g clip-path="url(#bolCave)">
-            <g class="vin-scroll" id="vinScroll">
-              <rect x="20" y="80" width="200" height="130" fill="url(#vinCaveGrad)"/>
-              <path class="vague v1" fill="#7c2140"
-                d="M-160 76 Q-120 62 -80 76 T0 76 T80 76 T160 76 T240 76 T320 76 T400 76 T480 76 T560 76 L560 210 L-160 210 Z"/>
-              <path class="vague v2" fill="#b13a5f"
-                d="M-160 80 Q-120 68 -80 80 T0 80 T80 80 T160 80 T240 80 T320 80 T400 80 T480 80 T560 80 L560 210 L-160 210 Z"/>
-              <circle class="bulle" cx="105" cy="150" r="3.4" fill="rgba(255,255,255,.4)"/>
-              <circle class="bulle b2" cx="130" cy="156" r="2.6" fill="rgba(255,255,255,.35)"/>
-              <circle class="bulle b3" cx="118" cy="160" r="2" fill="rgba(255,255,255,.35)"/>
-            </g>
-          </g>
-          <g stroke="#a9885a" stroke-width="4.5" stroke-linecap="round" fill="none">
-            <path d="M62 28 C62 128 82 162 120 162 C158 162 178 128 178 28"/>
-            <path d="M62 28 L178 28" opacity=".85"/>
-            <path d="M120 162 L120 252"/>
-            <path d="M78 266 C94 256 146 256 162 266"/>
-          </g>
-          <path d="M78 48 C78 100 88 130 102 142" stroke="#ffffff" stroke-width="3"
-                stroke-linecap="round" opacity=".25" fill="none"/>
-        </svg>
-        <span class="verre-sante" id="verreSante">Santé !</span>
-      </div>
-    </div>
-    </div>
   </div>
 </section>
 
@@ -615,7 +634,7 @@
 <!-- ==================== AGENDA : CALENDRIER ==================== -->
 <section class="section s-creme" id="agenda">
   <div class="contenu">
-    <div class="entete-section rv">
+    <div class="entete-section entete-centre rv">
       <p class="eyebrow">L'agenda des Chais</p>
       <h2 class="titre">Il se passe toujours<br><span class="accent-script">quelque chose</span> au Chai.</h2>
       <p class="chapeau">

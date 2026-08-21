@@ -14,23 +14,37 @@
   const jauge = document.querySelector(".jauge");
   const vinScroll = document.getElementById("vinScroll");
   const verreSante = document.getElementById("verreSante");
-  const sectionCave = document.getElementById("cave");
+  const verreWrap = document.getElementById("verreScroll");
+  const grappeWrap = document.getElementById("grappeScroll");
+  const grains = grappeWrap ? grappeWrap.querySelectorAll(".grain-r") : [];
+  const sectionEsprit = document.getElementById("esprit");
   function surScroll(){
     const y = window.scrollY;
+    const vh = window.innerHeight;
     if(nav) nav.classList.toggle("plein", y > 40);
     if(jauge){
-      const h = document.documentElement.scrollHeight - window.innerHeight;
+      const h = document.documentElement.scrollHeight - vh;
       jauge.style.width = (h > 0 ? (y / h) * 100 : 0) + "%";
     }
-    /* le verre se remplit à mesure qu'on descend la section cave */
-    if(vinScroll && sectionCave){
-      const r = sectionCave.getBoundingClientRect();
-      const vh = window.innerHeight;
-      let p = (vh - r.top) / (r.height + vh * 0.6);
+    /* le verre se remplit pendant qu'on le croise à l'écran */
+    if(vinScroll && verreWrap){
+      const r = verreWrap.getBoundingClientRect();
+      let p = (vh - r.top) / (vh * 0.75);
       p = Math.max(0, Math.min(1, p));
       if(reduit) p = 1;
       vinScroll.style.transform = "translateY(" + Math.round((1 - p) * 138) + "px)";
       if(verreSante) verreSante.classList.toggle("visible", p >= 0.99);
+    }
+    /* la grappe mûrit, grain par grain, au fil de la section esprit */
+    if(grains.length && sectionEsprit){
+      const r = sectionEsprit.getBoundingClientRect();
+      let p = (vh - r.top) / (r.height + vh * 0.15);
+      p = Math.max(0, Math.min(1, p));
+      if(reduit) p = 1;
+      const n = Math.round(p * grains.length);
+      grains.forEach(function(g, i){
+        g.classList.toggle("plein", grains.length - i <= n); // du bas vers le haut
+      });
     }
   }
   window.addEventListener("scroll", surScroll, {passive:true});
