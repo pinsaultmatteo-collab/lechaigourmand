@@ -647,16 +647,29 @@ h2.titre .accent-script{
 .brunch-titre .ou-quand{margin-top:1rem;color:rgba(246,239,226,.75);font-size:.95rem;max-width:34ch}
 .brunch-prix{
   display:inline-flex;flex-direction:column;align-items:center;justify-content:center;
-  width:112px;height:112px;border-radius:50%;border:1.5px solid var(--or);margin-top:1.6rem;
-  font-family:var(--serif);font-weight:700;font-size:2rem;color:var(--creme);line-height:1.1;
+  width:148px;height:148px;border-radius:50%;margin-top:1.6rem;padding:0 .8rem;text-align:center;
+  background:radial-gradient(circle at 35% 28%, #b13a5f, var(--bordeaux-sombre) 75%);
+  border:2px solid var(--or);
+  box-shadow:0 22px 46px -14px rgba(157,44,80,.6), inset 0 0 0 6px rgba(230,211,174,.12);
+  font-family:var(--serif);font-weight:700;font-size:2.7rem;color:var(--creme);line-height:1.05;
 }
-.brunch-prix small{font-family:var(--sans);font-size:.56rem;letter-spacing:.2em;text-transform:uppercase;font-weight:400;color:var(--or-clair)}
+.brunch-prix small{font-family:var(--sans);font-size:.55rem;letter-spacing:.18em;text-transform:uppercase;font-weight:500;color:var(--or-clair);margin-top:.35rem}
 .brunch-note{margin-top:1.4rem;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--or-clair)}
-.brunch-menu{display:flex;flex-direction:column;justify-content:center}
-.brunch-plat{padding:.75rem 0;border-bottom:1px dotted rgba(201,168,118,.35)}
-.brunch-plat:last-child{border-bottom:0}
-.brunch-plat h4{font-family:var(--serif);font-weight:600;font-size:1.1rem;color:var(--creme);letter-spacing:.02em}
-.brunch-plat p{font-family:var(--serif);font-style:italic;font-size:.95rem;color:rgba(246,239,226,.6)}
+.brunch-menu{display:grid;grid-template-columns:1fr 1fr;gap:.85rem;align-content:center}
+.brunch-plat{
+  display:flex;gap:.85rem;align-items:flex-start;
+  background:rgba(255,255,255,.05);border:1px solid rgba(201,168,118,.25);border-radius:14px;
+  padding:.95rem 1.05rem 1rem;
+  transition:transform .35s var(--transition),border-color .35s,background .35s;
+}
+.brunch-plat:hover{transform:translateY(-3px);border-color:rgba(201,168,118,.55);background:rgba(255,255,255,.08)}
+.plat-num{
+  font-family:var(--serif);font-style:italic;font-weight:600;font-size:1.5rem;
+  color:var(--or);line-height:1;flex:none;margin-top:.1rem;
+}
+.brunch-plat h4{font-family:var(--serif);font-weight:600;font-size:1.06rem;color:var(--creme);letter-spacing:.02em;line-height:1.25}
+.brunch-plat p{font-family:var(--serif);font-style:italic;font-size:.92rem;color:rgba(246,239,226,.62);margin-top:.15rem}
+@media (max-width:640px){.brunch-menu{grid-template-columns:1fr}}
 
 /* ---------- horaires ---------- */
 .horaires-grille{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;max-width:900px;margin:1.4rem auto 0;text-align:left}
