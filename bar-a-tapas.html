@@ -4,14 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bar à tapas à Cugnaux — La carte | Le Chai Gourmand</title>
-<meta name="description" content="Croquetas de jamón, planches ibériques, burrata, poulpe grillé… La carte du bar à tapas du Chai Gourmand à Francazal, Cugnaux, près de Toulouse. Produits frais, recettes maison, accords conseillés par le caviste.">
+<meta name="description" content="Planches fromage et charcuterie, tartines au confit de canard, camembert rôti, escargots… La carte du bar à tapas du Chai Gourmand à Francazal, Cugnaux, près de Toulouse. Recettes maison, accords conseillés par le caviste.">
 <link rel="canonical" href="https://lechaigourmand.vercel.app/bar-a-tapas">
 <meta name="theme-color" content="#1a0f14">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Le Chai Gourmand">
 <meta property="og:locale" content="fr_FR">
 <meta property="og:title" content="Bar à tapas à Cugnaux — La carte du Chai Gourmand">
-<meta property="og:description" content="Croquetas, planches ibériques, burrata… Des tapas maison à partager, accordées au verre près par le caviste.">
+<meta property="og:description" content="Planches à partager, tartines, camembert rôti… Des recettes maison, accordées au verre près par le caviste.">
 <meta property="og:url" content="https://lechaigourmand.vercel.app/bar-a-tapas">
 <meta property="og:image" content="https://lechaigourmand.vercel.app/images/og-le-chai-gourmand.jpg">
 <meta property="og:image:width" content="1200">
@@ -37,28 +37,47 @@
     {
       "@type": "Menu",
       "@id": "https://lechaigourmand.vercel.app/bar-a-tapas#menu",
-      "name": "La carte des tapas — Le Chai Gourmand",
+      "name": "La carte — Le Chai Gourmand",
       "inLanguage": "fr-FR",
       "hasMenuSection": [
         {
           "@type": "MenuSection",
-          "name": "À grignoter",
+          "name": "Nos planches à partager",
           "hasMenuItem": [
-            {"@type": "MenuItem", "name": "Croquetas de jamón", "description": "Les six, crémeuses à cœur", "offers": {"@type": "Offer", "price": "8.00", "priceCurrency": "EUR"}},
-            {"@type": "MenuItem", "name": "Patatas bravas", "description": "Aïoli fumé maison", "offers": {"@type": "Offer", "price": "7.00", "priceCurrency": "EUR"}},
-            {"@type": "MenuItem", "name": "Anchois de Cantabrie", "description": "Beurre demi-sel, pain grillé", "offers": {"@type": "Offer", "price": "9.00", "priceCurrency": "EUR"}},
-            {"@type": "MenuItem", "name": "Tortilla maison", "description": "Fondante, comme là-bas", "offers": {"@type": "Offer", "price": "6.50", "priceCurrency": "EUR"}}
+            {"@type": "MenuItem", "name": "Planche fromage", "description": "Classique 13 € ou grande 25 €", "offers": [{"@type": "Offer", "price": "13.00", "priceCurrency": "EUR"}, {"@type": "Offer", "price": "25.00", "priceCurrency": "EUR"}]},
+            {"@type": "MenuItem", "name": "Planche charcuterie", "description": "Classique 12 € ou grande 24 €", "offers": [{"@type": "Offer", "price": "12.00", "priceCurrency": "EUR"}, {"@type": "Offer", "price": "24.00", "priceCurrency": "EUR"}]},
+            {"@type": "MenuItem", "name": "Planche mixte fromage et charcuterie", "description": "Classique 14 € ou grande 26 €", "offers": [{"@type": "Offer", "price": "14.00", "priceCurrency": "EUR"}, {"@type": "Offer", "price": "26.00", "priceCurrency": "EUR"}]}
           ]
         },
         {
           "@type": "MenuSection",
-          "name": "À partager",
+          "name": "Tartines sur pain de campagne",
           "hasMenuItem": [
-            {"@type": "MenuItem", "name": "Planche ibérique", "description": "Bellota, chorizo, lomo, condiments", "offers": {"@type": "Offer", "price": "16.00", "priceCurrency": "EUR"}},
-            {"@type": "MenuItem", "name": "Camembert rôti", "description": "Miel et romarin, mouillettes", "offers": {"@type": "Offer", "price": "9.00", "priceCurrency": "EUR"}},
-            {"@type": "MenuItem", "name": "Poulpe grillé", "description": "Crème de pois chiche, paprika", "offers": {"@type": "Offer", "price": "12.00", "priceCurrency": "EUR"}},
-            {"@type": "MenuItem", "name": "Burrata crémeuse", "description": "Tomates confites, huile du Chai", "offers": {"@type": "Offer", "price": "10.00", "priceCurrency": "EUR"}}
+            {"@type": "MenuItem", "name": "Effiloché de confit de canard", "description": "Maison Samaran", "offers": {"@type": "Offer", "price": "11.00", "priceCurrency": "EUR"}},
+            {"@type": "MenuItem", "name": "Chèvre et miel", "offers": {"@type": "Offer", "price": "8.00", "priceCurrency": "EUR"}},
+            {"@type": "MenuItem", "name": "Champignons, crème d'ail", "offers": {"@type": "Offer", "price": "9.00", "priceCurrency": "EUR"}}
           ]
+        },
+        {
+          "@type": "MenuSection",
+          "name": "Nos plats et spécialités",
+          "hasMenuItem": [
+            {"@type": "MenuItem", "name": "Camembert rôti", "offers": {"@type": "Offer", "price": "8.00", "priceCurrency": "EUR"}},
+            {"@type": "MenuItem", "name": "Camembert rôti avec jambon", "offers": {"@type": "Offer", "price": "12.00", "priceCurrency": "EUR"}},
+            {"@type": "MenuItem", "name": "Escargots à la bourguignonne", "description": "Les six 8 € ou les douze 14 €", "offers": [{"@type": "Offer", "price": "8.00", "priceCurrency": "EUR"}, {"@type": "Offer", "price": "14.00", "priceCurrency": "EUR"}]},
+            {"@type": "MenuItem", "name": "Encornets persillade", "offers": {"@type": "Offer", "price": "12.00", "priceCurrency": "EUR"}},
+            {"@type": "MenuItem", "name": "Cœurs de canard persillade", "description": "Maison Samaran", "offers": {"@type": "Offer", "price": "12.00", "priceCurrency": "EUR"}},
+            {"@type": "MenuItem", "name": "Saucisse de Toulouse grillée", "description": "Oignons confits", "offers": {"@type": "Offer", "price": "12.00", "priceCurrency": "EUR"}},
+            {"@type": "MenuItem", "name": "Crevettes grillées au chorizo", "offers": {"@type": "Offer", "price": "12.00", "priceCurrency": "EUR"}},
+            {"@type": "MenuItem", "name": "Velouté de champignons", "description": "Parmesan, noix et lard grillé", "offers": {"@type": "Offer", "price": "10.00", "priceCurrency": "EUR"}},
+            {"@type": "MenuItem", "name": "Pimientos del Padrón", "offers": {"@type": "Offer", "price": "6.00", "priceCurrency": "EUR"}},
+            {"@type": "MenuItem", "name": "Écrasé de pommes de terre", "offers": {"@type": "Offer", "price": "6.00", "priceCurrency": "EUR"}}
+          ]
+        },
+        {
+          "@type": "MenuSection",
+          "name": "Fruits de mer",
+          "description": "Huîtres, crevettes, bulots — à partir de fin septembre, selon arrivage et disponibilité"
         }
       ]
     }
@@ -197,55 +216,92 @@
         </figure>
         <figure class="pola p2">
           <img src="/images/burrata-tapas-cugnaux.webp" alt="Burrata crémeuse aux tomates confites, tapas du Chai Gourmand à Cugnaux" width="800" height="1058" loading="lazy">
-          <span>La burrata du moment</span>
+          <span>Au gré du marché</span>
         </figure>
       </div>
     </div>
 
     <!-- ==================== LA CARTE ==================== -->
     <div class="carte-cadre rv" id="carte">
-      <p class="carte-titre">Extraits de la carte</p>
+      <p class="carte-titre">La carte</p>
       <div class="carte-colonnes">
         <div class="carte-groupe">
-          <h4>À grignoter</h4>
+          <h4>Nos planches à partager</h4>
           <div class="plat">
-            <span class="plat-nom">Croquetas de jamón <span class="etoile" title="Signature">✦</span><span class="plat-detail">les six, crémeuses à cœur</span></span>
+            <span class="plat-nom">Planche fromage<span class="plat-detail">classique ou grande</span></span>
+            <span class="pointille" aria-hidden="true"></span><span class="plat-prix">13 € · 25 €</span>
+          </div>
+          <div class="plat">
+            <span class="plat-nom">Planche charcuterie<span class="plat-detail">classique ou grande</span></span>
+            <span class="pointille" aria-hidden="true"></span><span class="plat-prix">12 € · 24 €</span>
+          </div>
+          <div class="plat">
+            <span class="plat-nom">Planche mixte<span class="plat-detail">fromage &amp; charcuterie · classique ou grande</span></span>
+            <span class="pointille" aria-hidden="true"></span><span class="plat-prix">14 € · 26 €</span>
+          </div>
+          <h4 style="margin-top:1.8rem">Tartines sur pain de campagne</h4>
+          <div class="plat">
+            <span class="plat-nom">Effiloché de confit de canard<span class="plat-detail">Maison Samaran</span></span>
+            <span class="pointille" aria-hidden="true"></span><span class="plat-prix">11 €</span>
+          </div>
+          <div class="plat">
+            <span class="plat-nom">Chèvre &amp; miel</span>
             <span class="pointille" aria-hidden="true"></span><span class="plat-prix">8 €</span>
           </div>
           <div class="plat">
-            <span class="plat-nom">Patatas bravas<span class="plat-detail">aïoli fumé maison</span></span>
-            <span class="pointille" aria-hidden="true"></span><span class="plat-prix">7 €</span>
-          </div>
-          <div class="plat">
-            <span class="plat-nom">Anchois de Cantabrie<span class="plat-detail">beurre demi-sel, pain grillé</span></span>
+            <span class="plat-nom">Champignons, crème d'ail</span>
             <span class="pointille" aria-hidden="true"></span><span class="plat-prix">9 €</span>
           </div>
+          <h4 style="margin-top:1.8rem">Fruits de mer</h4>
           <div class="plat">
-            <span class="plat-nom">Tortilla maison<span class="plat-detail">fondante, comme là-bas</span></span>
-            <span class="pointille" aria-hidden="true"></span><span class="plat-prix">6,5 €</span>
+            <span class="plat-nom">Huîtres, crevettes, bulots<span class="plat-detail">à partir de fin septembre · selon arrivage et disponibilité</span></span>
           </div>
         </div>
         <div class="carte-groupe">
-          <h4>À partager</h4>
+          <h4>Nos plats &amp; spécialités</h4>
           <div class="plat">
-            <span class="plat-nom">Planche ibérique <span class="etoile" title="Signature">✦</span><span class="plat-detail">bellota, chorizo, lomo, condiments</span></span>
-            <span class="pointille" aria-hidden="true"></span><span class="plat-prix">16 €</span>
+            <span class="plat-nom">Camembert rôti</span>
+            <span class="pointille" aria-hidden="true"></span><span class="plat-prix">8 €</span>
           </div>
           <div class="plat">
-            <span class="plat-nom">Camembert rôti<span class="plat-detail">miel &amp; romarin, mouillettes</span></span>
-            <span class="pointille" aria-hidden="true"></span><span class="plat-prix">9 €</span>
-          </div>
-          <div class="plat">
-            <span class="plat-nom">Poulpe grillé<span class="plat-detail">crème de pois chiche, paprika</span></span>
+            <span class="plat-nom">Camembert rôti avec jambon</span>
             <span class="pointille" aria-hidden="true"></span><span class="plat-prix">12 €</span>
           </div>
           <div class="plat">
-            <span class="plat-nom">Burrata crémeuse<span class="plat-detail">tomates confites, huile du Chai</span></span>
+            <span class="plat-nom">Escargots à la bourguignonne<span class="plat-detail">les six · les douze</span></span>
+            <span class="pointille" aria-hidden="true"></span><span class="plat-prix">8 € · 14 €</span>
+          </div>
+          <div class="plat">
+            <span class="plat-nom">Encornets persillade</span>
+            <span class="pointille" aria-hidden="true"></span><span class="plat-prix">12 €</span>
+          </div>
+          <div class="plat">
+            <span class="plat-nom">Cœurs de canard persillade<span class="plat-detail">Maison Samaran</span></span>
+            <span class="pointille" aria-hidden="true"></span><span class="plat-prix">12 €</span>
+          </div>
+          <div class="plat">
+            <span class="plat-nom">Saucisse de Toulouse grillée<span class="plat-detail">oignons confits</span></span>
+            <span class="pointille" aria-hidden="true"></span><span class="plat-prix">12 €</span>
+          </div>
+          <div class="plat">
+            <span class="plat-nom">Crevettes grillées au chorizo</span>
+            <span class="pointille" aria-hidden="true"></span><span class="plat-prix">12 €</span>
+          </div>
+          <div class="plat">
+            <span class="plat-nom">Velouté de champignons<span class="plat-detail">parmesan, noix &amp; lard grillé</span></span>
             <span class="pointille" aria-hidden="true"></span><span class="plat-prix">10 €</span>
+          </div>
+          <div class="plat">
+            <span class="plat-nom">Pimientos del Padrón</span>
+            <span class="pointille" aria-hidden="true"></span><span class="plat-prix">6 €</span>
+          </div>
+          <div class="plat">
+            <span class="plat-nom">Écrasé de pommes de terre</span>
+            <span class="pointille" aria-hidden="true"></span><span class="plat-prix">6 €</span>
           </div>
         </div>
       </div>
-      <p class="carte-note">✦ Les signatures de la maison — carte évolutive, au gré du marché et de l'humeur du chef.</p>
+      <p class="carte-note">Planches en deux formats : classique · grande. Carte évolutive, au gré du marché et de l'humeur du chef.</p>
     </div>
 
     <!-- l'accord du caviste -->
@@ -258,7 +314,7 @@
         <div class="cc-etape">
           <div class="cc-num">1.</div>
           <h4>Vous choisissez</h4>
-          <p>Une planche, des croquetas, le poulpe — ce qui vous fait envie ce soir-là.</p>
+          <p>Une planche, des escargots, la saucisse de Toulouse — ce qui vous fait envie ce soir-là.</p>
         </div>
         <div class="cc-etape">
           <div class="cc-num">2.</div>

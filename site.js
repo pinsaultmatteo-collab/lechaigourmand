@@ -113,12 +113,12 @@
   const accordEl = document.getElementById("accordFondu");
   if(accordEl){
     const accords = [
-      ["Croquetas de jamón", "un Fronton rouge"],
-      ["Burrata crémeuse", "un Gaillac blanc"],
+      ["Planche mixte", "un Fronton rouge"],
       ["Camembert rôti", "un Jurançon moelleux"],
-      ["Planche ibérique", "un Cahors charpenté"],
-      ["Anchois de Cantabrie", "un blanc sec bien frais"],
-      ["Poulpe grillé", "un rosé de caractère"]
+      ["Escargots à la bourguignonne", "un Bourgogne blanc"],
+      ["Tartine chèvre & miel", "un Gaillac blanc"],
+      ["Crevettes grillées au chorizo", "un rosé de caractère"],
+      ["Saucisse de Toulouse", "un Cahors charpenté"]
     ];
     let iAccord = 0;
     function afficherAccord(){
@@ -240,7 +240,49 @@
 
   const evenements = [];
 
-  // — Brunch de l'Annexe : les 6 prochains samedis
+  /* ====== PROGRAMMATION DATÉE — pour mettre à jour le planning,
+     modifier simplement ce tableau (source : document client).
+     Format de date : "AAAA-MM-JJ". Les événements passés
+     disparaissent automatiquement du site. ====== */
+  const PROGRAMMATION = [
+    // — Septembre 2026 · Le Chai — Francazal
+    {date: "2026-09-03", lieu: "francazal", titre: "Afterwork Latino",
+     desc: "Le comptoir passe à l'heure latine — tapas, verres et rythmes qui réchauffent.", heure: "dès 17h"},
+    {date: "2026-09-04", lieu: "francazal", titre: "Afterwork French Party + Quizz Culture Générale",
+     desc: "Chanson française à l'apéro, puis quizz spécial rentrée scolaire pour départager les tablées.", heure: "dès 17h · quizz à 21h"},
+    {date: "2026-09-05", lieu: "francazal", titre: "Concert — David Soul",
+     desc: "Concert live au Chai, un verre à la main.", heure: "21h"},
+    {date: "2026-09-10", lieu: "francazal", titre: "Afterwork Soirée années 2000",
+     desc: "La bande-son de vos années lycée, les planches en plus.", heure: "dès 17h"},
+    {date: "2026-09-11", lieu: "francazal", titre: "Afterwork House + Blind Test",
+     desc: "House à l'apéro, blind test à 21h — venez en équipe.", heure: "dès 17h · blind test à 21h"},
+    {date: "2026-09-12", lieu: "francazal", titre: "Concert de saxophone & Soirée Blanche",
+     desc: "Sax en live et dress code blanc pour finir l'été en beauté.", heure: "dès 21h"},
+    {date: "2026-09-17", lieu: "francazal", titre: "Afterwork Rap & RnB US",
+     desc: "Le comptoir en mode US — planches, verres et classiques du genre.", heure: "dès 17h"},
+    {date: "2026-09-18", lieu: "francazal", titre: "DJ Nana",
+     desc: "DJ set au Chai jusqu'au bout de la nuit.", heure: "21h – 1h"},
+    {date: "2026-09-24", lieu: "francazal", titre: "Afterwork Disco / Funk",
+     desc: "Paillettes sonores et verres bien accordés.", heure: "dès 17h"},
+    {date: "2026-09-25", lieu: "francazal", titre: "Afterwork Rock + Concert Free O'Clock",
+     desc: "Apéro rock puis concert live de Free O'Clock.", heure: "dès 17h · concert à 20h"},
+    // — Septembre 2026 · L'Annexe
+    {date: "2026-09-10", lieu: "annexe", titre: "Initiation à la dégustation — vins d'Espagne",
+     desc: "Soirée accords mets & vins autour des vins d'Espagne, guidée par le caviste.", heure: "en soirée", resa: true},
+    {date: "2026-09-24", lieu: "annexe", titre: "Initiation à la dégustation — vins de Bourgogne",
+     desc: "Soirée accords mets & vins autour des vins de Bourgogne, guidée par le caviste.", heure: "en soirée", resa: true}
+    // NB : samedis 19 et 26 septembre en cours de préparation — masqués à la demande du client.
+  ];
+  PROGRAMMATION.forEach(function(ev){
+    const p = ev.date.split("-");
+    const d = new Date(+p[0], +p[1] - 1, +p[2]);
+    if(d >= aujourdHui){
+      evenements.push({date: d, lieu: ev.lieu, titre: ev.titre, desc: ev.desc, heure: ev.heure, resa: !!ev.resa});
+    }
+  });
+
+  /* ====== RÉCURRENTS (générés automatiquement chaque semaine) ====== */
+  // — Brunch de l'Annexe : tous les samedis
   let samedi = (aujourdHui.getDay() === 6) ? new Date(aujourdHui) : prochainJour(aujourdHui, 6);
   for(let i = 0; i < 6; i++){
     evenements.push({
@@ -254,52 +296,22 @@
     });
     samedi = ajouterJours(samedi, 7);
   }
-
-  // — Soirée dégustation œnologique : un jeudi sur deux (ancrage : jeudi 8 janvier 2026)
-  const ancrage = new Date(2026, 0, 8);
-  let jeudi = (aujourdHui.getDay() === 4) ? new Date(aujourdHui) : prochainJour(aujourdHui, 4);
-  const bonnesSemaines = [];
-  while(bonnesSemaines.length < 3){
-    const semaines = Math.round((jeudi - ancrage) / (7 * 864e5));
-    if(semaines % 2 === 0) bonnesSemaines.push(new Date(jeudi));
-    jeudi = ajouterJours(jeudi, 7);
-  }
-  bonnesSemaines.forEach(function(d){
-    evenements.push({
-      date: d,
-      lieu: "annexe",
-      titre: "Soirée dégustation œnologique",
-      desc: "Six vins, un thème, un caviste bavard. Adrien vous emmène là où les étiquettes ne suffisent plus.",
-      heure: "19h30",
-      recurrence: "Un jeudi sur deux",
-      resa: true
+  // — Dégustation de vins, bières & spiritueux : tous les samedis,
+  //   en dehors des horaires de service, dans les deux établissements
+  let samediDegust = (aujourdHui.getDay() === 6) ? new Date(aujourdHui) : prochainJour(aujourdHui, 6);
+  for(let i = 0; i < 4; i++){
+    ["francazal", "annexe"].forEach(function(lieu){
+      evenements.push({
+        date: new Date(samediDegust),
+        lieu: lieu,
+        titre: "Dégustation de vins, bières & spiritueux",
+        desc: "Sur place, en dehors des horaires de service — on ouvre les bouteilles, vous goûtez.",
+        heure: "hors horaires de service",
+        recurrence: "Tous les samedis"
+      });
     });
-  });
-
-  // — Événements ponctuels à Francazal (dates d'exemple, à remplacer par la vraie programmation)
-  evenements.push({
-    date: prochainJour(ajouterJours(aujourdHui, 8), 5),
-    lieu: "francazal",
-    titre: "Vigneron invité : la Négrette en majesté",
-    desc: "Un domaine de Fronton au comptoir, ses cuvées dans les verres, ses histoires en prime.",
-    heure: "19h00",
-    resa: true
-  });
-  evenements.push({
-    date: prochainJour(ajouterJours(aujourdHui, 15), 3),
-    lieu: "francazal",
-    titre: "Accords d'été : tapas & vins frais",
-    desc: "Cinq tapas, cinq verres, un seul mot d'ordre : la fraîcheur. Le duo cuisine-cave en démonstration.",
-    heure: "19h30",
-    resa: true
-  });
-  evenements.push({
-    date: prochainJour(ajouterJours(aujourdHui, 23), 6),
-    lieu: "francazal",
-    titre: "Cave ouverte : les nouveaux arrivages",
-    desc: "Dégustation libre des dernières trouvailles d'Adrien, tarif boutique toute la journée.",
-    heure: "10h00 – 19h00"
-  });
+    samediDegust = ajouterJours(samediDegust, 7);
+  }
 
   evenements.sort(function(a, b){ return a.date - b.date; });
 
