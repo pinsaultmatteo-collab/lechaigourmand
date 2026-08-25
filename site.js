@@ -86,7 +86,7 @@
     // horaires réels (0 = dimanche … 6 = samedi ; null = fermé)
     const lieuxComptoir = [
       {nom: "Le Chai — Francazal", horaires: {0:null, 1:null, 2:[10,21], 3:[10,21], 4:[10,23], 5:[10,23], 6:[10,23]}},
-      {nom: "L'Annexe",            horaires: {0:null, 1:null, 2:[16,20], 3:[16,20], 4:[16,22], 5:[16,22], 6:[10,22]}}
+      {nom: "L'Annexe — Cézerou",  horaires: {0:null, 1:null, 2:[16,20], 3:[16,20], 4:[16,22], 5:[16,22], 6:[10,22]}}
     ];
     const maintenant = new Date();
     const jour = maintenant.getDay();
@@ -224,7 +224,8 @@
   const calEl = document.getElementById("calendrier");
   const apercuEl = document.getElementById("apercuJour");
   const comptoirRdvEl = document.getElementById("comptoirRdv");
-  if(!listeEl && !prochainEl && !calEl && !comptoirRdvEl) return;
+  const bandeauAgendaEl = document.getElementById("bandeauAgenda");
+  if(!listeEl && !prochainEl && !calEl && !comptoirRdvEl && !bandeauAgendaEl) return;
 
   const aujourdHui = new Date();
   aujourdHui.setHours(0,0,0,0);
@@ -326,7 +327,7 @@
   const fmtMois = new Intl.DateTimeFormat("fr-FR", {month:"short"});
   const fmtMoisLong = new Intl.DateTimeFormat("fr-FR", {month:"long", year:"numeric"});
   const fmtDateLongue = new Intl.DateTimeFormat("fr-FR", {weekday:"long", day:"numeric", month:"long"});
-  const nomsLieux = {francazal:"Le Chai — Francazal", annexe:"L'Annexe"};
+  const nomsLieux = {francazal:"Le Chai — Francazal", annexe:"L'Annexe — Cézerou"};
 
   function badgeLieu(ev){
     return '<span class="ev-lieu ' + ev.lieu + '"><span class="pastille ' + ev.lieu + '"></span>' + nomsLieux[ev.lieu] + '</span>';
@@ -374,6 +375,28 @@
         });
       });
     });
+  }
+
+  /* ---------- bandeau sous le hero : les 3 prochains rendez-vous ---------- */
+  if(bandeauAgendaEl && evenements.length){
+    // un seul exemplaire par intitulé : le bandeau montre trois rendez-vous
+    // différents plutôt que le même récurrent dans les deux établissements
+    const vus = {};
+    const teaser = evenements.filter(function(ev){
+      if(vus[ev.titre]) return false;
+      vus[ev.titre] = true;
+      return true;
+    }).slice(0, 3);
+    bandeauAgendaEl.innerHTML = teaser.map(function(ev){
+      const mois = fmtMois.format(ev.date).replace(".", "");
+      return '<a class="bandeau-ev" href="/agenda">'
+        + '<span class="bandeau-ev-date">' + ev.date.getDate() + '<small>' + mois + '</small></span>'
+        + '<span class="bandeau-ev-corps">'
+        +   '<span class="bandeau-ev-titre">' + ev.titre + '</span>'
+        +   '<span class="bandeau-ev-lieu"><span class="pastille ' + ev.lieu + '"></span>' + nomsLieux[ev.lieu] + '</span>'
+        + '</span>'
+        + '</a>';
+    }).join("");
   }
 
   /* ---------- billet du comptoir : prochain rendez-vous ---------- */

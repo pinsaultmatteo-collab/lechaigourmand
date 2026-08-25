@@ -70,7 +70,7 @@
       "@type": "Restaurant",
       "@id": "https://lechaigourmand.vercel.app/#annexe",
       "name": "L'Annexe du Chai Gourmand",
-      "description": "L'annexe du Chai Gourmand au centre de Cugnaux : brunch en terrasse tous les samedis (formule complète à 25 €) et soirées dégustation œnologique un jeudi sur deux.",
+      "description": "L'Annexe du Chai Gourmand, rue de Cezerou à Cugnaux : brunch en terrasse tous les samedis (formule complète à 25 €), soirées d'initiation à la dégustation et dégustation de vins, bières et spiritueux le samedi hors service.",
       "url": "https://lechaigourmand.vercel.app/brunch",
       "servesCuisine": ["Brunch"],
       "priceRange": "€€",
@@ -231,6 +231,7 @@
       <span class="script entree e2">Le Chai</span>
       <span class="caps entree e3">Gourmand</span>
     </h1>
+    <p class="hero-slogan entree e4">L'élégance de nos terroirs</p>
     <p class="hero-sous entree e4">
       Bar à tapas, cave à vin &amp; épicerie fine. Deux adresses, une même idée du plaisir :
       <em>bien boire, bien manger, ensemble.</em>
@@ -242,7 +243,7 @@
     <p class="hero-adresses entree e5">
       <span>Le Chai — Francazal</span>
       <span class="puce" aria-hidden="true"></span>
-      <span>L'Annexe — Cugnaux centre</span>
+      <span>L'Annexe — Cézerou</span>
     </p>
   </div>
 
@@ -252,61 +253,13 @@
   </div>
 </section>
 
-<!-- ==================== LE BILLET DU COMPTOIR ==================== -->
-<div class="comptoir">
-  <div class="comptoir-col">
-    <span class="comptoir-libelle">Le billet du comptoir</span>
-    <p class="comptoir-statut" id="comptoirStatut">Du mardi au samedi — Francazal, Cugnaux</p>
-    <p class="comptoir-rdv" id="comptoirRdv">Brunch tous les samedis à L'Annexe — <a href="/agenda">voir l'agenda</a></p>
+<!-- ==================== BANDEAU : LES 3 PROCHAINS RENDEZ-VOUS ==================== -->
+<div class="bandeau-agenda">
+  <span class="bandeau-agenda-libelle">Les prochains<br>rendez-vous</span>
+  <div class="bandeau-agenda-liste" id="bandeauAgenda">
+    <!-- généré en JS depuis la programmation -->
   </div>
-  <nav class="comptoir-frise" aria-label="Accès rapide aux pages">
-    <a href="/bar-a-tapas" title="Bar à tapas" aria-label="Bar à tapas">
-      <svg viewBox="60 60 220 220" fill="none" aria-hidden="true"><g stroke="currentColor" stroke-width="14" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="84" y="188" width="172" height="26" rx="13"/>
-        <path d="M124 188 V120 M170 188 V102 M216 188 V120"/>
-        <circle cx="124" cy="132" r="11"/><circle cx="170" cy="114" r="11"/><circle cx="216" cy="132" r="11"/>
-      </g></svg>
-    </a>
-    <a href="/cave-a-vin" title="Cave à vin" aria-label="Cave à vin">
-      <svg viewBox="60 60 220 220" fill="none" aria-hidden="true"><g stroke="currentColor" stroke-width="14" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M118 82 h18 v28 c0 15 15 20 15 38 v92 a9 9 0 0 1 -9 9 h-30 a9 9 0 0 1 -9 -9 v-92 c0 -18 15 -23 15 -38 z"/>
-        <path d="M196 122 C196 164 206 180 226 180 C246 180 256 164 256 122 Z"/>
-        <path d="M226 180 V224 M206 234 Q226 226 246 234"/>
-      </g></svg>
-    </a>
-    <a href="/brunch" title="Brunch" aria-label="Brunch">
-      <svg viewBox="60 60 220 220" fill="none" aria-hidden="true"><g stroke="currentColor" stroke-width="14" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M112 170 h96 v38 a38 38 0 0 1 -38 38 h-20 a38 38 0 0 1 -38 -38 z"/>
-        <path d="M208 178 h16 a20 20 0 0 1 0 40 h-16"/>
-        <path d="M136 142 q6 -12 0 -24 M164 142 q6 -12 0 -24 M192 142 q6 -12 0 -24"/>
-      </g></svg>
-    </a>
-    <a href="/traiteur" title="Traiteur" aria-label="Traiteur">
-      <svg viewBox="60 60 220 220" fill="none" aria-hidden="true"><g stroke="currentColor" stroke-width="14" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M98 208 a72 72 0 0 1 144 0"/>
-        <circle cx="170" cy="127" r="9"/>
-        <path d="M82 208 H258"/>
-      </g></svg>
-    </a>
-    <a href="/nos-adresses" title="Nos adresses" aria-label="Nos adresses">
-      <svg viewBox="60 60 220 220" fill="none" aria-hidden="true"><g stroke="currentColor" stroke-width="14" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M170 84 c-38 0 -64 27 -64 60 c0 42 64 112 64 112 c0 0 64 -70 64 -112 c0 -33 -26 -60 -64 -60 z"/>
-        <circle cx="170" cy="146" r="22"/>
-      </g></svg>
-    </a>
-    <a href="/agenda" title="Agenda" aria-label="Agenda">
-      <svg viewBox="60 60 220 220" fill="none" aria-hidden="true"><g stroke="currentColor" stroke-width="14" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="102" y="112" width="136" height="124" rx="14"/>
-        <path d="M102 148 H238"/>
-        <path d="M134 112 V92 M206 112 V92"/>
-        <path d="M170 168 l12 18 -12 18 -12 -18 z"/>
-      </g></svg>
-    </a>
-  </nav>
-  <div class="comptoir-col comptoir-accord">
-    <span class="comptoir-libelle">L'accord du moment</span>
-    <p class="accord-texte" id="accordFondu">Croquetas de jamón <span class="etoile-accord">✦</span> un Fronton rouge</p>
-  </div>
+  <a class="bandeau-agenda-lien" href="/agenda">Tout l'agenda <span aria-hidden="true">&rarr;</span></a>
 </div>
 
 <!-- ==================== L'ESPRIT DU CHAI ==================== -->
@@ -462,7 +415,7 @@
         <span class="porte-corps">
           <span class="porte-tag">Deux adresses</span>
           <h3>Les deux <span class="accent-script">Chais</span></h3>
-          <p>Le Chai à Francazal, L'Annexe au centre de Cugnaux.</p>
+          <p>Le Chai à Francazal, L'Annexe rue de Cézerou.</p>
           <span class="porte-lien">Adresses &amp; horaires <span aria-hidden="true">→</span></span>
         </span>
       </a>
@@ -648,6 +601,36 @@
       </div>
     </div>
 
+    <!-- coffrets cadeaux sur mesure -->
+    <div class="coffret rv">
+      <div class="coffret-visuel" aria-hidden="true">
+        <svg viewBox="0 0 200 200" fill="none" stroke="#e6d3ae" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M28 86 h144 v78 a10 10 0 0 1 -10 10 h-124 a10 10 0 0 1 -10 -10 z"/>
+          <rect x="18" y="60" width="164" height="30" rx="8"/>
+          <path d="M100 60 V174"/>
+          <path d="M100 60 C86 60 62 54 62 38 C62 26 78 22 88 32 C96 40 100 52 100 60 Z"/>
+          <path d="M100 60 C114 60 138 54 138 38 C138 26 122 22 112 32 C104 40 100 52 100 60 Z"/>
+        </svg>
+      </div>
+      <div class="coffret-texte">
+        <span class="coffret-tag">Idée cadeau</span>
+        <h3>Le coffret, <span class="accent-script">à votre façon.</span></h3>
+        <p>
+          Une bouteille qu'on n'oublie pas, une conserve de la mer, un fromage affiné,
+          quelques douceurs de l'épicerie : Adrien compose avec vous le coffret sur mesure —
+          anniversaire, départ, remerciement, ou cadeaux de fin d'année pour vos équipes et vos clients.
+        </p>
+        <p class="coffret-note">
+          Vous donnez l'occasion et le budget, on s'occupe du reste — emballage soigné compris.
+          <strong>Tarifs sur demande.</strong>
+        </p>
+        <div class="coffret-cta">
+          <a class="btn btn-plein" href="tel:+33685362265">Appeler le 06 85 36 22 65</a>
+          <span class="coffret-dispo">Devis et conseils au comptoir ou par téléphone</span>
+        </div>
+      </div>
+    </div>
+
     <div class="centre-cta rv">
       <a class="btn btn-plein" href="/cave-a-vin">Explorer toute la cave</a>
     </div>
@@ -709,7 +692,64 @@
   </div>
 </section>
 
-<svg class="transition-vague" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true" style="background:var(--creme)">
+<!-- ==================== LE BILLET DU COMPTOIR ==================== -->
+<div class="comptoir">
+  <div class="comptoir-col">
+    <span class="comptoir-libelle">Le billet du comptoir</span>
+    <p class="comptoir-statut" id="comptoirStatut">Du mardi au samedi — Francazal, Cugnaux</p>
+    <p class="comptoir-rdv" id="comptoirRdv">Brunch tous les samedis à L'Annexe — <a href="/agenda">voir l'agenda</a></p>
+  </div>
+  <nav class="comptoir-frise" aria-label="Accès rapide aux pages">
+    <a href="/bar-a-tapas" title="Bar à tapas" aria-label="Bar à tapas">
+      <svg viewBox="60 60 220 220" fill="none" aria-hidden="true"><g stroke="currentColor" stroke-width="14" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="84" y="188" width="172" height="26" rx="13"/>
+        <path d="M124 188 V120 M170 188 V102 M216 188 V120"/>
+        <circle cx="124" cy="132" r="11"/><circle cx="170" cy="114" r="11"/><circle cx="216" cy="132" r="11"/>
+      </g></svg>
+    </a>
+    <a href="/cave-a-vin" title="Cave à vin" aria-label="Cave à vin">
+      <svg viewBox="60 60 220 220" fill="none" aria-hidden="true"><g stroke="currentColor" stroke-width="14" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M118 82 h18 v28 c0 15 15 20 15 38 v92 a9 9 0 0 1 -9 9 h-30 a9 9 0 0 1 -9 -9 v-92 c0 -18 15 -23 15 -38 z"/>
+        <path d="M196 122 C196 164 206 180 226 180 C246 180 256 164 256 122 Z"/>
+        <path d="M226 180 V224 M206 234 Q226 226 246 234"/>
+      </g></svg>
+    </a>
+    <a href="/brunch" title="Brunch" aria-label="Brunch">
+      <svg viewBox="60 60 220 220" fill="none" aria-hidden="true"><g stroke="currentColor" stroke-width="14" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M112 170 h96 v38 a38 38 0 0 1 -38 38 h-20 a38 38 0 0 1 -38 -38 z"/>
+        <path d="M208 178 h16 a20 20 0 0 1 0 40 h-16"/>
+        <path d="M136 142 q6 -12 0 -24 M164 142 q6 -12 0 -24 M192 142 q6 -12 0 -24"/>
+      </g></svg>
+    </a>
+    <a href="/traiteur" title="Traiteur" aria-label="Traiteur">
+      <svg viewBox="60 60 220 220" fill="none" aria-hidden="true"><g stroke="currentColor" stroke-width="14" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M98 208 a72 72 0 0 1 144 0"/>
+        <circle cx="170" cy="127" r="9"/>
+        <path d="M82 208 H258"/>
+      </g></svg>
+    </a>
+    <a href="/nos-adresses" title="Nos adresses" aria-label="Nos adresses">
+      <svg viewBox="60 60 220 220" fill="none" aria-hidden="true"><g stroke="currentColor" stroke-width="14" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M170 84 c-38 0 -64 27 -64 60 c0 42 64 112 64 112 c0 0 64 -70 64 -112 c0 -33 -26 -60 -64 -60 z"/>
+        <circle cx="170" cy="146" r="22"/>
+      </g></svg>
+    </a>
+    <a href="/agenda" title="Agenda" aria-label="Agenda">
+      <svg viewBox="60 60 220 220" fill="none" aria-hidden="true"><g stroke="currentColor" stroke-width="14" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="102" y="112" width="136" height="124" rx="14"/>
+        <path d="M102 148 H238"/>
+        <path d="M134 112 V92 M206 112 V92"/>
+        <path d="M170 168 l12 18 -12 18 -12 -18 z"/>
+      </g></svg>
+    </a>
+  </nav>
+  <div class="comptoir-col comptoir-accord">
+    <span class="comptoir-libelle">L'accord du moment</span>
+    <p class="accord-texte" id="accordFondu">Croquetas de jamón <span class="etoile-accord">✦</span> un Fronton rouge</p>
+  </div>
+</div>
+
+<svg class="transition-vague" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true" style="background:var(--bordeaux-sombre)">
   <path d="M0 46 C240 92 480 4 720 42 C960 80 1200 8 1440 50 L1440 90 L0 90 Z" fill="#1a0f14"/>
 </svg>
 
