@@ -1158,7 +1158,7 @@ h2.titre .accent-script{
   border-top:1px solid rgba(201,168,118,.25);border-bottom:1px solid rgba(201,168,118,.25);
   position:relative;z-index:3;
   display:grid;grid-template-columns:auto 1fr auto;align-items:center;
-  gap:clamp(1.2rem,3vw,2.4rem);padding:1.15rem clamp(1.2rem,5vw,4rem);
+  gap:clamp(1.2rem,3vw,2.4rem);padding:1.75rem clamp(1.2rem,5vw,4rem);
 }
 .bandeau-agenda-libelle{
   font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;
@@ -1169,19 +1169,32 @@ h2.titre .accent-script{
   gap:clamp(.8rem,2.4vw,2rem);min-width:0;
 }
 .bandeau-ev{
-  display:flex;gap:.75rem;align-items:baseline;min-width:0;
+  display:flex;gap:.85rem;align-items:center;min-width:0;
   color:inherit;text-decoration:none;
-  transition:opacity .3s;
+  transition:opacity .3s,transform .35s var(--transition);
 }
-.bandeau-ev:hover{opacity:.75}
+.bandeau-ev:hover{opacity:.82;transform:translateY(-2px)}
 .bandeau-ev-date{
-  flex:none;font-family:var(--serif);font-weight:700;font-size:1.35rem;color:var(--or-clair);line-height:1;
+  flex:none;width:74px;text-align:center;border-radius:12px;padding:.45rem .25rem .5rem;
+  background:rgba(255,255,255,.06);border:1px solid rgba(201,168,118,.35);
 }
-.bandeau-ev-date small{
-  display:block;font-family:var(--sans);font-weight:500;font-size:.52rem;
-  letter-spacing:.2em;text-transform:uppercase;color:var(--or);margin-top:.2rem;
+.bev-sem{
+  display:block;font-size:.54rem;letter-spacing:.11em;text-transform:uppercase;
+  font-weight:500;color:var(--or);
+}
+.bev-jour{
+  display:block;font-family:var(--serif);font-weight:700;font-size:1.55rem;
+  line-height:1;color:var(--or-clair);margin-top:.18rem;
+}
+.bev-mois{
+  display:block;font-size:.54rem;letter-spacing:.16em;text-transform:uppercase;
+  color:rgba(246,239,226,.65);margin-top:.18rem;
 }
 .bandeau-ev-corps{min-width:0}
+.bandeau-ev-heure{
+  display:block;font-size:.66rem;letter-spacing:.1em;color:var(--or-clair);
+  margin-top:.22rem;opacity:.85;
+}
 .bandeau-ev-titre{
   font-family:var(--serif);font-weight:600;font-size:1rem;color:var(--creme);line-height:1.25;
   display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
@@ -1238,4 +1251,29 @@ h2.titre .accent-script{
   .coffret{grid-template-columns:1fr;text-align:center;justify-items:center}
   .coffret p{margin-inline:auto}
   .coffret-cta{justify-content:center}
+}
+
+/* ---------- signature agence (watermark footer) ---------- */
+.signature-pmc{
+  display:flex;flex-direction:column;align-items:center;gap:.6rem;
+  max-width:320px;margin:clamp(1.8rem,4vw,2.6rem) auto 0;padding-top:1.5rem;
+  border-top:1px solid rgba(201,168,118,.12);
+  text-decoration:none;opacity:.5;
+  transition:opacity .4s var(--transition);
+}
+.signature-pmc:hover{opacity:1}
+.signature-pmc-mention{
+  font-size:.58rem;letter-spacing:.28em;text-transform:uppercase;
+  color:rgba(246,239,226,.45);
+}
+.signature-pmc-logo{display:flex;align-items:center;gap:.65rem}
+.signature-pmc-logo svg{width:30px;height:30px;flex:none}
+.signature-pmc-mot{line-height:1.15;text-align:left}
+.pmc-nom{
+  display:block;font-family:var(--sans);font-weight:500;font-size:1rem;
+  color:var(--creme);letter-spacing:.005em;
+}
+.pmc-sous{
+  display:block;font-size:.48rem;letter-spacing:.2em;text-transform:uppercase;
+  color:rgba(246,239,226,.5);margin-top:.2rem;
 }

@@ -390,9 +390,14 @@
     bandeauAgendaEl.innerHTML = teaser.map(function(ev){
       const mois = fmtMois.format(ev.date).replace(".", "");
       return '<a class="bandeau-ev" href="/agenda">'
-        + '<span class="bandeau-ev-date">' + ev.date.getDate() + '<small>' + mois + '</small></span>'
+        + '<span class="bandeau-ev-date">'
+        +   '<span class="bev-sem">' + fmtJour.format(ev.date) + '</span>'
+        +   '<span class="bev-jour">' + ev.date.getDate() + '</span>'
+        +   '<span class="bev-mois">' + mois + '</span>'
+        + '</span>'
         + '<span class="bandeau-ev-corps">'
         +   '<span class="bandeau-ev-titre">' + ev.titre + '</span>'
+        +   '<span class="bandeau-ev-heure">' + ev.heure + '</span>'
         +   '<span class="bandeau-ev-lieu"><span class="pastille ' + ev.lieu + '"></span>' + nomsLieux[ev.lieu] + '</span>'
         + '</span>'
         + '</a>';
