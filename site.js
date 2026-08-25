@@ -134,6 +134,35 @@
     }, 5000);
   }
 
+  /* ---------- filtres de la cave : pastilles par catégorie ---------- */
+  const filtresCave = document.querySelectorAll("[data-cave]");
+  const etagereEl = document.getElementById("etagere");
+  if(filtresCave.length && etagereEl){
+    const bouteilles = etagereEl.querySelectorAll(".bouteille-carte");
+    // un message si une catégorie se retrouve vide (utile quand l'étagère évoluera)
+    const vide = document.createElement("p");
+    vide.className = "cave-vide";
+    vide.hidden = true;
+    vide.textContent = "Rien sous cette étiquette pour le moment — demandez au caviste, la cave en compte 300 autres.";
+    etagereEl.appendChild(vide);
+    filtresCave.forEach(function(btn){
+      btn.addEventListener("click", function(){
+        const cat = btn.dataset.cave;
+        filtresCave.forEach(function(b){
+          b.classList.toggle("actif", b === btn);
+          b.setAttribute("aria-pressed", b === btn);
+        });
+        let visibles = 0;
+        bouteilles.forEach(function(c){
+          const montre = (cat === "tous" || c.dataset.type === cat);
+          c.classList.toggle("cache", !montre);
+          if(montre) visibles++;
+        });
+        vide.hidden = visibles > 0;
+      });
+    });
+  }
+
   /* ---------- révélations au scroll ---------- */
   const io = new IntersectionObserver(function(entrees){
     entrees.forEach(function(e){

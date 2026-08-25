@@ -406,7 +406,7 @@
         <span class="porte-corps">
           <span class="porte-tag">Chez vous</span>
           <h3>Le <span class="accent-script">traiteur</span></h3>
-          <p>Nos tapas se déplacent, avec les vins qui vont avec.</p>
+          <p>Mariages, anniversaires, entreprises : nos tapas se déplacent.</p>
           <span class="porte-lien">Demander un devis <span aria-hidden="true">→</span></span>
         </span>
       </a>
@@ -477,8 +477,18 @@
     </div>
     </div>
 
+    <div class="filtres-cave rv" role="group" aria-label="Filtrer les références par catégorie">
+      <button class="filtre actif" type="button" data-cave="tous">Tout voir</button>
+      <button class="filtre" type="button" data-cave="rouge">Rouges</button>
+      <button class="filtre" type="button" data-cave="blanc">Blancs</button>
+      <button class="filtre" type="button" data-cave="rose">Rosés</button>
+      <button class="filtre" type="button" data-cave="bulles">Bulles</button>
+      <button class="filtre" type="button" data-cave="moelleux">Moelleux</button>
+      <button class="filtre" type="button" data-cave="biere">Bières</button>
+    </div>
+
     <div class="etagere" id="etagere">
-      <article class="bouteille-carte rv" style="--d:0s">
+      <article class="bouteille-carte rv" data-type="rouge" style="--d:0s">
         <svg viewBox="0 0 120 320" aria-hidden="true">
           <rect x="50" y="4" width="20" height="26" rx="3" fill="#7c2140"/>
           <path d="M52 22 h16 v50 c0 16 16 22 16 42 v190 a10 10 0 0 1 -10 10 h-28 a10 10 0 0 1 -10 -10 v-190 c0 -20 16 -26 16 -42 z" fill="#2c1520"/>
@@ -495,7 +505,7 @@
         <p class="b-prix">12,50 €</p>
       </article>
 
-      <article class="bouteille-carte rv" style="--d:.08s">
+      <article class="bouteille-carte rv" data-type="blanc" style="--d:.08s">
         <svg viewBox="0 0 120 320" aria-hidden="true">
           <rect x="50" y="4" width="20" height="26" rx="3" fill="#c9a876"/>
           <path d="M52 22 h16 v44 c0 30 20 34 20 66 v168 a10 10 0 0 1 -10 10 h-36 a10 10 0 0 1 -10 -10 v-168 c0 -32 20 -36 20 -66 z" fill="#4a5a3a"/>
@@ -511,7 +521,7 @@
         <p class="b-prix">11 €</p>
       </article>
 
-      <article class="bouteille-carte rv" style="--d:.16s">
+      <article class="bouteille-carte rv" data-type="rouge" style="--d:.16s">
         <svg viewBox="0 0 120 320" aria-hidden="true">
           <rect x="50" y="4" width="20" height="26" rx="3" fill="#1a0f14"/>
           <path d="M52 22 h16 v50 c0 16 16 22 16 42 v190 a10 10 0 0 1 -10 10 h-28 a10 10 0 0 1 -10 -10 v-190 c0 -20 16 -26 16 -42 z" fill="#241017"/>
@@ -528,7 +538,7 @@
         <p class="b-prix">16 €</p>
       </article>
 
-      <article class="bouteille-carte rv" style="--d:.24s">
+      <article class="bouteille-carte rv" data-type="bulles" style="--d:.24s">
         <svg viewBox="0 0 120 320" aria-hidden="true">
           <path d="M48 4 h24 v10 h-24 z" fill="#c9a876"/>
           <path d="M50 12 h20 v18 l6 8 v14 h-32 v-14 l6 -8 z" fill="#c9a876"/>
@@ -545,7 +555,7 @@
         <p class="b-prix">34 €</p>
       </article>
 
-      <article class="bouteille-carte rv" style="--d:.32s">
+      <article class="bouteille-carte rv" data-type="moelleux" style="--d:.32s">
         <svg viewBox="0 0 120 320" aria-hidden="true">
           <rect x="50" y="4" width="20" height="26" rx="3" fill="#a9885a"/>
           <path d="M52 22 h16 v44 c0 30 20 34 20 66 v168 a10 10 0 0 1 -10 10 h-36 a10 10 0 0 1 -10 -10 v-168 c0 -32 20 -36 20 -66 z" fill="#6a5a2a"/>
@@ -561,7 +571,7 @@
         <p class="b-prix">18 €</p>
       </article>
 
-      <article class="bouteille-carte rv" style="--d:.4s">
+      <article class="bouteille-carte rv" data-type="rouge" style="--d:.4s">
         <svg viewBox="0 0 120 320" aria-hidden="true">
           <rect x="50" y="4" width="20" height="26" rx="3" fill="#e6d3ae"/>
           <path d="M52 22 h16 v50 c0 16 16 22 16 42 v190 a10 10 0 0 1 -10 10 h-28 a10 10 0 0 1 -10 -10 v-190 c0 -20 16 -26 16 -42 z" fill="#33141e"/>
@@ -576,6 +586,39 @@
         <h3 class="b-nom">Crianza del Chai</h3>
         <p class="b-region">Rioja · Tempranillo</p>
         <p class="b-prix">14 €</p>
+      </article>
+
+      <article class="bouteille-carte rv" data-type="rose" style="--d:.48s">
+        <svg viewBox="0 0 120 320" aria-hidden="true">
+          <rect x="50" y="4" width="20" height="26" rx="3" fill="#d9a6a0"/>
+          <path d="M52 22 h16 v44 c0 30 20 34 20 66 v168 a10 10 0 0 1 -10 10 h-36 a10 10 0 0 1 -10 -10 v-168 c0 -32 20 -36 20 -66 z" fill="#e8b9b2"/>
+          <rect x="32" y="180" width="56" height="70" rx="4" fill="#fdf9f0"/>
+          <rect x="40" y="192" width="40" height="3" fill="#b5616a"/>
+          <rect x="44" y="202" width="32" height="2" fill="#c9a876"/>
+          <rect x="40" y="220" width="40" height="2" fill="#b9a68f"/>
+          <rect x="44" y="228" width="32" height="2" fill="#b9a68f"/>
+        </svg>
+        <span class="b-type rose">Rosé</span>
+        <h3 class="b-nom">Rosé des Sables</h3>
+        <p class="b-region">Fronton · Négrette</p>
+        <p class="b-prix">11 €</p>
+      </article>
+
+      <article class="bouteille-carte rv" data-type="biere" style="--d:.56s">
+        <svg viewBox="0 0 120 320" aria-hidden="true">
+          <path d="M46 10 h28 v8 a6 6 0 0 1 -6 6 h-16 a6 6 0 0 1 -6 -6 z" fill="#c9a876"/>
+          <path d="M52 24 h16 v34 c0 22 22 26 22 58 v156 a12 12 0 0 1 -12 12 h-38 a12 12 0 0 1 -12 -12 v-156 c0 -32 24 -36 24 -58 z" fill="#6b3f1d"/>
+          <rect x="30" y="176" width="60" height="78" rx="4" fill="#fdf9f0"/>
+          <rect x="40" y="190" width="40" height="3" fill="#8a5a20"/>
+          <rect x="44" y="200" width="32" height="2" fill="#c9a876"/>
+          <path d="M46 214 q14 -10 28 0" stroke="#8a5a20" stroke-width="2.5" fill="none"/>
+          <rect x="40" y="228" width="40" height="2" fill="#b9a68f"/>
+          <rect x="46" y="238" width="28" height="2" fill="#b9a68f"/>
+        </svg>
+        <span class="b-type biere">Bière</span>
+        <h3 class="b-nom">Blonde de Garonne</h3>
+        <p class="b-region">Brasserie artisanale · Toulouse</p>
+        <p class="b-prix">4,50 €</p>
       </article>
     </div>
     <p class="etagere-note rv">…et 294 autres histoires à découvrir en boutique, avec le conseil du caviste en prime.</p>

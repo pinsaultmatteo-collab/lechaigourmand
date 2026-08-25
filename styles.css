@@ -470,8 +470,8 @@ h2.titre .accent-script{
   align-self:flex-start;font-size:.62rem;letter-spacing:.26em;text-transform:uppercase;font-weight:500;
   border:1px solid rgba(230,211,174,.55);color:var(--or-clair);padding:.35rem 1rem;border-radius:99px;
 }
-.chai-carte h3{font-family:var(--serif);font-weight:600;font-size:clamp(1.7rem,3vw,2.4rem);margin-top:1.4rem;color:var(--creme)}
-.chai-carte h3 .accent-script{font-family:var(--script);font-size:1.15em;color:var(--or-clair)}
+.chai-carte h2,.chai-carte h3{font-family:var(--serif);font-weight:600;font-size:clamp(1.7rem,3vw,2.4rem);margin-top:1.4rem;color:var(--creme)}
+.chai-carte h2 .accent-script,.chai-carte h3 .accent-script{font-family:var(--script);font-size:1.15em;color:var(--or-clair)}
 .chai-desc{margin-top:1rem;color:rgba(246,239,226,.8);font-size:.98rem;max-width:44ch;flex:1}
 .chai-infos{margin-top:1.6rem;display:flex;flex-direction:column;gap:.7rem}
 .chai-info{display:flex;gap:.8rem;align-items:flex-start;font-size:.9rem;color:rgba(246,239,226,.85)}
@@ -1258,22 +1258,81 @@ h2.titre .accent-script{
   display:flex;flex-direction:column;align-items:center;gap:.6rem;
   max-width:320px;margin:clamp(1.8rem,4vw,2.6rem) auto 0;padding-top:1.5rem;
   border-top:1px solid rgba(201,168,118,.12);
-  text-decoration:none;opacity:.5;
-  transition:opacity .4s var(--transition);
+  text-decoration:none;
+  transform-origin:center;
+  transition:transform .4s var(--transition);
 }
-.signature-pmc:hover{opacity:1}
+.signature-pmc:hover{transform:scale(1.06)}
 .signature-pmc-mention{
   font-size:.58rem;letter-spacing:.28em;text-transform:uppercase;
-  color:rgba(246,239,226,.45);
+  color:rgba(246,239,226,.55);
 }
 .signature-pmc-logo{display:flex;align-items:center;gap:.65rem}
 .signature-pmc-logo svg{width:30px;height:30px;flex:none}
 .signature-pmc-mot{line-height:1.15;text-align:left}
 .pmc-nom{
   display:block;font-family:var(--sans);font-weight:500;font-size:1rem;
-  color:var(--creme);letter-spacing:.005em;
+  color:#fff;letter-spacing:.005em;
+  text-shadow:0 0 18px rgba(167,139,250,.45);
 }
 .pmc-sous{
   display:block;font-size:.48rem;letter-spacing:.2em;text-transform:uppercase;
-  color:rgba(246,239,226,.5);margin-top:.2rem;
+  color:rgba(255,255,255,.8);margin-top:.2rem;
+}
+
+/* ---------- filtres de la cave (pastilles par catégorie) ---------- */
+.filtres-cave{
+  display:flex;flex-wrap:wrap;justify-content:center;gap:.55rem;
+  margin-bottom:clamp(1.4rem,3vw,2rem);
+}
+.bouteille-carte.cache{display:none}
+.b-type.rose{background:rgba(197,106,116,.18);color:#a8515f}
+.b-type.biere{background:rgba(139,94,42,.16);color:#7a5320}
+.cave-vide{
+  grid-column:1 / -1;text-align:center;padding:2.5rem 1rem;
+  font-family:var(--serif);font-style:italic;font-size:1.1rem;color:var(--brun-doux);
+}
+
+/* ---------- coffrets : version détaillée (page cave) ---------- */
+.coffret-detail{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:clamp(1.2rem,3vw,2rem);margin-top:clamp(1.5rem,3vw,2.2rem);
+}
+.coffret-colonne{
+  background:var(--papier);border:1px solid rgba(122,99,85,.18);border-radius:18px;
+  padding:1.5rem 1.6rem 1.7rem;
+}
+.coffret-colonne h4{
+  font-family:var(--serif);font-weight:600;font-size:1.2rem;color:var(--brun);
+  padding-bottom:.7rem;margin-bottom:.9rem;border-bottom:1px dotted rgba(122,99,85,.35);
+}
+.coffret-liste{list-style:none;display:flex;flex-direction:column;gap:.6rem;counter-reset:coffret}
+.coffret-liste li{
+  position:relative;padding-left:1.4rem;font-size:.93rem;color:var(--brun-doux);line-height:1.5;
+}
+.coffret-liste li::before{
+  content:"✦";position:absolute;left:0;top:0;color:var(--or-sombre);font-size:.8rem;
+}
+.coffret-liste li strong{color:var(--bordeaux);font-weight:500}
+.coffret-liste-num li{counter-increment:coffret}
+.coffret-liste-num li::before{
+  content:counter(coffret) ".";font-family:var(--serif);font-style:italic;
+  font-weight:600;color:var(--bordeaux);font-size:.95rem;
+}
+.coffret-appel{
+  margin-top:clamp(1.5rem,3vw,2.2rem);
+  display:grid;grid-template-columns:1.3fr .7fr;gap:clamp(1.4rem,3.5vw,2.8rem);align-items:center;
+  background:linear-gradient(135deg,var(--brun),#2a1a16);
+  border:1px solid rgba(201,168,118,.3);border-radius:20px;
+  padding:clamp(1.5rem,3.5vw,2.4rem);
+}
+.coffret-appel-titre{
+  font-family:var(--serif);font-weight:600;font-size:clamp(1.35rem,2.4vw,1.8rem);color:var(--or-clair);
+}
+.coffret-appel-texte{margin-top:.6rem;font-size:.95rem;color:rgba(246,239,226,.75);max-width:52ch}
+.coffret-appel-cta{display:flex;flex-direction:column;align-items:flex-start;gap:.7rem;justify-self:end}
+.coffret-appel-cta .coffret-dispo{color:rgba(246,239,226,.55);text-transform:none;letter-spacing:.06em;font-size:.75rem}
+@media (max-width:820px){
+  .coffret-appel{grid-template-columns:1fr}
+  .coffret-appel-cta{justify-self:start}
 }

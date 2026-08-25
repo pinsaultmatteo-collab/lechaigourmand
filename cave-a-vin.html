@@ -236,8 +236,18 @@
 
     <!-- l'étagère -->
     <h2 class="sous-titre-cave rv">Sur l'étagère, en ce moment</h2>
+    <div class="filtres-cave rv" role="group" aria-label="Filtrer les références par catégorie">
+      <button class="filtre actif" type="button" data-cave="tous">Tout voir</button>
+      <button class="filtre" type="button" data-cave="rouge">Rouges</button>
+      <button class="filtre" type="button" data-cave="blanc">Blancs</button>
+      <button class="filtre" type="button" data-cave="rose">Rosés</button>
+      <button class="filtre" type="button" data-cave="bulles">Bulles</button>
+      <button class="filtre" type="button" data-cave="moelleux">Moelleux</button>
+      <button class="filtre" type="button" data-cave="biere">Bières</button>
+    </div>
+
     <div class="etagere" id="etagere">
-      <article class="bouteille-carte rv" style="--d:0s">
+      <article class="bouteille-carte rv" data-type="rouge" style="--d:0s">
         <svg viewBox="0 0 120 320" aria-hidden="true">
           <rect x="50" y="4" width="20" height="26" rx="3" fill="#7c2140"/>
           <path d="M52 22 h16 v50 c0 16 16 22 16 42 v190 a10 10 0 0 1 -10 10 h-28 a10 10 0 0 1 -10 -10 v-190 c0 -20 16 -26 16 -42 z" fill="#2c1520"/>
@@ -254,7 +264,7 @@
         <p class="b-prix">12,50 €</p>
       </article>
 
-      <article class="bouteille-carte rv" style="--d:.08s">
+      <article class="bouteille-carte rv" data-type="blanc" style="--d:.08s">
         <svg viewBox="0 0 120 320" aria-hidden="true">
           <rect x="50" y="4" width="20" height="26" rx="3" fill="#c9a876"/>
           <path d="M52 22 h16 v44 c0 30 20 34 20 66 v168 a10 10 0 0 1 -10 10 h-36 a10 10 0 0 1 -10 -10 v-168 c0 -32 20 -36 20 -66 z" fill="#4a5a3a"/>
@@ -270,7 +280,7 @@
         <p class="b-prix">11 €</p>
       </article>
 
-      <article class="bouteille-carte rv" style="--d:.16s">
+      <article class="bouteille-carte rv" data-type="rouge" style="--d:.16s">
         <svg viewBox="0 0 120 320" aria-hidden="true">
           <rect x="50" y="4" width="20" height="26" rx="3" fill="#1a0f14"/>
           <path d="M52 22 h16 v50 c0 16 16 22 16 42 v190 a10 10 0 0 1 -10 10 h-28 a10 10 0 0 1 -10 -10 v-190 c0 -20 16 -26 16 -42 z" fill="#241017"/>
@@ -287,7 +297,7 @@
         <p class="b-prix">16 €</p>
       </article>
 
-      <article class="bouteille-carte rv" style="--d:.24s">
+      <article class="bouteille-carte rv" data-type="bulles" style="--d:.24s">
         <svg viewBox="0 0 120 320" aria-hidden="true">
           <path d="M48 4 h24 v10 h-24 z" fill="#c9a876"/>
           <path d="M50 12 h20 v18 l6 8 v14 h-32 v-14 l6 -8 z" fill="#c9a876"/>
@@ -304,7 +314,7 @@
         <p class="b-prix">34 €</p>
       </article>
 
-      <article class="bouteille-carte rv" style="--d:.32s">
+      <article class="bouteille-carte rv" data-type="moelleux" style="--d:.32s">
         <svg viewBox="0 0 120 320" aria-hidden="true">
           <rect x="50" y="4" width="20" height="26" rx="3" fill="#a9885a"/>
           <path d="M52 22 h16 v44 c0 30 20 34 20 66 v168 a10 10 0 0 1 -10 10 h-36 a10 10 0 0 1 -10 -10 v-168 c0 -32 20 -36 20 -66 z" fill="#6a5a2a"/>
@@ -320,7 +330,7 @@
         <p class="b-prix">18 €</p>
       </article>
 
-      <article class="bouteille-carte rv" style="--d:.4s">
+      <article class="bouteille-carte rv" data-type="rouge" style="--d:.4s">
         <svg viewBox="0 0 120 320" aria-hidden="true">
           <rect x="50" y="4" width="20" height="26" rx="3" fill="#e6d3ae"/>
           <path d="M52 22 h16 v50 c0 16 16 22 16 42 v190 a10 10 0 0 1 -10 10 h-28 a10 10 0 0 1 -10 -10 v-190 c0 -20 16 -26 16 -42 z" fill="#33141e"/>
@@ -336,8 +346,112 @@
         <p class="b-region">Rioja · Tempranillo</p>
         <p class="b-prix">14 €</p>
       </article>
+
+      <article class="bouteille-carte rv" data-type="rose" style="--d:.48s">
+        <svg viewBox="0 0 120 320" aria-hidden="true">
+          <rect x="50" y="4" width="20" height="26" rx="3" fill="#d9a6a0"/>
+          <path d="M52 22 h16 v44 c0 30 20 34 20 66 v168 a10 10 0 0 1 -10 10 h-36 a10 10 0 0 1 -10 -10 v-168 c0 -32 20 -36 20 -66 z" fill="#e8b9b2"/>
+          <rect x="32" y="180" width="56" height="70" rx="4" fill="#fdf9f0"/>
+          <rect x="40" y="192" width="40" height="3" fill="#b5616a"/>
+          <rect x="44" y="202" width="32" height="2" fill="#c9a876"/>
+          <rect x="40" y="220" width="40" height="2" fill="#b9a68f"/>
+          <rect x="44" y="228" width="32" height="2" fill="#b9a68f"/>
+        </svg>
+        <span class="b-type rose">Rosé</span>
+        <h3 class="b-nom">Rosé des Sables</h3>
+        <p class="b-region">Fronton · Négrette</p>
+        <p class="b-prix">11 €</p>
+      </article>
+
+      <article class="bouteille-carte rv" data-type="biere" style="--d:.56s">
+        <svg viewBox="0 0 120 320" aria-hidden="true">
+          <path d="M46 10 h28 v8 a6 6 0 0 1 -6 6 h-16 a6 6 0 0 1 -6 -6 z" fill="#c9a876"/>
+          <path d="M52 24 h16 v34 c0 22 22 26 22 58 v156 a12 12 0 0 1 -12 12 h-38 a12 12 0 0 1 -12 -12 v-156 c0 -32 24 -36 24 -58 z" fill="#6b3f1d"/>
+          <rect x="30" y="176" width="60" height="78" rx="4" fill="#fdf9f0"/>
+          <rect x="40" y="190" width="40" height="3" fill="#8a5a20"/>
+          <rect x="44" y="200" width="32" height="2" fill="#c9a876"/>
+          <path d="M46 214 q14 -10 28 0" stroke="#8a5a20" stroke-width="2.5" fill="none"/>
+          <rect x="40" y="228" width="40" height="2" fill="#b9a68f"/>
+          <rect x="46" y="238" width="28" height="2" fill="#b9a68f"/>
+        </svg>
+        <span class="b-type biere">Bière</span>
+        <h3 class="b-nom">Blonde de Garonne</h3>
+        <p class="b-region">Brasserie artisanale · Toulouse</p>
+        <p class="b-prix">4,50 €</p>
+      </article>
     </div>
     <p class="etagere-note rv">…et 294 autres histoires à découvrir en boutique. La cave complète arrive bientôt en ligne.</p>
+
+    <!-- coffrets cadeaux sur mesure -->
+    <h2 class="sous-titre-cave rv" id="coffrets">Les coffrets cadeaux sur mesure</h2>
+
+    <div class="coffret rv">
+      <div class="coffret-visuel" aria-hidden="true">
+        <svg viewBox="0 0 200 200" fill="none" stroke="#e6d3ae" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M28 86 h144 v78 a10 10 0 0 1 -10 10 h-124 a10 10 0 0 1 -10 -10 z"/>
+          <rect x="18" y="60" width="164" height="30" rx="8"/>
+          <path d="M100 60 V174"/>
+          <path d="M100 60 C86 60 62 54 62 38 C62 26 78 22 88 32 C96 40 100 52 100 60 Z"/>
+          <path d="M100 60 C114 60 138 54 138 38 C138 26 122 22 112 32 C104 40 100 52 100 60 Z"/>
+        </svg>
+      </div>
+      <div class="coffret-texte">
+        <span class="coffret-tag">Idée cadeau</span>
+        <h3>Le coffret, <span class="accent-script">à votre façon.</span></h3>
+        <p>
+          Pas de coffret tout fait chez nous : Adrien compose le vôtre, bouteille par bouteille,
+          produit par produit. Vous dites l'occasion, le budget et le goût de la personne —
+          il fait le reste, en piochant dans les 300 références de la cave et les rayons de
+          l'épicerie fine.
+        </p>
+      </div>
+    </div>
+
+    <div class="coffret-detail">
+      <div class="coffret-colonne rv">
+        <h4>Ce qu'on y met</h4>
+        <ul class="coffret-liste">
+          <li>Une ou plusieurs cuvées choisies — du rapport plaisir-prix à la belle bouteille</li>
+          <li>Conserves de la mer et charcuteries ibériques</li>
+          <li>Fromages affinés, huiles et condiments</li>
+          <li>Douceurs et chocolats de l'épicerie</li>
+          <li>Bières artisanales et spiritueux, si l'envie s'y prête</li>
+        </ul>
+      </div>
+      <div class="coffret-colonne rv" style="--d:.1s">
+        <h4>Pour quelles occasions</h4>
+        <ul class="coffret-liste">
+          <li>Anniversaires, départs, remerciements</li>
+          <li>Naissances, crémaillères, invitations</li>
+          <li>Fêtes de fin d'année</li>
+          <li><strong>Cadeaux d'entreprise</strong> — collaborateurs et clients, à l'unité comme en série</li>
+          <li>Mariages : cadeaux aux témoins et aux proches</li>
+        </ul>
+      </div>
+      <div class="coffret-colonne rv" style="--d:.2s">
+        <h4>Comment ça se passe</h4>
+        <ol class="coffret-liste coffret-liste-num">
+          <li>Vous appelez ou passez au comptoir avec votre idée et votre budget</li>
+          <li>Adrien propose une composition — ajustable jusqu'au dernier détail</li>
+          <li>On emballe avec soin, prêt à offrir, à retirer au Chai de Francazal</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="coffret-appel rv">
+      <div>
+        <p class="coffret-appel-titre">Tarifs sur demande</p>
+        <p class="coffret-appel-texte">
+          Chaque coffret étant unique, le prix dépend de ce qu'il contient — du petit présent
+          au grand format. Un appel suffit pour en parler : Adrien vous conseille et vous
+          annonce le tarif dans la foulée.
+        </p>
+      </div>
+      <div class="coffret-appel-cta">
+        <a class="btn btn-plein" href="tel:+33685362265">Appeler le 06 85 36 22 65</a>
+        <span class="coffret-dispo">Du mardi au samedi · 9 rue Alfred Sauvy, Francazal</span>
+      </div>
+    </div>
 
     <!-- click & collect -->
     <div class="cc rv" id="click-collect">
