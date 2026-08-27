@@ -1336,3 +1336,56 @@ h2.titre .accent-script{
   .coffret-appel{grid-template-columns:1fr}
   .coffret-appel-cta{justify-self:start}
 }
+
+/* ============================================================
+   AVIS GOOGLE (accueil)
+   ============================================================ */
+.notes-google{
+  display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(1rem,3vw,2rem);
+  margin-bottom:clamp(2rem,4vw,3rem);
+}
+.note-carte{
+  display:flex;flex-direction:column;align-items:center;gap:.2rem;
+  min-width:190px;padding:1.3rem 1.8rem 1.4rem;text-decoration:none;
+  background:rgba(255,255,255,.04);border:1px solid rgba(201,168,118,.28);border-radius:18px;
+  transition:transform .4s var(--transition),border-color .4s,background .4s;
+}
+.note-carte:hover{transform:translateY(-4px);border-color:rgba(201,168,118,.6);background:rgba(255,255,255,.07)}
+.note-lieu{font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--or);font-weight:500}
+.note-chiffre{
+  font-family:var(--serif);font-weight:700;font-size:2.5rem;color:var(--creme);line-height:1.05;margin-top:.35rem;
+}
+.note-chiffre small{font-family:var(--sans);font-size:.85rem;font-weight:400;color:rgba(246,239,226,.55)}
+.note-etoiles{color:var(--or);font-size:.95rem;letter-spacing:.16em;margin-top:.1rem}
+.note-nb{font-size:.7rem;letter-spacing:.12em;color:rgba(246,239,226,.6);margin-top:.35rem}
+
+.avis-grille{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));
+  gap:clamp(1rem,2.5vw,1.5rem);
+}
+.avis-carte{
+  margin:0;position:relative;display:flex;flex-direction:column;
+  background:rgba(255,255,255,.04);border:1px solid rgba(201,168,118,.22);border-radius:18px;
+  padding:1.7rem 1.6rem 1.5rem;
+  transition:transform .45s var(--transition),border-color .45s,box-shadow .45s;
+}
+.avis-carte:hover{
+  transform:translateY(-5px);border-color:rgba(201,168,118,.45);
+  box-shadow:0 28px 50px -26px rgba(0,0,0,.7);
+}
+.avis-carte::before{
+  content:"\\201C";position:absolute;top:.35rem;right:1.1rem;
+  font-family:var(--serif);font-size:4.2rem;line-height:1;
+  color:rgba(201,168,118,.16);pointer-events:none;
+}
+.avis-etoiles{color:var(--or);font-size:.9rem;letter-spacing:.18em}
+.avis-carte blockquote{
+  font-family:var(--serif);font-style:italic;font-size:1.03rem;line-height:1.55;
+  color:rgba(246,239,226,.88);margin:.8rem 0 0;flex:1;
+}
+.avis-carte figcaption{
+  margin-top:1.2rem;padding-top:.9rem;border-top:1px dotted rgba(201,168,118,.25);
+}
+.avis-nom{display:block;font-weight:500;font-size:.95rem;color:var(--creme);letter-spacing:.02em}
+.avis-meta{display:block;font-size:.68rem;letter-spacing:.1em;color:rgba(246,239,226,.5);margin-top:.2rem}
+.avis-source{color:var(--or)}
