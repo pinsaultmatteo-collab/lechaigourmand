@@ -134,6 +134,70 @@
     }, 5000);
   }
 
+  /* ---------- slider des avis (accueil) ---------- */
+  const avisPiste = document.getElementById("avisPiste");
+  if(avisPiste){
+    const fleches = document.querySelectorAll("[data-avis-nav]");
+    const pointsEl = document.getElementById("avisPoints");
+    const cartes = avisPiste.querySelectorAll(".avis-carte");
+
+    function parVue(){
+      // combien de cartes tiennent dans la piste (3, 2 ou 1 selon la largeur)
+      const carte = cartes[0];
+      if(!carte) return 1;
+      return Math.max(1, Math.round(avisPiste.clientWidth / carte.getBoundingClientRect().width));
+    }
+    function nbPages(){ return Math.max(1, cartes.length - parVue() + 1); }
+    function pageCourante(){
+      const carte = cartes[0];
+      if(!carte) return 0;
+      const pas = carte.getBoundingClientRect().width + parseFloat(getComputedStyle(avisPiste).columnGap || 0);
+      return Math.round(avisPiste.scrollLeft / pas);
+    }
+    function majEtat(){
+      const p = pageCourante(), max = nbPages() - 1;
+      fleches.forEach(function(f){
+        f.disabled = (parseInt(f.dataset.avisNav, 10) < 0) ? p <= 0 : p >= max;
+      });
+      if(pointsEl){
+        [...pointsEl.children].forEach(function(pt, i){
+          pt.classList.toggle("actif", i === Math.min(p, max));
+          pt.setAttribute("aria-selected", i === Math.min(p, max));
+        });
+      }
+    }
+    function construirePoints(){
+      if(!pointsEl) return;
+      pointsEl.innerHTML = "";
+      for(let i = 0; i < nbPages(); i++){
+        const b = document.createElement("button");
+        b.type = "button";
+        b.className = "avis-point";
+        b.setAttribute("role", "tab");
+        b.setAttribute("aria-label", "Voir les avis " + (i + 1));
+        b.addEventListener("click", function(){ defiler(i, true); });
+        pointsEl.appendChild(b);
+      }
+      majEtat();
+    }
+    function defiler(page, absolu){
+      const carte = cartes[0];
+      if(!carte) return;
+      const pas = carte.getBoundingClientRect().width + parseFloat(getComputedStyle(avisPiste).columnGap || 0);
+      const cible = absolu ? page : pageCourante() + page;
+      avisPiste.scrollTo({left: Math.max(0, cible) * pas, behavior: reduit ? "instant" : "smooth"});
+    }
+    fleches.forEach(function(f){
+      f.addEventListener("click", function(){ defiler(parseInt(f.dataset.avisNav, 10), false); });
+    });
+    avisPiste.addEventListener("scroll", function(){
+      clearTimeout(avisPiste._t);
+      avisPiste._t = setTimeout(majEtat, 90);
+    }, {passive:true});
+    window.addEventListener("resize", construirePoints);
+    construirePoints();
+  }
+
   /* ---------- filtres de la cave : pastilles par catégorie ---------- */
   const filtresCave = document.querySelectorAll("[data-cave]");
   const etagereEl = document.getElementById("etagere");
