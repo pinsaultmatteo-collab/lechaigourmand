@@ -226,7 +226,6 @@
   </div>
 
   <div class="hero-texte">
-    <p class="sur-titre entree e2">Cugnaux · Francazal — près de Toulouse</p>
     <h1>
       <span class="script entree e2">Le Chai</span>
       <span class="caps entree e3">Gourmand</span>
@@ -236,6 +235,7 @@
       Bar à tapas, cave à vin &amp; épicerie fine. Deux adresses, une même idée du plaisir :
       <em>bien boire, bien manger, ensemble.</em>
     </p>
+    <p class="sur-titre entree e5">Cugnaux · Francazal — près de Toulouse</p>
     <div class="hero-ctas entree e5">
       <a class="btn btn-plein" href="#contact">Réserver une table</a>
       <a class="btn btn-ligne" href="/cave-a-vin">Explorer la cave</a>
@@ -254,12 +254,17 @@
 </section>
 
 <!-- ==================== BANDEAU : LES 3 PROCHAINS RENDEZ-VOUS ==================== -->
-<div class="bandeau-agenda">
-  <span class="bandeau-agenda-libelle">Les prochains<br>rendez-vous</span>
-  <div class="bandeau-agenda-liste" id="bandeauAgenda">
-    <!-- généré en JS depuis la programmation -->
+<div class="bandeau-bloc">
+  <div class="bandeau-agenda">
+    <span class="bandeau-agenda-libelle">Les prochains rendez-vous</span>
+    <div class="bandeau-agenda-liste" id="bandeauAgenda">
+      <!-- généré en JS : trois pastilles de date, cliquables -->
+    </div>
+    <a class="bandeau-agenda-lien" href="/agenda">Tout l'agenda <span aria-hidden="true">&rarr;</span></a>
   </div>
-  <a class="bandeau-agenda-lien" href="/agenda">Tout l'agenda <span aria-hidden="true">&rarr;</span></a>
+  <div class="bandeau-apercu" id="bandeauApercu" hidden aria-live="polite">
+    <!-- généré en JS : détail de l'événement choisi -->
+  </div>
 </div>
 
 <!-- ==================== L'ESPRIT DU CHAI ==================== -->

@@ -127,16 +127,17 @@ section{position:relative}
   font-size:.72rem;letter-spacing:.34em;text-transform:uppercase;font-weight:400;color:var(--or);
 }
 .sur-titre::before,.sur-titre::after{content:"";width:44px;height:1px;background:var(--or)}
+.hero .sur-titre{margin-top:1.8rem}
 .hero h1{margin:1.2rem 0 0;line-height:.9}
 .hero h1 .script{
   font-family:var(--script);font-weight:400;
-  font-size:clamp(3.6rem,8vw,6.6rem);
+  font-size:clamp(4rem,8.8vw,7.4rem);
   color:var(--or-clair);display:block;
   text-shadow:0 6px 40px rgba(201,168,118,.25);
 }
 .hero h1 .caps{
   font-family:var(--serif);font-weight:600;
-  font-size:clamp(1.7rem,3.8vw,3.2rem);letter-spacing:.42em;text-transform:uppercase;
+  font-size:clamp(1.85rem,4.2vw,3.6rem);letter-spacing:.42em;text-transform:uppercase;
   color:var(--creme);display:block;margin-top:.6rem;padding-left:.42em;
 }
 .hero-sous{
@@ -170,7 +171,7 @@ section{position:relative}
 
 /* verre animé — réduit, centré au-dessus du titre */
 .hero-visuel{position:relative;z-index:1;display:flex;justify-content:center;margin-bottom:.4rem}
-.scene-verre{position:relative;width:min(250px,58vw,36svh)}
+.scene-verre{position:relative;width:min(215px,50vw,31svh)}
 .verre{width:100%;height:auto;filter:drop-shadow(0 30px 60px rgba(124,33,64,.35))}
 .tonneau{animation:tourner 90s linear infinite;transform-origin:260px 200px}
 @keyframes tourner{to{transform:rotate(360deg)}}
@@ -213,11 +214,18 @@ section{position:relative}
 
 /* écrans peu hauts (portables 13") : hero plus compact */
 @media (max-height:800px){
-  .hero{padding-top:5.5rem}
-  .scene-verre{width:min(200px,28svh)}
-  .hero h1 .script{font-size:clamp(3rem,6.5vw,5rem)}
-  .hero h1 .caps{font-size:clamp(1.5rem,3.2vw,2.6rem)}
-  .hero-adresses{margin-top:1.8rem}
+  /* écrans peu hauts : on resserre les espacements plutôt que la typo */
+  .hero{padding-top:4rem;padding-bottom:1.2rem}
+  .scene-verre{width:min(150px,20svh)}
+  .hero h1 .script{font-size:clamp(3.3rem,7vw,5.6rem)}
+  .hero h1 .caps{font-size:clamp(1.6rem,3.5vw,2.9rem)}
+  .hero-slogan{margin-top:.7rem}
+  .hero-sous{margin-top:1rem}
+  .hero .sur-titre{margin-top:1.1rem}
+  .hero-ctas{margin-top:1.1rem}
+  .hero-adresses{margin-top:.9rem}
+  .indice-scroll{margin-top:clamp(.6rem,1.6vh,1.2rem)}
+  .indice-scroll .goutte{height:30px}
 }
 
 /* animations d'entrée hero */
@@ -1155,69 +1163,74 @@ h2.titre .accent-script{
 .hero-slogan::before{background:linear-gradient(90deg,transparent,rgba(201,168,118,.75))}
 .hero-slogan::after{background:linear-gradient(90deg,rgba(201,168,118,.75),transparent)}
 
-/* ---------- bandeau : les 3 prochains rendez-vous ---------- */
-.bandeau-agenda{
+/* ---------- bandeau : trois dates, aperçu au clic ---------- */
+.bandeau-bloc{
   background:var(--bordeaux-sombre);
   border-top:1px solid rgba(201,168,118,.25);border-bottom:1px solid rgba(201,168,118,.25);
   position:relative;z-index:3;
-  display:grid;grid-template-columns:auto 1fr auto;align-items:center;
-  gap:clamp(1.2rem,3vw,2.4rem);padding:1.75rem clamp(1.2rem,5vw,4rem);
+}
+.bandeau-agenda{
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:center;
+  gap:clamp(.9rem,2.5vw,2rem);padding:1rem clamp(1.2rem,5vw,4rem);
 }
 .bandeau-agenda-libelle{
   font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;
-  color:var(--or);font-weight:500;line-height:1.5;
+  color:var(--or);font-weight:500;
 }
-.bandeau-agenda-liste{
-  display:grid;grid-template-columns:repeat(3,1fr);
-  gap:clamp(.8rem,2.4vw,2rem);min-width:0;
+.bandeau-agenda-liste{display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(.5rem,1.6vw,.9rem)}
+.bandeau-chip{
+  position:relative;cursor:pointer;font-family:var(--sans);
+  width:70px;padding:.45rem .2rem .5rem;text-align:center;
+  background:rgba(255,255,255,.06);border:1px solid rgba(201,168,118,.35);border-radius:12px;
+  transition:background .3s,border-color .3s,transform .3s var(--transition);
 }
-.bandeau-ev{
-  display:flex;gap:.85rem;align-items:center;min-width:0;
-  color:inherit;text-decoration:none;
-  transition:opacity .3s,transform .35s var(--transition);
-}
-.bandeau-ev:hover{opacity:.82;transform:translateY(-2px)}
-.bandeau-ev-date{
-  flex:none;width:74px;text-align:center;border-radius:12px;padding:.45rem .25rem .5rem;
-  background:rgba(255,255,255,.06);border:1px solid rgba(201,168,118,.35);
-}
-.bev-sem{
-  display:block;font-size:.54rem;letter-spacing:.11em;text-transform:uppercase;
-  font-weight:500;color:var(--or);
-}
-.bev-jour{
-  display:block;font-family:var(--serif);font-weight:700;font-size:1.55rem;
-  line-height:1;color:var(--or-clair);margin-top:.18rem;
-}
-.bev-mois{
-  display:block;font-size:.54rem;letter-spacing:.16em;text-transform:uppercase;
-  color:rgba(246,239,226,.65);margin-top:.18rem;
-}
-.bandeau-ev-corps{min-width:0}
-.bandeau-ev-heure{
-  display:block;font-size:.66rem;letter-spacing:.1em;color:var(--or-clair);
-  margin-top:.22rem;opacity:.85;
-}
-.bandeau-ev-titre{
-  font-family:var(--serif);font-weight:600;font-size:1rem;color:var(--creme);line-height:1.25;
-  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
-}
-.bandeau-ev-lieu{
-  display:inline-flex;align-items:center;gap:.4rem;margin-top:.2rem;
-  font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(246,239,226,.6);
-}
+.bandeau-chip:hover{background:rgba(255,255,255,.11);border-color:rgba(201,168,118,.6);transform:translateY(-2px)}
+.bandeau-chip.actif{background:var(--bordeaux);border-color:var(--or)}
+.bev-sem{display:block;font-size:.52rem;letter-spacing:.1em;text-transform:uppercase;font-weight:500;color:var(--or)}
+.bev-jour{display:block;font-family:var(--serif);font-weight:700;font-size:1.4rem;line-height:1;color:var(--or-clair);margin-top:.15rem}
+.bev-mois{display:block;font-size:.52rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(246,239,226,.65);margin-top:.15rem}
+.bev-pastille{position:absolute;top:6px;right:6px;width:6px;height:6px;border-radius:50%}
+.bandeau-chip.actif .bev-sem{color:var(--or-clair)}
+.bandeau-chip.actif .bev-mois{color:rgba(246,239,226,.8)}
 .bandeau-agenda-lien{
-  flex:none;text-decoration:none;white-space:nowrap;
-  font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;font-weight:500;color:var(--or-clair);
+  text-decoration:none;white-space:nowrap;
+  font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;font-weight:500;color:var(--or-clair);
   border-bottom:1px solid rgba(230,211,174,.45);padding-bottom:.25rem;
   display:inline-flex;align-items:center;gap:.5rem;transition:gap .3s,border-color .3s;
 }
 .bandeau-agenda-lien:hover{gap:.9rem;border-color:var(--or-clair)}
-@media (max-width:1000px){
-  .bandeau-agenda{grid-template-columns:1fr;justify-items:center;text-align:center;gap:1rem;padding:1.4rem 1.2rem}
-  .bandeau-agenda-liste{grid-template-columns:1fr;gap:.9rem;width:100%;max-width:420px}
-  .bandeau-ev{justify-content:flex-start;text-align:left}
-  .bandeau-agenda-libelle br{display:none}
+
+/* l'aperçu qui s'ouvre sous les dates */
+.bandeau-apercu{
+  border-top:1px solid rgba(201,168,118,.22);
+  background:rgba(0,0,0,.22);
+  padding:1.2rem clamp(1.2rem,5vw,4rem) 1.4rem;
+  text-align:center;
+  animation:apercuOuvre .35s var(--transition);
+}
+@keyframes apercuOuvre{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+.bandeau-apercu .apercu-lieu{margin-bottom:.5rem}
+.apercu-titre-ev{
+  font-family:var(--serif);font-weight:600;font-size:clamp(1.15rem,2.2vw,1.5rem);
+  color:var(--creme);line-height:1.25;
+}
+.bandeau-apercu .apercu-desc{
+  font-size:.92rem;color:rgba(246,239,226,.75);margin:.4rem auto 0;max-width:60ch;
+}
+.apercu-quand{
+  font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--or-clair);margin-top:.6rem;
+}
+.apercu-lien{
+  display:inline-block;margin-top:.9rem;text-decoration:none;
+  font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;font-weight:500;
+  color:var(--or-clair);border-bottom:1px solid rgba(230,211,174,.45);padding-bottom:.2rem;
+}
+.apercu-lien:hover{border-color:var(--or-clair)}
+@media (max-width:620px){
+  .bandeau-agenda{gap:.75rem;padding:1rem 1.2rem}
+  .bandeau-agenda-libelle{width:100%;text-align:center}
+  .bandeau-agenda-lien{width:100%;justify-content:center}
 }
 
 /* ---------- coffrets cadeaux sur mesure ---------- */
@@ -1450,4 +1463,30 @@ h2.titre .accent-script{
       rgba(26,15,20,.94) 100%);
   }
   .porte-photo img{opacity:.82}
+}
+
+/* le menu plein écran a besoin que le header lâche son backdrop-filter,
+   sinon l'overlay fixe se cale sur le header et non sur l'écran */
+.nav.menu-ouvert{
+  background:transparent;box-shadow:none;
+  backdrop-filter:none;-webkit-backdrop-filter:none;
+}
+.logo{position:relative;z-index:160} /* la marque reste visible menu ouvert */
+
+@media (max-width:760px){
+  /* portes : contenu centré verticalement dans la carte */
+  .porte{justify-content:center}
+}
+
+/* mobile : le hero doit tenir dans l'écran malgré le titre agrandi */
+@media (max-width:620px){
+  .hero{padding-top:4.6rem;padding-bottom:1.4rem}
+  .scene-verre{width:min(138px,38vw)}
+  .hero-slogan{margin-top:.6rem}
+  .hero-sous{margin-top:1rem}
+  .hero .sur-titre{margin-top:1rem}
+  .hero-ctas{margin-top:1.2rem}
+  .hero-adresses{margin-top:1rem}
+  .indice-scroll{margin-top:clamp(.8rem,2vh,1.4rem)}
+  .indice-scroll .goutte{height:28px}
 }

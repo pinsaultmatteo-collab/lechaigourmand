@@ -68,6 +68,9 @@
     burger.addEventListener("click", function(){
       const ouvert = liens.classList.toggle("ouvert");
       burger.classList.toggle("ouvert", ouvert);
+      // le backdrop-filter du header en ferait un bloc conteneur :
+      // l'overlay fixe se limiterait alors à la hauteur du header
+      if(nav) nav.classList.toggle("menu-ouvert", ouvert);
       burger.setAttribute("aria-expanded", ouvert);
       burger.setAttribute("aria-label", ouvert ? "Fermer le menu" : "Ouvrir le menu");
     });
@@ -75,6 +78,7 @@
       a.addEventListener("click", function(){
         liens.classList.remove("ouvert");
         burger.classList.remove("ouvert");
+        if(nav) nav.classList.remove("menu-ouvert");
         burger.setAttribute("aria-expanded","false");
       });
     });
@@ -470,31 +474,55 @@
     });
   }
 
-  /* ---------- bandeau sous le hero : les 3 prochains rendez-vous ---------- */
+  /* ---------- bandeau sous le hero : trois dates, aperçu au clic ---------- */
   if(bandeauAgendaEl && evenements.length){
-    // un seul exemplaire par intitulé : le bandeau montre trois rendez-vous
-    // différents plutôt que le même récurrent dans les deux établissements
-    const vus = {};
-    const teaser = evenements.filter(function(ev){
-      if(vus[ev.titre]) return false;
-      vus[ev.titre] = true;
-      return true;
-    }).slice(0, 3);
-    bandeauAgendaEl.innerHTML = teaser.map(function(ev){
+    const apercuEl = document.getElementById("bandeauApercu");
+    // une seule entrée par jour : trois dates distinctes plutôt que trois doublons
+    const parDate = [];
+    evenements.forEach(function(ev){
+      if(!parDate.some(function(e){ return cle(e.date) === cle(ev.date); })) parDate.push(ev);
+    });
+    const teaser = parDate.slice(0, 3);
+
+    bandeauAgendaEl.innerHTML = teaser.map(function(ev, i){
       const mois = fmtMois.format(ev.date).replace(".", "");
-      return '<a class="bandeau-ev" href="/agenda">'
-        + '<span class="bandeau-ev-date">'
+      return '<button class="bandeau-chip" type="button" data-i="' + i + '" aria-expanded="false"'
+        + ' aria-label="' + fmtDateLongue.format(ev.date) + ' — ' + ev.titre + '">'
         +   '<span class="bev-sem">' + fmtJour.format(ev.date) + '</span>'
         +   '<span class="bev-jour">' + ev.date.getDate() + '</span>'
         +   '<span class="bev-mois">' + mois + '</span>'
-        + '</span>'
-        + '<span class="bandeau-ev-corps">'
-        +   '<span class="bandeau-ev-titre">' + ev.titre + '</span>'
-        +   '<span class="bandeau-ev-heure">' + ev.heure + '</span>'
-        +   '<span class="bandeau-ev-lieu"><span class="pastille ' + ev.lieu + '"></span>' + nomsLieux[ev.lieu] + '</span>'
-        + '</span>'
-        + '</a>';
+        +   '<span class="bev-pastille pastille ' + ev.lieu + '" aria-hidden="true"></span>'
+        + '</button>';
     }).join("");
+
+    const chips = bandeauAgendaEl.querySelectorAll(".bandeau-chip");
+    let ouvert = -1;
+    function afficherApercu(i){
+      const ev = teaser[i];
+      apercuEl.innerHTML =
+          '<span class="apercu-lieu ev-lieu ' + ev.lieu + '"><span class="pastille ' + ev.lieu + '"></span>' + nomsLieux[ev.lieu] + '</span>'
+        + '<p class="apercu-titre-ev">' + ev.titre + '</p>'
+        + '<p class="apercu-desc">' + ev.desc + '</p>'
+        + '<p class="apercu-quand">' + fmtDateLongue.format(ev.date) + ' · ' + ev.heure
+        +   (ev.resa ? ' · sur réservation' : '') + '</p>'
+        + '<a class="apercu-lien" href="/agenda">Voir tout l\'agenda <span aria-hidden="true">&rarr;</span></a>';
+      apercuEl.hidden = false;
+    }
+    chips.forEach(function(chip, i){
+      chip.addEventListener("click", function(){
+        const memeChip = (ouvert === i);
+        chips.forEach(function(c){ c.classList.remove("actif"); c.setAttribute("aria-expanded", "false"); });
+        if(memeChip){                   // deuxième clic : on referme
+          apercuEl.hidden = true;
+          ouvert = -1;
+          return;
+        }
+        chip.classList.add("actif");
+        chip.setAttribute("aria-expanded", "true");
+        afficherApercu(i);
+        ouvert = i;
+      });
+    });
   }
 
   /* ---------- billet du comptoir : prochain rendez-vous ---------- */
