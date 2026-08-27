@@ -1490,3 +1490,21 @@ h2.titre .accent-script{
   .indice-scroll{margin-top:clamp(.8rem,2vh,1.4rem)}
   .indice-scroll .goutte{height:28px}
 }
+
+/* ============================================================
+   MOBILE — heros des pages intérieures : texte centré, emblème retiré
+   ============================================================ */
+@media (max-width:760px){
+  /* l'emblème animé (et son anneau en rotation) n'apporte rien sur petit écran */
+  .hero-page-embleme{display:none}
+  .hero-page-grille{grid-template-areas:"texte" "ctas";row-gap:1.4rem}
+  .hero-page{padding-top:clamp(6.5rem,13vh,8.5rem)}
+
+  .hero-page-texte{text-align:center}
+  .hero-page .fil{justify-content:center}
+  .hero-page .sur-titre{justify-content:center}
+  .hero-page h1{margin-inline:auto}
+  .hero-page .chapeau{margin-inline:auto}
+  .hero-chips{justify-content:center}
+  .hero-ctas-cote{justify-content:center;margin-inline:auto}
+}
