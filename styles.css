@@ -700,12 +700,12 @@ h2.titre .accent-script{
   }
   .nav-liens.ouvert{opacity:1;pointer-events:auto}
   .nav-liens a{font-size:1rem}
-  .burger{display:block}
+  .burger{display:block;margin-left:auto}
   .carte-colonnes{grid-template-columns:1fr}
   .chais-grille{grid-template-columns:1fr}
   .chai-carte{min-height:0}
   .duo{grid-template-columns:1fr}
-  .trio{grid-template-columns:1fr;gap:2rem}
+  .trio{grid-template-columns:repeat(3,1fr);gap:.7rem}
   .cc-etapes{grid-template-columns:1fr}
   .coordonnees{grid-template-columns:1fr}
   .coups{grid-template-columns:1fr}
@@ -1080,8 +1080,11 @@ h2.titre .accent-script{
 }
 .verre-sante.visible{opacity:1;transform:none}
 @media (max-width:700px){
-  .cave-tete{grid-template-columns:1fr}
-  .verre-scroll{margin-inline:auto}
+  .cave-tete{grid-template-columns:1fr;text-align:center}
+  .cave-tete .entete-section{margin-inline:auto}
+  .cave-tete .chapeau{margin-inline:auto}
+  .cave-tete .eyebrow{justify-content:center}
+  .verre-scroll{display:none} /* trop encombrant sur petit écran */
 }
 
 /* ---------- esprit : la traînée dorée qui traverse la section ---------- */
@@ -1419,4 +1422,32 @@ h2.titre .accent-script{
 @media (max-width:620px){
   .avis-piste{grid-auto-columns:86%}
   .avis-fleche{display:none} /* au doigt, le défilement suffit */
+}
+
+/* ============================================================
+   MOBILE — accueil : centrages et lisibilité
+   ============================================================ */
+@media (max-width:760px){
+  /* l'esprit du Chai : tout centré, chiffres serrés sur une ligne */
+  #esprit .esprit-texte{text-align:center}
+  #esprit .esprit-texte .entete-section{margin-inline:auto}
+  #esprit .eyebrow{justify-content:center}
+  #esprit .citation{
+    border-left:0;padding:1.2rem 0 0;margin-inline:auto;
+    border-top:1px solid var(--or-sombre);
+  }
+  #esprit .citation footer{text-align:center}
+  .chiffre{font-size:clamp(1.9rem,9.5vw,2.7rem)}
+  .chiffre-libelle{font-size:.55rem;letter-spacing:.1em;line-height:1.35}
+
+  /* découvrir la maison : textes centrés et photos assombries */
+  .porte{text-align:center;align-items:center}
+  .porte p{margin-inline:auto}
+  .porte-voile{
+    background:linear-gradient(180deg,
+      rgba(26,15,20,.42) 0%,
+      rgba(26,15,20,.68) 42%,
+      rgba(26,15,20,.94) 100%);
+  }
+  .porte-photo img{opacity:.82}
 }
