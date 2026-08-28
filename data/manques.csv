@@ -1,40 +1,82 @@
 id,produit,champ,ce que dit la fiche
-belle-gnole-liqueur-framboise-poivre,Belle Gnôle — Liqueur Framboise-Poivre,producteur (partiel),Belle Gnôle / Coquetelers ; liquoristerie bourguignonne non identifiée publiquement
-belle-gnole-liqueur-de-sapin,Belle Gnôle — Liqueur de Sapin,cepages (partiel),Bourgeons de sapin cueillis à la main et environ trente plantes aromatiques ; proportions non communiquées
-belle-gnole-liqueur-de-sapin,Belle Gnôle — Liqueur de Sapin,bouche (partiel),Profil végétal dominé par le sapin ; détail gustatif supplémentaire non communiqué par la marque
-belle-gnole-liqueur-pain-depices,Belle Gnôle — Liqueur Pain d’Épices,cepages (partiel),"Cannelle, clou de girofle, orange, badiane et caramel ; proportions non communiquées"
-belle-gnole-liqueur-de-melon,Belle Gnôle — Liqueur de Melon,producteur (partiel),Belle Gnôle / Coquetelers ; liquoristerie bourguignonne non identifiée publiquement
-guappo-della-costiera-limoncello,Guappo della Costiera — Limoncello,bouche (partiel),Caractère citronné et sucré ; description détaillée non communiquée par le producteur
-distilleria-marzadro-altolago-limone,Distilleria Marzadro — Altolago Limone,alcool,Sans alcool ; titre exact non communiqué par le fabricant
-silvio-carta-aspide-spritz,Silvio Carta — Aspide Spritz,cepages (partiel),Apéritif aux agrumes et aux plantes ; recette complète et proportions non communiquées
-marcati-amaretto,Marcati — Amaretto,origine (partiel),Italie ; lieu de production exact non confirmé pour cette référence
-marcati-amaretto,Marcati — Amaretto,cepages (partiel),Liqueur de type amaretto ; composition et proportions non communiquées pour cette bouteille
-marcati-amaretto,Marcati — Amaretto,visuel,Couleur du liquide non vérifiable : bouteille en verre sombre
-marcati-amaretto,Marcati — Amaretto,nez,Profil aromatique précis non communiqué par les sources consultées
-marcati-amaretto,Marcati — Amaretto,bouche,Profil gustatif précis non communiqué par les sources consultées
-toschi-vignola-nocello,Toschi Vignola — Nocello,cepages (partiel),Noix et noisettes ; proportions non communiquées
-distilleria-marzadro-la-mia-grappa-uve-rosse,Distilleria Marzadro — La Mia Grappa - Uve Rosse,cepages (partiel),Marcs de raisin Merlot et Marzemino ; proportions non communiquées
-distilleria-marzadro-la-mia-grappa-uve-rosse,Distilleria Marzadro — La Mia Grappa - Uve Rosse,millesime,Aucun millésime communiqué
-two-stacks-double-irish-cream-liqueur,Two Stacks — Double Irish Cream Liqueur,visuel,Couleur non vérifiable : bouteille noire opaque
-maison-cabanel-cabanel-menthe,Maison Cabanel — Cabanel Menthe,cepages (partiel),Liqueur aromatisée à la menthe ; recette et proportions non communiquées
-maison-cabanel-cabanel-menthe,Maison Cabanel — Cabanel Menthe,nez (partiel),Menthe ; détail aromatique complémentaire non communiqué
-maison-cabanel-cabanel-menthe,Maison Cabanel — Cabanel Menthe,bouche (partiel),Profil mentholé ; description détaillée non communiquée
-maison-cabanel-cabanel-mandarine,Maison Cabanel — Cabanel Mandarine,cepages (partiel),Liqueur aromatisée à la mandarine ; recette et proportions non communiquées
-maison-cabanel-cabanel-citron,Maison Cabanel — Cabanel Citron,cepages (partiel),Liqueur aromatisée au citron ; recette et proportions non communiquées
-maison-cabanel-cabanel-citron,Maison Cabanel — Cabanel Citron,bouche (partiel),Profil citronné et frais ; description gustative détaillée non communiquée
-francois-lurton-leonce-vermouth-rose-criolla,François Lurton — Léonce Vermouth Rosé - Criolla,cepages (partiel),Vin de cépage Criolla ; plantes et écorce de quinquina. Proportions non communiquées
-francois-lurton-leonce-vermouth-extra-dry-sauvignon,François Lurton — Léonce Vermouth Extra Dry - Sauvignon,cepages (partiel),"Vin et distillat de Sauvignon Blanc ; plantes et agrumes, dont quinquina, pamplemousse, citron vert, réglisse, absinthe,"
-recapet-bas-armagnac-vsop-domaine-de-2015,Récapet — Bas-Armagnac VSOP - Domaine de,millesime (partiel),"Assemblage de 2015 et 2016, à parts égales ; aucun millésime unique"
-recapet-bas-armagnac-colombard,Récapet — Bas-Armagnac - Colombard,bouche (partiel),Profil floral et fruité ; notes complémentaires non communiquées
-maison-boutelleau-cognac-vsop,Maison Boutelleau — Cognac VSOP,cepages (partiel),Eau-de-vie de vin sous appellation Cognac ; cépage non communiqué. Vieillissement d’au moins quatre ans en fûts français
-cez-red-shiraz-grenache-cinsault-2022,"CEZ Red — Shiraz, Grenache & Cinsault",cepages (partiel),"Shiraz, Grenache et Cinsault — contre-étiquette photographiée ; proportions du millésime 2022 non vérifiées"
-cez-red-shiraz-grenache-cinsault-2022,"CEZ Red — Shiraz, Grenache & Cinsault",visuel (partiel),Rouge fruité ; nuance exacte non documentée pour le millésime 2022
-ernst-gouws-co-chenin-blanc-2023,Ernst Gouws & Co — Chenin Blanc,visuel,Couleur précise du millésime 2023 non documentée par la fiche officielle consultée
-vina-eguia-rioja-tempranillo-2022,Viña Eguía — Rioja Tempranillo,cepages,Tempranillo indiqué sur l’étiquette. Présence d’autres cépages non établie pour cette bouteille
-vina-eguia-rioja-tempranillo-2022,Viña Eguía — Rioja Tempranillo,alcool,Non lisible de manière suffisamment fiable sur la photographie
-pradorey-origen-2023,Pradorey — Origen,cepages (partiel),"Tempranillo, Cabernet Sauvignon et Merlot indiqués par une fiche commerciale 2023 ; proportions exactes du millésime non"
-pradorey-origen-2023,Pradorey — Origen,visuel (partiel),Robe rouge ; nuance précise du millésime 2023 non trouvée dans une source fiable
+belle-gnole,Belle Gnôle,producteur (partiel),Belle Gnôle / Coquetelers ; liquoristerie bourguignonne non identifiée publiquement
+belle-gnole,Belle Gnôle,cepages (partiel),Bourgeons de sapin cueillis à la main et environ trente plantes aromatiques ; proportions non communiquées
+belle-gnole,Belle Gnôle,bouche (partiel),Profil végétal dominé par le sapin ; détail gustatif supplémentaire non communiqué par la marque
+belle-gnole,Belle Gnôle,cepages (partiel),"Cannelle, clou de girofle, orange, badiane et caramel ; proportions non communiquées"
+belle-gnole,Belle Gnôle,producteur (partiel),Belle Gnôle / Coquetelers ; liquoristerie bourguignonne non identifiée publiquement
+guappo-della-costiera,Guappo della Costiera,bouche (partiel),Caractère citronné et sucré ; description détaillée non communiquée par le producteur
+distilleria-marzadro,Distilleria Marzadro,alcool,Sans alcool ; titre exact non communiqué par le fabricant
+silvio-carta,Silvio Carta,cepages (partiel),Apéritif aux agrumes et aux plantes ; recette complète et proportions non communiquées
+marcati,Marcati,origine (partiel),Italie ; lieu de production exact non confirmé pour cette référence
+marcati,Marcati,cepages (partiel),Liqueur de type amaretto ; composition et proportions non communiquées pour cette bouteille
+marcati,Marcati,visuel,Couleur du liquide non vérifiable : bouteille en verre sombre
+marcati,Marcati,nez,Profil aromatique précis non communiqué par les sources consultées
+marcati,Marcati,bouche,Profil gustatif précis non communiqué par les sources consultées
+toschi-vignola,Toschi Vignola,cepages (partiel),Noix et noisettes ; proportions non communiquées
+distilleria-marzadro,Distilleria Marzadro,cepages (partiel),Marcs de raisin Merlot et Marzemino ; proportions non communiquées
+two-stacks,Two Stacks,visuel,Couleur non vérifiable : bouteille noire opaque
+maison-cabanel,Maison Cabanel,cepages (partiel),Liqueur aromatisée à la menthe ; recette et proportions non communiquées
+maison-cabanel,Maison Cabanel,nez (partiel),Menthe ; détail aromatique complémentaire non communiqué
+maison-cabanel,Maison Cabanel,bouche (partiel),Profil mentholé ; description détaillée non communiquée
+maison-cabanel,Maison Cabanel,cepages (partiel),Liqueur aromatisée à la mandarine ; recette et proportions non communiquées
+maison-cabanel,Maison Cabanel,cepages (partiel),Liqueur aromatisée au citron ; recette et proportions non communiquées
+maison-cabanel,Maison Cabanel,bouche (partiel),Profil citronné et frais ; description gustative détaillée non communiquée
+francois-lurton,François Lurton,cepages (partiel),Vin de cépage Criolla ; plantes et écorce de quinquina. Proportions non communiquées
+francois-lurton,François Lurton,cepages (partiel),"Vin et distillat de Sauvignon Blanc ; plantes et agrumes, dont quinquina, pamplemousse, citron vert, réglisse, absinthe,"
+recapet-2015,Récapet,millesime (partiel),"Assemblage de 2015 et 2016, à parts égales ; aucun millésime unique"
+recapet,Récapet,bouche (partiel),Profil floral et fruité ; notes complémentaires non communiquées
+maison-boutelleau,Maison Boutelleau,cepages (partiel),Eau-de-vie de vin sous appellation Cognac ; cépage non communiqué. Vieillissement d’au moins quatre ans en fûts français
+cez-red-shiraz-grenache-cinsault,"CEZ Red — Shiraz, Grenache & Cinsault",cepages (partiel),"Shiraz, Grenache et Cinsault — contre-étiquette photographiée ; proportions du millésime 2022 non vérifiées"
+cez-red-shiraz-grenache-cinsault,"CEZ Red — Shiraz, Grenache & Cinsault",visuel (partiel),Rouge fruité ; nuance exacte non documentée pour le millésime 2022
+ernst-gouws-co-chenin-blanc,Ernst Gouws & Co — Chenin Blanc,visuel,Couleur précise du millésime 2023 non documentée par la fiche officielle consultée
+vina-eguia-rioja-tempranillo,Viña Eguía — Rioja Tempranillo,cepages,Tempranillo indiqué sur l’étiquette. Présence d’autres cépages non établie pour cette bouteille
+vina-eguia-rioja-tempranillo,Viña Eguía — Rioja Tempranillo,alcool,Non lisible de manière suffisamment fiable sur la photographie
+pradorey-origen,Pradorey — Origen,cepages (partiel),"Tempranillo, Cabernet Sauvignon et Merlot indiqués par une fiche commerciale 2023 ; proportions exactes du millésime non"
+pradorey-origen,Pradorey — Origen,visuel (partiel),Robe rouge ; nuance précise du millésime 2023 non trouvée dans une source fiable
 codorniu-red-grenache-organic-wine,Codorníu — Red Grenache Organic Wine,visuel (partiel),Rouge rubis ; nuance précise non confirmée par une fiche producteur
+piedra-negra-alta-coleccion-torrontes-2023,Piedra Negra Alta Colección Torrontés,alcool,Non vérifié avec certitude
+shumi-saperavi-2023-2023,Shumi Saperavi 2023,alcool,Non lisible et non vérifié
+shumi-tsinandali-2024-2024,Shumi Tsinandali 2024,alcool,Non lisible et non vérifié
+apla-rouge-2023,APLA Rouge 2023,alcool,vide
+humo-blanco-edicion-limitada-pinot-noir-2022,Humo Blanco Edición Limitada Pinot Noir 2022,alcool,vide
+humo-blanco-cabernet-franc-2022,Humo Blanco Cabernet Franc 2022,alcool,vide
+humo-blanco-organic-sauvignon-blanc-2024,Humo Blanco Organic Sauvignon Blanc 2024,alcool,vide
+humo-blanco-organic-chardonnay-2023,Humo Blanco Organic Chardonnay 2023,alcool,vide
+lavradores-de-feitoria-douro-tinto-2022,Lavradores de Feitoria Douro Tinto 2022,alcool,vide
+lavradores-de-feitoria-douro-branco-2024,Lavradores de Feitoria Douro Branco 2024,cepages,Assemblage de cépages blancs traditionnels du Douro. Proportions non précisées sur la bouteille
+lavradores-de-feitoria-douro-branco-2024,Lavradores de Feitoria Douro Branco 2024,alcool,vide
+saint-clair-pioneer-block-10-twin-hills-chardonnay,Saint Clair Pioneer Block 10 Twin Hills Chardonnay,alcool,vide
+saint-clair-vicars-choice-sauvignon-blanc-2023,Saint Clair Vicar’s Choice Sauvignon Blanc 2023,alcool,vide
+saint-clair-origin-pinot-noir-2022,Saint Clair Origin Pinot Noir 2022,alcool,vide
+vezzo-vino-bianco-spumante-brut-non-millesime,Vezzo Vino Bianco Spumante Brut - non millésimé,alcool,vide
+vezzo-blanc-de-blancs-brut-non-millesime,Vezzo Blanc de Blancs Brut - non millésimé,alcool,vide
+rose-di-bacco-lambrusco-dellemilia-rosso,Rose di Bacco Lambrusco dell’Emilia Rosso,alcool,vide
+solicello-moscato-dasti-2025,Solicello Moscato d’Asti 2025,alcool,vide
+luma-grillo-2025,Lumà Grillo 2025,alcool,vide
+veneto-destate-rose-trevenezie-igt-2024,Veneto d’Estate Rosé Trevenezie IGT 2024,cepages,Assemblage non confirmé sur l’étiquette photographiée
+veneto-destate-rose-trevenezie-igt-2024,Veneto d’Estate Rosé Trevenezie IGT 2024,alcool,vide
+diamas-prosecco-doc-extra-dry-non-millesime,Diamas Prosecco DOC Extra Dry - non millésimé,alcool,vide
+ca-del-console-prosecco-extra-dry-non-millesime,Cá del Console Prosecco Extra Dry - non millésimé,alcool,vide
+ca-del-console-prosecco-rose-extra-dry,Cá del Console Prosecco Rosé Extra Dry,alcool,vide
+ca-vittoria-appassimento-limited-edition,Ca’ Vittoria Appassimento Limited Edition,alcool,vide
+cortonesi-la-mannella-rosso-di-montalcino,Cortonesi La Mannella Rosso di Montalcino,alcool,vide
+tornatore-etna-rosso-2022,Tornatore Etna Rosso 2022,alcool,vide
+tornatore-etna-rosso-2022,Tornatore Etna Rosso 2022,alcool,vide
+lupo-meraviglia-due-di-due-puglia-rosso,Lupo Meraviglia Due di Due Puglia Rosso,alcool,vide
+saragat-monica-isola-dei-nuraghi-igt-2023,Saragat Monica Isola dei Nuraghi IGT 2023,alcool,vide
+gran-sasso-montepulciano-dabruzzo-doc,Gran Sasso Montepulciano d’Abruzzo DOC,alcool,vide
+vezzo-pinot-nero-trevenezie-igt-2024,Vezzo Pinot Nero Trevenezie IGT 2024,alcool,vide
+posidone-organic-primitivo-puglia-igt-2024,Posidone Organic Primitivo Puglia IGT 2024,alcool,vide
+pelissero-munfrina-dolcetto-dalba-2021,Pelissero Munfrina Dolcetto d’Alba 2021,alcool,vide
+il-palazzo-chianti-docg-2022,Il Palazzo Chianti DOCG 2022,alcool,vide
+canio-bianco-basilicata-igp-2024,Canio Bianco Basilicata IGP 2024,cepages (partiel),Greco et Fiano ; proportions non communiquées pour la cuvée photographiée
+canio-bianco-basilicata-igp-2024,Canio Bianco Basilicata IGP 2024,alcool,vide
+canio-rosato-basilicata-igp-2024,Canio Rosato Basilicata IGP 2024,alcool,vide
+chateau-desmirail-margaux-grand-cru,Château Desmirail — Margaux Grand Cru,cepages (partiel),Assemblage bordelais ; proportions du millésime non confirmées par la source retenue
+bodega-piedra-negra-chacayes,Bodega Piedra Negra — Chacayes,alcool,Non lisible / non confirmé
+madame-de-rayne-sauternes,Madame de Rayne — Sauternes,cepages (partiel),Sémillon et Sauvignon Blanc ; proportions 2015 non confirmées
+prestige-rose-cotes-de-provence,Prestige Rosé — Côtes de Provence,cepages,Non confirmés pour cette référence
+prestige-rose-cotes-de-provence,Prestige Rosé — Côtes de Provence,alcool,Non lisible / non confirmé
 serum-ancon-10-anos,Sérum Ancon 10 Años,producteur (partiel),Marque Sérum ; fabricant juridique précis non communiqué. Distribution France : Pardela Spirits
 serum-ancon-10-anos,Sérum Ancon 10 Años,cepages,"Assemblage de rhums panaméens, vieillis au minimum 10 ans en anciens fûts de bourbon. Matière première précise non docum"
 serum-ancon-10-anos,Sérum Ancon 10 Años,visuel (partiel),Rhum ambré foncé ; teinte exacte non décrite par le producteur
@@ -45,4 +87,69 @@ la-progresiva-de-vigia-mezcla-13,La Progresiva de Vigía Mezcla 13,visuel (parti
 black-tears-super-dry,Black Tears Super Dry,cepages,Rhum blanc cubain issu de la canne à sucre. Détail exact de la matière première et durée de vieillissement non confirmés
 bistro-vodka-la-fine-vodka,Bistro Vodka - La Fine Vodka,producteur (partiel),"Marque Bistro, distribuée par Pardela Spirits / Domaines François Lurton ; distillerie précise non communiquée"
 acto-1903-special-reserve-6-ans,ACTO 1903 Special Reserve - 6 ans,producteur (partiel),Pardela Rum Collection / Pardela Spirits ; distillerie panaméenne précise non communiquée
+mas-janeil-arrels-2021,Mas Janeil Arrels 2021,alcool,75 cl
 vina-progreso-revolution-albarino-2020-2020,Viña Progreso Revolution Albariño 2020,nez,Information détaillée non trouvée dans une source officielle accessible
+chateau-de-gardegan-2019,Château de Gardegan,bouche,"Style souple et fruité, avec une complexité épicée et boisée mesurée. Aucune note de dégustation plus détaillée propre a"
+good-mood-rouge-2025,GOOD MOOD ROUGE,alcool,vide
+good-mood-rose-2025,GOOD MOOD ROSÉ,alcool,vide
+good-mood-blanc-2025,GOOD MOOD BLANC,alcool,vide
+chateau-d-assas-2023,CHÂTEAU D'ASSAS,alcool,vide
+longitude-2025,LONGITUDE,alcool,vide
+latitude-2025,LATITUDE,alcool,vide
+le-clos-rouge-2022,LE CLOS ROUGE,alcool,vide
+mazet-de-nizas-blanc-2024,MAZET DE NIZAS BLANC,alcool,vide
+domaine-de-nizas-blanc-2024,DOMAINE DE NIZAS BLANC,alcool,vide
+la-cordee-galabert-rose,LA CORDÉE / GALABERT ROSÉ,alcool,vide
+vin-jaune-2018-2018,VIN JAUNE 2018,alcool,Non repris sans source certaine
+le-souvignier-gris-2025-2025,LE SOUVIGNIER GRIS 2025,alcool,Faible en alcool (degré non repris ici sans source certaine)
+cremant-du-jura-blanc,CRÉMANT DU JURA BLANC,alcool,Non indiqué sur la photo fournie
+galabert-rose-2024,Galabert Rosé,cepages (partiel),Syrah et Grenache. La fiche producteur actuelle donne 60 % Syrah / 40 % Grenache noir pour 2025 ; proportions 2024 non c
+galabert-rose-2024,Galabert Rosé,alcool,vide
+saint-hubert-rouge-2024,Saint Hubert Rouge,alcool,vide
+les-fumees-blanches-sauvignon-blanc-2025,Les Fumées Blanches Sauvignon Blanc,alcool,vide
+zero-by-les-fumees-blanches-rose,Zéro by Les Fumées Blanches Rosé,alcool,vide
+zero-by-les-fumees-blanches-sauvignon-blanc,Zéro by Les Fumées Blanches Sauvignon Blanc,alcool,vide
+les-fumees-blanches-vin-orange-2025,Les Fumées Blanches Vin Orange,alcool,vide
+les-fumees-blanches-les-calcaires-2025,Les Fumées Blanches Les Calcaires,alcool,vide
+l-ephemere-blanc-2024,L'Éphémère Blanc,cepages (partiel),100 % Colombard sur les fiches 2022-2023 ; composition 2024 non confirmée par une fiche millésimée
+l-ephemere-blanc-2024,L'Éphémère Blanc,alcool,vide
+les-caselles-rouge-2024,Les Caselles Rouge,alcool,vide
+domaine-laffitte-gros-petit-manseng-2025,Domaine Laffitte Gros & Petit Manseng,cepages (partiel),Gros Manseng et Petit Manseng. Une fiche technique 2023 indique 70 % / 30 % ; proportions 2025 non confirmées
+domaine-laffitte-gros-petit-manseng-2025,Domaine Laffitte Gros & Petit Manseng,alcool,vide
+rose-mont-rose-rose-wine-ale,Rose Mont Rose - Rosé Wine Ale,alcool,vide
+fontanilles-rouge-2025-2025,Fontanilles Rouge 2025,alcool,vide
+fontanilles-blanc-2025-2025,Fontanilles Blanc 2025,alcool,vide
+fontanilles-rose-2024-2024,Fontanilles Rosé 2024,alcool,vide
+rouquets-sauvignon-2025-2025,Rouquet’s Sauvignon 2025,alcool,vide
+rouquets-viognier-2025-2025,Rouquet’s Viognier 2025,alcool,vide
+rouquets-cabernet-sauvignon-2025-2025,Rouquet’s Cabernet Sauvignon 2025,alcool,vide
+rouquets-merlot-2025-2025,Rouquet’s Merlot 2025,alcool,vide
+rouquets-pinot-noir-2025-2025,Rouquet’s Pinot Noir 2025,alcool,vide
+a-grands-pas-carignan-2025-2025,À Grands Pas Carignan 2025,alcool,vide
+a-grands-pas-chardonnay-2025-2025,À Grands Pas Chardonnay 2025,alcool,vide
+le-brut-nature-rose-2022,Le Brut Nature Rosé,cepages,Composition précise non retrouvée dans une source fiable consultable
+le-brut-nature-rose-2022,Le Brut Nature Rosé,visuel (partiel),Rosé effervescent à la robe claire ; description officielle détaillée non retrouvée
+le-brut-nature-rose-2022,Le Brut Nature Rosé,nez,Aucune note aromatique suffisamment fiable et spécifique au millésime photographié retrouvée
+le-brut-nature-rose-2022,Le Brut Nature Rosé,bouche (partiel),Méthode traditionnelle indiquée sur la contre-étiquette ; description gustative spécifique non retrouvée
+cuvee-g-blanc,Cuvée G Blanc,millesime,Millésime non lisible sur la photo
+cuvee-g-blanc,Cuvée G Blanc,alcool,Degré exact du millésime photographié non vérifié
+le-petit-g-rose-2025,Le Petit G Rosé,cepages (partiel),Assemblage rosé ; proportions 2025 non retrouvées dans une source officielle fiable
+le-petit-g-rose-2025,Le Petit G Rosé,accords (partiel),"Apéritif, salades estivales, tapas, grillades légères et cuisine méditerranéenne. Accords proposés selon le profil de la"
+red-grape-ale,Red Grape Ale,producteur,Producteur non identifié avec certitude
+red-grape-ale,Red Grape Ale,appellation,Catégorie exacte non vérifiée
+red-grape-ale,Red Grape Ale,cepages (partiel),Raisin rouge et ingrédients brassicoles ; composition exacte non vérifiée
+red-grape-ale,Red Grape Ale,visuel (partiel),Robe sombre / rouge-brun visible en bouteille ; fiche officielle non retrouvée
+red-grape-ale,Red Grape Ale,nez,Aucune note de dégustation spécialisée fiable retrouvée
+red-grape-ale,Red Grape Ale,bouche,Aucune description gustative vérifiable suffisamment précise retrouvée
+beaujolais-villages-terre-de-loyse,Beaujolais-Villages « Terre de Loyse »,alcool,vide
+pouilly-fuisse-vieilles-vignes-2024-2024,Pouilly-Fuissé « Vieilles Vignes » 2024,alcool,vide
+macon-villages-vieilles-vignes-2023-2023,Mâcon-Villages « Vieilles Vignes » 2023,alcool,vide
+beaujolais-blanc-2024-2024,Beaujolais Blanc 2024,alcool,vide
+beaujolais-villages-terre-de-loyse,Beaujolais-Villages « Terre de Loyse »,alcool,vide
+pouilly-fuisse-1er-cru-vers-cras-2023-2023,Pouilly-Fuissé 1er Cru « Vers Cras » 2023,nez,La source spécifique retrouvée pour ce millésime ne renseigne pas le nez : non précisé
+pouilly-fuisse-1er-cru-vers-cras-2023-2023,Pouilly-Fuissé 1er Cru « Vers Cras » 2023,bouche,La source spécifique retrouvée pour ce millésime ne renseigne pas la bouche : non précisée
+pouilly-fuisse-vieilles-vignes-2024-2024,Pouilly-Fuissé « Vieilles Vignes » 2024,alcool,vide
+macon-villages-vieilles-vignes-2023-2023,Mâcon-Villages « Vieilles Vignes » 2023,nez,Aucune note de nez spécifique au millésime 2023 retrouvée dans une source fiable : non renseigné
+macon-villages-vieilles-vignes-2023-2023,Mâcon-Villages « Vieilles Vignes » 2023,bouche,Aucune note de bouche spécifique au millésime 2023 retrouvée dans une source fiable : non renseignée
+macon-villages-vieilles-vignes-2023-2023,Mâcon-Villages « Vieilles Vignes » 2023,alcool,vide
+beaujolais-blanc-2024-2024,Beaujolais Blanc 2024,alcool,vide
