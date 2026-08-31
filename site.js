@@ -700,3 +700,158 @@
     document.head.appendChild(s);
   }
 })();
+
+/* ============================================================
+   CATALOGUE — filtres, recherche et volet de détail
+   ============================================================ */
+(function catalogue() {
+  const grille = document.getElementById("refGrille");
+  if (!grille) return;
+
+  const cartes = Array.from(grille.querySelectorAll(".ref-carte"));
+  const filtres = Array.from(document.querySelectorAll(".ref-filtres .filtre"));
+  const champ = document.getElementById("refCherche");
+  const compte = document.getElementById("refCompte");
+  const vide = document.getElementById("refVide");
+  const volet = document.getElementById("refVolet");
+  const voletContenu = document.getElementById("refVoletContenu");
+
+  let categorie = "tous";
+  let requete = "";
+
+  // 255 fiches d'un coup, c'est 45 000 px de page : le rendu s'effondre, surtout sur
+  // mobile. Tout reste dans le HTML (donc indexable), mais on n'en affiche qu'une
+  // tranche à la fois, agrandie au clic.
+  const PAS = 48;
+  let limite = PAS;
+
+  const plus = document.createElement("button");
+  plus.type = "button";
+  plus.className = "btn ref-plus";
+  plus.addEventListener("click", () => {
+    limite += PAS;
+    appliquer(true);
+  });
+  grille.insertAdjacentElement("afterend", plus);
+
+  // « Château Lévêque » et « chateau leveque » doivent se trouver
+  const sansAccent = (t) =>
+    t.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+
+  function appliquer(garderLaPosition) {
+    const avant = window.scrollY;
+    let correspondances = 0;
+    const mots = requete.split(/\s+/).filter(Boolean);
+    cartes.forEach((carte) => {
+      const okType = categorie === "tous" || carte.dataset.type === categorie;
+      const texte = carte.dataset.cherche || "";
+      const okTexte = mots.every((m) => texte.includes(m));
+      const correspond = okType && okTexte;
+      if (correspond) correspondances++;
+      carte.classList.toggle("cache", !correspond || correspondances > limite);
+    });
+    if (compte) {
+      compte.textContent =
+        correspondances + (correspondances > 1 ? " références" : " référence");
+    }
+    if (vide) vide.hidden = correspondances > 0;
+
+    const reste = correspondances - Math.min(limite, correspondances);
+    plus.hidden = reste <= 0;
+    plus.textContent =
+      "Voir " + Math.min(reste, PAS) + " références de plus";
+    if (garderLaPosition) window.scrollTo(0, avant);
+  }
+
+  function reinitialiser() {
+    limite = PAS;
+    appliquer();
+  }
+
+  filtres.forEach((bouton) => {
+    bouton.addEventListener("click", () => {
+      filtres.forEach((b) => b.classList.remove("actif"));
+      bouton.classList.add("actif");
+      categorie = bouton.dataset.ref;
+      reinitialiser();
+    });
+  });
+
+  if (champ) {
+    let minuteur;
+    champ.addEventListener("input", () => {
+      clearTimeout(minuteur);
+      minuteur = setTimeout(() => {
+        requete = sansAccent(champ.value.trim());
+        reinitialiser();
+      }, 140);
+    });
+  }
+
+  // ----- volet de détail -----
+  let declencheur = null;
+
+  function ouvrir(carte) {
+    if (!volet || !voletContenu) return;
+    const visuel = carte.querySelector(".ref-visuel");
+    const nom = carte.querySelector(".ref-nom");
+    const domaine = carte.querySelector(".ref-domaine");
+    const badge = carte.querySelector(".b-type");
+    const prix = carte.querySelector(".ref-prix");
+    const detail = carte.querySelector(".ref-detail");
+
+    voletContenu.innerHTML =
+      (visuel ? '<div class="fdv-photo">' + visuel.innerHTML + "</div>" : "") +
+      (badge ? badge.outerHTML : "") +
+      (nom ? '<h2 class="fdv-titre" id="refVoletTitre">' + nom.textContent + "</h2>" : "") +
+      (domaine ? '<p class="fdv-domaine">' + domaine.textContent + "</p>" : "") +
+      (prix ? '<p class="fdv-prix">' + prix.textContent + "</p>" : "") +
+      (detail ? detail.innerHTML : "");
+
+    // la photo du volet n'est plus paresseuse : elle doit s'afficher tout de suite
+    const img = voletContenu.querySelector("img");
+    if (img) img.loading = "eager";
+
+    volet.hidden = false;
+    document.body.style.overflow = "hidden";
+    const fermer = volet.querySelector("[data-fermer]");
+    if (fermer) fermer.focus();
+  }
+
+  function fermerVolet() {
+    if (!volet || volet.hidden) return;
+    volet.hidden = true;
+    voletContenu.innerHTML = "";
+    document.body.style.overflow = "";
+    if (declencheur) {
+      declencheur.focus();
+      declencheur = null;
+    }
+  }
+
+  grille.addEventListener("click", (e) => {
+    const bouton = e.target.closest(".ref-ouvrir");
+    if (!bouton) return;
+    declencheur = bouton;
+    ouvrir(bouton.closest(".ref-carte"));
+  });
+
+  if (volet) {
+    volet.addEventListener("click", (e) => {
+      if (e.target.closest("[data-fermer]")) fermerVolet();
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") fermerVolet();
+    });
+  }
+
+  // ?type=rouge ou #rouge pour arriver directement sur une catégorie
+  const depart = new URLSearchParams(location.search).get("type") ||
+    location.hash.replace("#", "");
+  const boutonDepart = depart && filtres.find((b) => b.dataset.ref === depart);
+  if (boutonDepart) {
+    boutonDepart.click();
+  } else {
+    appliquer();
+  }
+})();

@@ -13,9 +13,12 @@
   Ouverte du mardi au samedi (mardi-mercredi 16h-20h, jeudi-vendredi 16h-22h, samedi 10h-22h),
   fermée dimanche et lundi. Brunch en terrasse tous les samedis midi (formule complète à 25 €
   par personne, sur réservation) et soirées d'initiation à la dégustation (accords mets & vins).
-- **Cave** : 300 références de vignerons indépendants, dominante Sud-Ouest (Fronton, Gaillac, Cahors),
+- **Cave** : environ 300 références de vignerons indépendants, dominante Sud-Ouest (Fronton, Gaillac, Cahors),
   conseil personnalisé du caviste, épicerie fine (conserves de la mer, charcuteries ibériques,
-  fromages affinés, huiles et douceurs).
+  fromages affinés, huiles et douceurs). 254 d'entre elles sont détaillées en ligne sur
+  https://lechaigourmand.vercel.app/nos-references — répartition : 85 rouges, 86 blancs, 17 rosés,
+  11 bulles, 2 moelleux, 21 bières artisanales, 24 spiritueux, 8 produits d'épicerie fine.
+  Les prix ne sont pas publiés en ligne : ils sont donnés en boutique.
 - **La carte (septembre 2026)** : planches à partager fromage/charcuterie/mixte en deux formats
   (classique 12-14 €, grande 24-26 €), tartines sur pain de campagne (effiloché de confit de canard
   Maison Samaran 11 €, chèvre-miel 8 €, champignons-crème d'ail 9 €), plats & spécialités
@@ -40,6 +43,9 @@
 - [Accueil](https://lechaigourmand.vercel.app/) : présentation de la maison et des deux adresses
 - [Bar à tapas](https://lechaigourmand.vercel.app/bar-a-tapas) : la carte des tapas et les prix
 - [Cave à vin](https://lechaigourmand.vercel.app/cave-a-vin) : la cave, l'épicerie fine, le click & collect
+- [Nos références](https://lechaigourmand.vercel.app/nos-references) : le catalogue complet de la cave,
+  254 fiches détaillées (domaine, appellation, cépages, millésime, degré, notes de dégustation,
+  accords mets & vins), filtrables par catégorie et cherchables par domaine, appellation ou cépage
 - [Brunch](https://lechaigourmand.vercel.app/brunch) : le brunch du samedi à L'Annexe (menu, prix, réservation)
 - [Traiteur](https://lechaigourmand.vercel.app/traiteur) : le service traiteur tapas & vins
 - [Nos adresses](https://lechaigourmand.vercel.app/nos-adresses) : adresses, horaires et itinéraires des deux établissements

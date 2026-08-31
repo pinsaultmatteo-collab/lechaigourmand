@@ -534,7 +534,7 @@
   ]
  },
  {
-  "producteur": "Languedoc .",
+  "producteur": "Languedoc · .",
   "origine": null,
   "appellation": null,
   "cepages": "60% orge, 40% Grenache noir.",
@@ -1376,7 +1376,7 @@
  },
  {
   "producteur": null,
-  "origine": "IGP Côtes de Gascogne  Gascogne  France.",
+  "origine": "IGP Côtes de Gascogne · Gascogne · France.",
   "appellation": null,
   "cepages": "Colombard, Ugni blanc.",
   "millesime": null,
@@ -1460,7 +1460,7 @@
   "images": []
  },
  {
-  "producteur": "Le Cellier du Pic  IGP Pays d’Oc.",
+  "producteur": "Le Cellier du Pic · IGP Pays d’Oc.",
   "origine": null,
   "appellation": null,
   "cepages": "70% Rolle, 20% Sauvignon, 10% Grenache blanc.",
@@ -2076,7 +2076,7 @@
  },
  {
   "producteur": "MAS JANEIL / FRANÇOIS LURTON.",
-  "origine": "IGP Côtes Catalanes  Roussillon  France.",
+  "origine": "IGP Côtes Catalanes · Roussillon · France.",
   "appellation": null,
   "cepages": "Grenache blanc, Sauvignon blanc.",
   "millesime": null,
@@ -2311,7 +2311,7 @@
  },
  {
   "producteur": "MAS JANEIL / FRANÇOIS LURTON.",
-  "origine": "IGP Côtes Catalanes  Roussillon  France.",
+  "origine": "IGP Côtes Catalanes · Roussillon · France.",
   "appellation": null,
   "cepages": "Syrah, Viognier.",
   "millesime": null,
@@ -2397,7 +2397,7 @@
  },
  {
   "producteur": "MÉLODY / DOMAINES FRANÇOIS LURTON.",
-  "origine": "IGP Côtes de Gascogne  Gascogne  France.",
+  "origine": "IGP Côtes de Gascogne · Gascogne · France.",
   "appellation": null,
   "cepages": "Gros Manseng.",
   "millesime": null,
@@ -2691,7 +2691,7 @@
   "images": []
  },
  {
-  "producteur": "Le Cellier du Pic  IGP Pays d’Oc.",
+  "producteur": "Le Cellier du Pic · IGP Pays d’Oc.",
   "origine": null,
   "appellation": null,
   "cepages": "100% Cabernet Sauvignon.",
@@ -2721,7 +2721,7 @@
   ]
  },
  {
-  "producteur": "Le Cellier du Pic  IGP Pays d’Oc.",
+  "producteur": "Le Cellier du Pic · IGP Pays d’Oc.",
   "origine": null,
   "appellation": null,
   "cepages": "100% Sauvignon.",
@@ -2751,7 +2751,7 @@
   ]
  },
  {
-  "producteur": "Le Cellier du Pic  IGP Pays d’Oc.",
+  "producteur": "Le Cellier du Pic · IGP Pays d’Oc.",
   "origine": null,
   "appellation": null,
   "cepages": "100% Viognier.",
@@ -3090,7 +3090,7 @@
   ]
  },
  {
-  "producteur": "Le Cellier du Pic  Vin de France.",
+  "producteur": "Le Cellier du Pic · Vin de France.",
   "origine": null,
   "appellation": null,
   "cepages": "100% Chardonnay.",
@@ -3811,7 +3811,7 @@
   ]
  },
  {
-  "producteur": "Le Cellier du Pic  IGP Pays d’Oc.",
+  "producteur": "Le Cellier du Pic · IGP Pays d’Oc.",
   "origine": null,
   "appellation": null,
   "cepages": "Cinsault, Grenache, Carignan.",
@@ -4242,7 +4242,7 @@
   "alcool": "13,5",
   "contenance": null,
   "vieillissement": null,
-  "nom": "ALOXE-CORTON « LES BRUNETTES ET",
+  "nom": "ALOXE-CORTON « LES BRUNETTES ET PLANCHOTS » 2023",
   "style": null,
   "type": "rouge",
   "photos": [
@@ -5023,7 +5023,7 @@
  },
  {
   "producteur": null,
-  "origine": "IGP Côtes de Gascogne  Gascogne  France.",
+  "origine": "IGP Côtes de Gascogne · Gascogne · France.",
   "appellation": null,
   "cepages": "Tannat, Merlot.",
   "millesime": null,
@@ -5226,7 +5226,7 @@
   ]
  },
  {
-  "producteur": "Le Cellier du Pic  IGP Pays d’Oc.",
+  "producteur": "Le Cellier du Pic · IGP Pays d’Oc.",
   "origine": null,
   "appellation": null,
   "cepages": "50% Syrah, 30% Grenache noir, 20% Carignan.",
@@ -5301,7 +5301,7 @@
   "alcool": null,
   "contenance": null,
   "vieillissement": null,
-  "nom": "GEVREY-CHAMBERTIN 1ER CRU « PETITE",
+  "nom": "GEVREY-CHAMBERTIN 1ER CRU « PETITE CHAPELLE » 2019",
   "style": null,
   "type": "rouge",
   "photos": [
@@ -5828,7 +5828,7 @@
  },
  {
   "producteur": "JACQUES & FRANÇOIS LURTON.",
-  "origine": "AOP Côtes du Roussillon Villages  Roussillon  France.",
+  "origine": "AOP Côtes du Roussillon Villages · Roussillon · France.",
   "appellation": null,
   "cepages": "Grenache 60 %, Syrah 30 %, Carignan 10 %.",
   "millesime": null,
@@ -5858,7 +5858,7 @@
  },
  {
   "producteur": "MAS JANEIL / FRANÇOIS LURTON.",
-  "origine": "AOP Côtes du Roussillon Villages  Roussillon  France.",
+  "origine": "AOP Côtes du Roussillon Villages · Roussillon · France.",
   "appellation": null,
   "cepages": "Grenache noir, Syrah, Mourvèdre, Carignan.",
   "millesime": null,
@@ -5888,7 +5888,7 @@
  },
  {
   "producteur": "MAS JANEIL / FRANÇOIS LURTON.",
-  "origine": "AOP Côtes du Roussillon Villages  Roussillon  France.",
+  "origine": "AOP Côtes du Roussillon Villages · Roussillon · France.",
   "appellation": null,
   "cepages": "Grenache noir, Syrah, Carignan, Mourvèdre.",
   "millesime": null,
@@ -5918,7 +5918,7 @@
  },
  {
   "producteur": "MAS JANEIL / FRANÇOIS LURTON.",
-  "origine": "AOP Maury  Roussillon  France.",
+  "origine": "AOP Maury · Roussillon · France.",
   "appellation": null,
   "cepages": "Grenache noir, Syrah.",
   "millesime": null,
@@ -6276,7 +6276,7 @@
   ]
  },
  {
-  "producteur": "Le Cellier du Pic  IGP Pays d’Oc.",
+  "producteur": "Le Cellier du Pic · IGP Pays d’Oc.",
   "origine": null,
   "appellation": null,
   "cepages": "100% Merlot.",
@@ -6306,7 +6306,7 @@
   ]
  },
  {
-  "producteur": "Le Cellier du Pic  IGP Pays d’Oc.",
+  "producteur": "Le Cellier du Pic · IGP Pays d’Oc.",
   "origine": null,
   "appellation": null,
   "cepages": "100% Pinot Noir.",
@@ -6744,7 +6744,7 @@
   "images": []
  },
  {
-  "producteur": "Le Cellier du Pic  Vin de France.",
+  "producteur": "Le Cellier du Pic · Vin de France.",
   "origine": null,
   "appellation": null,
   "cepages": "100% Carignan - sans sulfites ajoutés.",
