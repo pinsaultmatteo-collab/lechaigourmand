@@ -1,5 +1,456 @@
 [
  {
+  "producteur": "La Gorge Fraîche.",
+  "origine": "Béziers, Occitanie, France.",
+  "appellation": null,
+  "cepages": null,
+  "millesime": null,
+  "visuel": "Robe ambrée à cuivrée, plus soutenue qu’une blonde.",
+  "nez": "Malt toasté, caramel léger et nuances de céréales grillées.",
+  "bouche": "Ronde et maltée, avec une douceur toastée équilibrée par une amertume modérée.",
+  "accords": "Charcuteries, viandes rôties, burgers, fromages affinés.",
+  "phrase": "Ambrée artisanale ronde et maltée, aux notes toastées et légèrement caramélisées.",
+  "alcool": "6",
+  "contenance": null,
+  "vieillissement": null,
+  "nom": "Ambrée Artisanale",
+  "style": "Bière ambrée.",
+  "type": "biere",
+  "photos": [
+   "IMG_2935"
+  ],
+  "sources": [],
+  "lot": "Lot_IMG_2924_2941_fiches_bieres",
+  "prix": null,
+  "id": "ambree-artisanale"
+ },
+ {
+  "producteur": "La Gorge Fraîche.",
+  "origine": "Béziers, Occitanie, France.",
+  "appellation": null,
+  "cepages": null,
+  "millesime": null,
+  "visuel": "Robe jaune pâle, légèrement voilée, mousse claire.",
+  "nez": "Céréales, agrumes et touches épicées discrètes.",
+  "bouche": "Fraîche et désaltérante, avec une bouche souple et une finale citronnée.",
+  "accords": "Fruits de mer, poissons, salades, apéritif.",
+  "phrase": "Blanche artisanale fraîche et désaltérante, aux notes d’agrumes et de céréales.",
+  "alcool": "5",
+  "contenance": null,
+  "vieillissement": null,
+  "nom": "Blanche Artisanale",
+  "style": "Bière blanche.",
+  "type": "biere",
+  "photos": [
+   "IMG_2924"
+  ],
+  "sources": [],
+  "lot": "Lot_IMG_2924_2941_fiches_bieres",
+  "prix": null,
+  "id": "blanche-artisanale"
+ },
+ {
+  "producteur": "La Gorge Fraîche.",
+  "origine": "Béziers, Occitanie, France.",
+  "appellation": null,
+  "cepages": null,
+  "millesime": null,
+  "visuel": "Robe jaune pâle, légèrement trouble, mousse blanche.",
+  "nez": "Notes fraîches de céréales, agrumes et épices légères.",
+  "bouche": "Souple, fraîche et désaltérante, avec une finale légère et citronnée.",
+  "accords": "Poissons, fruits de mer, salades, cuisine estivale.",
+  "phrase": "Blanche bio fraîche et légère, aux notes céréalières, citronnées et délicatement épicées.",
+  "alcool": "5",
+  "contenance": null,
+  "vieillissement": null,
+  "nom": "Blanche Bio",
+  "style": "Bière blanche biologique.",
+  "type": "biere",
+  "photos": [
+   "IMG_2926"
+  ],
+  "sources": [],
+  "lot": "Lot_IMG_2924_2941_fiches_bieres",
+  "prix": null,
+  "id": "blanche-bio"
+ },
+ {
+  "producteur": "La Gorge Fraîche.",
+  "origine": "Béziers, Occitanie, France.",
+  "appellation": null,
+  "cepages": null,
+  "millesime": null,
+  "visuel": "Robe blonde dorée et brillante.",
+  "nez": "Céréales, malt clair et nuances florales discrètes.",
+  "bouche": "Fraîche, équilibrée et désaltérante, avec une amertume douce.",
+  "accords": "Apéritif, tapas, poissons, volailles grillées.",
+  "phrase": "Blonde bio artisanale, fraîche et équilibrée, aux notes de céréales et de malt clair.",
+  "alcool": "5,5",
+  "contenance": null,
+  "vieillissement": null,
+  "nom": "Blonde Bio",
+  "style": "Blonde artisanale biologique.",
+  "type": "biere",
+  "photos": [
+   "IMG_2936"
+  ],
+  "sources": [],
+  "lot": "Lot_IMG_2924_2941_fiches_bieres",
+  "prix": null,
+  "id": "blonde-bio"
+ },
+ {
+  "producteur": "La Gorge Fraîche.",
+  "origine": "Béziers, Occitanie, France.",
+  "appellation": null,
+  "cepages": null,
+  "millesime": null,
+  "visuel": "Robe blonde dorée, limpide, avec une mousse claire.",
+  "nez": "Profil malté et céréales, avec une expression fraîche et légèrement florale.",
+  "bouche": "Attaque souple et désaltérante, équilibre entre céréales, fraîcheur et amertume modérée.",
+  "accords": "Apéritif, tapas, grillades, charcuteries fines.",
+  "phrase": "Blonde artisanale fraîche et équilibrée, aux notes céréalières et à l’amertume légère.",
+  "alcool": "5,5",
+  "contenance": null,
+  "vieillissement": null,
+  "nom": "Blonde artisanale",
+  "style": "Blonde artisanale.",
+  "type": "biere",
+  "photos": [
+   "IMG_2941"
+  ],
+  "sources": [],
+  "lot": "Lot_IMG_2924_2941_fiches_bieres",
+  "prix": null,
+  "id": "blonde-artisanale"
+ },
+ {
+  "producteur": "Collaboration Maison Noilly Prat.",
+  "origine": "Béziers, Occitanie, France.",
+  "appellation": null,
+  "cepages": null,
+  "millesime": null,
+  "visuel": "Robe blonde claire et brillante.",
+  "nez": "Herbes aromatiques, épices douces et notes végétales inspirées du vermouth Original Dry.",
+  "bouche": "Fraîche et aromatique, portée par les plantes et épices, avec une finale nette et épicée.",
+  "accords": "Apéritif, poissons grillés, tapas méditerranéennes, cuisine aux herbes.",
+  "phrase": "Blonde originale infusée aux herbes et épices du célèbre vermouth Noilly Prat Original Dry.",
+  "alcool": null,
+  "contenance": null,
+  "vieillissement": null,
+  "nom": "Blonde infusée aux herbes & épices",
+  "style": "Blonde aromatisée.",
+  "type": "biere",
+  "photos": [
+   "IMG_2940"
+  ],
+  "sources": [],
+  "lot": "Lot_IMG_2924_2941_fiches_bieres",
+  "prix": null,
+  "id": "blonde-infusee-aux-herbes-epices"
+ },
+ {
+  "producteur": "La Gorge Fraîche.",
+  "origine": "Béziers, Occitanie, France.",
+  "appellation": null,
+  "cepages": null,
+  "millesime": null,
+  "visuel": "Robe cuivrée, chaleureuse et gourmande.",
+  "nez": "Caramel, érable et écorce d’orange.",
+  "bouche": "Ronde, douce et veloutée, avec une pointe boisée et une légère amertume d’agrumes.",
+  "accords": "Magret au miel, poutine, tarte Tatin, pain d’épices, fromages persillés.",
+  "phrase": "Ambrée gourmande au sirop d’érable, ronde et douce, sur le caramel, l’orange et une touche boisée.",
+  "alcool": "6,5",
+  "contenance": null,
+  "vieillissement": null,
+  "nom": "Hiver - au sirop d’érable pur",
+  "style": "Ambrée artisanale.",
+  "type": "biere",
+  "photos": [
+   "IMG_2934"
+  ],
+  "sources": [],
+  "lot": "Lot_IMG_2924_2941_fiches_bieres",
+  "prix": null,
+  "id": "hiver-au-sirop-derable-pur"
+ },
+ {
+  "producteur": "LA CUVÉE DES FADAS.",
+  "origine": "Occitanie, France.",
+  "appellation": null,
+  "cepages": null,
+  "millesime": null,
+  "visuel": "Blonde dorée, mousse claire.",
+  "nez": "Céréales, fruité léger et notes fermentaires.",
+  "bouche": "Bouche légère et rafraîchissante, maltée, avec une amertume modérée.",
+  "accords": null,
+  "phrase": "Blonde artisanale légère et rafraîchissante, aux notes céréalières et délicatement fruitées.",
+  "alcool": null,
+  "contenance": "33cl",
+  "vieillissement": null,
+  "nom": "LA CUVÉE DES FADAS",
+  "style": "Belgian Blonde.",
+  "type": "biere",
+  "photos": [
+   "IMG_2942"
+  ],
+  "sources": [],
+  "lot": "Lot_IMG_2942_2961_fiches_produits",
+  "prix": null,
+  "id": "la-cuvee-des-fadas"
+ },
+ {
+  "producteur": "LA GORGE FRAÎCHE.",
+  "origine": "Béziers (Hérault) - Occitanie, France.",
+  "appellation": null,
+  "cepages": null,
+  "millesime": null,
+  "visuel": "Blonde à dorée, naturellement voilée à trouble, mousse claire.",
+  "nez": "Profil intensément houblonné et fruité, fruits tropicaux et agrumes.",
+  "bouche": "Bouche souple et juteuse, fruitée, avec une amertume plus douce que tranchante et une finale aromatique.",
+  "accords": null,
+  "phrase": "NEIPA juteuse et intensément houblonnée, aux accents de fruits tropicaux et d’agrumes.",
+  "alcool": null,
+  "contenance": "75cl",
+  "vieillissement": null,
+  "nom": "LA GORGE FRAÎCHE",
+  "style": "New England IPA.",
+  "type": "biere",
+  "photos": [
+   "IMG_2957"
+  ],
+  "sources": [],
+  "lot": "Lot_IMG_2942_2961_fiches_produits",
+  "prix": null,
+  "id": "la-gorge-fraiche"
+ },
+ {
+  "producteur": "LA PETITE MIDINETTE.",
+  "origine": "Béziers (Hérault) - Occitanie, France.",
+  "appellation": null,
+  "cepages": null,
+  "millesime": null,
+  "visuel": "Robe ambrée à cuivrée.",
+  "nez": "Arômes intenses et maltés, notes de caramel.",
+  "bouche": "Bouche ronde et maltée, légèrement toastée, avec une finale douce-amère.",
+  "accords": null,
+  "phrase": "Ambrée artisanale aux saveurs maltées intenses et aux notes gourmandes de caramel.",
+  "alcool": null,
+  "contenance": "75cl",
+  "vieillissement": null,
+  "nom": "LA PETITE MIDINETTE",
+  "style": "Ambrée.",
+  "type": "biere",
+  "photos": [
+   "IMG_2953"
+  ],
+  "sources": [],
+  "lot": "Lot_IMG_2942_2961_fiches_produits",
+  "prix": null,
+  "id": "la-petite-midinette"
+ },
+ {
+  "producteur": "La Gorge Fraîche.",
+  "origine": "Béziers, Occitanie, France.",
+  "appellation": null,
+  "cepages": null,
+  "millesime": null,
+  "visuel": "Robe dorée à ambrée, aspect artisanal.",
+  "nez": "Arômes complexes mêlant fermentation, fruit et nuances boisées.",
+  "bouche": "Acidité lactique marquée mais rafraîchissante, avec profondeur et complexité d’élevage.",
+  "accords": "Fromages de chèvre, charcuteries, poissons fumés, cuisine aigre-douce.",
+  "phrase": "Bière de fermentation mixte, acidulée et complexe, affinée par un élevage en barrique.",
+  "alcool": null,
+  "contenance": null,
+  "vieillissement": null,
+  "nom": "La Barriquade Lactique",
+  "style": "Fermentation mixte / bière barriquée.",
+  "type": "biere",
+  "photos": [
+   "IMG_2929"
+  ],
+  "sources": [],
+  "lot": "Lot_IMG_2924_2941_fiches_bieres",
+  "prix": null,
+  "id": "la-barriquade-lactique"
+ },
+ {
+  "producteur": "La Gorge Fraîche.",
+  "origine": "Béziers, Occitanie, France.",
+  "appellation": null,
+  "cepages": null,
+  "millesime": null,
+  "visuel": "Robe blonde claire, mousse blanche.",
+  "nez": "Profil léger de céréales et de malt, avec une expression fraîche.",
+  "bouche": "Légère et rafraîchissante, pensée pour conserver le plaisir d’une blonde avec très peu d’alcool.",
+  "accords": "Apéritif, déjeuner, salades, cuisine légère.",
+  "phrase": "Une blonde légère et rafraîchissante, avec tout le plaisir de la bière et presque pas d’alcool.",
+  "alcool": "0,5",
+  "contenance": null,
+  "vieillissement": null,
+  "nom": "La Blonde qui a tout sauf l’alcool",
+  "style": "Bière blonde sans alcool.",
+  "type": "biere",
+  "photos": [
+   "IMG_2937"
+  ],
+  "sources": [],
+  "lot": "Lot_IMG_2924_2941_fiches_bieres",
+  "prix": null,
+  "id": "la-blonde-qui-a-tout-sauf-lalcool"
+ },
+ {
+  "producteur": "La Gorge Fraîche.",
+  "origine": "Béziers, Occitanie, France.",
+  "appellation": null,
+  "cepages": null,
+  "millesime": null,
+  "visuel": "Robe dorée soutenue, typique d’une bière de fermentation haute plus riche.",
+  "nez": "Profil malté et fruité, avec une expression plus ample et chaleureuse.",
+  "bouche": "Bouche généreuse et structurée, avec une chaleur alcoolique attendue pour le style Triple.",
+  "accords": "Fromages affinés, volailles rôties, cuisine épicée douce.",
+  "phrase": "Triple artisanale généreuse et structurée, au profil malté, fruité et chaleureux.",
+  "alcool": null,
+  "contenance": null,
+  "vieillissement": null,
+  "nom": "La Petite Midinette - Triple",
+  "style": "Triple.",
+  "type": "biere",
+  "photos": [
+   "IMG_2933"
+  ],
+  "sources": [],
+  "lot": "Lot_IMG_2924_2941_fiches_bieres",
+  "prix": null,
+  "id": "la-petite-midinette-triple"
+ },
+ {
+  "producteur": "Bière vieillie en fût de whisky.",
+  "origine": "Béziers, Occitanie, France.",
+  "appellation": null,
+  "cepages": null,
+  "millesime": null,
+  "visuel": "Robe sombre et soutenue.",
+  "nez": "Notes maltées, boisées et spiritueuses, avec une empreinte de whisky.",
+  "bouche": "Ample, chaleureuse et boisée, avec une finale persistante liée au passage en fût.",
+  "accords": "Viandes fumées, fromages affinés, chocolat noir.",
+  "phrase": "Bière vieillie en fût de whisky, intense et boisée, à la finale chaleureuse et persistante.",
+  "alcool": null,
+  "contenance": null,
+  "vieillissement": null,
+  "nom": "La Tramontane",
+  "style": "Bière de garde / vieillie en fût.",
+  "type": "biere",
+  "photos": [
+   "IMG_2928"
+  ],
+  "sources": [],
+  "lot": "Lot_IMG_2924_2941_fiches_bieres",
+  "prix": null,
+  "id": "la-tramontane"
+ },
+ {
+  "producteur": "La Gorge Fraîche.",
+  "origine": "Béziers, Occitanie, France.",
+  "appellation": null,
+  "cepages": null,
+  "millesime": null,
+  "visuel": "Robe dorée à ambrée soutenue.",
+  "nez": "Expression maltée et complexe, complétée par des nuances boisées liées à l’élevage en barrique.",
+  "bouche": "Ample et chaleureuse, avec une texture ronde et une finale boisée plus complexe qu’une Triple classique.",
+  "accords": "Fromages affinés, viandes rôties, desserts caramélisés.",
+  "phrase": "Triple vieillie en barrique, ample et complexe, mêlant richesse maltée et nuances boisées.",
+  "alcool": null,
+  "contenance": null,
+  "vieillissement": null,
+  "nom": "La Triple Barriquée",
+  "style": "Triple vieillie en barrique.",
+  "type": "biere",
+  "photos": [
+   "IMG_2931",
+   "IMG_2932"
+  ],
+  "sources": [],
+  "lot": "Lot_IMG_2924_2941_fiches_bieres",
+  "prix": null,
+  "id": "la-triple-barriquee"
+ },
+ {
+  "producteur": "Bière de Montpellier / brassée à Béziers.",
+  "origine": "Béziers, Occitanie, France.",
+  "appellation": null,
+  "cepages": null,
+  "millesime": null,
+  "visuel": "Robe blonde dorée, mousse claire.",
+  "nez": "Arômes de céréales et de malt clair, avec une expression fraîche.",
+  "bouche": "Souple, accessible et désaltérante, avec une amertume légère.",
+  "accords": "Apéritif, tapas, burgers, grillades.",
+  "phrase": "Blonde artisanale souple et rafraîchissante, facile à boire et délicatement maltée.",
+  "alcool": "5",
+  "contenance": null,
+  "vieillissement": null,
+  "nom": "Loulou - Bière Blonde Artisanale",
+  "style": "Blonde artisanale.",
+  "type": "biere",
+  "photos": [
+   "IMG_2938"
+  ],
+  "sources": [],
+  "lot": "Lot_IMG_2924_2941_fiches_bieres",
+  "prix": null,
+  "id": "loulou-biere-blonde-artisanale"
+ },
+ {
+  "producteur": "La Gorge Fraîche.",
+  "origine": "Béziers, Occitanie, France.",
+  "appellation": null,
+  "cepages": null,
+  "millesime": null,
+  "visuel": "Robe blonde lumineuse, mousse blanche fine.",
+  "nez": "Céréales, agrumes ensoleillés et pointe d’épices douces.",
+  "bouche": "Très fraîche, nette et désaltérante, avec une finale longue sur les agrumes.",
+  "accords": "Apéritif, tapas, poissons frits, cuisine méditerranéenne.",
+  "phrase": "Lager artisanale fraîche et désaltérante, aux notes de céréales, d’agrumes et d’épices douces.",
+  "alcool": "4,5",
+  "contenance": null,
+  "vieillissement": null,
+  "nom": "Méridional Lager",
+  "style": "Lager - fermentation basse.",
+  "type": "biere",
+  "photos": [
+   "IMG_2939"
+  ],
+  "sources": [],
+  "lot": "Lot_IMG_2924_2941_fiches_bieres",
+  "prix": null,
+  "id": "meridional-lager"
+ },
+ {
+  "producteur": "La Gorge Fraîche.",
+  "origine": "Béziers, Occitanie, France.",
+  "appellation": null,
+  "cepages": null,
+  "millesime": null,
+  "visuel": "Robe colorée et vive selon le brassin, mousse fine.",
+  "nez": "Profil fruité et acidulé, très expressif.",
+  "bouche": "Attaque vive, fraîche et acidulée, avec une finale désaltérante.",
+  "accords": "Apéritif, ceviche, chèvre frais, desserts aux fruits.",
+  "phrase": "Sour artisanale vive et fruitée, à l’acidité rafraîchissante et à la finale désaltérante.",
+  "alcool": null,
+  "contenance": null,
+  "vieillissement": null,
+  "nom": "Méridional Sour",
+  "style": "Sour / bière acidulée.",
+  "type": "biere",
+  "photos": [
+   "IMG_2930"
+  ],
+  "sources": [],
+  "lot": "Lot_IMG_2924_2941_fiches_bieres",
+  "prix": null,
+  "id": "meridional-sour"
+ },
+ {
   "producteur": null,
   "origine": "France.",
   "appellation": null,
@@ -14,6 +465,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Red Grape Ale",
+  "style": null,
   "type": "biere",
   "photos": [
    "IMG_3140"
@@ -38,6 +490,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Rose Mont Rose - Rosé Wine Ale",
+  "style": null,
   "type": "biere",
   "photos": [
    "IMG_3139"
@@ -46,6 +499,59 @@
   "lot": "lot_IMG_3120_3139_fiches_produits",
   "prix": null,
   "id": "rose-mont-rose-rose-wine-ale"
+ },
+ {
+  "producteur": "La Gorge Fraîche.",
+  "origine": "Béziers, Occitanie, France.",
+  "appellation": null,
+  "cepages": null,
+  "millesime": null,
+  "visuel": "Robe brune à noire, dense et profonde.",
+  "nez": "Orge torréfiée, café, cacao et céréales grillées.",
+  "bouche": "Texture onctueuse grâce à l’avoine, avec une belle profondeur torréfiée et une finale sèche.",
+  "accords": "Viandes grillées, desserts chocolatés, huîtres, fromages affinés.",
+  "phrase": "Stout bio onctueuse et torréfiée, brassée avec de l’avoine, sur le café, le cacao et les céréales grillées.",
+  "alcool": null,
+  "contenance": null,
+  "vieillissement": null,
+  "nom": "Stout Artisanale",
+  "style": "Stout.",
+  "type": "biere",
+  "photos": [
+   "IMG_2927"
+  ],
+  "sources": [],
+  "lot": "Lot_IMG_2924_2941_fiches_bieres",
+  "prix": null,
+  "id": "stout-artisanale"
+ },
+ {
+  "producteur": "Domaine du Château Philippe le Hardi.",
+  "origine": "AOP Bourgogne - Bourgogne.",
+  "appellation": null,
+  "cepages": "100% Chardonnay.",
+  "millesime": "2023",
+  "visuel": "Jaune clair à doré, brillant.",
+  "nez": "Pomme mûre, abricot, fleurs et nuances discrètes de bois.",
+  "bouche": "Vive et fruitée, à la fois fraîche et ronde, avec une trame minérale et un élevage bien intégré.",
+  "accords": "Gougères au comté, volaille, pâtes crémeuses, poissons, fromages à pâte pressée.",
+  "phrase": "Chardonnay vif et rond, aux notes de pomme et d’abricot, avec une fraîcheur minérale et un boisé discret.",
+  "alcool": "13,5",
+  "contenance": null,
+  "vieillissement": null,
+  "nom": "BOURGOGNE CHARDONNAY VIEILLES VIGNES",
+  "style": null,
+  "type": "blanc",
+  "photos": [
+   "IMG_2985"
+  ],
+  "sources": [
+   "https://pro.philippelehardi.com/vin/bourgogne-chardonnay-vieilles-vignes-2023-blanc-domaine/?format=pdf",
+   "https://www.wine.com/product/philippe-le-hardi-bourgogne-chardonnay-vieilles-vignes-2023/3081803"
+  ],
+  "lot": "Lot_IMG_2983_3002_fiches_vins",
+  "prix": null,
+  "id": "bourgogne-chardonnay-vieilles-vignes-2023"
  },
  {
   "producteur": "Laurent Perrachon & Fils.",
@@ -62,6 +568,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Beaujolais Blanc 2024",
+  "style": null,
   "type": "blanc",
   "photos": [
    "IMG_3171",
@@ -87,6 +594,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "CEZ White Blend",
+  "style": null,
   "type": "blanc",
   "photos": [],
   "sources": [
@@ -96,6 +604,60 @@
   "lot": "Fiches_degustation_detaillees_Lot_03",
   "prix": null,
   "id": "cez-white-blend"
+ },
+ {
+  "producteur": "Domaine du Château Philippe le Hardi.",
+  "origine": "AOP Chablis - Bourgogne.",
+  "appellation": null,
+  "cepages": "100% Chardonnay.",
+  "millesime": "2023",
+  "visuel": "Blanc lumineux, style net et frais.",
+  "nez": "Fleurs, agrumes et expression minérale typique du Chablisien.",
+  "bouche": "Droite, vive et croquante, marquée par la minéralité et une finale saline.",
+  "accords": "Huîtres, fruits de mer, poissons grillés, sushi, chèvre frais.",
+  "phrase": "Chablis vif et minéral, aux notes florales et d’agrumes, avec une finale nette et saline.",
+  "alcool": "13",
+  "contenance": null,
+  "vieillissement": null,
+  "nom": "CHABLIS 2023",
+  "style": null,
+  "type": "blanc",
+  "photos": [
+   "IMG_2986"
+  ],
+  "sources": [
+   "https://www.my9.com.tw/products/%E8%8F%B2%E5%88%A9%E6%B5%A6%E5%85%AC%E7%88%B5-%E5%A4%8F%E5%B8%83%E5%88%A9%E7%99%BD%E9%85%92-2023-philippe-le-hardi-chablis-2023"
+  ],
+  "lot": "Lot_IMG_2983_3002_fiches_vins",
+  "prix": null,
+  "id": "chablis-2023-2023"
+ },
+ {
+  "producteur": "Domaine du Château Philippe le Hardi.",
+  "origine": "AOP Corton-Charlemagne Grand Cru - Côte de Beaune.",
+  "appellation": null,
+  "cepages": "100% Chardonnay.",
+  "millesime": "2020",
+  "visuel": "Blanc concentré et lumineux.",
+  "nez": "Fruits jaunes et exotiques, agrumes, bergamote, nuances issues de l’élevage.",
+  "bouche": "Concentrée, superbement équilibrée, très longue, avec fraîcheur et profondeur.",
+  "accords": "Carpaccio de Saint-Jacques, terrine de légumes, poissons fins, homard.",
+  "phrase": "Grand blanc profond et élégant, aux fruits jaunes et agrumes, frais, concentré et d’une grande longueur.",
+  "alcool": null,
+  "contenance": null,
+  "vieillissement": null,
+  "nom": "CORTON-CHARLEMAGNE GRAND CRU 2020",
+  "style": null,
+  "type": "blanc",
+  "photos": [
+   "IMG_2984"
+  ],
+  "sources": [
+   "https://pro.philippelehardi.com/en/vin/corton-charlemagne-grand-cru-2020-white-trade/?format=pdf"
+  ],
+  "lot": "Lot_IMG_2983_3002_fiches_vins",
+  "prix": null,
+  "id": "corton-charlemagne-grand-cru-2020-2020"
  },
  {
   "producteur": "Vigneti del Vulture.",
@@ -112,6 +674,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Canio Bianco Basilicata IGP 2024",
+  "style": null,
   "type": "blanc",
   "photos": [
    "IMG_3262",
@@ -139,6 +702,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Château Duhart-Milon — Pauillac",
+  "style": null,
   "type": "blanc",
   "photos": [
    "IMG_3228",
@@ -167,6 +731,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Château Grand-Puy Ducasse — Pauillac",
+  "style": null,
   "type": "blanc",
   "photos": [
    "IMG_3222",
@@ -195,6 +760,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Château Gruaud Larose",
+  "style": null,
   "type": "blanc",
   "photos": [
    "IMG_3210",
@@ -220,6 +786,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Château La Dominique — Saint-Émilion",
+  "style": null,
   "type": "blanc",
   "photos": [
    "IMG_3224",
@@ -248,6 +815,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Château Musar Red 2018",
+  "style": null,
   "type": "blanc",
   "photos": [],
   "sources": [
@@ -272,6 +840,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Château Pichon Baron",
+  "style": null,
   "type": "blanc",
   "photos": [
    "IMG_3208",
@@ -297,6 +866,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Château Pilet — Bordeaux",
+  "style": null,
   "type": "blanc",
   "photos": [
    "IMG_3249"
@@ -324,6 +894,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Château Pontet-Canet — Pauillac",
+  "style": null,
   "type": "blanc",
   "photos": [
    "IMG_3226",
@@ -352,6 +923,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Château Prieuré-Lichine",
+  "style": null,
   "type": "blanc",
   "photos": [
    "IMG_3212",
@@ -377,6 +949,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Château Soutard",
+  "style": null,
   "type": "blanc",
   "photos": [
    "IMG_3214",
@@ -402,6 +975,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Château-Thébaud 2022",
+  "style": null,
   "type": "blanc",
   "photos": [
    "IMG_3160",
@@ -427,6 +1001,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Clisson 2019",
+  "style": null,
   "type": "blanc",
   "photos": [
    "IMG_3162",
@@ -452,6 +1027,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Clos Fourtet",
+  "style": null,
   "type": "blanc",
   "photos": [
    "IMG_3206",
@@ -477,6 +1053,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Codorníu — Albariño Organic Wine",
+  "style": null,
   "type": "blanc",
   "photos": [],
   "sources": [
@@ -503,6 +1080,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Cuvée G Blanc",
+  "style": null,
   "type": "blanc",
   "photos": [
    "IMG_3145"
@@ -527,6 +1105,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "CÔTE-RÔTIE PIERRE BLANCHE 2023",
+  "style": null,
   "type": "blanc",
   "photos": [
    "IMG_3013",
@@ -555,6 +1134,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "DE BICKNELL - CHARDONNAY 2022",
+  "style": null,
   "type": "blanc",
   "photos": [
    "IMG_3029",
@@ -580,6 +1160,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "DOMAINE DE NIZAS BLANC",
+  "style": null,
   "type": "blanc",
   "photos": [
    "IMG_3099",
@@ -607,6 +1188,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "DRAINE - SAVAGNIN OUILLÉ 2023",
+  "style": null,
   "type": "blanc",
   "photos": [
    "IMG_3031",
@@ -632,6 +1214,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Domaine Laffitte Gros & Petit Manseng",
+  "style": null,
   "type": "blanc",
   "photos": [
    "IMG_3081",
@@ -657,6 +1240,7 @@
   "contenance": "75cl",
   "vieillissement": null,
   "nom": "Domaine de Targuerie Sec 2024",
+  "style": null,
   "type": "blanc",
   "photos": [
    "IMG_3076",
@@ -682,6 +1266,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Domäne Wachau — Grüner Veltliner",
+  "style": null,
   "type": "blanc",
   "photos": [
    "IMG_3254",
@@ -709,6 +1294,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Ernst Gouws & Co — Chenin Blanc",
+  "style": null,
   "type": "blanc",
   "photos": [],
   "sources": [
@@ -733,6 +1319,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Fontanilles Blanc 2025",
+  "style": null,
   "type": "blanc",
   "photos": [
    "IMG_3135",
@@ -758,6 +1345,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "GOOD MOOD BLANC",
+  "style": null,
   "type": "blanc",
   "photos": [
    "IMG_3099",
@@ -785,6 +1373,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Gran Lurton Cabernet Sauvignon Gran",
+  "style": null,
   "type": "blanc",
   "photos": [
    "IMG_3329",
@@ -814,6 +1403,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Hacienda Araucano — Clo de Lolol",
+  "style": null,
   "type": "blanc",
   "photos": [
    "IMG_3232",
@@ -842,6 +1432,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Hermanos Lurton Verdejo 2024",
+  "style": null,
   "type": "blanc",
   "photos": [
    "IMG_3338",
@@ -871,6 +1462,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Humo Blanco Cabernet Franc 2022",
+  "style": null,
   "type": "blanc",
   "photos": [],
   "sources": [
@@ -895,6 +1487,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Humo Blanco Edición Limitada Pinot Noir 2022",
+  "style": null,
   "type": "blanc",
   "photos": [],
   "sources": [
@@ -919,6 +1512,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Humo Blanco Organic Chardonnay 2023",
+  "style": null,
   "type": "blanc",
   "photos": [],
   "sources": [
@@ -943,6 +1537,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Humo Blanco Organic Sauvignon Blanc 2024",
+  "style": null,
   "type": "blanc",
   "photos": [],
   "sources": [
@@ -967,6 +1562,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "JURA'NADA - SAVAGNIN NATURÉ 2022",
+  "style": null,
   "type": "blanc",
   "photos": [
    "IMG_3027",
@@ -992,6 +1588,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Kendall-Jackson — Vintner’s Reserve",
+  "style": null,
   "type": "blanc",
   "photos": [
    "IMG_3252",
@@ -1019,6 +1616,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "L'Éphémère Blanc",
+  "style": null,
   "type": "blanc",
   "photos": [
    "IMG_3085"
@@ -1043,6 +1641,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "LE MUSCARIS 2025",
+  "style": null,
   "type": "blanc",
   "photos": [
    "IMG_3037",
@@ -1068,6 +1667,7 @@
   "contenance": "75cl",
   "vieillissement": null,
   "nom": "LES HAUTS DE JANEIL",
+  "style": null,
   "type": "blanc",
   "photos": [
    "IMG_3061"
@@ -1092,6 +1692,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "LONGITUDE",
+  "style": null,
   "type": "blanc",
   "photos": [
    "IMG_3099",
@@ -1119,6 +1720,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "La Cuvée des Copains 2022",
+  "style": null,
   "type": "blanc",
   "photos": [
    "IMG_3164",
@@ -1145,6 +1747,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "La Grenouille",
+  "style": null,
   "type": "blanc",
   "photos": [
    "IMG_3158",
@@ -1170,6 +1773,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Lavradores de Feitoria Douro Branco 2024",
+  "style": null,
   "type": "blanc",
   "photos": [],
   "sources": [
@@ -1194,6 +1798,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Les Fumées Blanches Les Calcaires",
+  "style": null,
   "type": "blanc",
   "photos": [
    "IMG_3086",
@@ -1219,6 +1824,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Les Fumées Blanches Sauvignon Blanc",
+  "style": null,
   "type": "blanc",
   "photos": [
    "IMG_3094",
@@ -1244,6 +1850,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Les Fumées Blanches Vin Orange",
+  "style": null,
   "type": "blanc",
   "photos": [
    "IMG_3088",
@@ -1269,6 +1876,7 @@
   "contenance": "75cl",
   "vieillissement": null,
   "nom": "Les Hauts de Janeil - Grenache & Sauvignon 2024",
+  "style": null,
   "type": "blanc",
   "photos": [
    "IMG_3062",
@@ -1294,6 +1902,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Levantine de Musar 2021",
+  "style": null,
   "type": "blanc",
   "photos": [],
   "sources": [
@@ -1318,6 +1927,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Lumà Grillo 2025",
+  "style": null,
   "type": "blanc",
   "photos": [
    "IMG_3293",
@@ -1329,6 +1939,33 @@
   "lot": "Fiches_degustation_detaillees_Lot_06",
   "prix": null,
   "id": "luma-grillo-2025"
+ },
+ {
+  "producteur": "Domaines Xavier Mourier - Domaine de Pierre Blanche.",
+  "origine": "IGP Collines Rhodaniennes - Vallée du Rhône.",
+  "appellation": null,
+  "cepages": "100% Marsanne.",
+  "millesime": "2025",
+  "visuel": "Jaune pâle à doré, brillant.",
+  "nez": "Belle palette aromatique, notes de fruits et d’agrumes.",
+  "bouche": "Équilibrée, ronde et souple.",
+  "accords": "Pâtes au homard et piment d’Espelette, fruits de mer, apéritif.",
+  "phrase": "Marsanne ronde et souple, aux notes fruitées et d’agrumes, équilibrée et très agréable à table.",
+  "alcool": "13",
+  "contenance": null,
+  "vieillissement": null,
+  "nom": "MARSANNE BARRAL 2025",
+  "style": null,
+  "type": "blanc",
+  "photos": [
+   "IMG_2997"
+  ],
+  "sources": [
+   "https://www.domainesmourier.com/les-vins/igp-vallee-rhone/barral-marsanne"
+  ],
+  "lot": "Lot_IMG_2983_3002_fiches_vins",
+  "prix": null,
+  "id": "marsanne-barral-2025-2025"
  },
  {
   "producteur": "François Lurton.",
@@ -1345,6 +1982,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "MAZET DE NIZAS BLANC",
+  "style": null,
   "type": "blanc",
   "photos": [
    "IMG_3099",
@@ -1356,6 +1994,58 @@
   "lot": "Lot_3099_3118_fiches_vins",
   "prix": null,
   "id": "mazet-de-nizas-blanc-2024"
+ },
+ {
+  "producteur": "Domaine du Château Philippe le Hardi.",
+  "origine": "AOP Mercurey - Côte Chalonnaise, Bourgogne.",
+  "appellation": null,
+  "cepages": "100% Chardonnay.",
+  "millesime": "2022",
+  "visuel": "Blanc brillant, reflets dorés.",
+  "nez": "Fruits frais, agrumes et nuances florales, avec des notes discrètes de brioche et d'épices douces.",
+  "bouche": "Ronde, souple et expressive, avec une fraîcheur nette, une texture légèrement crémeuse et une finale racée.",
+  "accords": "Écrevisses au pamplemousse, crustacés, poissons fins, volaille.",
+  "phrase": "Mercurey blanc frais et racé, aux fruits frais et agrumes, rond et souple, avec une finale élégante.",
+  "alcool": "13",
+  "contenance": null,
+  "vieillissement": null,
+  "nom": "MERCUREY « LA BRIGADIÈRE » 2022",
+  "style": null,
+  "type": "blanc",
+  "photos": [
+   "IMG_2981"
+  ],
+  "sources": [],
+  "lot": "Lot_IMG_2962_2982_fiches_produits",
+  "prix": null,
+  "id": "mercurey-la-brigadiere-2022-2022"
+ },
+ {
+  "producteur": "Domaine du Château Philippe le Hardi.",
+  "origine": "AOP Meursault - Côte de Beaune, Bourgogne.",
+  "appellation": null,
+  "cepages": "100% Chardonnay.",
+  "millesime": "2023",
+  "visuel": "Or brillant, reflets lumineux.",
+  "nez": "Fruits blancs et jaunes frais, pêche, notes briochées et boisé délicat.",
+  "bouche": "Ample, ronde et volumineuse, avec une acidité fraîche, une touche minérale et un bel équilibre.",
+  "accords": "Volaille à la crème ou à la moutarde, poisson noble, crustacés, fromages à pâte pressée.",
+  "phrase": "Blanc ample et élégant, aux fruits blancs et jaunes, notes briochées et finale fraîche et minérale.",
+  "alcool": "13",
+  "contenance": null,
+  "vieillissement": null,
+  "nom": "MEURSAULT 2023",
+  "style": null,
+  "type": "blanc",
+  "photos": [
+   "IMG_2983"
+  ],
+  "sources": [
+   "https://www.wine.com/product/philippe-le-hardi-meursault-2023/3658971"
+  ],
+  "lot": "Lot_IMG_2983_3002_fiches_vins",
+  "prix": null,
+  "id": "meursault-2023-2023"
  },
  {
   "producteur": "Le Clos des Grives.",
@@ -1372,6 +2062,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "MUSICIENNE - CHARDONNAY 2019",
+  "style": null,
   "type": "blanc",
   "photos": [
    "IMG_3033",
@@ -1397,6 +2088,7 @@
   "contenance": "75cl",
   "vieillissement": null,
   "nom": "Mas Janeil C2 2021",
+  "style": null,
   "type": "blanc",
   "photos": [
    "IMG_3068",
@@ -1422,6 +2114,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Musar Jeune White 2022",
+  "style": null,
   "type": "blanc",
   "photos": [],
   "sources": [
@@ -1446,6 +2139,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Mâcon-Villages « Vieilles Vignes » 2023",
+  "style": null,
   "type": "blanc",
   "photos": [
    "IMG_3173",
@@ -1471,6 +2165,7 @@
   "contenance": "75cl",
   "vieillissement": null,
   "nom": "Mélody Gros Manseng",
+  "style": null,
   "type": "blanc",
   "photos": [
    "IMG_3078"
@@ -1495,6 +2190,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "N°9 SAUVIGNON 2025",
+  "style": null,
   "type": "blanc",
   "photos": [
    "IMG_3039",
@@ -1520,6 +2216,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Oenops APLA Dry White 2025",
+  "style": null,
   "type": "blanc",
   "photos": [
    "IMG_3321",
@@ -1549,6 +2246,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Oysterman",
+  "style": null,
   "type": "blanc",
   "photos": [
    "IMG_3156",
@@ -1574,6 +2272,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Petite Lily - Château Climens",
+  "style": null,
   "type": "blanc",
   "photos": [
    "IMG_3200",
@@ -1599,6 +2298,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Piedra Negra Alta Colección Torrontés",
+  "style": null,
   "type": "blanc",
   "photos": [
    "IMG_3335"
@@ -1626,6 +2326,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Piedra Negra Jackot Organic 2022",
+  "style": null,
   "type": "blanc",
   "photos": [
    "IMG_3331",
@@ -1654,6 +2355,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Pouilly-Fuissé 1er Cru « Vers Cras » 2023",
+  "style": null,
   "type": "blanc",
   "photos": [
    "IMG_3177",
@@ -1679,6 +2381,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Pouilly-Fuissé « Vieilles Vignes » 2024",
+  "style": null,
   "type": "blanc",
   "photos": [
    "IMG_3175",
@@ -1704,6 +2407,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Pradorey — Origen",
+  "style": null,
   "type": "blanc",
   "photos": [],
   "sources": [
@@ -1729,6 +2433,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Rouquet’s Cabernet Sauvignon 2025",
+  "style": null,
   "type": "blanc",
   "photos": [
    "IMG_3127",
@@ -1754,6 +2459,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Rouquet’s Sauvignon 2025",
+  "style": null,
   "type": "blanc",
   "photos": [
    "IMG_3131",
@@ -1779,6 +2485,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Rouquet’s Viognier 2025",
+  "style": null,
   "type": "blanc",
   "photos": [
    "IMG_3129",
@@ -1788,6 +2495,58 @@
   "lot": "lot_IMG_3120_3139_fiches_produits",
   "prix": null,
   "id": "rouquets-viognier-2025-2025"
+ },
+ {
+  "producteur": "Domaine du Château Philippe le Hardi.",
+  "origine": "AOP Saint-Aubin - Côte de Beaune, Bourgogne.",
+  "appellation": null,
+  "cepages": "100% Chardonnay.",
+  "millesime": "2023",
+  "visuel": "Blanc brillant, profil pur.",
+  "nez": "Fruits jaunes mûrs, pêche, abricot, nuances de fruits secs et d’épices douces.",
+  "bouche": "Pure, fraîche et généreuse, ample, avec une longueur marquée.",
+  "accords": "Carpaccio de Saint-Jacques, terrine de poisson ou de légumes, poissons fins.",
+  "phrase": "Blanc pur et généreux, aux fruits jaunes mûrs, frais et ample, avec une belle longueur.",
+  "alcool": null,
+  "contenance": null,
+  "vieillissement": null,
+  "nom": "SAINT-AUBIN « EN VESVEAU » 2023",
+  "style": null,
+  "type": "blanc",
+  "photos": [
+   "IMG_2987"
+  ],
+  "sources": [
+   "https://pro.philippelehardi.com/en/vin/saint-aubin-en-vesveau-2023/?format=pdf"
+  ],
+  "lot": "Lot_IMG_2983_3002_fiches_vins",
+  "prix": null,
+  "id": "saint-aubin-en-vesveau-2023-2023"
+ },
+ {
+  "producteur": "Domaine du Château Philippe le Hardi.",
+  "origine": "AOP Santenay 1er Cru - Côte de Beaune, Bourgogne.",
+  "appellation": null,
+  "cepages": "100% Chardonnay.",
+  "millesime": "2023",
+  "visuel": "Or jaune brillant.",
+  "nez": "Fruits mûrs, abricot et noisette, avec une expression aromatique ample.",
+  "bouche": "Riche et généreuse, équilibrée par une acidité fine ; fruit mûr, notes boisées intégrées et finale longue.",
+  "accords": "Coquilles Saint-Jacques, poissons nobles, crustacés, volaille en sauce crémeuse.",
+  "phrase": "Santenay 1er Cru riche et élégant, aux fruits mûrs, abricot et noisette, avec une finale longue et fraîche.",
+  "alcool": "13",
+  "contenance": null,
+  "vieillissement": null,
+  "nom": "SANTENAY 1ER CRU « LA COMME » 2023",
+  "style": null,
+  "type": "blanc",
+  "photos": [
+   "IMG_2982"
+  ],
+  "sources": [],
+  "lot": "Lot_IMG_2962_2982_fiches_produits",
+  "prix": null,
+  "id": "santenay-1er-cru-la-comme-2023-2023"
  },
  {
   "producteur": "Le Clos des Grives.",
@@ -1804,6 +2563,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "SOLITAIRE - SAVAGNIN 2023",
+  "style": null,
   "type": "blanc",
   "photos": [
    "IMG_3035",
@@ -1829,6 +2589,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Saint Clair Pioneer Block 10 Twin Hills Chardonnay",
+  "style": null,
   "type": "blanc",
   "photos": [],
   "sources": [
@@ -1853,6 +2614,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Saint Clair Vicar’s Choice Sauvignon Blanc 2023",
+  "style": null,
   "type": "blanc",
   "photos": [],
   "sources": [
@@ -1877,6 +2639,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Shumi Tsinandali 2024",
+  "style": null,
   "type": "blanc",
   "photos": [
    "IMG_3325",
@@ -1906,6 +2669,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "VIN JAUNE 2018",
+  "style": null,
   "type": "blanc",
   "photos": [
    "IMG_3020"
@@ -1930,6 +2694,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Viña Progreso Revolution Albariño 2020",
+  "style": null,
   "type": "blanc",
   "photos": [],
   "sources": [
@@ -1955,6 +2720,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Yalumba The Y Series Viognier 2021",
+  "style": null,
   "type": "blanc",
   "photos": [],
   "sources": [
@@ -1979,6 +2745,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Yalumba — The Y Series Shiraz",
+  "style": null,
   "type": "blanc",
   "photos": [],
   "sources": [
@@ -2004,6 +2771,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Zéro by Les Fumées Blanches Sauvignon Blanc",
+  "style": null,
   "type": "blanc",
   "photos": [
    "IMG_3090",
@@ -2029,6 +2797,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "À Grands Pas Chardonnay 2025",
+  "style": null,
   "type": "blanc",
   "photos": [
    "IMG_3120"
@@ -2053,6 +2822,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Bulles de Phénomène",
+  "style": null,
   "type": "bulles",
   "photos": [
    "IMG_3167",
@@ -2078,6 +2848,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "CRÉMANT DU JURA BLANC",
+  "style": null,
   "type": "bulles",
   "photos": [
    "IMG_3024"
@@ -2102,6 +2873,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Cá del Console Prosecco Extra Dry - non millésimé",
+  "style": null,
   "type": "bulles",
   "photos": [
    "IMG_3287",
@@ -2129,6 +2901,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Cá del Console Prosecco Rosé Extra Dry",
+  "style": null,
   "type": "bulles",
   "photos": [
    "IMG_3285",
@@ -2156,6 +2929,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Diamas Prosecco DOC Extra Dry - non millésimé",
+  "style": null,
   "type": "bulles",
   "photos": [
    "IMG_3289",
@@ -2184,6 +2958,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Le Brut Nature Rosé",
+  "style": null,
   "type": "bulles",
   "photos": [
    "IMG_3148"
@@ -2208,6 +2983,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Solicello Moscato d’Asti 2025",
+  "style": null,
   "type": "bulles",
   "photos": [
    "IMG_3295",
@@ -2235,6 +3011,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Vezzo Blanc de Blancs Brut - non millésimé",
+  "style": null,
   "type": "bulles",
   "photos": [
    "IMG_3299"
@@ -2261,6 +3038,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Vezzo Vino Bianco Spumante Brut - non millésimé",
+  "style": null,
   "type": "bulles",
   "photos": [],
   "sources": [],
@@ -2283,6 +3061,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Vinos del Paseante La Gresca Cava Brut",
+  "style": null,
   "type": "bulles",
   "photos": [
    "IMG_3323",
@@ -2311,6 +3090,7 @@
   "contenance": "75cl",
   "vieillissement": null,
   "nom": "Z de Zéro 2024",
+  "style": null,
   "type": "bulles",
   "photos": [
    "IMG_3169",
@@ -2320,6 +3100,208 @@
   "lot": "lot_IMG_3160_3179_fiches_vins_REPRIS",
   "prix": null,
   "id": "z-de-zero-2024-2024"
+ },
+ {
+  "producteur": "Domaine du Château Philippe le Hardi.",
+  "origine": "Bourgogne - pot de miel photographié.",
+  "appellation": null,
+  "cepages": "Sans objet.",
+  "millesime": null,
+  "visuel": "Miel ambré en pot.",
+  "nez": null,
+  "bouche": null,
+  "accords": "Fromages, pain grillé, desserts, yaourt, cuisine sucrée-salée.",
+  "phrase": "Miel de Bourgogne du Domaine Philippe le Hardi, à savourer au petit-déjeuner, avec des fromages ou en cuisine.",
+  "alcool": null,
+  "contenance": null,
+  "vieillissement": null,
+  "nom": "MIEL DE BOURGOGNE",
+  "style": null,
+  "type": "epicerie",
+  "photos": [
+   "IMG_2996"
+  ],
+  "sources": [
+   "https://www.wine.com/product/philippe-le-hardi-bourgogne-chardonnay-vieilles-vignes-2023/3081803"
+  ],
+  "lot": "Lot_IMG_2983_3002_fiches_vins",
+  "prix": null,
+  "id": "miel-de-bourgogne"
+ },
+ {
+  "producteur": null,
+  "origine": null,
+  "appellation": null,
+  "cepages": "Carignan.",
+  "millesime": null,
+  "visuel": "Jus rouge sombre, teinte grenat.",
+  "nez": null,
+  "bouche": "profil non inventé.",
+  "accords": "Service frais ; peut accompagner un apéritif sans alcool, une planche de charcuteries ou un dessert peu sucré.",
+  "phrase": "Pur jus de Carignan bio, sans sucre ajouté, à la robe grenat profonde, pour une alternative sans alcool originale.",
+  "alcool": null,
+  "contenance": null,
+  "vieillissement": null,
+  "nom": "PUR JUS DE RAISINS - CARIGNAN",
+  "style": null,
+  "type": "epicerie",
+  "photos": [
+   "IMG_2967"
+  ],
+  "sources": [],
+  "lot": "Lot_IMG_2962_2982_fiches_produits",
+  "prix": null,
+  "id": "pur-jus-de-raisins-carignan"
+ },
+ {
+  "producteur": null,
+  "origine": null,
+  "appellation": null,
+  "cepages": "Grenache.",
+  "millesime": null,
+  "visuel": "Jus rouge rubis à grenat, lumineux.",
+  "nez": null,
+  "bouche": "profil non inventé.",
+  "accords": "Service frais ; apéritif sans alcool, tapas, charcuteries ou desserts aux fruits rouges.",
+  "phrase": "Pur jus de Grenache bio, sans sucre ajouté, rubis et lumineux, pour une alternative sans alcool gourmande.",
+  "alcool": null,
+  "contenance": null,
+  "vieillissement": null,
+  "nom": "PUR JUS DE RAISINS - GRENACHE",
+  "style": null,
+  "type": "epicerie",
+  "photos": [
+   "IMG_2964"
+  ],
+  "sources": [],
+  "lot": "Lot_IMG_2962_2982_fiches_produits",
+  "prix": null,
+  "id": "pur-jus-de-raisins-grenache"
+ },
+ {
+  "producteur": null,
+  "origine": null,
+  "appellation": null,
+  "cepages": "Sauvignon.",
+  "millesime": null,
+  "visuel": "Jus jaune doré soutenu.",
+  "nez": null,
+  "bouche": "profil non inventé.",
+  "accords": "Service frais ; apéritif sans alcool, fromages frais, salades ou desserts fruités.",
+  "phrase": "Pur jus de Sauvignon bio, sans sucre ajouté, doré et lumineux, pour une alternative sans alcool fraîche et originale.",
+  "alcool": null,
+  "contenance": null,
+  "vieillissement": null,
+  "nom": "PUR JUS DE RAISINS - SAUVIGNON",
+  "style": null,
+  "type": "epicerie",
+  "photos": [
+   "IMG_2966"
+  ],
+  "sources": [],
+  "lot": "Lot_IMG_2962_2982_fiches_produits",
+  "prix": null,
+  "id": "pur-jus-de-raisins-sauvignon"
+ },
+ {
+  "producteur": null,
+  "origine": null,
+  "appellation": null,
+  "cepages": "Syrah.",
+  "millesime": null,
+  "visuel": "Jus rouge très sombre, aux reflets violacés.",
+  "nez": null,
+  "bouche": "profil non inventé.",
+  "accords": "Service frais ; apéritif sans alcool, viande froide, cuisine épicée douce ou dessert chocolaté.",
+  "phrase": "Pur jus de Syrah bio, sans sucre ajouté, intense et sombre, pour une alternative sans alcool de caractère.",
+  "alcool": null,
+  "contenance": null,
+  "vieillissement": null,
+  "nom": "PUR JUS DE RAISINS - SYRAH",
+  "style": null,
+  "type": "epicerie",
+  "photos": [
+   "IMG_2965"
+  ],
+  "sources": [],
+  "lot": "Lot_IMG_2962_2982_fiches_produits",
+  "prix": null,
+  "id": "pur-jus-de-raisins-syrah"
+ },
+ {
+  "producteur": "VERGER DE THAU.",
+  "origine": "Villeveyrac (Hérault) - Occitanie, France.",
+  "appellation": null,
+  "cepages": null,
+  "millesime": null,
+  "visuel": "Rouge tomate soutenu, aspect naturellement pulpeux.",
+  "nez": "Nez franc de tomate mûre, végétal frais.",
+  "bouche": "Texture souple et pulpeuse, saveur nette de tomate, finale fraîche et végétale.",
+  "accords": null,
+  "phrase": "Jus de tomate bio artisanal, franc et pulpeux, au goût authentique de tomate mûre.",
+  "alcool": null,
+  "contenance": "25cl",
+  "vieillissement": null,
+  "nom": "VERGER DE THAU",
+  "style": "Jus de tomate bio.",
+  "type": "epicerie",
+  "photos": [
+   "IMG_2961"
+  ],
+  "sources": [],
+  "lot": "Lot_IMG_2942_2961_fiches_produits",
+  "prix": null,
+  "id": "verger-de-thau"
+ },
+ {
+  "producteur": "Verger de Thau.",
+  "origine": "Villeveyrac - Hérault, France Catégorie Jus de pêche Fruit Pêche.",
+  "appellation": null,
+  "cepages": null,
+  "millesime": null,
+  "visuel": "Jus jaune orangé soutenu.",
+  "nez": "Profil de pêche mûre attendu.",
+  "bouche": "Expression fruitée et pulpeuse de la pêche ; le producteur travaille ses fruits lorsqu'ils ont atteint une maturité optimale.",
+  "accords": "Petit-déjeuner, brunch, goûter, apéritif sans alcool ou dessert aux fruits jaunes.",
+  "phrase": "Jus de pêche artisanal du Verger de Thau, généreux et fruité, élaboré avec des fruits transformés à maturité optimale.",
+  "alcool": null,
+  "contenance": null,
+  "vieillissement": null,
+  "nom": "VERGER DE THAU - JUS DE PÊCHE",
+  "style": null,
+  "type": "epicerie",
+  "photos": [
+   "IMG_2962"
+  ],
+  "sources": [],
+  "lot": "Lot_IMG_2962_2982_fiches_produits",
+  "prix": null,
+  "id": "verger-de-thau-jus-de-peche"
+ },
+ {
+  "producteur": "Verger de Thau.",
+  "origine": "Villeveyrac - Hérault, France Catégorie Jus de raisin Fruit Raisin.",
+  "appellation": null,
+  "cepages": null,
+  "millesime": null,
+  "visuel": "Jus ambré à rosé soutenu, limpide.",
+  "nez": "Profil de raisin mûr et fruité attendu.",
+  "bouche": "Expression fruitée du raisin ; le producteur met en avant des fruits transformés à maturité optimale.",
+  "accords": "Petit-déjeuner, brunch, goûter, apéritif sans alcool ou dessert aux fruits.",
+  "phrase": "Jus de raisin artisanal du Verger de Thau, fruité et gourmand, élaboré à partir de fruits transformés à maturité optimale.",
+  "alcool": null,
+  "contenance": null,
+  "vieillissement": null,
+  "nom": "VERGER DE THAU - JUS DE RAISIN",
+  "style": null,
+  "type": "epicerie",
+  "photos": [
+   "IMG_2963"
+  ],
+  "sources": [],
+  "lot": "Lot_IMG_2962_2982_fiches_produits",
+  "prix": null,
+  "id": "verger-de-thau-jus-de-raisin"
  },
  {
   "producteur": "Le Clos des Grives.",
@@ -2336,6 +3318,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "MACVIN DU JURA",
+  "style": null,
   "type": "moelleux",
   "photos": [
    "IMG_3021"
@@ -2360,6 +3343,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Madame de Rayne — Sauternes",
+  "style": null,
   "type": "moelleux",
   "photos": [
    "IMG_3230",
@@ -2388,6 +3372,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Canio Rosato Basilicata IGP 2024",
+  "style": null,
   "type": "rose",
   "photos": [
    "IMG_3260",
@@ -2415,6 +3400,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Cuvée G Rosé",
+  "style": null,
   "type": "rose",
   "photos": [
    "IMG_3143",
@@ -2442,6 +3428,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Domaine Gueissard - Bandol Rosé",
+  "style": null,
   "type": "rose",
   "photos": [
    "IMG_3152",
@@ -2467,6 +3454,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Fontanilles Rosé 2024",
+  "style": null,
   "type": "rose",
   "photos": [
    "IMG_3133",
@@ -2492,6 +3480,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "GOOD MOOD ROSÉ",
+  "style": null,
   "type": "rose",
   "photos": [
    "IMG_3099",
@@ -2519,6 +3508,7 @@
   "contenance": "75cl",
   "vieillissement": null,
   "nom": "GRAND FIDÈLE ORIGINE",
+  "style": null,
   "type": "rose",
   "photos": [
    "IMG_3055",
@@ -2544,6 +3534,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Galabert Rosé",
+  "style": null,
   "type": "rose",
   "photos": [
    "IMG_3098",
@@ -2569,6 +3560,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "LA CORDÉE / GALABERT ROSÉ",
+  "style": null,
   "type": "rose",
   "photos": [
    "IMG_3099",
@@ -2595,6 +3587,7 @@
   "contenance": "75cl",
   "vieillissement": null,
   "nom": "LE SOUVIGNIER GRIS",
+  "style": null,
   "type": "rose",
   "photos": [
    "IMG_3042"
@@ -2619,6 +3612,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "LE SOUVIGNIER GRIS 2025",
+  "style": null,
   "type": "rose",
   "photos": [
    "IMG_3041"
@@ -2643,6 +3637,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Le Petit G Rosé",
+  "style": null,
   "type": "rose",
   "photos": [
    "IMG_3141",
@@ -2668,6 +3663,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Minuty Prestige Rosé",
+  "style": null,
   "type": "rose",
   "photos": [
    "IMG_3204",
@@ -2693,6 +3689,7 @@
   "contenance": "75cl",
   "vieillissement": null,
   "nom": "N°9 GRENACHE GRIS",
+  "style": null,
   "type": "rose",
   "photos": [
    "IMG_3043",
@@ -2718,6 +3715,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Prestige Rosé — Côtes de Provence",
+  "style": null,
   "type": "rose",
   "photos": [
    "IMG_3220",
@@ -2745,6 +3743,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Rose di Bacco Lambrusco dell’Emilia Rosso",
+  "style": null,
   "type": "rose",
   "photos": [
    "IMG_3297",
@@ -2772,6 +3771,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Veneto d’Estate Rosé Trevenezie IGT 2024",
+  "style": null,
   "type": "rose",
   "photos": [
    "IMG_3292"
@@ -2798,6 +3798,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Zéro by Les Fumées Blanches Rosé",
+  "style": null,
   "type": "rose",
   "photos": [
    "IMG_3092",
@@ -2807,6 +3808,34 @@
   "lot": "Lot_IMG_3079_3098_fiches_vins_DA_complete_v2",
   "prix": null,
   "id": "zero-by-les-fumees-blanches-rose"
+ },
+ {
+  "producteur": "Domaine du Château Philippe le Hardi.",
+  "origine": "AOP Aloxe-Corton - Côte de Beaune, Bourgogne.",
+  "appellation": null,
+  "cepages": "100% Pinot Noir.",
+  "millesime": "2023",
+  "visuel": "Rubis soutenu.",
+  "nez": "Groseille, cerise acidulée, prune rouge, fruits noirs, fleurs et épices de chêne.",
+  "bouche": "Ample et ronde, texture crémeuse, tanins veloutés, acidité vive et finale persistante.",
+  "accords": "Thon rouge mi-cuit, canard, bœuf rôti, veau aux champignons.",
+  "phrase": "Pinot Noir ample et raffiné, aux fruits rouges et noirs, notes florales et épicées, finale fraîche et persistante.",
+  "alcool": "13,5",
+  "contenance": null,
+  "vieillissement": null,
+  "nom": "ALOXE-CORTON « LES BRUNETTES ET",
+  "style": null,
+  "type": "rouge",
+  "photos": [
+   "IMG_2994"
+  ],
+  "sources": [
+   "https://iwsc.net/results/detail/170203/les-brunettes-et-planchots-2023",
+   "https://www.tresorsdebacchus.com/aloxe-corton-les-brunettes-et-planchots-philippe-le-hardi-2023"
+  ],
+  "lot": "Lot_IMG_2983_3002_fiches_vins",
+  "prix": null,
+  "id": "aloxe-corton-les-brunettes-et-2023"
  },
  {
   "producteur": "Oenops Wines.",
@@ -2823,6 +3852,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "APLA Rouge 2023",
+  "style": null,
   "type": "rouge",
   "photos": [],
   "sources": [
@@ -2831,6 +3861,58 @@
   "lot": "Fiches_degustation_detaillees_Lot_05",
   "prix": null,
   "id": "apla-rouge-2023"
+ },
+ {
+  "producteur": "Domaine du Château Philippe le Hardi.",
+  "origine": "AOP Beaune Premier Cru - Côte de Beaune.",
+  "appellation": null,
+  "cepages": "100% Pinot Noir.",
+  "millesime": "2022",
+  "visuel": "Rubis profond.",
+  "nez": "Framboise, fraise, griotte, mûre, cassis, tabac et épices.",
+  "bouche": "Fruité, juteuse et généreuse, dense mais souple, avec des tanins de qualité.",
+  "accords": "Pintade aux raisins, légumes poêlés, canard rôti, veau.",
+  "phrase": "Beaune 1er Cru juteux et généreux, aux fruits rouges et noirs, épices fines et tanins souples.",
+  "alcool": null,
+  "contenance": null,
+  "vieillissement": null,
+  "nom": "BEAUNE 1ER CRU « CLOS DU ROI » 2022",
+  "style": null,
+  "type": "rouge",
+  "photos": [
+   "IMG_2990"
+  ],
+  "sources": [
+   "https://pro.philippelehardi.com/en/vin/beaune-1er-cru-clos-du-roi-2022/?format=pdf"
+  ],
+  "lot": "Lot_IMG_2983_3002_fiches_vins",
+  "prix": null,
+  "id": "beaune-1er-cru-clos-du-roi-2022-2022"
+ },
+ {
+  "producteur": "Domaine du Château Philippe le Hardi.",
+  "origine": "AOP Bourgogne - Bourgogne.",
+  "appellation": null,
+  "cepages": "100% Pinot Noir.",
+  "millesime": "2023",
+  "visuel": "Rouge profond et intense.",
+  "nez": "Fruits rouges frais, framboise, mûre et touches d'épices.",
+  "bouche": "Vivante et fruitée, avec une belle densité, des tanins soyeux et une expression fraîche et directe.",
+  "accords": "Charcuteries, tourte à la viande, volaille rôtie, cuisine bourguignonne.",
+  "phrase": "Pinot Noir bourguignon vivant et fruité, aux fruits rouges et noirs, avec des tanins soyeux et une belle fraîcheur.",
+  "alcool": "13",
+  "contenance": null,
+  "vieillissement": null,
+  "nom": "BOURGOGNE PINOT NOIR VIEILLES VIGNES 2023",
+  "style": null,
+  "type": "rouge",
+  "photos": [
+   "IMG_2977"
+  ],
+  "sources": [],
+  "lot": "Lot_IMG_2962_2982_fiches_produits",
+  "prix": null,
+  "id": "bourgogne-pinot-noir-vieilles-vignes-2023-2023"
  },
  {
   "producteur": "Laurent Perrachon & Fils.",
@@ -2847,6 +3929,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Beaujolais-Villages « Terre de Loyse »",
+  "style": null,
   "type": "rouge",
   "photos": [
    "IMG_3180"
@@ -2871,6 +3954,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Beaujolais-Villages « Terre de Loyse »",
+  "style": null,
   "type": "rouge",
   "photos": [
    "IMG_3179"
@@ -2895,6 +3979,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Bodega Piedra Negra — Chacayes",
+  "style": null,
   "type": "rouge",
   "photos": [
    "IMG_3234",
@@ -2922,6 +4007,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Brouilly « Vieilles Vignes »",
+  "style": null,
   "type": "rouge",
   "photos": [
    "IMG_3197",
@@ -2947,6 +4033,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "CEZ Red — Shiraz, Grenache & Cinsault",
+  "style": null,
   "type": "rouge",
   "photos": [],
   "sources": [
@@ -2956,6 +4043,34 @@
   "lot": "Fiches_degustation_detaillees_Lot_03",
   "prix": null,
   "id": "cez-red-shiraz-grenache-cinsault"
+ },
+ {
+  "producteur": "Domaine du Château Philippe le Hardi.",
+  "origine": "AOP Chambolle-Musigny - Côte de Nuits, Bourgogne.",
+  "appellation": null,
+  "cepages": "100% Pinot Noir.",
+  "millesime": "2020",
+  "visuel": "Rouge brillant.",
+  "nez": null,
+  "bouche": "Profil non complété par supposition ; la référence et le cépage sont vérifiés.",
+  "accords": "Volaille rôtie, veau, canard, champignons, fromages affinés.",
+  "phrase": "Chambolle-Musigny de Pinot Noir, une cuvée bourguignonne à privilégier sur des plats fins et délicats.",
+  "alcool": null,
+  "contenance": null,
+  "vieillissement": null,
+  "nom": "CHAMBOLLE-MUSIGNY « LES CONDEMENNES »",
+  "style": null,
+  "type": "rouge",
+  "photos": [
+   "IMG_2992"
+  ],
+  "sources": [
+   "https://lacaveduclos.com/la-cave/1151-chambolle-musigny-les-condemenes-2020-domaine-philippe-le-hardi.html",
+   "https://philippelehardi.fr/nos-vins/cote-de-nuits/"
+  ],
+  "lot": "Lot_IMG_2983_3002_fiches_vins",
+  "prix": null,
+  "id": "chambolle-musigny-les-condemennes-2020"
  },
  {
   "producteur": "Château d'Argens - Domaines d'Éxéa.",
@@ -2972,6 +4087,7 @@
   "contenance": "75cl",
   "vieillissement": null,
   "nom": "CHANT DE LUNE",
+  "style": null,
   "type": "rouge",
   "photos": [
    "IMG_3045",
@@ -2997,6 +4113,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "CHÂTEAU D'ASSAS",
+  "style": null,
   "type": "rouge",
   "photos": [
    "IMG_3099",
@@ -3008,6 +4125,60 @@
   "lot": "Lot_3099_3118_fiches_vins",
   "prix": null,
   "id": "chateau-d-assas-2023"
+ },
+ {
+  "producteur": "Domaine du Château Philippe le Hardi.",
+  "origine": "AOP Clos de Vougeot Grand Cru - Côte de Nuits.",
+  "appellation": null,
+  "cepages": "100% Pinot Noir.",
+  "millesime": "2019",
+  "visuel": "Rouge profond, dense.",
+  "nez": "Fruits rouges et noirs, notes florales, menthe et nuances boisées et épicées.",
+  "bouche": "Généreuse, ample et structurée, tanins fins et soyeux, finale longue.",
+  "accords": "Chevreau rôti et gratin crémeux, gibier, bœuf rôti, plats truffés.",
+  "phrase": "Grand cru ample et profond, aux fruits rouges et noirs, tanins fins et finale longue et soyeuse.",
+  "alcool": null,
+  "contenance": null,
+  "vieillissement": null,
+  "nom": "CLOS DE VOUGEOT GRAND CRU 2019",
+  "style": null,
+  "type": "rouge",
+  "photos": [
+   "IMG_2989"
+  ],
+  "sources": [
+   "https://pro.philippelehardi.com/en/vin/clos-de-vougeot-grand-cru-2019-red/?format=pdf",
+   "https://www.hachette-vins.com/guide-vins/les-vins/dom-du-ch-philippe-le-hardi-2019-2023/202368282/"
+  ],
+  "lot": "Lot_IMG_2983_3002_fiches_vins",
+  "prix": null,
+  "id": "clos-de-vougeot-grand-cru-2019-2019"
+ },
+ {
+  "producteur": "Maison Philippe le Hardi.",
+  "origine": "AOP Coteaux Bourguignons - Bourgogne.",
+  "appellation": null,
+  "cepages": "Gamay (indiqué sur l'étiquette).",
+  "millesime": "2024",
+  "visuel": "Rouge rubis lumineux.",
+  "nez": "Fruit rouge frais, avec une expression de ronce et de petites baies.",
+  "bouche": "Nerveuse, vive et fraîche, avec un fruit croquant et une structure légèrement cadrée par l'élevage.",
+  "accords": "Charcuteries, terrines, volaille, planches apéritives et cuisine bistrot.",
+  "phrase": "Gamay bourguignon vif et frais, aux fruits rouges et notes de ronce, avec une bouche croquante et nerveuse.",
+  "alcool": "12,5",
+  "contenance": null,
+  "vieillissement": null,
+  "nom": "COTEAUX BOURGUIGNONS GAMAY 2024",
+  "style": null,
+  "type": "rouge",
+  "photos": [
+   "IMG_2975",
+   "IMG_2976"
+  ],
+  "sources": [],
+  "lot": "Lot_IMG_2962_2982_fiches_produits",
+  "prix": null,
+  "id": "coteaux-bourguignons-gamay-2024-2024"
  },
  {
   "producteur": "La Croix de Garde - Xavier Mourier.",
@@ -3024,6 +4195,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "CROZES-HERMITAGE LA MUSELLE 2024",
+  "style": null,
   "type": "rouge",
   "photos": [
    "IMG_3005",
@@ -3049,6 +4221,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Cambria — Julia’s Vineyard Pinot Noir",
+  "style": null,
   "type": "rouge",
   "photos": [
    "IMG_3250",
@@ -3076,6 +4249,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Campo Eliseo — Contracorriente",
+  "style": null,
   "type": "rouge",
   "photos": [],
   "sources": [
@@ -3100,6 +4274,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Canio — Aglianico del Vulture",
+  "style": null,
   "type": "rouge",
   "photos": [
    "IMG_3258",
@@ -3127,6 +4302,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Ca’ Vittoria Appassimento Limited Edition",
+  "style": null,
   "type": "rouge",
   "photos": [
    "IMG_3283",
@@ -3154,6 +4330,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Château Desmirail — Margaux Grand Cru",
+  "style": null,
   "type": "rouge",
   "photos": [
    "IMG_3242",
@@ -3181,6 +4358,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Château La Guillaumette",
+  "style": null,
   "type": "rouge",
   "photos": [
    "IMG_3218",
@@ -3206,6 +4384,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Château de Gardegan",
+  "style": null,
   "type": "rouge",
   "photos": [
    "IMG_3202",
@@ -3231,6 +4410,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Codorníu — Red Grenache Organic Wine",
+  "style": null,
   "type": "rouge",
   "photos": [],
   "sources": [
@@ -3256,6 +4436,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Cortonesi La Mannella Rosso di Montalcino",
+  "style": null,
   "type": "rouge",
   "photos": [
    "IMG_3281",
@@ -3283,6 +4464,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "DES BOIS - TROUSSEAU / PINOT NOIR 2024",
+  "style": null,
   "type": "rouge",
   "photos": [
    "IMG_3025",
@@ -3308,6 +4490,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "DES BOIS - TROUSSEAU / POULSARD 2023",
+  "style": null,
   "type": "rouge",
   "photos": [
    "IMG_3022",
@@ -3333,6 +4516,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Domaine Gueissard - Bandol Rouge",
+  "style": null,
   "type": "rouge",
   "photos": [
    "IMG_3149",
@@ -3359,6 +4543,7 @@
   "contenance": "75cl",
   "vieillissement": null,
   "nom": "Domaine de Targuerie Rouge 2024",
+  "style": null,
   "type": "rouge",
   "photos": [
    "IMG_3074",
@@ -3384,6 +4569,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Domenico Clerico — Barolo Ginestra “Ciabot",
+  "style": null,
   "type": "rouge",
   "photos": [
    "IMG_3244",
@@ -3411,6 +4597,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Domenico Clerico — Barolo del Comune di",
+  "style": null,
   "type": "rouge",
   "photos": [
    "IMG_3240",
@@ -3438,6 +4625,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Domäne Wachau — Blauer Zweigelt",
+  "style": null,
   "type": "rouge",
   "photos": [
    "IMG_3256",
@@ -3465,6 +4653,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Ernst Gouws & Co — Pinotage",
+  "style": null,
   "type": "rouge",
   "photos": [],
   "sources": [
@@ -3490,6 +4679,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "FONT-JILLARDE 2022",
+  "style": null,
   "type": "rouge",
   "photos": [
    "IMG_3018",
@@ -3515,6 +4705,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Fleurie « Vieilles Vignes »",
+  "style": null,
   "type": "rouge",
   "photos": [
    "IMG_3195",
@@ -3540,6 +4731,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Fontanilles Rouge 2025",
+  "style": null,
   "type": "rouge",
   "photos": [
    "IMG_3137",
@@ -3565,6 +4757,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Fugue de Nénin",
+  "style": null,
   "type": "rouge",
   "photos": [
    "IMG_3238",
@@ -3577,6 +4770,60 @@
   "lot": "Fiches_degustation_detaillees_Lot_09",
   "prix": null,
   "id": "fugue-de-nenin"
+ },
+ {
+  "producteur": "Domaine du Château Philippe le Hardi.",
+  "origine": "AOP Gevrey-Chambertin Premier Cru - Côte de Nuits.",
+  "appellation": null,
+  "cepages": "100% Pinot Noir.",
+  "millesime": "2019",
+  "visuel": "Rouge profond et concentré.",
+  "nez": "Fruits rouges et noirs, framboise, griotte, cassis, rose, pivoine, violette et épices fines.",
+  "bouche": "Concentrée, structurée et complexe, avec des tanins souples et une finale soyeuse.",
+  "accords": "Tournedos Rossini, bœuf rôti, gibier à plume, champignons.",
+  "phrase": "Pinot Noir complexe et soyeux, aux fruits rouges et noirs, notes florales et épicées, finale longue.",
+  "alcool": null,
+  "contenance": null,
+  "vieillissement": null,
+  "nom": "GEVREY-CHAMBERTIN 1ER CRU « PETITE",
+  "style": null,
+  "type": "rouge",
+  "photos": [
+   "IMG_2988"
+  ],
+  "sources": [
+   "https://pro.philippelehardi.com/en/vin/gevrey-chambertin-1er-crupetite-chapelle-2019-red/?format=pdf"
+  ],
+  "lot": "Lot_IMG_2983_3002_fiches_vins",
+  "prix": null,
+  "id": "gevrey-chambertin-1er-cru-petite-2019"
+ },
+ {
+  "producteur": "Domaine du Château Philippe le Hardi.",
+  "origine": "AOP Gevrey-Chambertin - Côte de Nuits, Bourgogne.",
+  "appellation": null,
+  "cepages": "Pinot Noir.",
+  "millesime": "2019",
+  "visuel": "Rouge profond.",
+  "nez": null,
+  "bouche": "Profil non complété par supposition ; la cuvée Es Murots est bien référencée par le domaine.",
+  "accords": "Bœuf rôti, canard, gibier à plume, plats aux champignons.",
+  "phrase": "Gevrey-Chambertin de Pinot Noir, à la stature bourguignonne, idéal sur viandes rôties et cuisine de caractère.",
+  "alcool": null,
+  "contenance": null,
+  "vieillissement": null,
+  "nom": "GEVREY-CHAMBERTIN « ES MUROTS » 2019",
+  "style": null,
+  "type": "rouge",
+  "photos": [
+   "IMG_2993"
+  ],
+  "sources": [
+   "https://philippelehardi.fr/nos-vins/cote-de-nuits/"
+  ],
+  "lot": "Lot_IMG_2983_3002_fiches_vins",
+  "prix": null,
+  "id": "gevrey-chambertin-es-murots-2019-2019"
  },
  {
   "producteur": "Les Galets Pourpres - Domaines Xavier Mourier.",
@@ -3593,6 +4840,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "GIGONDAS LES FÉTOULES 2020",
+  "style": null,
   "type": "rouge",
   "photos": [
    "IMG_3009",
@@ -3618,6 +4866,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "GOOD MOOD ROUGE",
+  "style": null,
   "type": "rouge",
   "photos": [
    "IMG_3099",
@@ -3644,6 +4893,7 @@
   "contenance": "75cl",
   "vieillissement": null,
   "nom": "GRAND FIDÈLE",
+  "style": null,
   "type": "rouge",
   "photos": [
    "IMG_3057",
@@ -3669,6 +4919,7 @@
   "contenance": "75cl",
   "vieillissement": null,
   "nom": "GRAND FIDÈLE ALTITUDE",
+  "style": null,
   "type": "rouge",
   "photos": [
    "IMG_3049",
@@ -3694,6 +4945,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Gran Sasso Montepulciano d’Abruzzo DOC",
+  "style": null,
   "type": "rouge",
   "photos": [
    "IMG_3272",
@@ -3721,6 +4973,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "HERMITAGE LES ROUIES 2022",
+  "style": null,
   "type": "rouge",
   "photos": [
    "IMG_3011",
@@ -3746,6 +4999,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Hermanos Lurton Tempranillo 2022",
+  "style": null,
   "type": "rouge",
   "photos": [
    "IMG_3336",
@@ -3774,6 +5028,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Il Palazzo Chianti DOCG 2022",
+  "style": null,
   "type": "rouge",
   "photos": [
    "IMG_3264",
@@ -3801,6 +5056,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Juliénas « Les Vignes Centenaires »",
+  "style": null,
   "type": "rouge",
   "photos": [
    "IMG_3181",
@@ -3826,6 +5082,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "LATITUDE",
+  "style": null,
   "type": "rouge",
   "photos": [
    "IMG_3099",
@@ -3853,6 +5110,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "LE CLOS ROUGE",
+  "style": null,
   "type": "rouge",
   "photos": [
    "IMG_3099",
@@ -3864,6 +5122,34 @@
   "lot": "Lot_3099_3118_fiches_vins",
   "prix": null,
   "id": "le-clos-rouge-2022"
+ },
+ {
+  "producteur": "Domaines Xavier Mourier - Les Galets Pourpres.",
+  "origine": "AOP Côtes du Rhône Villages Sablet - Vallée du Rhône Sud.",
+  "appellation": null,
+  "cepages": null,
+  "millesime": null,
+  "visuel": "Rouge sombre.",
+  "nez": null,
+  "bouche": "Profil non complété par supposition.",
+  "accords": "Agneau, grillades, daube, cuisine provençale, fromages affinés.",
+  "phrase": "Côtes du Rhône Villages Sablet de caractère, taillé pour les grillades, l’agneau et les plats mijotés.",
+  "alcool": null,
+  "contenance": null,
+  "vieillissement": null,
+  "nom": "LES GALETS POURPRES - CÔTES DU RHÔNE",
+  "style": null,
+  "type": "rouge",
+  "photos": [
+   "IMG_3002"
+  ],
+  "sources": [
+   "https://www.domainesmourier.com/domaines-xavier-mourier-chavanay/les-galets-pourpres",
+   "https://www.domainesmourier.com/les-vins"
+  ],
+  "lot": "Lot_IMG_2983_3002_fiches_vins",
+  "prix": null,
+  "id": "les-galets-pourpres-cotes-du-rhone"
  },
  {
   "producteur": "Lavradores de Feitoria.",
@@ -3880,6 +5166,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Lavradores de Feitoria Douro Tinto 2022",
+  "style": null,
   "type": "rouge",
   "photos": [],
   "sources": [
@@ -3904,6 +5191,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Les Caselles Rouge",
+  "style": null,
   "type": "rouge",
   "photos": [
    "IMG_3083",
@@ -3929,6 +5217,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Lupo Meraviglia Due di Due Puglia Rosso",
+  "style": null,
   "type": "rouge",
   "photos": [
    "IMG_3276",
@@ -3940,6 +5229,32 @@
   "lot": "Fiches_degustation_detaillees_Lot_07",
   "prix": null,
   "id": "lupo-meraviglia-due-di-due-puglia-rosso"
+ },
+ {
+  "producteur": "Domaine du Château Philippe le Hardi.",
+  "origine": "AOP Mercurey - Côte Chalonnaise, Bourgogne.",
+  "appellation": null,
+  "cepages": "100% Pinot Noir.",
+  "millesime": "2022",
+  "visuel": "Grenat sombre aux reflets pourpres.",
+  "nez": "Cerise noire mûre, prune, fraise des bois, épices de cèdre et nuances herbacées.",
+  "bouche": "Fruit généreux et lumineux, texture soyeuse, trame minérale et belle longueur ; ensemble structuré et élégant.",
+  "accords": "Œuf en meurette, fondue bourguignonne, viande mijotée, volaille rôtie.",
+  "phrase": "Mercurey élégant et soyeux, aux cerises mûres, prune et épices, avec un fruit généreux et une belle longueur.",
+  "alcool": "13",
+  "contenance": null,
+  "vieillissement": null,
+  "nom": "MERCUREY « LES CHENEAULTS » 2022",
+  "style": null,
+  "type": "rouge",
+  "photos": [
+   "IMG_2978",
+   "IMG_2980"
+  ],
+  "sources": [],
+  "lot": "Lot_IMG_2962_2982_fiches_produits",
+  "prix": null,
+  "id": "mercurey-les-cheneaults-2022-2022"
  },
  {
   "producteur": "JACQUES & FRANÇOIS LURTON.",
@@ -3956,6 +5271,7 @@
   "contenance": "75cl",
   "vieillissement": null,
   "nom": "Mas Janeil 2009",
+  "style": null,
   "type": "rouge",
   "photos": [
    "IMG_3072",
@@ -3981,6 +5297,7 @@
   "contenance": "75cl",
   "vieillissement": null,
   "nom": "Mas Janeil 2017",
+  "style": null,
   "type": "rouge",
   "photos": [
    "IMG_3070",
@@ -4006,6 +5323,7 @@
   "contenance": "75cl",
   "vieillissement": null,
   "nom": "Mas Janeil Arrels 2021",
+  "style": null,
   "type": "rouge",
   "photos": [
    "IMG_3066",
@@ -4031,6 +5349,7 @@
   "contenance": "50cl",
   "vieillissement": null,
   "nom": "Maury Janeil 2022",
+  "style": null,
   "type": "rouge",
   "photos": [
    "IMG_3064",
@@ -4056,6 +5375,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Morgon « Corcelette »",
+  "style": null,
   "type": "rouge",
   "photos": [
    "IMG_3191",
@@ -4081,6 +5401,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Moulin-à-Vent « Les Burdelines »",
+  "style": null,
   "type": "rouge",
   "photos": [
    "IMG_3193",
@@ -4106,6 +5427,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Oenops APLA Red 2023",
+  "style": null,
   "type": "rouge",
   "photos": [
    "IMG_3320"
@@ -4118,6 +5440,33 @@
   "lot": "Fiches_degustation_detaillees_Lot_04",
   "prix": null,
   "id": "oenops-apla-red-2023-2023"
+ },
+ {
+  "producteur": "Domaine du Château Philippe le Hardi.",
+  "origine": "AOP Pommard - Côte de Beaune, Bourgogne.",
+  "appellation": null,
+  "cepages": "100% Pinot Noir.",
+  "millesime": "2022",
+  "visuel": "Rouge coloré et profond.",
+  "nez": "Fruits rouges et noirs mûrs, profil gourmand.",
+  "bouche": "Structurée, ronde et dense, portée par des tanins doux et une belle concentration.",
+  "accords": "Penne all’arrabbiata, bœuf, canard, viandes en sauce.",
+  "phrase": "Pommard structuré et gourmand, aux fruits rouges et noirs mûrs, dense et rond, aux tanins doux.",
+  "alcool": null,
+  "contenance": null,
+  "vieillissement": null,
+  "nom": "POMMARD 2022",
+  "style": null,
+  "type": "rouge",
+  "photos": [
+   "IMG_2995"
+  ],
+  "sources": [
+   "https://pro.philippelehardi.com/vin/pommard-2020-rouge-negoce-2/?format=pdf"
+  ],
+  "lot": "Lot_IMG_2983_3002_fiches_vins",
+  "prix": null,
+  "id": "pommard-2022-2022"
  },
  {
   "producteur": "Giorgio Pelissero.",
@@ -4134,6 +5483,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Pelissero Munfrina Dolcetto d’Alba 2021",
+  "style": null,
   "type": "rouge",
   "photos": [
    "IMG_3266",
@@ -4161,6 +5511,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Pelissero — Piani Barbera d’Alba",
+  "style": null,
   "type": "rouge",
   "photos": [
    "IMG_3248"
@@ -4187,6 +5538,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Pelissero — Tulin Barbera d’Alba",
+  "style": null,
   "type": "rouge",
   "photos": [
    "IMG_3246",
@@ -4214,6 +5566,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Persevero - Château La Grâce Fonrazade",
+  "style": null,
   "type": "rouge",
   "photos": [
    "IMG_3216",
@@ -4239,6 +5592,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Piedra Negra Alta Colección Malbec",
+  "style": null,
   "type": "rouge",
   "photos": [
    "IMG_3333",
@@ -4268,6 +5622,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Posidone Organic Primitivo Puglia IGT 2024",
+  "style": null,
   "type": "rouge",
   "photos": [
    "IMG_3268",
@@ -4295,6 +5650,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Pradorey — Finca La Mina Reserva",
+  "style": null,
   "type": "rouge",
   "photos": [
    "IMG_3236",
@@ -4323,6 +5679,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Rouquet’s Merlot 2025",
+  "style": null,
   "type": "rouge",
   "photos": [
    "IMG_3125",
@@ -4348,6 +5705,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Rouquet’s Pinot Noir 2025",
+  "style": null,
   "type": "rouge",
   "photos": [
    "IMG_3123",
@@ -4373,6 +5731,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "SABLET 2M 2023",
+  "style": null,
   "type": "rouge",
   "photos": [
    "IMG_3003",
@@ -4398,6 +5757,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "SAINT-JOSEPH LES CABOLES 2023",
+  "style": null,
   "type": "rouge",
   "photos": [
    "IMG_3007",
@@ -4407,6 +5767,60 @@
   "lot": "Lot_IMG_3003_3021_fiches_vins",
   "prix": null,
   "id": "saint-joseph-les-caboles-2023-2023"
+ },
+ {
+  "producteur": "Domaines Xavier Mourier - Domaine de Pierre Blanche.",
+  "origine": "IGP Collines Rhodaniennes - Vallée du Rhône.",
+  "appellation": null,
+  "cepages": "100% Syrah.",
+  "millesime": "2024",
+  "visuel": "Rouge sombre et brillant.",
+  "nez": "Le domaine confirme la cuvée Syrah Barral.",
+  "bouche": "Profil spécifique 2024 non complété par supposition.",
+  "accords": "Viandes grillées, charcuteries, plats mijotés, fromages affinés.",
+  "phrase": "Syrah rhodanienne souple et conviviale, idéale sur grillades, charcuteries et cuisine généreuse.",
+  "alcool": "13",
+  "contenance": null,
+  "vieillissement": null,
+  "nom": "SYRAH BARRAL 2024",
+  "style": null,
+  "type": "rouge",
+  "photos": [
+   "IMG_2998",
+   "IMG_2999"
+  ],
+  "sources": [
+   "https://www.domainesmourier.com/en/les-vins/igp-vallee-rhone",
+   "https://www.domainesmourier.com/les-vins"
+  ],
+  "lot": "Lot_IMG_2983_3002_fiches_vins",
+  "prix": null,
+  "id": "syrah-barral-2024-2024"
+ },
+ {
+  "producteur": "Saint Clair Family Estate.",
+  "origine": null,
+  "appellation": null,
+  "cepages": "100 % Pinot Noir.",
+  "millesime": null,
+  "visuel": "Rubis brillant de profondeur moyenne.",
+  "nez": "Fruits rouges et noirs mûrs, cerise et épices, avec un boisé discret.",
+  "bouche": "Souple, fruitée et équilibrée, avec des tanins fins, une touche savoureuse et une finale douce et persistante.",
+  "accords": "Canard, agneau, champignons, saumon grillé ou fromages à pâte molle.",
+  "phrase": "Pinot noir souple et élégant, aux notes de cerise, fruits noirs et épices douces.",
+  "alcool": null,
+  "contenance": null,
+  "vieillissement": null,
+  "nom": "Saint Clair Origin Pinot Noir 2022",
+  "style": null,
+  "type": "rouge",
+  "photos": [],
+  "sources": [
+   "https://saintclair.co.nz/collections/all-wines"
+  ],
+  "lot": "Fiches_degustation_detaillees_Lot_05",
+  "prix": null,
+  "id": "saint-clair-origin-pinot-noir-2022"
  },
  {
   "producteur": "Le Cellier du Pic / Les Vignerons du Pic.",
@@ -4423,6 +5837,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Saint Hubert Rouge",
+  "style": null,
   "type": "rouge",
   "photos": [
    "IMG_3096",
@@ -4448,6 +5863,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Saint-Amour « Amoureux de Peynet »",
+  "style": null,
   "type": "rouge",
   "photos": [
    "IMG_3189",
@@ -4473,6 +5889,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Saragat Monica Isola dei Nuraghi IGT 2023",
+  "style": null,
   "type": "rouge",
   "photos": [
    "IMG_3274",
@@ -4500,6 +5917,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Shumi Saperavi 2023",
+  "style": null,
   "type": "rouge",
   "photos": [
    "IMG_3327",
@@ -4529,6 +5947,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Tornatore Etna Rosso 2022",
+  "style": null,
   "type": "rouge",
   "photos": [
    "IMG_3280"
@@ -4539,6 +5958,34 @@
   "lot": "Fiches_degustation_detaillees_Lot_06",
   "prix": null,
   "id": "tornatore-etna-rosso-2022"
+ },
+ {
+  "producteur": "Domaine du Château Philippe le Hardi.",
+  "origine": "AOP Vosne-Romanée - Côte de Nuits, Bourgogne.",
+  "appellation": null,
+  "cepages": "Pinot Noir.",
+  "millesime": "2023",
+  "visuel": "Rouge bourguignon profond et brillant.",
+  "nez": "Profil aromatique précis de Pinot Noir.",
+  "bouche": "Profil du millésime non complété par supposition.",
+  "accords": "Volaille rôtie, veau, bœuf délicat, plats aux champignons.",
+  "phrase": "Vosne-Romanée élégant de Pinot Noir, à servir sur une cuisine fine et des viandes rôties.",
+  "alcool": null,
+  "contenance": null,
+  "vieillissement": null,
+  "nom": "VOSNE-ROMANÉE 2023",
+  "style": null,
+  "type": "rouge",
+  "photos": [
+   "IMG_2991"
+  ],
+  "sources": [
+   "https://philippelehardi.fr/nos-vins/cote-de-nuits/",
+   "https://www.grands-jours-bourgogne.fr/exposants/411d1042e258a694963dd67bc26adaf4/"
+  ],
+  "lot": "Lot_IMG_2983_3002_fiches_vins",
+  "prix": null,
+  "id": "vosne-romanee-2023-2023"
  },
  {
   "producteur": "Casa Vinicola Corvezzo.",
@@ -4555,6 +6002,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Vezzo Pinot Nero Trevenezie IGT 2024",
+  "style": null,
   "type": "rouge",
   "photos": [
    "IMG_3270",
@@ -4582,6 +6030,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Viña Eguía — Rioja Tempranillo",
+  "style": null,
   "type": "rouge",
   "photos": [],
   "sources": [
@@ -4608,6 +6057,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Viña Progreso Revolution Tannat 2021",
+  "style": null,
   "type": "rouge",
   "photos": [],
   "sources": [
@@ -4633,6 +6083,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Yalumba Samuel’s Collection Barossa Bush",
+  "style": null,
   "type": "rouge",
   "photos": [],
   "sources": [
@@ -4657,6 +6108,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "À Grands Pas Carignan 2025",
+  "style": null,
   "type": "rouge",
   "photos": [
    "IMG_3121",
@@ -4682,6 +6134,7 @@
   "contenance": "70cl",
   "vieillissement": "6 ans",
   "nom": "ACTO 1903 Special Reserve - 6 ans",
+  "style": null,
   "type": "spiritueux",
   "photos": [],
   "sources": [
@@ -4706,6 +6159,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Belle Gnôle",
+  "style": null,
   "type": "spiritueux",
   "photos": [
    "IMG_3492",
@@ -4734,6 +6188,7 @@
   "contenance": "70cl",
   "vieillissement": null,
   "nom": "Bistro Vodka - La Fine Vodka",
+  "style": null,
   "type": "spiritueux",
   "photos": [],
   "sources": [
@@ -4759,6 +6214,7 @@
   "contenance": "70cl",
   "vieillissement": "annoncé : 3 ans",
   "nom": "Black Tears Dry Spiced",
+  "style": null,
   "type": "spiritueux",
   "photos": [],
   "sources": [
@@ -4784,6 +6240,7 @@
   "contenance": "70cl",
   "vieillissement": null,
   "nom": "Black Tears Super Dry",
+  "style": null,
   "type": "spiritueux",
   "photos": [],
   "sources": [
@@ -4809,6 +6266,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Distilleria Marzadro",
+  "style": null,
   "type": "spiritueux",
   "photos": [
    "IMG_3480",
@@ -4837,6 +6295,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "François Lurton",
+  "style": null,
   "type": "spiritueux",
   "photos": [
    "IMG_3456",
@@ -4865,6 +6324,7 @@
   "contenance": "70cl",
   "vieillissement": null,
   "nom": "Gold of Mauritius Classic Edition",
+  "style": null,
   "type": "spiritueux",
   "photos": [],
   "sources": [
@@ -4890,6 +6350,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Guappo della Costiera",
+  "style": null,
   "type": "spiritueux",
   "photos": [
    "IMG_3482",
@@ -4917,6 +6378,7 @@
   "contenance": "70cl",
   "vieillissement": null,
   "nom": "La Progresiva de Vigía Mezcla 13",
+  "style": null,
   "type": "spiritueux",
   "photos": [],
   "sources": [
@@ -4943,6 +6405,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Los Tres Toños",
+  "style": null,
   "type": "spiritueux",
   "photos": [
    "IMG_3445",
@@ -4971,6 +6434,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Maison Boutelleau",
+  "style": null,
   "type": "spiritueux",
   "photos": [
    "IMG_3440",
@@ -4998,6 +6462,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Maison Cabanel",
+  "style": null,
   "type": "spiritueux",
   "photos": [
    "IMG_3467",
@@ -5027,6 +6492,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Marcati",
+  "style": null,
   "type": "spiritueux",
   "photos": [
    "IMG_3476",
@@ -5055,6 +6521,7 @@
   "contenance": "70cl",
   "vieillissement": null,
   "nom": "OAOA Lagoon Delight",
+  "style": null,
   "type": "spiritueux",
   "photos": [],
   "sources": [
@@ -5080,6 +6547,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Récapet",
+  "style": null,
   "type": "spiritueux",
   "photos": [
    "IMG_3452",
@@ -5107,6 +6575,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Récapet",
+  "style": null,
   "type": "spiritueux",
   "photos": [
    "IMG_3450",
@@ -5118,30 +6587,6 @@
   "lot": "Fiches_Bouteilles_Verifiees",
   "prix": null,
   "id": "recapet"
- },
- {
-  "producteur": "Saint Clair Family Estate.",
-  "origine": null,
-  "appellation": null,
-  "cepages": "100 % Pinot Noir.",
-  "millesime": null,
-  "visuel": "Rubis brillant de profondeur moyenne.",
-  "nez": "Fruits rouges et noirs mûrs, cerise et épices, avec un boisé discret.",
-  "bouche": "Souple, fruitée et équilibrée, avec des tanins fins, une touche savoureuse et une finale douce et persistante.",
-  "accords": "Canard, agneau, champignons, saumon grillé ou fromages à pâte molle.",
-  "phrase": "Pinot noir souple et élégant, aux notes de cerise, fruits noirs et épices douces.",
-  "alcool": null,
-  "contenance": null,
-  "vieillissement": null,
-  "nom": "Saint Clair Origin Pinot Noir 2022",
-  "type": "spiritueux",
-  "photos": [],
-  "sources": [
-   "https://saintclair.co.nz/collections/all-wines"
-  ],
-  "lot": "Fiches_degustation_detaillees_Lot_05",
-  "prix": null,
-  "id": "saint-clair-origin-pinot-noir-2022"
  },
  {
   "producteur": "Silvio Carta S.r.l.",
@@ -5158,6 +6603,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Silvio Carta",
+  "style": null,
   "type": "spiritueux",
   "photos": [
    "IMG_3478",
@@ -5185,6 +6631,7 @@
   "contenance": "70cl",
   "vieillissement": null,
   "nom": "Sorgin Yellow Gin & Sauvignon",
+  "style": null,
   "type": "spiritueux",
   "photos": [],
   "sources": [
@@ -5210,6 +6657,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Sorgin — Gin de Terroirs / Gin & Sauvignon",
+  "style": null,
   "type": "spiritueux",
   "photos": [],
   "sources": [
@@ -5235,6 +6683,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Spike",
+  "style": null,
   "type": "spiritueux",
   "photos": [
    "IMG_3458",
@@ -5263,6 +6712,7 @@
   "contenance": "70cl",
   "vieillissement": "10 ans minimum",
   "nom": "Sérum Ancon 10 Años",
+  "style": null,
   "type": "spiritueux",
   "photos": [],
   "sources": [
@@ -5288,6 +6738,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Toschi Vignola",
+  "style": null,
   "type": "spiritueux",
   "photos": [
    "IMG_3474",
@@ -5316,6 +6767,7 @@
   "contenance": null,
   "vieillissement": null,
   "nom": "Two Stacks",
+  "style": null,
   "type": "spiritueux",
   "photos": [
    "IMG_3470",

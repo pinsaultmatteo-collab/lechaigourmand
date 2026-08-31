@@ -1,14 +1,14 @@
 PHOTOS — état des lieux
 ============================================================
 
-Photos réclamées par les fiches : 324
-Présentes dans le dossier       : 215
+Photos réclamées par les fiches : 376
+Présentes dans le dossier       : 267
 
 MANQUANTES (109) — à demander au fournisseur :
   IMG_3239→IMG_3277, IMG_3280→IMG_3290, IMG_3292→IMG_3299, IMG_3320→IMG_3339, IMG_3440→IMG_3441, IMG_3445→IMG_3447, IMG_3450→IMG_3453, IMG_3456→IMG_3460, IMG_3467→IMG_3471, IMG_3474→IMG_3483, IMG_3492→IMG_3493
 
-PRÉSENTES MAIS JAMAIS CITÉES (85) :
-  IMG_2924, IMG_2926→IMG_2967, IMG_2975→IMG_2999, IMG_3001→IMG_3002, IMG_3047→IMG_3048, IMG_3051→IMG_3054, IMG_3059→IMG_3060, IMG_3079→IMG_3080, IMG_3119, IMG_3146→IMG_3147, IMG_3199, IMG_3201
+PRÉSENTES MAIS JAMAIS CITÉES (33) :
+  IMG_2943→IMG_2952, IMG_2954→IMG_2956, IMG_2958→IMG_2960, IMG_2979, IMG_3001, IMG_3047→IMG_3048, IMG_3051→IMG_3054, IMG_3059→IMG_3060, IMG_3079→IMG_3080, IMG_3119, IMG_3146→IMG_3147, IMG_3199, IMG_3201
 
 PRODUITS SANS AUCUNE PHOTO (38) :
   - CEZ White Blend  [Fiches_degustation_detaillees_Lot_03]
@@ -35,6 +35,7 @@ PRODUITS SANS AUCUNE PHOTO (38) :
   - Codorníu — Red Grenache Organic Wine  [Fiches_degustation_detaillees_Lot_03]
   - Ernst Gouws & Co — Pinotage  [Fiches_degustation_detaillees_Lot_03]
   - Lavradores de Feitoria Douro Tinto 2022  [Fiches_degustation_detaillees_Lot_05]
+  - Saint Clair Origin Pinot Noir 2022  [Fiches_degustation_detaillees_Lot_05]
   - Viña Eguía — Rioja Tempranillo  [Fiches_degustation_detaillees_Lot_03]
   - Viña Progreso Revolution Tannat 2021  [Fiches_vins_spiritueux_C_and_Wine_Lot_02]
   - Yalumba Samuel’s Collection Barossa Bush  [Fiches_vins_spiritueux_C_and_Wine_Lot_02]
@@ -45,7 +46,6 @@ PRODUITS SANS AUCUNE PHOTO (38) :
   - Gold of Mauritius Classic Edition  [Fiches_spiritueux_C_and_Wine_Lot_01]
   - La Progresiva de Vigía Mezcla 13  [Fiches_spiritueux_C_and_Wine_Lot_01]
   - OAOA Lagoon Delight  [Fiches_spiritueux_C_and_Wine_Lot_01]
-  - Saint Clair Origin Pinot Noir 2022  [Fiches_degustation_detaillees_Lot_05]
   - Sorgin Yellow Gin & Sauvignon  [Fiches_spiritueux_C_and_Wine_Lot_01]
   - Sorgin — Gin de Terroirs / Gin & Sauvignon  [Fiches_vins_spiritueux_C_and_Wine_Lot_02]
   - Sérum Ancon 10 Años  [Fiches_spiritueux_C_and_Wine_Lot_01]

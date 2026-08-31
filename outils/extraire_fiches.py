@@ -50,23 +50,40 @@ def slug(*parties):
     base = re.sub(r"[^a-zA-Z0-9]+", "-", base).strip("-").lower()
     return re.sub(r"-{2,}", "-", base)[:70]
 
+# Détection de la catégorie. Certains mots ne sont fiables que dans le nom,
+# le style ou le lot : « ambré » ou « malt » décrivent aussi des rhums, et
+# « jus de » apparaît dans la composition de liqueurs.
+BIERE_NOM = (r"\bbi[èe]res?\b|\bblonde\b|\bbrune\b|ambr[ée]e|\btriple\b|\blager\b|"
+             r"\bstout\b|\bipa\b|pale ale|\bale\b|midinette|barriqu[ée]e")
+EPICERIE_NOM = (r"\bmiel\b|confiture|\bjus\b|huile d[’']olive|terrine|conserve|"
+                r"chocolat|tapenade|verger")
 MOTS_TYPE = [
-    ("bulles",     r"champagne|cr[ée]mant|effervescent|mousseux|brut nature|p[ée]tillant|prosecco"),
-    ("rose",       r"\bros[ée]s?\b|\brosato\b|\brosado\b"),
-    ("blanc",      r"vin blanc|\bblancs?\b|\bbianco\b|\bbranco\b|\bblanco\b|chardonnay|sauvignon|chenin|muscadet|riesling|vermentino|albari[nñ]o|viognier|s[ée]millon|gew[üu]rztraminer|pinot gris|melon de bourgogne|clairette|rolle|mauzac|savagnin|greco|fiano|gr[üu]ner veltliner|grillo|manseng|muscaris|souvignier|verdejo|colombard|marsanne|roussanne|petit meslier|altesse"),
+    ("spiritueux", r"rhum|whisky|whiskey|\bgin\b|vodka|liqueur|arm[ao]gnac|cognac|tequila|"
+                   r"mezcal|pastis|absinthe|eau-de-vie|infusion|mac[ée]ration|distill|"
+                   r"ap[ée]ritif|spritz|vermouth"),
+    ("bulles",     r"champagne|cr[ée]mant|effervescent|mousseux|brut nature|p[ée]tillant|prosecco|\bcava\b"),
     ("moelleux",   r"moelleux|liquoreux|doux naturel|macvin|vin de liqueur|sauternes|juran[çc]on"),
-    ("rouge",      r"vin rouge|\brouges?\b|\brosso\b|\btinto\b|syrah|grenache|malbec|merlot|cabernet|pinot noir|pinot nero|tempranillo|tannat|n[ée]grette|carignan|mourv[èe]dre|cinsault|gamay|sangiovese|nebbiolo|shiraz|aglianico|montepulciano|primitivo|dolcetto|barbera|nerello|monica|trousseau|poulsard|zweigelt|corvina|touriga|margaux|m[ée]doc|saint-[ée]milion"),
-    ("biere",      r"\bbi[èe]re|\bale\b|ipa\b|brass"),
-    ("spiritueux", r"infusion|mac[ée]ration|distill|ap[ée]ritif|spritz|verm[o]uth|sans alcool|rhum|whisky|whiskey|gin\b|vodka|liqueur|arm[ao]gnac|cognac|tequila|mezcal|pastis|absinthe|eau-de-vie"),
+    ("rose",       r"\bros[ée]s?\b|\brosato\b|\brosado\b"),
+    ("blanc",      r"vin blanc|\bblancs?\b|\bbianco\b|\bbranco\b|\bblanco\b|chardonnay|sauvignon|chenin|"
+                   r"muscadet|riesling|vermentino|albari[nñ]o|viognier|s[ée]millon|gew[üu]rztraminer|"
+                   r"pinot gris|melon de bourgogne|clairette|rolle|mauzac|savagnin|greco|fiano|"
+                   r"gr[üu]ner veltliner|grillo|manseng|muscaris|souvignier|verdejo|colombard|"
+                   r"marsanne|roussanne|petit meslier|altesse"),
+    ("rouge",      r"vin rouge|\brouges?\b|\brosso\b|\btinto\b|syrah|grenache|malbec|merlot|cabernet|"
+                   r"pinot noir|pinot nero|tempranillo|tannat|n[ée]grette|carignan|mourv[èe]dre|cinsault|"
+                   r"gamay|sangiovese|nebbiolo|shiraz|aglianico|montepulciano|primitivo|dolcetto|"
+                   r"barbera|nerello|monica|trousseau|poulsard|zweigelt|corvina|touriga|margaux|"
+                   r"m[ée]doc|saint-[ée]milion"),
 ]
 
-def deduire_type(*sources):
-    blob = " ".join(s for s in sources if s).lower()
-    # les spiritueux d'abord : « liqueur de framboise » ne doit pas devenir un rouge
-    for nom in ("spiritueux", "biere", "bulles", "moelleux", "rose", "blanc", "rouge"):
-        motif = dict(MOTS_TYPE)[nom]
-        if re.search(motif, blob):
-            return nom
+def deduire_type(nom, style, categorie, lot, *autres):
+    fort = " ".join(x for x in (nom, style, categorie) if x).lower()
+    tout = (fort + " " + " ".join(x for x in autres if x)).lower()
+    if lot and re.search(r"_bieres", lot.lower()):        return "biere"
+    if re.search(BIERE_NOM, fort):                        return "biere"
+    if re.search(EPICERIE_NOM, fort):                     return "epicerie"
+    for nom_type, motif in MOTS_TYPE:
+        if re.search(motif, tout): return nom_type
     return "autre"
 
 def photos_de(txt):
@@ -105,6 +122,7 @@ ETIQUETTES = [
     r"Producteur\s*/\s*domaine", r"PRODUCTEUR\s*/\s*MARQUE", r"Producteur", r"Domaine",
     r"Origine\s*/\s*appellation", r"Origine", r"Appellation", r"Terroir",
     r"Type", r"Couleur", r"Culture", r"Certification",
+    r"STYLE\s*/\s*TYPE", r"Style\s*/\s*type", r"STYLE", r"Style",
     r"Cépages?\s*\(s\)\s*/\s*composition", r"Cépages?\s*/\s*composition",
     r"Cépages?\s*/\s*assemblage", r"COMPOSITION\s*/\s*ÉLABORATION",
     r"Cépages?\s*\(s\)", r"Cépages?", r"Assemblage",
@@ -285,6 +303,7 @@ def p_generique(pages, lot):
                                 "degré alcoolique", "degré d’alcool", "degré d'alcool",
                                 "degrés", "alcool", "format"),
             millesime=prendre(c, "millésime / vieillissement", "millésime", "vieillissement"),
+            style=prendre(c, "style / type", "style"),
             visuel=visuel, nez=nez, bouche=prendre(c, "bouche"),
             accords=prendre(c, "accords mets & vins", "accords mets & vin", "accords",
                             "service & accords", "service"),
@@ -342,9 +361,12 @@ def normaliser(brut):
         ph = re.split(r"\bSources?\b|https?://", produit["phrase"])[0].strip(" .;,:")
         produit["phrase"] = (ph + ".") if ph else None
     produit["nom"] = re.sub(r"\s+", " ", brut["nom"]).strip(" —-·")
-    produit["type"] = deduire_type(brut.get("categorie"), produit["nom"],
+    produit["style"], _ = texte_utile(brut.get("style"))
+    produit["type"] = deduire_type(produit["nom"], produit.get("style"),
+                                   brut.get("categorie"), brut.get("lot"),
                                    produit.get("appellation"), produit.get("cepages"),
                                    produit.get("origine"), produit.get("visuel"))
+    produit["style"], _ = texte_utile(brut.get("style"))
     produit["photos"] = brut.get("photos", [])
     produit["sources"] = brut.get("sources", [])
     produit["lot"] = brut.get("lot")
