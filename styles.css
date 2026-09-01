@@ -1841,7 +1841,9 @@ a.ref-plus{text-decoration:none}
 .art-signature p{
   font-family:var(--serif);font-style:italic;font-size:1rem;line-height:1.6;color:var(--brun-doux);
 }
-.art-signature a{color:var(--bordeaux)}
+/* le lien du paragraphe seulement : sinon la règle repeint le texte des
+   boutons en bordeaux, et le bouton plein devient illisible sur son fond */
+.art-signature p a{color:var(--bordeaux)}
 .art-signature-ctas{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:1.3rem}
 .art-signature-ctas .ref-plus{margin:0}
 
