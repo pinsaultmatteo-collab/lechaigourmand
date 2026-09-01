@@ -213,6 +213,12 @@
     vide.hidden = true;
     vide.textContent = "Rien sous cette étiquette pour le moment — demandez au caviste, la cave en compte 300 autres.";
     etagereEl.appendChild(vide);
+    // chaque pastille a sa propre vitrine de huit bouteilles : une même
+    // référence peut donc figurer dans plusieurs, d'où data-vitrine
+    const vitrine = function(c, cat){
+      const liste = (c.dataset.vitrine || c.dataset.type || "").split(" ");
+      return liste.indexOf(cat) !== -1;
+    };
     filtresCave.forEach(function(btn){
       btn.addEventListener("click", function(){
         const cat = btn.dataset.cave;
@@ -222,9 +228,10 @@
         });
         let visibles = 0;
         bouteilles.forEach(function(c){
-          const montre = (cat === "tous" || c.dataset.type === cat);
+          const montre = vitrine(c, cat);
           c.classList.toggle("cache", !montre);
-          if(montre) visibles++;
+          // les cartes qui n'avaient jamais paru n'ont pas été révélées au scroll
+          if(montre){ c.classList.add("visible"); visibles++; }
         });
         vide.hidden = visibles > 0;
       });

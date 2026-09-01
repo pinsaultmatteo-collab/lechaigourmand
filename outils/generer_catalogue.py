@@ -144,6 +144,19 @@ def carte(p):
     <div class="ref-detail" hidden>{bloc_detail(p)}</div>
   </article>'''
 
+def dedoublonner(produits, bavard=True):
+    """Le même vin décrit dans deux lots : on garde la fiche la mieux remplie."""
+    garde = {}
+    for x in produits:
+        cle = (sans_accent(x["nom"]), sans_accent(x.get("producteur") or ""))
+        note = (sum(1 for v in x.values() if v), 1 if x.get("images") else 0,
+                1 if "REPRIS" in x.get("lot", "") else 0)
+        if cle not in garde or note > garde[cle][0]:
+            garde[cle] = (note, x)
+    if bavard and len(garde) < len(produits):
+        print(f"  {len(produits) - len(garde)} doublon(s) écarté(s)")
+    return [v[1] for v in garde.values()]
+
 def extraire(source, debut, fin):
     i = source.index(debut); j = source.index(fin, i) + len(fin)
     return source[i:j]
@@ -162,17 +175,7 @@ def main():
         '<li><a href="/cave-a-vin">La cave</a></li>',
         '<li><a href="/cave-a-vin">La cave</a></li>')
 
-    # le même vin décrit dans deux lots : on garde la fiche la mieux remplie
-    garde = {}
-    for x in produits:
-        cle = (sans_accent(x["nom"]), sans_accent(x.get("producteur") or ""))
-        note = (sum(1 for v in x.values() if v), 1 if x.get("images") else 0,
-                1 if "REPRIS" in x.get("lot", "") else 0)
-        if cle not in garde or note > garde[cle][0]:
-            garde[cle] = (note, x)
-    if len(garde) < len(produits):
-        print(f"  {len(produits) - len(garde)} doublon(s) écarté(s)")
-    produits = [v[1] for v in garde.values()]
+    produits = dedoublonner(produits)
 
     compte = {t: sum(1 for p in produits if p["type"] == t) for t in ORDRE}
     presents = [t for t in ORDRE if compte[t]]

@@ -428,9 +428,10 @@ h2.titre .accent-script{
   box-shadow:0 30px 50px -22px rgba(78,19,40,.4);
 }
 .b-photo{
-  display:block;aspect-ratio:3/4;margin:-1rem -1rem .9rem;overflow:hidden;
+  display:grid;place-items:center;aspect-ratio:3/4;margin:-1rem -1rem .9rem;overflow:hidden;
   background:linear-gradient(160deg,#f3ece0,#e8ddcb);
 }
+.b-photo .ref-silhouette{width:54%}
 .b-photo img{width:100%;height:100%;object-fit:cover;display:block;
   transition:transform .6s var(--transition)}
 .bouteille-carte:hover .b-photo img{transform:scale(1.05)}
