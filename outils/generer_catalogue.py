@@ -274,7 +274,7 @@ def main():
         </ol>
       </nav>
       <p class="sur-titre entree">La cave, référence par référence</p>
-      <h1 class="entree e2">{len(produits)} bouteilles,<br><span class="accent-script">choisies une par une.</span></h1>
+      <h1 class="entree e2">Chaque bouteille,<br><span class="accent-script">et son histoire.</span></h1>
       <p class="chapeau entree e3">
         Vins de vignerons indépendants, bières artisanales, spiritueux et épicerie fine —
         avec les notes de dégustation et les accords conseillés par Adrien.
@@ -343,7 +343,7 @@ def main():
     </p>
 
     <p class="etagere-note rv" style="margin-top:clamp(2rem,4vw,3rem)">
-      {len(produits)} références en cave et à l’épicerie, sélectionnées une à une par Adrien.
+      Toute la cave et l’épicerie fine, sélectionnées une à une par Adrien.
       Les prix sont donnés en boutique, où il vous conseillera avec plaisir.
     </p>
 
