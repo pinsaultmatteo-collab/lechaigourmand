@@ -17,7 +17,8 @@ from pathlib import Path
 from urllib.parse import quote
 
 sys.path.insert(0, str(Path(__file__).parent))
-from generer_catalogue import titre_propre, court, SINGULIER, silhouette, dedoublonner
+from generer_catalogue import (titre_propre, court, SINGULIER, silhouette,
+                               dedoublonner, carte_cachee, VOLET)
 
 # Deux rangs de quatre, d'abord les signatures puis les régionales : la vitrine
 # « Tout voir ».
@@ -92,7 +93,7 @@ def carte(p, rang, vitrines):
     else:
         visuel = silhouette(p["type"])
     cachee = "" if "tous" in vitrines else " cache"
-    return f'''      <a class="bouteille-carte rv{cachee}" href="{lien}" data-type="{p["type"]}" data-vitrine="{" ".join(vitrines)}" style="--d:{rang % 8 * .07:.2f}s">
+    return f'''      <a class="bouteille-carte rv{cachee}" href="{lien}" data-fiche="{e(p["id"])}" data-type="{p["type"]}" data-vitrine="{" ".join(vitrines)}" style="--d:{rang % 8 * .07:.2f}s">
         <span class="b-photo">{visuel}</span>
         <span class="b-type {p["type"]}">{SINGULIER[p["type"]]}</span>
         <h3 class="b-nom">{e(p["nom"])}</h3>
@@ -129,9 +130,14 @@ def main():
         illustrees = sum(1 for p in lot if p.get("images"))
         resume.append(f"{v} {len(lot)} ({illustrees} en photo)")
 
+    # les fiches complètes, masquées : le clic sur une bouteille ouvre le volet
+    # sur place au lieu de charger le catalogue puis d'y rechercher la référence
+    fiches = "\n      ".join(carte_cachee(p) for p in ordre)
     bloc = (DEBUT + "\n    <div class=\"etagere\" id=\"etagere\">\n"
             + "\n".join(carte(p, i, appartenance[p["id"]]) for i, p in enumerate(ordre))
-            + "\n    </div>\n    " + FIN)
+            + "\n    </div>\n"
+            + '    <div class="fiches-etagere" id="fichesEtagere" hidden>\n      '
+            + fiches + "\n    </div>\n    " + VOLET + "\n    " + FIN)
 
     for page in PAGES:
         s = Path(page).read_text(encoding="utf-8")

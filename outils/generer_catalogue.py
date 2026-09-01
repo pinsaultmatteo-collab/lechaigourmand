@@ -129,9 +129,9 @@ def carte(p):
                   f'width="675" height="900">')
     else:
         visuel = silhouette(t)
-    # les vues supplémentaires ne sont chargées qu'à l'ouverture de la fiche :
-    # un attribut suffit, pas la peine d'alourdir la grille de 150 images
-    vues = f' data-vues="{e(" ".join(p["images"]))}"' if len(p.get("images") or []) > 1 else ""
+    # les vues du volet ne sont chargées qu'à son ouverture : un attribut suffit,
+    # pas la peine d'alourdir la grille de trois cents images
+    vues = f' data-vues="{e(" ".join(p["images"]))}"' if p.get("images") else ""
     phrase = p.get("phrase") or p.get("bouche") or ""
     return f'''  <article class="ref-carte" data-type="{t}" data-cherche="{e(recherche)}"{vues}>
     <div class="ref-visuel">{visuel}</div>
@@ -146,6 +146,31 @@ def carte(p):
     </div>
     <div class="ref-detail" hidden>{bloc_detail(p)}</div>
   </article>'''
+
+def carte_cachee(p):
+    """La même fiche, sans sa vignette : le volet reconstruit la photo depuis
+    data-vues. Sert à l'étagère de l'accueil et de la page cave, pour ouvrir un
+    produit sans quitter la page ni recharger le catalogue entier."""
+    t = p["type"]
+    vues = f' data-vues="{e(" ".join(p["images"]))}"' if p.get("images") else ""
+    visuel = "" if p.get("images") else f'<div class="ref-visuel">{silhouette(t)}</div>'
+    return f'''<article class="ref-carte" id="fiche-{e(p["id"])}" data-type="{t}"{vues}>{visuel}
+      <div class="ref-corps">
+        <span class="b-type {t}">{SINGULIER[t]}</span>
+        <h3 class="ref-nom">{e(p["nom"])}</h3>
+        {f'<p class="ref-domaine">{e(court(p["producteur"]))}</p>' if p.get("producteur") else ''}
+        <p class="ref-prix">Prix en boutique</p>
+      </div>
+      <div class="ref-detail" hidden>{bloc_detail(p)}</div>
+    </article>'''
+
+VOLET = '''<div class="ref-volet" id="refVolet" hidden>
+  <div class="ref-volet-fond" data-fermer></div>
+  <aside class="ref-volet-corps" role="dialog" aria-modal="true" aria-labelledby="refVoletTitre">
+    <button class="ref-volet-fermer" type="button" data-fermer aria-label="Fermer la fiche">×</button>
+    <div class="ref-volet-contenu" id="refVoletContenu"></div>
+  </aside>
+</div>'''
 
 def dedoublonner(produits, bavard=True):
     """Le même vin décrit dans deux lots : on garde la fiche la mieux remplie."""

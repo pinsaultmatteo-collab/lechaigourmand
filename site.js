@@ -711,17 +711,20 @@
 /* ============================================================
    CATALOGUE — filtres, recherche et volet de détail
    ============================================================ */
-(function catalogue() {
-  const grille = document.getElementById("refGrille");
-  if (!grille) return;
+(function fiches() {
+  const volet = document.getElementById("refVolet");
+  if (!volet) return;
+  // le volet est en position fixe : accroché au body, aucun ancêtre ne peut le
+  // rogner (un filtre ou une transformation suffirait à en faire un cadre)
+  if (volet.parentElement !== document.body) document.body.appendChild(volet);
+  const voletContenu = document.getElementById("refVoletContenu");
 
-  const cartes = Array.from(grille.querySelectorAll(".ref-carte"));
+  const grille = document.getElementById("refGrille");
+  const cartes = grille ? Array.from(grille.querySelectorAll(".ref-carte")) : [];
   const filtres = Array.from(document.querySelectorAll(".ref-filtres .filtre"));
   const champ = document.getElementById("refCherche");
   const compte = document.getElementById("refCompte");
   const vide = document.getElementById("refVide");
-  const volet = document.getElementById("refVolet");
-  const voletContenu = document.getElementById("refVoletContenu");
 
   let categorie = "tous";
   let requete = "";
@@ -739,7 +742,7 @@
     limite += PAS;
     appliquer(true);
   });
-  grille.insertAdjacentElement("afterend", plus);
+  if (grille) grille.insertAdjacentElement("afterend", plus);
 
   // « Château Lévêque » et « chateau leveque » doivent se trouver
   const sansAccent = (t) =>
@@ -807,19 +810,21 @@
     const prix = carte.querySelector(".ref-prix");
     const detail = carte.querySelector(".ref-detail");
 
-    // recto, verso : les vues supplémentaires attendent dans data-vues et ne
-    // sont chargées qu'ici, à l'ouverture de la fiche
+    // recto, verso : les vues attendent dans data-vues et ne sont chargées
+    // qu'ici, à l'ouverture de la fiche
     const vues = (carte.dataset.vues || "").split(" ").filter(Boolean);
-    const galerie = vues.length > 1
+    const legende = nom ? nom.textContent : "";
+    const fleches = vues.length > 1
+      ? '<button type="button" class="fdv-fleche avant" data-pas="-1" aria-label="Vue précédente">' +
+          '<span aria-hidden="true">‹</span></button>' +
+        '<button type="button" class="fdv-fleche apres" data-pas="1" aria-label="Vue suivante">' +
+          '<span aria-hidden="true">›</span></button>' +
+        '<span class="fdv-rang" aria-hidden="true">1&#8202;/&#8202;' + vues.length + "</span>"
+      : "";
+    const galerie = vues.length
       ? '<div class="fdv-photo">' +
-          '<img src="' + vues[0] + '" alt="" width="675" height="900">' +
-        "</div>" +
-        '<div class="fdv-vignettes" role="group" aria-label="Autres vues">' +
-          vues.map(function (u, i) {
-            return '<button type="button" class="fdv-vignette' + (i ? "" : " actif") +
-                   '" data-vue="' + u + '" aria-label="Vue ' + (i + 1) + '">' +
-                   '<img src="' + u + '" alt="" loading="lazy" width="675" height="900"></button>';
-          }).join("") +
+          '<img src="' + vues[0] + '" alt="' + legende.replace(/"/g, "&quot;") +
+          '" width="675" height="900">' + fleches +
         "</div>"
       : (visuel ? '<div class="fdv-photo">' + visuel.innerHTML + "</div>" : "");
 
@@ -847,13 +852,23 @@
     if (img) img.loading = "eager";
 
     const principale = voletContenu.querySelector(".fdv-photo img");
-    const vignettes = voletContenu.querySelectorAll(".fdv-vignette");
-    vignettes.forEach(function (b) {
-      b.addEventListener("click", function () {
-        principale.src = b.dataset.vue;
-        vignettes.forEach(function (a) { a.classList.toggle("actif", a === b); });
-      });
+    const rang = voletContenu.querySelector(".fdv-rang");
+    let vue = 0;
+    function montrer(pas) {
+      vue = (vue + pas + vues.length) % vues.length;
+      principale.src = vues[vue];
+      if (rang) rang.innerHTML = (vue + 1) + "&#8202;/&#8202;" + vues.length;
+    }
+    voletContenu.querySelectorAll(".fdv-fleche").forEach(function (b) {
+      b.addEventListener("click", function () { montrer(Number(b.dataset.pas)); });
     });
+    if (vues.length > 1) {
+      // les flèches du clavier font défiler aussi, tant que le volet est ouvert
+      volet.dataset.defile = "1";
+      volet.parcourir = montrer;
+    } else {
+      delete volet.dataset.defile;
+    }
 
     volet.hidden = false;
     document.body.style.overflow = "hidden";
@@ -872,21 +887,44 @@
     }
   }
 
-  grille.addEventListener("click", (e) => {
-    const bouton = e.target.closest(".ref-ouvrir");
-    if (!bouton) return;
-    declencheur = bouton;
-    ouvrir(bouton.closest(".ref-carte"));
-  });
-
-  if (volet) {
-    volet.addEventListener("click", (e) => {
-      if (e.target.closest("[data-fermer]")) fermerVolet();
-    });
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") fermerVolet();
+  if (grille) {
+    grille.addEventListener("click", (e) => {
+      const bouton = e.target.closest(".ref-ouvrir");
+      if (!bouton) return;
+      declencheur = bouton;
+      ouvrir(bouton.closest(".ref-carte"));
     });
   }
+
+  // L'étagère de l'accueil et de la page cave porte les mêmes fiches, masquées :
+  // le clic ouvre le volet sur place. Le lien vers le catalogue reste en repli
+  // si le script n'a pas tourné.
+  const etagere = document.getElementById("etagere");
+  if (etagere) {
+    etagere.addEventListener("click", (e) => {
+      const lien = e.target.closest(".bouteille-carte[data-fiche]");
+      if (!lien || e.metaKey || e.ctrlKey || e.shiftKey || e.button > 0) return;
+      const fiche = document.getElementById("fiche-" + lien.dataset.fiche);
+      if (!fiche) return;
+      e.preventDefault();
+      declencheur = lien;
+      ouvrir(fiche);
+    });
+  }
+
+  volet.addEventListener("click", (e) => {
+    if (e.target.closest("[data-fermer]")) fermerVolet();
+  });
+  document.addEventListener("keydown", (e) => {
+    if (volet.hidden) return;
+    if (e.key === "Escape") fermerVolet();
+    if (volet.dataset.defile && (e.key === "ArrowLeft" || e.key === "ArrowRight")) {
+      e.preventDefault();
+      volet.parcourir(e.key === "ArrowLeft" ? -1 : 1);
+    }
+  });
+
+  if (!grille) return;      // la suite ne concerne que le catalogue
 
   // ?type=rouge (ou #rouge) ouvre une catégorie, ?q=... ouvre une référence :
   // c'est ce que visent les bouteilles de l'étagère, sur l'accueil et la page cave
