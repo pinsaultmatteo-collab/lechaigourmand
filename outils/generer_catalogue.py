@@ -129,8 +129,11 @@ def carte(p):
                   f'width="675" height="900">')
     else:
         visuel = silhouette(t)
+    # les vues supplémentaires ne sont chargées qu'à l'ouverture de la fiche :
+    # un attribut suffit, pas la peine d'alourdir la grille de 150 images
+    vues = f' data-vues="{e(" ".join(p["images"]))}"' if len(p.get("images") or []) > 1 else ""
     phrase = p.get("phrase") or p.get("bouche") or ""
-    return f'''  <article class="ref-carte" data-type="{t}" data-cherche="{e(recherche)}">
+    return f'''  <article class="ref-carte" data-type="{t}" data-cherche="{e(recherche)}"{vues}>
     <div class="ref-visuel">{visuel}</div>
     <div class="ref-corps">
       <span class="b-type {t}">{SINGULIER[t]}</span>

@@ -49,10 +49,20 @@ def etiquettes():
         d[Path(chemin).stem] = texte
     return d
 
-# Mentions légales : elles trahissent une contre-étiquette. À preuve égale on
-# préfère montrer le recto, c'est lui qui porte le nom du vin.
-DOS = re.compile(r"mis en bouteille|sulfites|contient|product of|produit de|"
-                 r"consommer avec mod|www\.|\d{8,}|nutri|ingredients", re.I)
+# Mentions légales et code-barres : ils trahissent une contre-étiquette. Le
+# recto porte le nom du vin, c'est lui qu'on veut voir en premier.
+DOS = re.compile(r"mis en bouteille|sulfit|contient|product of|produit de|"
+                 r"consommer avec mod|www\.|\d{8,}|nutri|ingredient|conserver|"
+                 r"abus d.alcool|femme enceinte|bouteille au ch", re.I)
+CODEBARRE = re.compile(r"\d[\d\s-]{9,}")
+
+def face(texte):
+    """recto (l'étiquette), verso (la contre-étiquette) ou muet (rien de lu)."""
+    marques = len(DOS.findall(texte)) + len(CODEBARRE.findall(texte))
+    mots = len([m for m in re.split(r"[^A-Za-zÀ-ÿ]+", texte) if len(m) > 2])
+    if marques >= 2 or (marques == 1 and mots > 8):
+        return "verso"
+    return "muet" if mots == 0 else "recto"
 
 def poids_des_mots(fiches):
     """« Fumées Blanches » revient sur six cuvées du même lot : ce mot ne
@@ -79,15 +89,15 @@ def score(produit, texte, poids=None):
     millesime = str(produit.get("millesime") or "")
     if millesime and millesime in texte:
         s += 0.5
-    if DOS.search(texte):
-        s *= 0.8                       # probable contre-étiquette
+    if face(texte) == "verso":
+        s *= 0.75                      # une contre-étiquette fait une piètre vignette
     return s
 
 def main():
     if "--lire" in sys.argv:
         lire_etiquettes()
     if not ETIQUETTES.exists():
-        sys.exit("étiquettes absentes : lancer d'abord --simuler --lire")
+        sys.exit("étiquettes absentes : lancer d'abord --lire")
 
     lus = etiquettes()
     produits = json.load(open("data/produits.json"))
@@ -97,14 +107,12 @@ def main():
     for p in produits:
         lots.setdefault(p.get("lot") or "", []).append(p)
 
-    confirmes = corriges = orphelins = 0
-    rapport, a_verifier = [], []
+    # --- passe 1 : appariement optimal à l'intérieur de chaque lot -----------
+    candidats, contexte = [], {}
     for lot, fiches in lots.items():
         vues = sorted({v for p in fiches for v in p["photos"] if v in lus})
         if not vues:
             continue
-        # appariement optimal fiche / photo sur l'ensemble du lot : le glouton
-        # se laissait piéger par les étiquettes qui se ressemblent
         poids = poids_des_mots(fiches)
         brut = np.zeros((len(fiches), len(vues)))
         M = np.zeros((len(fiches), len(vues)))
@@ -112,38 +120,82 @@ def main():
             for j, v in enumerate(vues):
                 brut[i, j] = score(p, lus[v], poids)
                 M[i, j] = brut[i, j] + (FIDELITE if v in p["photos"][:1] else 0)
-        lignes, colonnes = linear_sum_assignment(-M)
+        for i, j in zip(*linear_sum_assignment(-M)):
+            if brut[i, j] >= SEUIL:
+                candidats.append((brut[i, j], fiches[i]["id"], vues[j]))
+        # qui revendique quoi : sert à savoir si une voisine est libre de droits
+        revendique = {}
+        for v in vues:
+            notes = sorted(((score(p, lus[v], poids), p["id"]) for p in fiches), reverse=True)
+            revendique[v] = notes[0] if notes else (0.0, None)
+        contexte[lot] = revendique
 
-        # on ne retient que les appariements que l'étiquette justifie d'elle-même
-        choix = {fiches[i]["id"]: (vues[j], brut[i, j]) for i, j in zip(lignes, colonnes)
-                 if brut[i, j] >= SEUIL}
-        pris_v = {v for v, _ in choix.values()}
+    # --- passe 2 : arbitrage entre lots, la meilleure preuve l'emporte -------
+    # les plages se chevauchent (…3160-3179 puis 3180-3199) : deux lots peuvent
+    # réclamer la même photo, on tranche au score et non à l'ordre de lecture
+    attribue, pris_v = {}, set()
+    for note, pid, v in sorted(candidats, key=lambda c: -c[0]):
+        if pid in attribue or v in pris_v:
+            continue
+        attribue[pid] = (v, note); pris_v.add(v)
 
-        # une seule photo par fiche : celle dont l'étiquette porte son nom.
-        # Les contre-étiquettes ne sont de toute façon jamais affichées.
-        for p in fiches:
-            trouve = choix.get(p["id"])
-            if trouve:
-                v, s = trouve
-                if v != (p["photos"] or [None])[0]:
-                    corriges += 1
-                    rapport.append((p["nom"][:40], p["photos"][:2], [v], round(s, 1)))
-                else:
-                    confirmes += 1
-                p["photos"] = [v]
-                continue
+    # --- passe 3 : recto devant, verso en seconde vue ------------------------
+    def voisines(v):
+        n = int(v.split("_")[1])
+        return [f"IMG_{n + 1}", f"IMG_{n - 1}"]
+
+    confirmes = corriges = orphelins = 0
+    rapport, a_verifier = [], []
+    for p in produits:
+        if not p["photos"]:
+            continue
+        revendique = contexte.get(p.get("lot") or "", {})
+        trouve = attribue.get(p["id"])
+
+        if not trouve:
             # étiquette illisible : on garde la référence du PDF si personne
             # d'autre ne l'a réclamée, sinon la fiche part sans photo
-            orphelins += 1
-            reste = [v for v in p["photos"][:1] if v not in pris_v]
-            a_verifier.append((p["nom"][:40], p["id"], reste[0] if reste else "aucune"))
+            reste = [v for v in p["photos"][:1] if v in lus and v not in pris_v]
+            pris_v.update(reste)
+            if any(v in lus for v in p["photos"]):   # la photo existe, le doute aussi
+                orphelins += 1
+                a_verifier.append((p["nom"][:40], p["id"], reste[0] if reste else "aucune"))
             p["photos"] = reste
+            continue
 
-    print(f"confirmées : {confirmes}   corrigées : {corriges}   sans étiquette lisible : {orphelins}")
-    for nom, avant, apres, s in rapport[:40]:
-        print(f"  {nom:42s} {str(avant):26s} → {str(apres):26s} (score {s})")
-    if len(rapport) > 40:
-        print(f"  … et {len(rapport) - 40} autres")
+        v, note = trouve
+        # tombé sur une contre-étiquette ? le recto de la même bouteille dort
+        # peut-être juste à côté, la prise de vue va par paires
+        if face(lus[v]) == "verso":
+            mieux = next((x for x in voisines(v) if x in lus and x not in pris_v
+                          and face(lus[x]) == "recto"), None)
+            if mieux:
+                pris_v.discard(v); pris_v.add(mieux); v = mieux
+
+        # seconde vue : la voisine libre. Le verso porte souvent le nom du vin
+        # lui aussi — c'est la même bouteille, pas la fiche du voisin.
+        def sans_proprietaire(x):
+            n, qui = revendique.get(x, (0.0, None))
+            return x in lus and x not in pris_v and (n < SEUIL or qui == p["id"])
+        vues = [v]
+        autre = next((x for x in voisines(v) if sans_proprietaire(x)), None)
+        if autre:
+            pris_v.add(autre); vues.append(autre)
+
+        if vues[0] != p["photos"][0]:
+            corriges += 1
+            rapport.append((p["nom"][:40], p["photos"][:2], vues, round(note, 1)))
+        else:
+            confirmes += 1
+        p["photos"] = vues
+
+    deux = sum(1 for p in produits if len(p["photos"]) > 1)
+    print(f"confirmées : {confirmes}   corrigées : {corriges}   "
+          f"sans étiquette lisible : {orphelins}   fiches à deux vues : {deux}")
+    for nom, avant, apres, sc in rapport[:30]:
+        print(f"  {nom:42s} {str(avant):26s} → {str(apres):26s} (score {sc})")
+    if len(rapport) > 30:
+        print(f"  … et {len(rapport) - 30} autres")
 
     if "--simuler" in sys.argv:
         print("\n(simulation : data/produits.json inchangé)")
@@ -159,7 +211,7 @@ def main():
     print(f"détail dans data/photos-a-verifier.csv ({len(a_verifier) + len(rapport)} lignes)")
 
     json.dump(produits, open("data/produits.json", "w"), ensure_ascii=False, indent=1)
-    print("\ndata/produits.json mis à jour — relancer convertir_photos.py puis generer_catalogue.py")
+    print("data/produits.json mis à jour — relancer convertir_photos.py puis generer_catalogue.py")
 
 if __name__ == "__main__":
     main()

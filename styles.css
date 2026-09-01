@@ -1660,6 +1660,15 @@ a.ref-plus{text-decoration:none}
 }
 .fdv-photo img{width:100%;height:100%;object-fit:cover}
 .fdv-photo .ref-silhouette{width:48%}
+.fdv-vignettes{display:flex;gap:.5rem;margin-top:.6rem}
+.fdv-vignette{
+  flex:0 0 54px;aspect-ratio:3/4;padding:0;cursor:pointer;overflow:hidden;
+  border:1px solid rgba(122,99,85,.28);border-radius:8px;background:#f3ece0;
+  transition:border-color .3s,transform .3s var(--transition);
+}
+.fdv-vignette img{width:100%;height:100%;object-fit:cover;display:block}
+.fdv-vignette:hover{transform:translateY(-2px);border-color:rgba(122,99,85,.6)}
+.fdv-vignette.actif{border-color:var(--bordeaux);box-shadow:0 0 0 2px rgba(124,33,64,.18)}
 .fdv-titre{font-family:var(--serif);font-weight:600;font-size:clamp(1.5rem,3vw,2rem);color:var(--brun);line-height:1.2}
 .fdv-domaine{color:var(--bordeaux);font-weight:500;margin-top:.25rem}
 .fdv-prix{

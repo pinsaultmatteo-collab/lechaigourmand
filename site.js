@@ -807,9 +807,25 @@
     const prix = carte.querySelector(".ref-prix");
     const detail = carte.querySelector(".ref-detail");
 
+    // recto, verso : les vues supplémentaires attendent dans data-vues et ne
+    // sont chargées qu'ici, à l'ouverture de la fiche
+    const vues = (carte.dataset.vues || "").split(" ").filter(Boolean);
+    const galerie = vues.length > 1
+      ? '<div class="fdv-photo">' +
+          '<img src="' + vues[0] + '" alt="" width="675" height="900">' +
+        "</div>" +
+        '<div class="fdv-vignettes" role="group" aria-label="Autres vues">' +
+          vues.map(function (u, i) {
+            return '<button type="button" class="fdv-vignette' + (i ? "" : " actif") +
+                   '" data-vue="' + u + '" aria-label="Vue ' + (i + 1) + '">' +
+                   '<img src="' + u + '" alt="" loading="lazy" width="675" height="900"></button>';
+          }).join("") +
+        "</div>"
+      : (visuel ? '<div class="fdv-photo">' + visuel.innerHTML + "</div>" : "");
+
     voletContenu.innerHTML =
       '<div class="fdv-tete">' +
-        (visuel ? '<div class="fdv-photo">' + visuel.innerHTML + "</div>" : "") +
+        (galerie ? "<div>" + galerie + "</div>" : "") +
         "<div>" +
           (badge ? badge.outerHTML : "") +
           (nom ? '<h2 class="fdv-titre" id="refVoletTitre">' + nom.textContent + "</h2>" : "") +
@@ -829,6 +845,15 @@
     // la photo du volet n'est plus paresseuse : elle doit s'afficher tout de suite
     const img = voletContenu.querySelector("img");
     if (img) img.loading = "eager";
+
+    const principale = voletContenu.querySelector(".fdv-photo img");
+    const vignettes = voletContenu.querySelectorAll(".fdv-vignette");
+    vignettes.forEach(function (b) {
+      b.addEventListener("click", function () {
+        principale.src = b.dataset.vue;
+        vignettes.forEach(function (a) { a.classList.toggle("actif", a === b); });
+      });
+    });
 
     volet.hidden = false;
     document.body.style.overflow = "hidden";
