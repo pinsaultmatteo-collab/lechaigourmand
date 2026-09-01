@@ -817,7 +817,14 @@
           (prix ? '<p class="fdv-prix">' + prix.textContent + "</p>" : "") +
         "</div>" +
       "</div>" +
-      (detail ? detail.innerHTML : "");
+      (detail ? detail.innerHTML : "") +
+      // rien ne se paie en ligne : le Click & Collect passe par un appel
+      '<div class="fdv-actions">' +
+        '<p class="fdv-mot">Pas de vente en ligne : un appel suffit, la bouteille ' +
+        'est mise de côté et vous attend au Chai de Francazal.</p>' +
+        '<a class="btn btn-plein" href="tel:+33685362265">Appeler le 06 85 36 22 65</a>' +
+        '<a class="btn ref-plus" href="/nos-adresses">Découvrir au Chai</a>' +
+      "</div>";
 
     // la photo du volet n'est plus paresseuse : elle doit s'afficher tout de suite
     const img = voletContenu.querySelector("img");

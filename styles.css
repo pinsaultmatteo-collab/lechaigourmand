@@ -1685,6 +1685,16 @@ a.ref-plus{text-decoration:none}
   margin-top:1.4rem;background:var(--papier);border:1px solid rgba(122,99,85,.2);
   border-radius:14px;padding:1.1rem 1.2rem;
 }
+.fdv-actions{
+  margin-top:1.8rem;padding-top:1.4rem;border-top:1px solid rgba(122,99,85,.22);
+  display:flex;flex-wrap:wrap;gap:.7rem;
+}
+.fdv-mot{
+  flex:1 1 100%;margin-bottom:.4rem;
+  font-family:var(--serif);font-style:italic;font-size:.95rem;line-height:1.5;color:var(--brun-doux);
+}
+.fdv-actions .btn{padding:.85rem 1.5rem;font-size:.72rem}
+.fdv-actions .ref-plus{margin:0}
 .fd-sources{margin-top:1.5rem;padding-top:1rem;border-top:1px dotted rgba(122,99,85,.3)}
 .fd-sources ul{list-style:none;display:flex;flex-wrap:wrap;gap:.5rem}
 .fd-sources a{
