@@ -50,40 +50,155 @@ def slug(*parties):
     base = re.sub(r"[^a-zA-Z0-9]+", "-", base).strip("-").lower()
     return re.sub(r"-{2,}", "-", base)[:70]
 
-# Détection de la catégorie. Certains mots ne sont fiables que dans le nom,
-# le style ou le lot : « ambré » ou « malt » décrivent aussi des rhums, et
-# « jus de » apparaît dans la composition de liqueurs.
+# ---------------------------------------------------------------------------
+# Détection de la catégorie.
+#
+# Un simple sac de mots ne suffit pas : « Cabernet Sauvignon » contient
+# « sauvignon », « poivre blanc » contient « blanc », « ambré » décrit aussi
+# bien une bière qu'un rhum. On procède donc par cascade, du signal le plus
+# sûr au plus faible, et chaque signal est cherché dans le seul champ où il
+# veut dire quelque chose.
+# ---------------------------------------------------------------------------
 BIERE_NOM = (r"\bbi[èe]res?\b|\bblonde\b|\bbrune\b|ambr[ée]e|\btriple\b|\blager\b|"
              r"\bstout\b|\bipa\b|pale ale|\bale\b|midinette|barriqu[ée]e")
-EPICERIE_NOM = (r"\bmiel\b|confiture|\bjus\b|huile d[’']olive|terrine|conserve|"
+EPICERIE_NOM = (r"\bmiel\b|confiture|\bjus\b|huile d[’\']olive|terrine|conserve|"
                 r"chocolat|tapenade|verger")
-MOTS_TYPE = [
-    ("spiritueux", r"rhum|whisky|whiskey|\bgin\b|vodka|liqueur|arm[ao]gnac|cognac|tequila|"
-                   r"mezcal|pastis|absinthe|eau-de-vie|infusion|mac[ée]ration|distill|"
-                   r"ap[ée]ritif|spritz|vermouth"),
-    ("bulles",     r"champagne|cr[ée]mant|effervescent|mousseux|brut nature|p[ée]tillant|prosecco|\bcava\b"),
-    ("moelleux",   r"moelleux|liquoreux|doux naturel|macvin|vin de liqueur|sauternes|juran[çc]on"),
-    ("rose",       r"\bros[ée]s?\b|\brosato\b|\brosado\b"),
-    ("blanc",      r"vin blanc|\bblancs?\b|\bbianco\b|\bbranco\b|\bblanco\b|chardonnay|sauvignon|chenin|"
-                   r"muscadet|riesling|vermentino|albari[nñ]o|viognier|s[ée]millon|gew[üu]rztraminer|"
-                   r"pinot gris|melon de bourgogne|clairette|rolle|mauzac|savagnin|greco|fiano|"
-                   r"gr[üu]ner veltliner|grillo|manseng|muscaris|souvignier|verdejo|colombard|"
-                   r"marsanne|roussanne|petit meslier|altesse"),
-    ("rouge",      r"vin rouge|\brouges?\b|\brosso\b|\btinto\b|syrah|grenache|malbec|merlot|cabernet|"
-                   r"pinot noir|pinot nero|tempranillo|tannat|n[ée]grette|carignan|mourv[èe]dre|cinsault|"
-                   r"gamay|sangiovese|nebbiolo|shiraz|aglianico|montepulciano|primitivo|dolcetto|"
-                   r"barbera|nerello|monica|trousseau|poulsard|zweigelt|corvina|touriga|margaux|"
-                   r"m[ée]doc|saint-[ée]milion"),
+SPIRITUEUX = (r"rhum|whisky|whiskey|\bgin\b|vodka|liqueur|arm[ao]gnac|cognac|tequila|"
+              r"mezcal|pastis|absinthe|eau-de-vie|distill|vermouth|calvados|\bmarc\b|"
+              r"grappa|\bsak[ée]\b|bourbon|\bscotch\b|single malt|ap[ée]ritif|spritz|cr[èe]me irlandaise|\balcool\b")
+BULLES = (r"champagne|cr[ée]mant|effervescent|mousseux|brut nature|\bbrut\b|p[ée]tillant|"
+          r"prosecco|\bcava\b|m[ée]thode traditionnelle|blanquette|franciacorta|"
+          r"p[ée]t[' ]?nat|\bspumante\b|\bbulles?\b|d[’\']asti")
+BULLES_ROBE = r"\bbulles?\b|effervescen|perlant|mousse fine"
+# « rose » est une fleur, « rosé » est un vin : ici l'accent compte, donc ces
+# deux motifs sont cherchés sur le texte NON désaccentué. Sans quoi le Barolo,
+# qui sent la rose fanée, finirait au rayon des rosés.
+ROSE_ROBE = r"robe ros[ée]|ros[ée]e? p[âa]le|ros[ée] p[êe]che|saumon|corail|teinte ros[ée]"
+ROSE_ACCENT = r"\brosés?\b|\brosée?s?\b|\brosato\b|\brosado\b"
+MOELLEUX = (r"moelleux|liquoreux|doux naturel|macvin|vin de liqueur|sauternes|barsac|"
+            r"juran[çc]on|monbazillac|banyuls|\bmaury\b|rivesaltes|pineau|coteaux du layon|"
+            r"vendanges tardives|s[ée]lection de grains")
+ROSE_MOT = r"\bros[ée]s?\b|\brosato\b|\brosado\b|\bclairet\b|\bgris de gris\b"
+
+# Cépages : les noms composés sont testés avant les simples, sinon
+# « Cabernet Sauvignon » serait compté comme un blanc.
+CEPAGES = [
+    ("rouge", ["cabernet sauvignon", "cabernet franc", "cabernet", "pinot noir", "pinot nero",
+               "grenache noir", "petit verdot", "fer servadou", "nero d avola", "touriga nacional",
+               "syrah", "shiraz", "merlot", "malbec", "tannat", "negrette", "carignan",
+               "mourvedre", "cinsault", "gamay", "sangiovese", "nebbiolo", "aglianico",
+               "montepulciano", "primitivo", "dolcetto", "barbera", "nerello", "monica",
+               "trousseau", "poulsard", "ploussard", "zweigelt", "corvina", "touriga",
+               "tempranillo", "bobal", "mencia", "xinomavro", "agiorgitiko", "marselan",
+               "alicante", "duras", "braucol", "prunelard", "castets", "morrastel",
+               "cannonau", "saperavi", "pinotage", "zinfandel", "blaufrankisch", "lledoner",
+               "counoise", "terret noir", "vaccarese", "muscardin", "abouriou", "jurancon noir"]),
+    ("blanc", ["sauvignon blanc", "sauvignon gris", "grenache blanc", "grenache gris",
+               "pinot blanc", "pinot gris", "petit manseng", "gros manseng", "melon de bourgogne",
+               "souvignier gris", "ugni blanc", "folle blanche", "len de l el", "loin de l oeil",
+               "terret blanc", "clairette blanche", "muscat", "chardonnay", "sauvignon",
+               "chenin", "muscadet", "riesling", "vermentino", "rolle", "albarino", "alvarinho",
+               "viognier", "semillon", "gewurztraminer", "clairette", "mauzac", "savagnin",
+               "greco", "fiano", "gruner veltliner", "grillo", "muscaris", "verdejo",
+               "colombard", "marsanne", "roussanne", "petit meslier", "altesse", "jacquere",
+               "bourboulenc", "picpoul", "piquepoul", "macabeu", "aligote", "baco", "trebbiano",
+               "garganega", "glera", "moscato", "torrontes", "assyrtiko", "godello", "arinto",
+               "verdicchio", "malvoisie", "sylvaner", "auxerrois", "romorantin", "chasselas",
+               "manseng", "roussette", "vermentinu", "arneis", "cortese", "pecorino",
+               "solaris", "johanniter", "cabernet blanc"]),
 ]
 
-def deduire_type(nom, style, categorie, lot, *autres):
-    fort = " ".join(x for x in (nom, style, categorie) if x).lower()
-    tout = (fort + " " + " ".join(x for x in autres if x)).lower()
+# La robe est le signal le plus fiable quand les cépages manquent.
+ROBE = [("rose",  r"ros[ée]|saumon|p[ée]tale|corail|litchi|framboise p[âa]le|p[êe]che"),
+        ("rouge", r"rubis|grenat|pourpre|carmin|violac|cerise noire|sombre|profonde|"
+                  r"\bnoire?\b|tuil[ée]|brique|acajou"),
+        ("blanc", r"dor[ée]|\bor\b|paille|citron|jaune|reflets verts|verts reflets|"
+                  r"argent|cristallin|blanc")]
+
+# Appellations sans ambiguïté de couleur, en dernier recours.
+APPELLATION = [("rouge", r"pauillac|saint-julien|saint-est[èe]phe|margaux|m[ée]doc|pomerol|"
+                         r"saint-[ée]milion|fronsac|listrac|moulis|haut-m[ée]doc|"
+                         r"chambertin|vosne-roman[ée]e|pommard|volnay|nuits-saint-georges|"
+                         r"chambolle|morey-saint-denis|vougeot|aloxe-corton|beaujolais|"
+                         r"brouilly|fleurie|morgon|moulin-[àa]-vent|ch[ée]nas|julienas|"
+                         r"c[ôo]te-r[ôo]tie|cornas|saint-joseph|madiran|cahors|fitou|"
+                         r"corbi[èe]res|minervois|fronton|gigondas|vacqueyras|rasteau|"
+                         r"bandol rouge|chinon|bourgueil|saumur-champigny|barolo|barbaresco|"
+                         r"chianti|brunello|rioja|ribera del duero"),
+               ("blanc", r"chablis|meursault|puligny|chassagne|corton-charlemagne|sancerre|"
+                         r"pouilly-fum[ée]|pouilly-fuiss[ée]|vouvray|montlouis|muscadet|"
+                         r"condrieu|hermitage blanc|jasni[èe]res|quincy|reuilly|menetou|"
+                         r"cassis blanc|picpoul|entre-deux-mers|graves blanc|alsace|"
+                         r"limoux blanc|saint-v[ée]ran|viré-cless[ée]|rully blanc")]
+
+def _robe(visuel):
+    """Ne garde que la description de la couleur : au-delà de « Nez », ce sont
+    des arômes, et un rouge peut très bien sentir la rose ou le pamplemousse."""
+    return re.split(r"\bnez\b|\bbouche\b|\bpalais\b|\bar[ôo]mes?\b",
+                    (visuel or "").lower())[0]
+
+def _minuscule(t):
+    t = unicodedata.normalize("NFKD", t or "").encode("ascii", "ignore").decode()
+    return t.lower()
+
+def _couleur_cepages(txt):
+    """Compte les cépages rouges et blancs, les noms composés en premier."""
+    t = " " + re.sub(r"[^a-z0-9]+", " ", _minuscule(txt)) + " "
+    scores = {"rouge": 0, "blanc": 0}
+    rangs = {}
+    paires = sorted(((c, n) for c, noms in CEPAGES for n in noms),
+                    key=lambda x: -len(x[1]))
+    for couleur, nom in paires:
+        motif = " " + nom + " "
+        while motif in t:
+            rangs.setdefault(couleur, t.index(motif))
+            scores[couleur] += 1
+            t = t.replace(motif, " " * len(motif), 1)
+    premier = min(rangs, key=rangs.get) if rangs else None
+    if scores["rouge"] > scores["blanc"]: return "rouge"
+    if scores["blanc"] > scores["rouge"]: return "blanc"
+    if scores["rouge"]:                   return premier          # à égalité, le cépage dominant
+    return None
+
+def deduire_type(nom, style, categorie, lot, appellation=None, cepages=None,
+                 origine=None, visuel=None, alcool=None, phrase=None):
+    fort = _minuscule(" ".join(x for x in (nom, style, categorie) if x))
+    etiquette = _minuscule(" ".join(x for x in (nom, style, categorie, appellation) if x))
+    composition = _minuscule(" ".join(x for x in (etiquette, cepages) if x))
+
     if lot and re.search(r"_bieres", lot.lower()):        return "biere"
     if re.search(BIERE_NOM, fort):                        return "biere"
     if re.search(EPICERIE_NOM, fort):                     return "epicerie"
-    for nom_type, motif in MOTS_TYPE:
-        if re.search(motif, tout): return nom_type
+    if re.search(SPIRITUEUX, composition):                return "spiritueux"
+    try:
+        if alcool and float(str(alcool).replace(",", ".")) >= 20: return "spiritueux"
+    except ValueError:
+        pass
+    if re.search(BULLES, etiquette):                      return "bulles"
+    if re.search(MOELLEUX, etiquette):                    return "moelleux"
+    if re.search(ROSE_MOT, etiquette):                    return "rose"
+
+    # la robe tranche avant les cépages : un rosé naît de raisins rouges,
+    # et une bulle sans mention d'appellation se voit à son effervescence
+    robe = _robe(visuel)
+    accroche = (phrase or "").lower()
+    if re.search(BULLES_ROBE, robe) or re.search(BULLES, _minuscule(accroche)): return "bulles"
+    if re.search(ROSE_ROBE, robe) or re.search(ROSE_ACCENT, robe) \
+       or re.match(r"\s*rosés?\b", accroche):                                 return "rose"
+
+    couleur = _couleur_cepages(cepages)
+    if couleur: return couleur
+
+    robe = _minuscule(visuel)
+    for couleur, motif in ROBE:
+        if re.search(motif, robe): return couleur
+
+    if re.search(r"\brouges?\b|\brosso\b|\btinto\b", etiquette):  return "rouge"
+    if re.search(r"\bblancs?\b|\bbianco\b|\bbranco\b|\bblanco\b", etiquette): return "blanc"
+
+    lieu = _minuscule(" ".join(x for x in (appellation, origine, nom) if x))
+    for couleur, motif in APPELLATION:
+        if re.search(motif, lieu): return couleur
     return "autre"
 
 def photos_de(txt):
@@ -365,7 +480,8 @@ def normaliser(brut):
     produit["type"] = deduire_type(produit["nom"], produit.get("style"),
                                    brut.get("categorie"), brut.get("lot"),
                                    produit.get("appellation"), produit.get("cepages"),
-                                   produit.get("origine"), produit.get("visuel"))
+                                   produit.get("origine"), produit.get("visuel"),
+                                   produit.get("alcool"), produit.get("phrase"))
     produit["style"], _ = texte_utile(brut.get("style"))
     produit["photos"] = brut.get("photos", [])
     produit["sources"] = brut.get("sources", [])

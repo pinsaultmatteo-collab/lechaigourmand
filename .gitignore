@@ -3,3 +3,6 @@
 
 # données produits en cours de constitution (fiches C & Wine)
 # à retirer quand le catalogue sera prêt à publier
+
+# binaire compilé de la reconnaissance de texte (recompilable : swiftc outils/ocr.swift)
+outils/ocr

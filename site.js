@@ -801,11 +801,15 @@
     const detail = carte.querySelector(".ref-detail");
 
     voletContenu.innerHTML =
-      (visuel ? '<div class="fdv-photo">' + visuel.innerHTML + "</div>" : "") +
-      (badge ? badge.outerHTML : "") +
-      (nom ? '<h2 class="fdv-titre" id="refVoletTitre">' + nom.textContent + "</h2>" : "") +
-      (domaine ? '<p class="fdv-domaine">' + domaine.textContent + "</p>" : "") +
-      (prix ? '<p class="fdv-prix">' + prix.textContent + "</p>" : "") +
+      '<div class="fdv-tete">' +
+        (visuel ? '<div class="fdv-photo">' + visuel.innerHTML + "</div>" : "") +
+        "<div>" +
+          (badge ? badge.outerHTML : "") +
+          (nom ? '<h2 class="fdv-titre" id="refVoletTitre">' + nom.textContent + "</h2>" : "") +
+          (domaine ? '<p class="fdv-domaine">' + domaine.textContent + "</p>" : "") +
+          (prix ? '<p class="fdv-prix">' + prix.textContent + "</p>" : "") +
+        "</div>" +
+      "</div>" +
       (detail ? detail.innerHTML : "");
 
     // la photo du volet n'est plus paresseuse : elle doit s'afficher tout de suite
@@ -845,13 +849,27 @@
     });
   }
 
-  // ?type=rouge ou #rouge pour arriver directement sur une catégorie
-  const depart = new URLSearchParams(location.search).get("type") ||
-    location.hash.replace("#", "");
+  // ?type=rouge (ou #rouge) ouvre une catégorie, ?q=... ouvre une référence :
+  // c'est ce que visent les bouteilles de l'étagère, sur l'accueil et la page cave
+  const parametres = new URLSearchParams(location.search);
+  const depart = parametres.get("type") || location.hash.replace("#", "");
+  const cherchee = parametres.get("q");
   const boutonDepart = depart && filtres.find((b) => b.dataset.ref === depart);
+
+  if (cherchee && champ) {
+    champ.value = cherchee;
+    requete = sansAccent(cherchee.trim());
+  }
   if (boutonDepart) {
     boutonDepart.click();
   } else {
     appliquer();
+  }
+  if (cherchee) {
+    const barre = document.getElementById("refBarre");
+    if (barre) {
+      barre.scrollIntoView({ block: "start" });
+      window.scrollBy(0, -90);
+    }
   }
 })();
