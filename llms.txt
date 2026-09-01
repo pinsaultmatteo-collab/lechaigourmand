@@ -48,5 +48,15 @@
   accords mets & vins), filtrables par catégorie et cherchables par domaine, appellation ou cépage
 - [Brunch](https://lechaigourmand.vercel.app/brunch) : le brunch du samedi à L'Annexe (menu, prix, réservation)
 - [Traiteur](https://lechaigourmand.vercel.app/traiteur) : le service traiteur tapas & vins
+[//]: # (journal:début)
+- [Journal](https://lechaigourmand.vercel.app/journal) : les conseils du caviste, 6 articles
+  - [Que boire avec des tapas ? Le guide des accords qui marchent vraiment](https://lechaigourmand.vercel.app/journal/accords-tapas-vin) — Une planche, ce sont dix produits différents dans la même assiette. Voici comment trouver la bouteille qui les tient tous ensemble.
+  - [Où boire un verre à Cugnaux : ce que change une cave à manger](https://lechaigourmand.vercel.app/journal/boire-un-verre-cugnaux) — Une cave à manger, ce n'est ni un bar ni un restaurant. C'est un endroit où le vin décide du reste.
+  - [Offrir du vin : composer un coffret qui fait mouche](https://lechaigourmand.vercel.app/journal/composer-coffret-cadeau-vin) — Offrir une bouteille au hasard, c'est offrir un objet. Composer un coffret, c'est offrir une intention.
+  - [Lire une étiquette de vin sans se tromper](https://lechaigourmand.vercel.app/journal/lire-etiquette-vin) — Tout est écrit dessus, à condition de savoir dans quel ordre lire. Décryptage d'une étiquette, ligne par ligne.
+  - [Le Languedoc-Roussillon, l'autre grand vignoble du Sud](https://lechaigourmand.vercel.app/journal/vins-languedoc-roussillon) — Longtemps jugé au litre, le Languedoc est devenu l'un des vignobles les plus intéressants de France. Voici comment s'y retrouver.
+  - [Conserver ses bouteilles quand on n'a pas de cave](https://lechaigourmand.vercel.app/journal/conserver-bouteilles-sans-cave) — Pas de cave, pas de grave. Mais quelques erreurs de rangement suffisent à abîmer une bonne bouteille en un été.
+[//]: # (journal:fin)
+
 - [Nos adresses](https://lechaigourmand.vercel.app/nos-adresses) : adresses, horaires et itinéraires des deux établissements
 - [Agenda](https://lechaigourmand.vercel.app/agenda) : brunchs, soirées dégustation et événements à venir
