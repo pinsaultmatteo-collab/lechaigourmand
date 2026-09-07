@@ -836,6 +836,13 @@ h2.titre .accent-script{
   display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.2rem;
   margin-top:clamp(2.5rem,5vw,4rem);
 }
+/* traiteur : les cinq occasions tiennent sur un seul rang, la grille
+   automatique en faisait descendre une toute seule */
+.occasions-cinq{grid-template-columns:repeat(5,1fr);gap:1rem}
+.occasions-cinq .info-pratique{padding:1.4rem 1.2rem}
+.occasions-cinq h3{font-size:1.05rem}
+@media (max-width:1000px){.occasions-cinq{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.occasions-cinq{grid-template-columns:1fr}}
 .info-pratique{
   background:var(--papier);border:1px solid rgba(122,99,85,.18);border-radius:18px;
   padding:1.6rem;text-align:left;
@@ -1864,4 +1871,68 @@ a.ref-plus{text-decoration:none}
   .art-grille{grid-template-columns:1fr}
   .art-corps{font-size:1.02rem}
   .art-signature-ctas .btn{width:100%;justify-content:center}
+}
+
+/* ============================================================
+   RÉSERVATION — module maison (volet construit par site.js)
+   ============================================================ */
+.resa-volet{position:fixed;inset:0;z-index:210;display:flex;justify-content:flex-end}
+.resa-volet[hidden]{display:none}
+.resa-fond{
+  position:absolute;inset:0;background:rgba(26,15,20,.66);
+  backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);animation:fondApparait .3s ease;
+}
+.resa-corps{
+  position:relative;width:min(560px,100%);height:100%;overflow-y:auto;
+  background:var(--creme);padding:clamp(1.6rem,4vw,2.6rem);
+  box-shadow:-30px 0 60px -30px rgba(0,0,0,.6);animation:voletEntre .4s var(--transition);
+}
+.resa-sur-titre{font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;color:var(--bordeaux);font-weight:500}
+.resa-titre{font-family:var(--serif);font-weight:600;font-size:clamp(1.6rem,3.4vw,2.1rem);line-height:1.15;color:var(--brun);margin:.3rem 0 .4rem}
+.resa-titre .accent-script{color:var(--or-sombre)}
+.resa-intro{font-family:var(--serif);font-style:italic;color:var(--brun-doux);line-height:1.5;margin-bottom:1.4rem}
+.resa-form{display:grid;gap:1rem}
+.resa-champ{display:grid;gap:.4rem}
+.resa-champ label,.resa-legende{
+  font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--brun-doux);font-weight:500;
+}
+.resa-champ input,.resa-champ select,.resa-champ textarea{
+  width:100%;font-family:var(--sans);font-size:.95rem;font-weight:300;color:var(--brun);
+  background:var(--papier);border:1px solid rgba(122,99,85,.3);border-radius:12px;
+  padding:.75rem .95rem;transition:border-color .3s,box-shadow .3s;
+}
+.resa-champ input:focus,.resa-champ select:focus,.resa-champ textarea:focus{
+  outline:none;border-color:var(--bordeaux);box-shadow:0 0 0 3px rgba(124,33,64,.12);
+}
+.resa-champ textarea{min-height:88px;resize:vertical}
+.resa-deux{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.resa-lieux{display:grid;grid-template-columns:1fr 1fr;gap:.7rem}
+.resa-lieu{position:relative;cursor:pointer}
+.resa-lieu input{position:absolute;opacity:0;inset:0;width:100%;height:100%;cursor:pointer}
+.resa-lieu span{
+  display:block;padding:.9rem 1rem;border:1px solid rgba(122,99,85,.3);border-radius:14px;
+  background:var(--papier);transition:border-color .3s,background .3s;
+}
+.resa-lieu strong{display:block;font-family:var(--serif);font-weight:600;font-size:1.05rem;color:var(--brun)}
+.resa-lieu small{display:block;font-size:.7rem;letter-spacing:.08em;color:var(--brun-doux);margin-top:.15rem}
+.resa-lieu input:checked + span{border-color:var(--bordeaux);background:rgba(124,33,64,.06);box-shadow:0 0 0 2px rgba(124,33,64,.15)}
+.resa-lieu input:focus-visible + span{outline:2px solid var(--bordeaux);outline-offset:2px}
+.resa-info{font-size:.85rem;color:var(--brun-doux);font-family:var(--serif);font-style:italic;min-height:1.2em}
+.resa-info.alerte{color:var(--bordeaux)}
+.resa-pot{position:absolute;left:-9999px;opacity:0;height:0;overflow:hidden}
+.resa-actions{display:flex;flex-wrap:wrap;gap:.8rem;align-items:center;margin-top:.4rem}
+.resa-actions .btn{cursor:pointer;border:0;font-family:var(--sans)}
+.resa-actions .btn[disabled]{opacity:.55;cursor:wait;transform:none}
+.resa-erreur{font-size:.9rem;color:var(--bordeaux);font-family:var(--serif);font-style:italic}
+.resa-merci{text-align:center;padding:2rem 0}
+.resa-merci .coche{
+  width:64px;height:64px;margin:0 auto 1.2rem;border-radius:50%;display:grid;place-items:center;
+  background:rgba(124,33,64,.1);color:var(--bordeaux);font-size:1.8rem;
+}
+.resa-merci h3{font-family:var(--serif);font-weight:600;font-size:1.6rem;color:var(--brun);margin-bottom:.6rem}
+.resa-merci p{font-family:var(--serif);font-style:italic;color:var(--brun-doux);line-height:1.55;max-width:38ch;margin:0 auto}
+.resa-merci .btn{margin-top:1.4rem}
+@media (max-width:560px){
+  .resa-deux,.resa-lieux{grid-template-columns:1fr}
+  .resa-actions .btn{width:100%;justify-content:center}
 }

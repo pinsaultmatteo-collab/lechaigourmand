@@ -1,3 +1,29 @@
+/* Horaires des deux établissements (0 = dimanche … 6 = samedi ; absent = fermé).
+   Servent au billet du comptoir ET au module de réservation : une seule source. */
+const CHAI_HORAIRES = {
+  francazal: {2: [10, 21], 3: [10, 21], 4: [10, 23], 5: [10, 23], 6: [10, 23]},
+  annexe:    {2: [16, 20], 3: [16, 20], 4: [16, 22], 5: [16, 22], 6: [10, 22]}
+};
+const CHAI_LIEUX = {francazal: "Le Chai — Francazal", annexe: "L'Annexe — Cézerou"};
+
+/* Accès en lecture à Supabase (clé publique, droits limités par la base).
+   Renvoie null si le site n'est pas encore branché : chaque usage a son repli. */
+function chaiSupabase(){
+  const c = window.CHAI || {};
+  if(!c.supabaseUrl || !c.supabaseAnonKey) return null;
+  return {
+    lire: function(chemin, delai){
+      const ctrl = new AbortController();
+      const minuteur = setTimeout(function(){ ctrl.abort(); }, delai || 2500);
+      return fetch(c.supabaseUrl + "/rest/v1/" + chemin, {
+        headers: {apikey: c.supabaseAnonKey, Authorization: "Bearer " + c.supabaseAnonKey},
+        signal: ctrl.signal
+      }).then(function(r){ if(!r.ok) throw new Error("supabase " + r.status); return r.json(); })
+        .finally(function(){ clearTimeout(minuteur); });
+    }
+  };
+}
+
 /* ============================================================
    LE CHAI GOURMAND — interactions partagées (toutes pages)
    ============================================================ */
@@ -89,8 +115,8 @@
   if(statutEl){
     // horaires réels (0 = dimanche … 6 = samedi ; null = fermé)
     const lieuxComptoir = [
-      {nom: "Le Chai — Francazal", horaires: {0:null, 1:null, 2:[10,21], 3:[10,21], 4:[10,23], 5:[10,23], 6:[10,23]}},
-      {nom: "L'Annexe — Cézerou",  horaires: {0:null, 1:null, 2:[16,20], 3:[16,20], 4:[16,22], 5:[16,22], 6:[10,22]}}
+      {nom: CHAI_LIEUX.francazal, horaires: CHAI_HORAIRES.francazal},
+      {nom: CHAI_LIEUX.annexe,    horaires: CHAI_HORAIRES.annexe}
     ];
     const maintenant = new Date();
     const jour = maintenant.getDay();
@@ -331,20 +357,6 @@
   const bandeauAgendaEl = document.getElementById("bandeauAgenda");
   if(!listeEl && !prochainEl && !calEl && !comptoirRdvEl && !bandeauAgendaEl) return;
 
-  const aujourdHui = new Date();
-  aujourdHui.setHours(0,0,0,0);
-
-  function prochainJour(depuis, jourSemaine){ // 0 = dimanche … 6 = samedi
-    const d = new Date(depuis);
-    const delta = (jourSemaine - d.getDay() + 7) % 7 || 7;
-    d.setDate(d.getDate() + delta);
-    return d;
-  }
-  function ajouterJours(d, n){ const r = new Date(d); r.setDate(r.getDate() + n); return r; }
-  function cle(d){ return d.getFullYear() + "-" + d.getMonth() + "-" + d.getDate(); }
-
-  const evenements = [];
-
   /* ====== PROGRAMMATION DATÉE — pour mettre à jour le planning,
      modifier simplement ce tableau (source : document client).
      Format de date : "AAAA-MM-JJ". Les événements passés
@@ -378,7 +390,41 @@
      desc: "Soirée accords mets & vins autour des vins de Bourgogne, guidée par le caviste.", heure: "en soirée", resa: true}
     // NB : samedis 19 et 26 septembre en cours de préparation — masqués à la demande du client.
   ];
-  PROGRAMMATION.forEach(function(ev){
+
+  /* La programmation vient du back-office (table « evenements ») quand le site
+     est branché ; sinon, ou si la base ne répond pas vite, du tableau ci-dessus. */
+  function chargerProgrammation(){
+    const base = chaiSupabase();
+    if(!base) return Promise.resolve(PROGRAMMATION);
+    const depuis = new Date(); depuis.setHours(0,0,0,0);
+    const jour = depuis.toISOString().slice(0,10);
+    return base.lire("evenements?select=date,heure,lieu,titre,description,reservation"
+                     + "&statut=eq.publie&date=gte." + jour + "&order=date.asc")
+      .then(function(lignes){
+        return lignes.map(function(l){
+          return {date: l.date, lieu: l.lieu, titre: l.titre, desc: l.description || "",
+                  heure: l.heure || "", resa: !!l.reservation};
+        });
+      })
+      .catch(function(){ return PROGRAMMATION; });
+  }
+
+  function construireAgenda(programmation){
+  const aujourdHui = new Date();
+  aujourdHui.setHours(0,0,0,0);
+
+  function prochainJour(depuis, jourSemaine){ // 0 = dimanche … 6 = samedi
+    const d = new Date(depuis);
+    const delta = (jourSemaine - d.getDay() + 7) % 7 || 7;
+    d.setDate(d.getDate() + delta);
+    return d;
+  }
+  function ajouterJours(d, n){ const r = new Date(d); r.setDate(r.getDate() + n); return r; }
+  function cle(d){ return d.getFullYear() + "-" + d.getMonth() + "-" + d.getDate(); }
+
+  const evenements = [];
+
+  programmation.forEach(function(ev){
     const p = ev.date.split("-");
     const d = new Date(+p[0], +p[1] - 1, +p[2]);
     if(d >= aujourdHui){
@@ -558,7 +604,7 @@
       +     '<span>' + nomsLieux[ev.lieu] + '</span>'
       +   '</div>'
       + '</div>'
-      + '<div class="prdv-cta"><a class="btn btn-ligne" href="https://www.instagram.com/le_chai_gourmand/" target="_blank" rel="noopener">Réserver</a></div>';
+      + '<div class="prdv-cta"><a class="btn btn-ligne" href="#reserver" data-reserver>Réserver</a></div>';
   }
 
   /* ---------- calendrier interactif + aperçu du jour ---------- */
@@ -585,7 +631,7 @@
             + metaEv(ev)
             + '</div>';
         });
-        html += '<div class="apercu-cta"><a class="btn btn-plein" href="https://www.instagram.com/le_chai_gourmand/" target="_blank" rel="noopener">Réserver ma place</a></div>';
+        html += '<div class="apercu-cta"><a class="btn btn-plein" href="#reserver" data-reserver>Réserver ma place</a></div>';
       }else{
         html += '<p class="apercu-vide">Rien de programmé ce jour-là… mais le comptoir, lui, est ouvert du mardi au samedi. Passez donc dire bonjour.</p>'
           + '<div class="apercu-cta"><a class="btn btn-plein" href="/nos-adresses">Voir les horaires</a></div>';
@@ -706,6 +752,9 @@
     s.textContent = JSON.stringify(schema);
     document.head.appendChild(s);
   }
+  }
+
+  chargerProgrammation().then(construireAgenda);
 })();
 
 /* ============================================================
@@ -949,4 +998,249 @@
       window.scrollBy(0, -90);
     }
   }
+  // ---- fiches ajoutées depuis le back-office (table « produits ») ----
+  // Le catalogue généré reste la référence ; ces cartes s'y ajoutent au chargement.
+  const base = chaiSupabase();
+  if (base) {
+    const ech = function (t) {
+      return String(t == null ? "" : t).replace(/[&<>"]/g, function (c) {
+        return {"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"}[c];
+      });
+    };
+    const LIBELLE = {rouge: "Rouge", blanc: "Blanc", rose: "Rosé", bulles: "Bulles", moelleux: "Moelleux",
+                     biere: "Bière", spiritueux: "Spiritueux", epicerie: "Épicerie"};
+    const TEINTE = {rouge: "#6b2436", blanc: "#c9a876", rose: "#c56a74", bulles: "#8a6c3e", moelleux: "#b8862b",
+                    biere: "#8b5e2a", spiritueux: "#7a6355", epicerie: "#5a6b3f"};
+    function silhouette(type) {
+      const c = TEINTE[type] || "#7a6355";
+      return '<svg class="ref-silhouette" viewBox="0 0 120 160" aria-hidden="true">' +
+        '<path d="M50 16h20v34c0 14 15 18 15 38v40a9 9 0 0 1-9 9H44a9 9 0 0 1-9-9V88c0-20 15-24 15-38z" fill="' + c + '"/>' +
+        '<rect x="34" y="92" width="52" height="36" rx="3" fill="#fdf9f0" opacity=".92"/>' +
+        '<rect x="42" y="102" width="36" height="3" rx="1.5" fill="#7a6355" opacity=".55"/>' +
+        '<rect x="46" y="110" width="28" height="2.5" rx="1.2" fill="#7a6355" opacity=".4"/></svg>';
+    }
+    function ligne(k, v) { return v ? '<div class="fd-ligne"><dt>' + k + "</dt><dd>" + ech(v) + "</dd></div>" : ""; }
+    function note(k, v) { return v ? '<div class="fd-note"><h4>' + k + "</h4><p>" + ech(v) + "</p></div>" : ""; }
+    function carteProduit(p) {
+      const meta = [p.appellation || p.origine, p.millesime, p.alcool ? p.alcool + " %" : "", p.contenance]
+        .filter(Boolean).join(" · ");
+      const cherche = sansAccent([p.nom, p.producteur, p.origine, p.appellation, p.cepages, p.millesime].filter(Boolean).join(" "));
+      const visuel = p.photo
+        ? '<img src="' + ech(p.photo) + '" alt="' + ech(p.nom) + '" loading="lazy" decoding="async" width="675" height="900">'
+        : silhouette(p.type);
+      const detail =
+        '<dl class="fd-fiche">' + ligne("Producteur", p.producteur) + ligne("Origine", p.origine) +
+        ligne("Appellation", p.appellation) + ligne("Cépages", p.cepages) + ligne("Millésime", p.millesime) +
+        ligne("Degré", p.alcool ? p.alcool + " % vol." : "") + ligne("Contenance", p.contenance) + "</dl>" +
+        ((p.visuel || p.nez || p.bouche)
+          ? '<div class="fd-degustation">' + note("À l’œil", p.visuel) + note("Au nez", p.nez) + note("En bouche", p.bouche) + "</div>" : "") +
+        (p.accords ? '<div class="fd-accords"><h4>Accords mets &amp; vins</h4><p>' + ech(p.accords) + "</p></div>" : "");
+      const art = document.createElement("article");
+      art.className = "ref-carte";
+      art.dataset.type = p.type;
+      art.dataset.cherche = cherche;
+      if (p.photo) art.dataset.vues = p.photo;
+      art.innerHTML =
+        '<div class="ref-visuel">' + visuel + "</div>" +
+        '<div class="ref-corps">' +
+          '<span class="b-type ' + ech(p.type) + '">' + (LIBELLE[p.type] || p.type) + "</span>" +
+          '<h3 class="ref-nom">' + ech(p.nom) + "</h3>" +
+          (p.producteur ? '<p class="ref-domaine">' + ech(p.producteur) + "</p>" : "") +
+          (meta ? '<p class="ref-meta">' + ech(meta) + "</p>" : "") +
+          (p.phrase || p.bouche ? '<p class="ref-phrase">' + ech(p.phrase || p.bouche) + "</p>" : "") +
+          '<p class="ref-prix">Prix en boutique</p>' +
+          '<button class="ref-ouvrir" type="button" aria-expanded="false">La fiche complète <span aria-hidden="true">→</span></button>' +
+        "</div>" +
+        '<div class="ref-detail" hidden>' + detail + "</div>";
+      return art;
+    }
+    base.lire("produits?select=*&statut=eq.publie&order=cree_le.desc", 4000)
+      .then(function (lignes) {
+        if (!lignes.length) return;
+        // les nouveautés passent en tête de leur catégorie : devant le premier du même type
+        lignes.reverse().forEach(function (p) {
+          const art = carteProduit(p);
+          const premier = cartes.find(function (c) { return c.dataset.type === p.type; });
+          if (premier) { premier.before(art); cartes.splice(cartes.indexOf(premier), 0, art); }
+          else { grille.appendChild(art); cartes.push(art); }
+          const nb = document.querySelector('.ref-filtres [data-ref="' + p.type + '"] .filtre-nb');
+          if (nb) nb.textContent = String(Number(nb.textContent) + 1);
+        });
+        const tous = document.querySelector('.ref-filtres [data-ref="tous"] .filtre-nb');
+        if (tous) tous.textContent = String(Number(tous.textContent) + lignes.length);
+        appliquer(true);
+      })
+      .catch(function () { /* la base ne répond pas : le catalogue généré suffit */ });
+  }
+
+})();
+
+
+/* ============================================================
+   RÉSERVATION — module maison
+   Un volet, un formulaire, une fonction serveur (/api/reserver).
+   S'ouvre depuis tout élément portant data-reserver (data-lieu facultatif).
+   ============================================================ */
+(function reservation() {
+  let volet = null, declencheur = null;
+
+  function pad(n) { return (n < 10 ? "0" : "") + n; }
+  function aujourdHuiISO() {
+    const d = new Date();
+    return d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate());
+  }
+  function creneaux(lieu, iso) {
+    if (!iso) return [];
+    const p = iso.split("-").map(Number);
+    const plage = (CHAI_HORAIRES[lieu] || {})[new Date(p[0], p[1] - 1, p[2]).getDay()];
+    if (!plage) return null;                                 // fermé ce jour-là
+    const liste = [];
+    for (let h = plage[0]; h <= plage[1] - 1; h += 0.5) {   // dernière arrivée une heure avant la fermeture
+      liste.push(pad(Math.floor(h)) + ":" + (h % 1 ? "30" : "00"));
+    }
+    return liste;
+  }
+
+  function construire() {
+    volet = document.createElement("div");
+    volet.className = "resa-volet";
+    volet.id = "resaVolet";
+    volet.hidden = true;
+    volet.innerHTML =
+      '<div class="resa-fond" data-fermer></div>' +
+      '<aside class="resa-corps" role="dialog" aria-modal="true" aria-labelledby="resaTitre">' +
+        '<button class="ref-volet-fermer" type="button" data-fermer aria-label="Fermer">×</button>' +
+        '<p class="resa-sur-titre">Réserver une table</p>' +
+        '<h2 class="resa-titre" id="resaTitre">On vous garde <span class="accent-script">une place.</span></h2>' +
+        '<p class="resa-intro">Dites-nous où, quand et combien vous serez : on vous rappelle pour confirmer.</p>' +
+        '<form class="resa-form" novalidate>' +
+          '<div class="resa-champ"><span class="resa-legende">Établissement</span>' +
+            '<div class="resa-lieux">' +
+              '<label class="resa-lieu"><input type="radio" name="lieu" value="francazal" checked>' +
+                '<span><strong>Le Chai — Francazal</strong><small>9 rue Alfred Sauvy · tapas &amp; cave</small></span></label>' +
+              '<label class="resa-lieu"><input type="radio" name="lieu" value="annexe">' +
+                '<span><strong>L’Annexe — Cézerou</strong><small>14 rue de Cezerou · brunch &amp; dégustations</small></span></label>' +
+            "</div></div>" +
+          '<div class="resa-deux">' +
+            '<div class="resa-champ"><label for="resaDate">Date</label><input type="date" id="resaDate" name="date" required></div>' +
+            '<div class="resa-champ"><label for="resaHeure">Heure d’arrivée</label><select id="resaHeure" name="heure" required></select></div>' +
+          "</div>" +
+          '<p class="resa-info" id="resaInfo" aria-live="polite"></p>' +
+          '<div class="resa-deux">' +
+            '<div class="resa-champ"><label for="resaCouverts">Couverts</label><select id="resaCouverts" name="couverts"></select></div>' +
+            '<div class="resa-champ"><label for="resaNom">Nom</label><input type="text" id="resaNom" name="nom" autocomplete="name" required></div>' +
+          "</div>" +
+          '<div class="resa-deux">' +
+            '<div class="resa-champ"><label for="resaTel">Téléphone</label><input type="tel" id="resaTel" name="telephone" autocomplete="tel" required></div>' +
+            '<div class="resa-champ"><label for="resaEmail">E-mail <em>(facultatif)</em></label><input type="email" id="resaEmail" name="email" autocomplete="email"></div>' +
+          "</div>" +
+          '<div class="resa-champ"><label for="resaMessage">Un mot pour nous <em>(facultatif)</em></label>' +
+            '<textarea id="resaMessage" name="message" placeholder="Anniversaire, poussette, allergie, table en terrasse…"></textarea></div>' +
+          '<div class="resa-pot" aria-hidden="true"><label>Site web<input type="text" name="site_web" tabindex="-1" autocomplete="off"></label></div>' +
+          '<div class="resa-actions">' +
+            '<button class="btn btn-plein" type="submit">Envoyer ma demande</button>' +
+            '<a class="btn ref-plus" href="tel:+33685362265">Ou appeler le 06 85 36 22 65</a>' +
+          "</div>" +
+          '<p class="resa-erreur" id="resaErreur" role="alert"></p>' +
+        "</form>" +
+      "</aside>";
+    document.body.appendChild(volet);
+
+    const form = volet.querySelector("form");
+    const date = volet.querySelector("#resaDate");
+    const heure = volet.querySelector("#resaHeure");
+    const info = volet.querySelector("#resaInfo");
+    const couverts = volet.querySelector("#resaCouverts");
+    const erreur = volet.querySelector("#resaErreur");
+    for (let n = 1; n <= 12; n++) couverts.add(new Option(n + (n > 1 ? " personnes" : " personne"), n));
+    couverts.add(new Option("Plus de 12 — on vous rappelle", 13));
+    couverts.value = "2";
+    date.min = aujourdHuiISO();
+
+    function lieuChoisi() { return form.querySelector('input[name="lieu"]:checked').value; }
+    function rafraichirCreneaux() {
+      const liste = creneaux(lieuChoisi(), date.value);
+      heure.innerHTML = "";
+      info.classList.remove("alerte");
+      if (!date.value) { info.textContent = ""; heure.disabled = true; return; }
+      if (liste === null) {
+        info.textContent = CHAI_LIEUX[lieuChoisi()] + " est fermé ce jour-là — ouvert du mardi au samedi.";
+        info.classList.add("alerte"); heure.disabled = true; return;
+      }
+      heure.disabled = false;
+      liste.forEach(function (h) { heure.add(new Option(h.replace(":", "h"), h)); });
+      const conseil = lieuChoisi() === "annexe" && new Date(date.value).getDay() === 6
+        ? " Le brunch se sert le midi, sur réservation." : "";
+      info.textContent = "Dernière arrivée une heure avant la fermeture." + conseil;
+      const soir = liste.indexOf("19:30"); if (soir > -1) heure.selectedIndex = soir;
+    }
+    date.addEventListener("change", rafraichirCreneaux);
+    form.querySelectorAll('input[name="lieu"]').forEach(function (r) { r.addEventListener("change", rafraichirCreneaux); });
+    rafraichirCreneaux();
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      erreur.textContent = "";
+      const d = Object.fromEntries(new FormData(form).entries());
+      if (!d.date) { erreur.textContent = "Choisissez une date."; date.focus(); return; }
+      if (heure.disabled || !d.heure) { erreur.textContent = "Choisissez un jour d’ouverture et une heure."; return; }
+      if (!d.nom || d.nom.trim().length < 2) { erreur.textContent = "Indiquez un nom."; form.nom.focus(); return; }
+      if (!/^\+?[\d\s.()-]{9,20}$/.test(d.telephone || "")) { erreur.textContent = "Un numéro de téléphone nous permet de vous rappeler."; form.telephone.focus(); return; }
+      const bouton = form.querySelector('button[type="submit"]');
+      bouton.disabled = true; bouton.textContent = "Envoi en cours…";
+      fetch("/api/reserver", {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify(d)})
+        .then(function (r) { return r.json().then(function (j) { return {ok: r.ok, j: j}; }); })
+        .then(function (rep) {
+          if (!rep.ok) throw new Error(rep.j && rep.j.erreur ? rep.j.erreur : "Une erreur est survenue.");
+          const p = d.date.split("-");
+          volet.querySelector(".resa-corps").innerHTML =
+            '<button class="ref-volet-fermer" type="button" data-fermer aria-label="Fermer">×</button>' +
+            '<div class="resa-merci"><div class="coche" aria-hidden="true">✓</div>' +
+            "<h3>C’est noté, " + d.nom.trim().split(" ")[0].replace(/[<>]/g, "") + ".</h3>" +
+            "<p>" + CHAI_LIEUX[d.lieu] + ", le " + p[2] + "/" + p[1] + " à " + d.heure.replace(":", "h") +
+            ", " + d.couverts + (Number(d.couverts) > 1 ? " personnes" : " personne") +
+            ". On vous rappelle au " + d.telephone.replace(/[<>]/g, "") + " pour confirmer.</p>" +
+            '<button class="btn btn-plein" type="button" data-fermer>Fermer</button></div>';
+        })
+        .catch(function (err) {
+          erreur.textContent = err.message + " Vous pouvez aussi nous appeler au 06 85 36 22 65.";
+          bouton.disabled = false; bouton.textContent = "Envoyer ma demande";
+        });
+    });
+  }
+
+  function ouvrir(lieu) {
+    if (!volet) construire();
+    if (lieu && volet.querySelector('input[name="lieu"][value="' + lieu + '"]')) {
+      volet.querySelector('input[name="lieu"][value="' + lieu + '"]').checked = true;
+      volet.querySelector("#resaDate").dispatchEvent(new Event("change"));
+    }
+    volet.hidden = false;
+    document.body.style.overflow = "hidden";
+    const premier = volet.querySelector("#resaDate");
+    if (premier) premier.focus();
+  }
+  function fermer() {
+    if (!volet || volet.hidden) return;
+    volet.hidden = true;
+    document.body.style.overflow = "";
+    if (declencheur) { declencheur.focus(); declencheur = null; }
+  }
+
+  document.addEventListener("click", function (e) {
+    const cible = e.target.closest("[data-reserver]");
+    if (cible) {
+      e.preventDefault();
+      declencheur = cible;
+      ouvrir(cible.dataset.lieu || cible.getAttribute("data-lieu"));
+      return;
+    }
+    if (volet && !volet.hidden && e.target.closest("[data-fermer]") && volet.contains(e.target)) fermer();
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && volet && !volet.hidden) fermer();
+  });
+  // ?reserver=annexe dans l'adresse ouvre le volet directement (liens externes, Instagram…)
+  const voulu = new URLSearchParams(location.search).get("reserver");
+  if (voulu !== null) ouvrir(voulu || "");
 })();

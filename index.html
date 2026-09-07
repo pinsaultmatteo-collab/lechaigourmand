@@ -23,6 +23,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Pinyon+Script&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/styles.css">
 <link rel="preload" href="/images/cave-tonneaux-fond-hero.webp" as="image">
+<script src="/config.js"></script>
 <script src="/site.js" defer></script>
 <script type="application/ld+json">
 {
@@ -139,7 +140,7 @@
       <li><a href="/nos-adresses">Adresses</a></li>
       <li><a href="/agenda">Agenda</a></li>
       <li><a href="/journal">Journal</a></li>
-      <li><a href="#contact" class="nav-cta">Réserver</a></li>
+      <li><a href="#contact" class="nav-cta" data-reserver>Réserver</a></li>
     </ul>
   </nav>
 </header>
@@ -238,7 +239,7 @@
     </p>
     <p class="sur-titre entree e5">Cugnaux · Francazal — près de Toulouse</p>
     <div class="hero-ctas entree e5">
-      <a class="btn btn-plein" href="#contact">Réserver une table</a>
+      <a class="btn btn-plein" href="#contact" data-reserver>Réserver une table</a>
       <a class="btn btn-ligne" href="/cave-a-vin">Explorer la cave</a>
     </div>
     <p class="hero-adresses entree e5">

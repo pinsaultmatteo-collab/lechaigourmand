@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Back-office — Le Chai Gourmand</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="/config.js"></script>
+<style>
+:root{--bordeaux:#7c2140;--creme:#f6efe2;--papier:#fdf9f0;--brun:#33241f;--brun-doux:#7a6355;--or:#c9a876;--or-sombre:#8a6c3e;--vert:#4f7a4a;--rouge:#b0413e;--serif:"Cormorant Garamond",serif;--sans:"Jost",sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--sans);font-weight:300;color:var(--brun);background:var(--creme);min-height:100vh}
+a{color:var(--bordeaux)}
+button{font-family:var(--sans);cursor:pointer}
+.tete{background:#1a0f14;color:var(--creme);padding:.9rem clamp(1rem,4vw,2.4rem);display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.tete h1{font-family:var(--serif);font-weight:600;font-size:1.35rem}
+.tete h1 small{font-family:var(--sans);font-weight:300;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--or);margin-left:.8rem}
+.tete .qui{font-size:.8rem;color:rgba(246,239,226,.7)}
+.tete .qui button{margin-left:.8rem;background:none;border:1px solid rgba(201,168,118,.5);color:var(--or);border-radius:99px;padding:.3rem .9rem;font-size:.72rem;letter-spacing:.1em}
+.page{max-width:1100px;margin:0 auto;padding:clamp(1rem,3vw,2rem)}
+.onglets{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.4rem}
+.onglet{background:none;border:1px solid rgba(122,99,85,.3);border-radius:99px;padding:.55rem 1.2rem;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--brun);position:relative}
+.onglet.actif{background:var(--bordeaux);border-color:var(--bordeaux);color:var(--creme)}
+.onglet .pastille{display:inline-block;min-width:1.4em;margin-left:.5em;padding:.1em .45em;border-radius:99px;background:var(--or);color:#1a0f14;font-size:.7rem;font-weight:600;text-align:center}
+.vue[hidden]{display:none}
+.bloc{background:var(--papier);border:1px solid rgba(122,99,85,.18);border-radius:16px;padding:1.2rem 1.4rem;margin-bottom:1.2rem}
+.bloc h2{font-family:var(--serif);font-weight:600;font-size:1.3rem;margin-bottom:.8rem}
+.bloc h2 span{font-family:var(--sans);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--brun-doux);font-weight:400;margin-left:.6rem}
+.grille{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.8rem 1rem}
+.champ{display:grid;gap:.3rem}
+.champ.large{grid-column:1/-1}
+label{font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;color:var(--brun-doux);font-weight:500}
+input,select,textarea{width:100%;font:inherit;font-size:.92rem;color:var(--brun);background:#fff;border:1px solid rgba(122,99,85,.3);border-radius:10px;padding:.6rem .8rem}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--bordeaux);box-shadow:0 0 0 3px rgba(124,33,64,.12)}
+textarea{min-height:80px;resize:vertical}
+.coche{display:flex;align-items:center;gap:.5rem;font-size:.9rem;padding-top:1.4rem}
+.coche input{width:auto}
+.actions{display:flex;gap:.6rem;flex-wrap:wrap;align-items:center;margin-top:1rem}
+.btn{border:0;border-radius:99px;padding:.7rem 1.4rem;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;font-weight:500;background:var(--bordeaux);color:var(--creme)}
+.btn.ligne{background:none;color:var(--brun);border:1px solid rgba(122,99,85,.45)}
+.btn.danger{background:none;color:var(--rouge);border:1px solid rgba(176,65,62,.5)}
+.btn.petit{padding:.45rem .9rem;font-size:.64rem}
+.btn[disabled]{opacity:.5;cursor:wait}
+.msg{font-family:var(--serif);font-style:italic;color:var(--brun-doux);min-height:1.3em;margin-top:.6rem}
+.msg.erreur{color:var(--rouge)}
+.msg.ok{color:var(--vert)}
+.liste{display:grid;gap:.6rem}
+.jour{font-family:var(--serif);font-weight:600;font-size:1.05rem;color:var(--bordeaux);margin:.8rem 0 .2rem;text-transform:capitalize}
+.ligne{display:grid;grid-template-columns:auto 1fr auto;gap:.8rem 1rem;align-items:center;background:#fff;border:1px solid rgba(122,99,85,.15);border-radius:12px;padding:.8rem 1rem}
+.ligne.annulee{opacity:.55}
+.heure{font-family:var(--serif);font-weight:700;font-size:1.25rem;min-width:3.4rem}
+.lieu{display:inline-block;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;padding:.15rem .55rem;border-radius:99px;background:rgba(124,33,64,.1);color:var(--bordeaux);margin-right:.5rem}
+.lieu.annexe{background:rgba(138,108,62,.14);color:var(--or-sombre)}
+.ligne .nom{font-weight:500}
+.ligne .detail{font-size:.85rem;color:var(--brun-doux);margin-top:.15rem}
+.ligne .detail a{text-decoration:none}
+.ligne .message{font-family:var(--serif);font-style:italic;font-size:.92rem;margin-top:.3rem}
+.ligne select{width:auto;font-size:.8rem;padding:.4rem .6rem}
+.ligne .brouillon{font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--or-sombre)}
+.ligne .cotes{display:flex;gap:.4rem;flex-wrap:wrap;justify-content:flex-end}
+.vide{font-family:var(--serif);font-style:italic;color:var(--brun-doux);padding:1rem 0}
+.filtres{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:.8rem}
+.filtres button{background:none;border:1px solid rgba(122,99,85,.3);border-radius:99px;padding:.35rem .9rem;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase}
+.filtres button.actif{background:var(--brun);border-color:var(--brun);color:var(--creme)}
+.connexion{max-width:420px;margin:8vh auto}
+.connexion h2{font-family:var(--serif);font-weight:600;font-size:1.8rem;margin-bottom:.3rem}
+.connexion p{color:var(--brun-doux);margin-bottom:1.2rem;font-size:.92rem}
+.vignette{width:54px;height:72px;object-fit:cover;border-radius:6px;background:#eee}
+.apercu{font-size:.8rem;color:var(--brun-doux)}
+@media (max-width:640px){.ligne{grid-template-columns:auto 1fr}.ligne .cotes{grid-column:1/-1;justify-content:flex-start}}
+</style>
+</head>
+<body>
+<header class="tete">
+  <h1>Le Chai Gourmand <small>back-office</small></h1>
+  <div class="qui" id="qui" hidden></div>
+</header>
+
+<main class="page">
+  <section class="connexion bloc" id="vueConnexion">
+    <h2>Connexion</h2>
+    <p>Réservé à l'équipe du Chai. Un compte se crée depuis Supabase → Authentication → Users.</p>
+    <form id="formConnexion" class="grille">
+      <div class="champ large"><label for="cEmail">E-mail</label><input type="email" id="cEmail" autocomplete="username" required></div>
+      <div class="champ large"><label for="cMdp">Mot de passe</label><input type="password" id="cMdp" autocomplete="current-password" required></div>
+      <div class="actions large"><button class="btn" type="submit">Entrer</button></div>
+    </form>
+    <p class="msg" id="msgConnexion"></p>
+  </section>
+
+  <div id="vueApp" hidden>
+    <nav class="onglets" aria-label="Rubriques">
+      <button class="onglet actif" data-onglet="reservations">Réservations <span class="pastille" id="nbNouvelles" hidden>0</span></button>
+      <button class="onglet" data-onglet="evenements">Événements</button>
+      <button class="onglet" data-onglet="produits">Produits</button>
+    </nav>
+
+    <!-- ===== réservations ===== -->
+    <section class="vue" id="vue-reservations">
+      <div class="filtres" id="filtresResa">
+        <button class="actif" data-periode="avenir">À venir</button>
+        <button data-periode="passees">Passées</button>
+        <button data-periode="tout">Tout</button>
+      </div>
+      <div class="liste" id="listeResa"><p class="vide">Chargement…</p></div>
+    </section>
+
+    <!-- ===== événements ===== -->
+    <section class="vue" id="vue-evenements" hidden>
+      <div class="bloc">
+        <h2 id="titreFormEv">Nouvel événement <span>brouillon tant qu'il n'est pas publié</span></h2>
+        <form id="formEv" class="grille">
+          <input type="hidden" name="id">
+          <div class="champ"><label>Date</label><input type="date" name="date" required></div>
+          <div class="champ"><label>Heure (texte libre)</label><input type="text" name="heure" placeholder="dès 17h · concert à 21h"></div>
+          <div class="champ"><label>Établissement</label>
+            <select name="lieu"><option value="francazal">Le Chai — Francazal</option><option value="annexe">L'Annexe — Cézerou</option></select></div>
+          <div class="champ large"><label>Titre</label><input type="text" name="titre" required maxlength="120"></div>
+          <div class="champ large"><label>Description</label><textarea name="description" maxlength="600"></textarea></div>
+          <label class="coche"><input type="checkbox" name="reservation"> Sur réservation</label>
+          <div class="actions large">
+            <button class="btn" type="submit" name="action" value="brouillon">Enregistrer en brouillon</button>
+            <button class="btn ligne" type="submit" name="action" value="publie">Enregistrer et publier</button>
+            <button class="btn ligne petit" type="button" id="annulerEv" hidden>Annuler la modification</button>
+          </div>
+        </form>
+        <p class="msg" id="msgEv"></p>
+      </div>
+      <div class="liste" id="listeEv"><p class="vide">Chargement…</p></div>
+    </section>
+
+    <!-- ===== produits ===== -->
+    <section class="vue" id="vue-produits" hidden>
+      <div class="bloc">
+        <h2 id="titreFormPr">Nouveau produit <span>visible sur /nos-references une fois publié</span></h2>
+        <form id="formPr" class="grille">
+          <input type="hidden" name="id"><input type="hidden" name="photo">
+          <div class="champ large"><label>Nom de la cuvée</label><input type="text" name="nom" required maxlength="120"></div>
+          <div class="champ"><label>Catégorie</label>
+            <select name="type">
+              <option value="rouge">Rouge</option><option value="blanc">Blanc</option><option value="rose">Rosé</option>
+              <option value="bulles">Bulles</option><option value="moelleux">Moelleux</option><option value="biere">Bière</option>
+              <option value="spiritueux">Spiritueux</option><option value="epicerie">Épicerie fine</option>
+            </select></div>
+          <div class="champ"><label>Producteur / domaine</label><input type="text" name="producteur"></div>
+          <div class="champ"><label>Appellation</label><input type="text" name="appellation" placeholder="AOP Pic Saint-Loup"></div>
+          <div class="champ"><label>Origine</label><input type="text" name="origine" placeholder="Languedoc, France"></div>
+          <div class="champ"><label>Cépages</label><input type="text" name="cepages" placeholder="Syrah 70 %, Grenache 30 %"></div>
+          <div class="champ"><label>Millésime</label><input type="text" name="millesime" placeholder="2023"></div>
+          <div class="champ"><label>Degré (%)</label><input type="text" name="alcool" placeholder="13,5"></div>
+          <div class="champ"><label>Contenance</label><input type="text" name="contenance" placeholder="75 cl"></div>
+          <div class="champ large"><label>Phrase pour la carte (accroche)</label><input type="text" name="phrase" maxlength="200"></div>
+          <div class="champ"><label>À l'œil</label><textarea name="visuel"></textarea></div>
+          <div class="champ"><label>Au nez</label><textarea name="nez"></textarea></div>
+          <div class="champ"><label>En bouche</label><textarea name="bouche"></textarea></div>
+          <div class="champ"><label>Accords mets & vins</label><textarea name="accords"></textarea></div>
+          <div class="champ large"><label>Photo (de face, sur fond clair)</label><input type="file" name="fichier" accept="image/*"><span class="apercu" id="apercuPhoto"></span></div>
+          <div class="actions large">
+            <button class="btn" type="submit" name="action" value="brouillon">Enregistrer en brouillon</button>
+            <button class="btn ligne" type="submit" name="action" value="publie">Enregistrer et publier</button>
+            <button class="btn ligne petit" type="button" id="annulerPr" hidden>Annuler la modification</button>
+          </div>
+        </form>
+        <p class="msg" id="msgPr"></p>
+      </div>
+      <div class="liste" id="listePr"><p class="vide">Chargement…</p></div>
+    </section>
+  </div>
+</main>
+
+<script>
+(function () {
+  const C = window.CHAI || {};
+  const $ = function (s, r) { return (r || document).querySelector(s); };
+  const ech = function (t) { return String(t == null ? "" : t).replace(/[&<>"]/g, function (c) { return {"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"}[c]; }); };
+  const LIEUX = {francazal: "Francazal", annexe: "L'Annexe"};
+  const fmtJour = new Intl.DateTimeFormat("fr-FR", {weekday: "long", day: "numeric", month: "long"});
+  const CLE = "chai-admin-session";
+
+  if (!C.supabaseUrl || !C.supabaseAnonKey) {
+    $("#msgConnexion").textContent = "Le site n'est pas encore branché : renseignez config.js (voir ADMIN.md).";
+    $("#msgConnexion").classList.add("erreur");
+    $("#formConnexion").querySelector("button").disabled = true;
+    return;
+  }
+
+  // ---------- session ----------
+  let session = null;
+  try { session = JSON.parse(localStorage.getItem(CLE) || "null"); } catch (e) {}
+
+  function entetes(json) {
+    const h = {apikey: C.supabaseAnonKey, Authorization: "Bearer " + (session ? session.access_token : C.supabaseAnonKey)};
+    if (json !== false) h["Content-Type"] = "application/json";
+    return h;
+  }
+  function garder(s) { session = s; try { localStorage.setItem(CLE, JSON.stringify(s)); } catch (e) {} }
+  function oublier() { session = null; try { localStorage.removeItem(CLE); } catch (e) {} }
+
+  function connecter(email, mdp) {
+    return fetch(C.supabaseUrl + "/auth/v1/token?grant_type=password", {
+      method: "POST", headers: {apikey: C.supabaseAnonKey, "Content-Type": "application/json"},
+      body: JSON.stringify({email: email, password: mdp})
+    }).then(function (r) { return r.json().then(function (j) { if (!r.ok) throw new Error(j.error_description || j.msg || "Identifiants refusés."); return j; }); });
+  }
+  function rafraichir() {
+    if (!session || !session.refresh_token) return Promise.reject(new Error("pas de session"));
+    return fetch(C.supabaseUrl + "/auth/v1/token?grant_type=refresh_token", {
+      method: "POST", headers: {apikey: C.supabaseAnonKey, "Content-Type": "application/json"},
+      body: JSON.stringify({refresh_token: session.refresh_token})
+    }).then(function (r) { return r.json().then(function (j) { if (!r.ok) throw new Error("session expirée"); garder(j); return j; }); });
+  }
+
+  // ---------- appels à la base, avec un rafraîchissement si le jeton a expiré ----------
+  function api(chemin, options, deuxieme) {
+    options = options || {};
+    const h = Object.assign(entetes(options.body instanceof Blob ? false : true), options.headers || {});
+    return fetch(C.supabaseUrl + chemin, Object.assign({}, options, {headers: h})).then(function (r) {
+      if (r.status === 401 && !deuxieme) return rafraichir().then(function () { return api(chemin, options, true); });
+      if (r.status === 401) { oublier(); afficherConnexion(); throw new Error("Session expirée, reconnectez-vous."); }
+      if (r.status === 204) return null;
+      return r.text().then(function (t) {
+        let j = null; try { j = t ? JSON.parse(t) : null; } catch (e) { j = t; }
+        if (!r.ok) throw new Error((j && (j.message || j.error || j.msg)) || ("erreur " + r.status));
+        return j;
+      });
+    });
+  }
+  const rest = function (chemin, options) { return api("/rest/v1/" + chemin, options); };
+
+  // ---------- écrans ----------
+  function afficherConnexion() { $("#vueConnexion").hidden = false; $("#vueApp").hidden = true; $("#qui").hidden = true; }
+  function afficherApp() {
+    $("#vueConnexion").hidden = true; $("#vueApp").hidden = false;
+    $("#qui").hidden = false;
+    $("#qui").innerHTML = ech(session.user && session.user.email) + '<button type="button" id="sortir">Se déconnecter</button>';
+    $("#sortir").addEventListener("click", function () {
+      api("/auth/v1/logout", {method: "POST"}).catch(function () {}).finally(function () { oublier(); afficherConnexion(); });
+    });
+    chargerResa(); chargerEv(); chargerPr();
+  }
+
+  $("#formConnexion").addEventListener("submit", function (e) {
+    e.preventDefault();
+    const msg = $("#msgConnexion"); msg.textContent = "Connexion…"; msg.className = "msg";
+    connecter($("#cEmail").value.trim(), $("#cMdp").value)
+      .then(function (s) { garder(s); msg.textContent = ""; afficherApp(); })
+      .catch(function (err) { msg.textContent = err.message; msg.className = "msg erreur"; });
+  });
+
+  document.querySelectorAll(".onglet").forEach(function (b) {
+    b.addEventListener("click", function () {
+      document.querySelectorAll(".onglet").forEach(function (x) { x.classList.toggle("actif", x === b); });
+      document.querySelectorAll(".vue").forEach(function (v) { v.hidden = v.id !== "vue-" + b.dataset.onglet; });
+    });
+  });
+
+  function message(sel, texte, type) { const m = $(sel); m.textContent = texte; m.className = "msg" + (type ? " " + type : ""); }
+  function aujourdHui() { const d = new Date(); return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0"); }
+  function jourLisible(iso) { const p = iso.split("-"); return fmtJour.format(new Date(+p[0], +p[1] - 1, +p[2])); }
+
+  // ---------- réservations ----------
+  let periode = "avenir";
+  $("#filtresResa").addEventListener("click", function (e) {
+    const b = e.target.closest("button"); if (!b) return;
+    periode = b.dataset.periode;
+    $("#filtresResa").querySelectorAll("button").forEach(function (x) { x.classList.toggle("actif", x === b); });
+    chargerResa();
+  });
+  function chargerResa() {
+    const filtre = periode === "avenir" ? "&date=gte." + aujourdHui() : periode === "passees" ? "&date=lt." + aujourdHui() : "";
+    const ordre = periode === "passees" ? "date.desc,heure.desc" : "date.asc,heure.asc";
+    rest("reservations?select=*" + filtre + "&order=" + ordre + "&limit=300").then(function (lignes) {
+      const el = $("#listeResa");
+      const nouvelles = lignes.filter(function (r) { return r.statut === "nouvelle" && r.date >= aujourdHui(); }).length;
+      const pastille = $("#nbNouvelles"); pastille.hidden = !nouvelles; pastille.textContent = nouvelles;
+      if (!lignes.length) { el.innerHTML = '<p class="vide">Aucune réservation ' + (periode === "avenir" ? "à venir" : "") + ".</p>"; return; }
+      let html = "", jour = "";
+      lignes.forEach(function (r) {
+        if (r.date !== jour) { jour = r.date; html += '<p class="jour">' + jourLisible(r.date) + "</p>"; }
+        html += '<div class="ligne' + (r.statut === "annulee" ? " annulee" : "") + '" data-id="' + r.id + '">' +
+          '<div class="heure">' + ech(r.heure).replace(":", "h") + "</div>" +
+          "<div><span class=\"lieu " + r.lieu + '">' + LIEUX[r.lieu] + "</span><span class=\"nom\">" + ech(r.nom) + "</span> · " + r.couverts + " couv." +
+            '<div class="detail"><a href="tel:' + ech(r.telephone.replace(/\s/g, "")) + '">' + ech(r.telephone) + "</a>" +
+            (r.email ? ' · <a href="mailto:' + ech(r.email) + '">' + ech(r.email) + "</a>" : "") +
+            ' · reçue le ' + new Date(r.cree_le).toLocaleDateString("fr-FR") + "</div>" +
+            (r.message ? '<div class="message">« ' + ech(r.message) + " »</div>" : "") + "</div>" +
+          '<div class="cotes"><select data-statut>' +
+            ["nouvelle", "confirmee", "annulee"].map(function (s) { return '<option value="' + s + '"' + (r.statut === s ? " selected" : "") + ">" + {nouvelle: "Nouvelle", confirmee: "Confirmée", annulee: "Annulée"}[s] + "</option>"; }).join("") +
+          "</select></div></div>";
+      });
+      el.innerHTML = html;
+    }).catch(function (err) { $("#listeResa").innerHTML = '<p class="vide">' + ech(err.message) + "</p>"; });
+  }
+  $("#listeResa").addEventListener("change", function (e) {
+    const sel = e.target.closest("[data-statut]"); if (!sel) return;
+    const id = sel.closest(".ligne").dataset.id;
+    rest("reservations?id=eq." + id, {method: "PATCH", headers: {Prefer: "return=minimal"}, body: JSON.stringify({statut: sel.value})})
+      .then(chargerResa).catch(function (err) { alert(err.message); });
+  });
+
+  // ---------- événements ----------
+  function chargerEv() {
+    rest("evenements?select=*&order=date.desc&limit=200").then(function (lignes) {
+      const el = $("#listeEv");
+      if (!lignes.length) { el.innerHTML = '<p class="vide">Aucun événement pour l’instant.</p>'; return; }
+      el.innerHTML = lignes.map(function (ev) {
+        return '<div class="ligne" data-id="' + ev.id + '">' +
+          '<div class="heure" style="font-size:.95rem">' + ev.date.split("-").reverse().slice(0, 2).join("/") + "</div>" +
+          "<div><span class=\"lieu " + ev.lieu + '">' + LIEUX[ev.lieu] + '</span><span class="nom">' + ech(ev.titre) + "</span>" +
+            (ev.statut === "brouillon" ? ' <span class="brouillon">· brouillon</span>' : "") +
+            '<div class="detail">' + ech(ev.heure) + (ev.reservation ? " · sur réservation" : "") + "</div>" +
+            (ev.description ? '<div class="message">' + ech(ev.description) + "</div>" : "") + "</div>" +
+          '<div class="cotes">' +
+            '<button class="btn petit' + (ev.statut === "publie" ? " ligne" : "") + '" data-basculer="' + (ev.statut === "publie" ? "brouillon" : "publie") + '">' + (ev.statut === "publie" ? "Dépublier" : "Publier") + "</button>" +
+            '<button class="btn ligne petit" data-modifier>Modifier</button>' +
+            '<button class="btn danger petit" data-supprimer>Supprimer</button></div></div>';
+      }).join("");
+      el._donnees = lignes;
+    }).catch(function (err) { $("#listeEv").innerHTML = '<p class="vide">' + ech(err.message) + "</p>"; });
+  }
+  $("#listeEv").addEventListener("click", function (e) {
+    const b = e.target.closest("button"); if (!b) return;
+    const id = b.closest(".ligne").dataset.id;
+    if (b.dataset.basculer) {
+      rest("evenements?id=eq." + id, {method: "PATCH", headers: {Prefer: "return=minimal"}, body: JSON.stringify({statut: b.dataset.basculer})}).then(chargerEv).catch(function (err) { alert(err.message); });
+    } else if (b.hasAttribute("data-supprimer")) {
+      if (!confirm("Supprimer cet événement ?")) return;
+      rest("evenements?id=eq." + id, {method: "DELETE"}).then(chargerEv).catch(function (err) { alert(err.message); });
+    } else if (b.hasAttribute("data-modifier")) {
+      const ev = $("#listeEv")._donnees.find(function (x) { return x.id === id; });
+      const f = $("#formEv");
+      f.id.value = ev.id; f.date.value = ev.date; f.heure.value = ev.heure || ""; f.lieu.value = ev.lieu;
+      f.titre.value = ev.titre; f.description.value = ev.description || ""; f.reservation.checked = !!ev.reservation;
+      $("#titreFormEv").firstChild.textContent = "Modifier l’événement ";
+      $("#annulerEv").hidden = false; f.scrollIntoView({behavior: "smooth"});
+    }
+  });
+  function viderFormEv() { const f = $("#formEv"); f.reset(); f.id.value = ""; $("#titreFormEv").firstChild.textContent = "Nouvel événement "; $("#annulerEv").hidden = true; }
+  $("#annulerEv").addEventListener("click", viderFormEv);
+  $("#formEv").addEventListener("submit", function (e) {
+    e.preventDefault();
+    const f = e.target, action = e.submitter ? e.submitter.value : "brouillon";
+    const d = {date: f.date.value, heure: f.heure.value.trim(), lieu: f.lieu.value, titre: f.titre.value.trim(),
+               description: f.description.value.trim(), reservation: f.reservation.checked, statut: action};
+    if (!d.date || !d.titre) { message("#msgEv", "Une date et un titre, au minimum.", "erreur"); return; }
+    const requete = f.id.value
+      ? rest("evenements?id=eq." + f.id.value, {method: "PATCH", headers: {Prefer: "return=minimal"}, body: JSON.stringify(d)})
+      : rest("evenements", {method: "POST", headers: {Prefer: "return=minimal"}, body: JSON.stringify(d)});
+    requete.then(function () {
+      message("#msgEv", action === "publie" ? "Enregistré et publié : il apparaît sur le site dès maintenant." : "Enregistré en brouillon.", "ok");
+      viderFormEv(); chargerEv();
+    }).catch(function (err) { message("#msgEv", err.message, "erreur"); });
+  });
+
+  // ---------- produits ----------
+  const CHAMPS_PR = ["nom", "type", "producteur", "appellation", "origine", "cepages", "millesime", "alcool", "contenance", "phrase", "visuel", "nez", "bouche", "accords"];
+  function chargerPr() {
+    rest("produits?select=*&order=cree_le.desc&limit=200").then(function (lignes) {
+      const el = $("#listePr");
+      if (!lignes.length) { el.innerHTML = '<p class="vide">Aucun produit ajouté ici — le catalogue principal, lui, est généré depuis les fiches PDF.</p>'; return; }
+      el.innerHTML = lignes.map(function (p) {
+        return '<div class="ligne" data-id="' + p.id + '">' +
+          (p.photo ? '<img class="vignette" src="' + ech(p.photo) + '" alt="">' : '<div class="vignette"></div>') +
+          "<div><span class=\"lieu\">" + ech(p.type) + '</span><span class="nom">' + ech(p.nom) + "</span>" +
+            (p.statut === "brouillon" ? ' <span class="brouillon">· brouillon</span>' : "") +
+            '<div class="detail">' + ech([p.producteur, p.appellation || p.origine, p.millesime].filter(Boolean).join(" · ")) + "</div></div>" +
+          '<div class="cotes">' +
+            '<button class="btn petit' + (p.statut === "publie" ? " ligne" : "") + '" data-basculer="' + (p.statut === "publie" ? "brouillon" : "publie") + '">' + (p.statut === "publie" ? "Dépublier" : "Publier") + "</button>" +
+            '<button class="btn ligne petit" data-modifier>Modifier</button>' +
+            '<button class="btn danger petit" data-supprimer>Supprimer</button></div></div>';
+      }).join("");
+      el._donnees = lignes;
+    }).catch(function (err) { $("#listePr").innerHTML = '<p class="vide">' + ech(err.message) + "</p>"; });
+  }
+  $("#listePr").addEventListener("click", function (e) {
+    const b = e.target.closest("button"); if (!b) return;
+    const id = b.closest(".ligne").dataset.id;
+    if (b.dataset.basculer) {
+      rest("produits?id=eq." + id, {method: "PATCH", headers: {Prefer: "return=minimal"}, body: JSON.stringify({statut: b.dataset.basculer})}).then(chargerPr).catch(function (err) { alert(err.message); });
+    } else if (b.hasAttribute("data-supprimer")) {
+      if (!confirm("Supprimer ce produit ?")) return;
+      rest("produits?id=eq." + id, {method: "DELETE"}).then(chargerPr).catch(function (err) { alert(err.message); });
+    } else if (b.hasAttribute("data-modifier")) {
+      const p = $("#listePr")._donnees.find(function (x) { return x.id === id; });
+      const f = $("#formPr");
+      f.id.value = p.id; f.photo.value = p.photo || "";
+      CHAMPS_PR.forEach(function (k) { f[k].value = p[k] || (k === "type" ? "rouge" : ""); });
+      $("#apercuPhoto").textContent = p.photo ? "Photo actuelle conservée si vous n’en choisissez pas une autre." : "";
+      $("#titreFormPr").firstChild.textContent = "Modifier le produit ";
+      $("#annulerPr").hidden = false; f.scrollIntoView({behavior: "smooth"});
+    }
+  });
+  function viderFormPr() { const f = $("#formPr"); f.reset(); f.id.value = ""; f.photo.value = ""; $("#apercuPhoto").textContent = ""; $("#titreFormPr").firstChild.textContent = "Nouveau produit "; $("#annulerPr").hidden = true; }
+  $("#annulerPr").addEventListener("click", viderFormPr);
+
+  function deposerPhoto(fichier) {
+    const ext = (fichier.name.split(".").pop() || "jpg").toLowerCase().replace(/[^a-z0-9]/g, "");
+    const chemin = Date.now() + "-" + Math.random().toString(36).slice(2, 8) + "." + ext;
+    return api("/storage/v1/object/produits/" + chemin, {
+      method: "POST", body: fichier, headers: {"Content-Type": fichier.type || "image/jpeg", "x-upsert": "true"}
+    }).then(function () { return C.supabaseUrl + "/storage/v1/object/public/produits/" + chemin; });
+  }
+  $("#formPr").addEventListener("submit", function (e) {
+    e.preventDefault();
+    const f = e.target, action = e.submitter ? e.submitter.value : "brouillon";
+    if (!f.nom.value.trim()) { message("#msgPr", "Le nom de la cuvée est obligatoire.", "erreur"); return; }
+    const boutons = f.querySelectorAll('button[type="submit"]'); boutons.forEach(function (b) { b.disabled = true; });
+    message("#msgPr", "Enregistrement…");
+    const fichier = f.fichier.files[0];
+    (fichier ? deposerPhoto(fichier) : Promise.resolve(f.photo.value || null)).then(function (photo) {
+      const d = {statut: action, photo: photo};
+      CHAMPS_PR.forEach(function (k) { d[k] = f[k].value.trim() || null; });
+      d.type = f.type.value;
+      return f.id.value
+        ? rest("produits?id=eq." + f.id.value, {method: "PATCH", headers: {Prefer: "return=minimal"}, body: JSON.stringify(d)})
+        : rest("produits", {method: "POST", headers: {Prefer: "return=minimal"}, body: JSON.stringify(d)});
+    }).then(function () {
+      message("#msgPr", action === "publie" ? "Enregistré et publié : la fiche apparaît dans le catalogue." : "Enregistré en brouillon.", "ok");
+      viderFormPr(); chargerPr();
+    }).catch(function (err) { message("#msgPr", err.message, "erreur"); })
+      .finally(function () { boutons.forEach(function (b) { b.disabled = false; }); });
+  });
+
+  // ---------- démarrage ----------
+  if (session && session.access_token) {
+    api("/auth/v1/user").then(function (u) { session.user = u; garder(session); afficherApp(); })
+      .catch(function () { oublier(); afficherConnexion(); });
+  } else {
+    afficherConnexion();
+  }
+})();
+</script>
+</body>
+</html>

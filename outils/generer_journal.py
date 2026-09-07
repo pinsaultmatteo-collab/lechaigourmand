@@ -54,6 +54,7 @@ def entete(titre, description, url, image, ld, categorie=None):
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Pinyon+Script&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/styles.css">
+<script src="/config.js"></script>
 <script src="/site.js" defer></script>
 <script type="application/ld+json">
 {json.dumps(ld, ensure_ascii=False, indent=2)}
