@@ -496,7 +496,13 @@ textarea{min-height:80px;resize:vertical}
       rest("produits?id=eq." + id, {method: "DELETE"}).then(chargerPr).catch(function (err) { alert(err.message); });
     } else if (b.hasAttribute("data-modifier")) {
       const p = toutesPr.find(function (x) { return x.id === id; });
-      if (!p) { message("#msgPr", "Fiche introuvable — rechargez la page.", "erreur"); return; }
+      if (!p) {
+        // diagnostic : on dit ce qu'on a sous la main plutôt qu'un simple « introuvable »
+        const ex = toutesPr.length ? JSON.stringify(toutesPr[0].id) : "aucune";
+        message("#msgPr", "Fiche introuvable. Cliqué : " + JSON.stringify(id) +
+                " · " + toutesPr.length + " fiches chargées · exemple d'identifiant : " + ex, "erreur");
+        return;
+      }
       const f = $("#formPr"), ch = f.elements;
       ch.id.value = p.id;
       ch.images.value = JSON.stringify(p.images || []);
