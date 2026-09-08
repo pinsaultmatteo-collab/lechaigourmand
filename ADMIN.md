@@ -14,6 +14,10 @@ Compter **vingt minutes**, une seule fois.
 
 1. supabase.com → *New project*. Région **West EU (Paris)**, mot de passe base : gardez-le, il ne servira plus.
 2. Menu **SQL Editor** → *New query* → collez tout `supabase/schema.sql` → *Run*.
+   ⚠️ **Copiez le fichier en UTF-8**, sinon les accents arrivent abîmés dans la base
+   (« à » devient « √† »). En ligne de commande : `LC_ALL=en_US.UTF-8 pbcopy < supabase/schema.sql`.
+   Ou ouvrez le fichier dans un éditeur de texte et copiez depuis là.
+   Si le mal est fait : `supabase/reparer-accents.sql` corrige les 12 événements sans rien supprimer.
    Ça crée les trois tables, les droits, le rangement des photos, et recopie la programmation de septembre.
 3. Menu **Authentication → Sign In / Providers → Email** : décochez **Allow new users to sign up**.
    Sans ça, n'importe qui pourrait se créer un compte depuis l'extérieur et écrire dans la base.
