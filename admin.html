@@ -388,24 +388,25 @@ textarea{min-height:80px;resize:vertical}
       if (!confirm("Supprimer cet événement ?")) return;
       rest("evenements?id=eq." + id, {method: "DELETE"}).then(chargerEv).catch(function (err) { alert(err.message); });
     } else if (b.hasAttribute("data-modifier")) {
-      const ev = $("#listeEv")._donnees.find(function (x) { return x.id === id; });
-      const f = $("#formEv");
-      f.id.value = ev.id; f.date.value = ev.date; f.heure.value = ev.heure || ""; f.lieu.value = ev.lieu;
-      f.titre.value = ev.titre; f.description.value = ev.description || ""; f.reservation.checked = !!ev.reservation;
+      const ev = ($("#listeEv")._donnees || []).find(function (x) { return x.id === id; });
+      if (!ev) { message("#msgEv", "Événement introuvable — rechargez la page.", "erreur"); return; }
+      const ch = $("#formEv").elements;
+      ch.id.value = ev.id; ch.date.value = ev.date; ch.heure.value = ev.heure || ""; ch.lieu.value = ev.lieu;
+      ch.titre.value = ev.titre; ch.description.value = ev.description || ""; ch.reservation.checked = !!ev.reservation;
       $("#titreFormEv").firstChild.textContent = "Modifier l’événement ";
       $("#annulerEv").hidden = false; f.scrollIntoView({behavior: "smooth"});
     }
   });
-  function viderFormEv() { const f = $("#formEv"); f.reset(); f.id.value = ""; $("#titreFormEv").firstChild.textContent = "Nouvel événement "; $("#annulerEv").hidden = true; }
+  function viderFormEv() { const f = $("#formEv"); f.reset(); f.elements.id.value = ""; $("#titreFormEv").firstChild.textContent = "Nouvel événement "; $("#annulerEv").hidden = true; }
   $("#annulerEv").addEventListener("click", viderFormEv);
   $("#formEv").addEventListener("submit", function (e) {
     e.preventDefault();
-    const f = e.target, action = e.submitter ? e.submitter.value : "brouillon";
-    const d = {date: f.date.value, heure: f.heure.value.trim(), lieu: f.lieu.value, titre: f.titre.value.trim(),
-               description: f.description.value.trim(), reservation: f.reservation.checked, statut: action};
+    const ch = e.target.elements, action = e.submitter ? e.submitter.value : "brouillon";
+    const d = {date: ch.date.value, heure: ch.heure.value.trim(), lieu: ch.lieu.value, titre: ch.titre.value.trim(),
+               description: ch.description.value.trim(), reservation: ch.reservation.checked, statut: action};
     if (!d.date || !d.titre) { message("#msgEv", "Une date et un titre, au minimum.", "erreur"); return; }
-    const requete = f.id.value
-      ? rest("evenements?id=eq." + f.id.value, {method: "PATCH", headers: {Prefer: "return=minimal"}, body: JSON.stringify(d)})
+    const requete = ch.id.value
+      ? rest("evenements?id=eq." + ch.id.value, {method: "PATCH", headers: {Prefer: "return=minimal"}, body: JSON.stringify(d)})
       : rest("evenements", {method: "POST", headers: {Prefer: "return=minimal"}, body: JSON.stringify(d)});
     requete.then(function () {
       message("#msgEv", action === "publie" ? "Enregistré et publié : il apparaît sur le site dès maintenant." : "Enregistré en brouillon.", "ok");
@@ -469,11 +470,12 @@ textarea{min-height:80px;resize:vertical}
       rest("produits?id=eq." + id, {method: "DELETE"}).then(chargerPr).catch(function (err) { alert(err.message); });
     } else if (b.hasAttribute("data-modifier")) {
       const p = toutesPr.find(function (x) { return x.id === id; });
-      const f = $("#formPr");
-      f.id.value = p.id;
-      f.images.value = JSON.stringify(p.images || []);
-      CHAMPS_PR.forEach(function (k) { f[k].value = p[k] || (k === "type" ? "rouge" : ""); });
-      f.sources.value = (p.sources || []).join("\n");
+      if (!p) { message("#msgPr", "Fiche introuvable — rechargez la page.", "erreur"); return; }
+      const f = $("#formPr"), ch = f.elements;
+      ch.id.value = p.id;
+      ch.images.value = JSON.stringify(p.images || []);
+      CHAMPS_PR.forEach(function (k) { ch[k].value = p[k] || (k === "type" ? "rouge" : ""); });
+      ch.sources.value = (p.sources || []).join("\n");
       const nb = (p.images || []).length;
       $("#apercuPhoto").textContent = nb
         ? nb + " photo" + (nb > 1 ? "s" : "") + " en place — conservée" + (nb > 1 ? "s" : "") + " si vous n’en choisissez pas une autre."
@@ -482,7 +484,7 @@ textarea{min-height:80px;resize:vertical}
       $("#annulerPr").hidden = false; f.scrollIntoView({behavior: "smooth"});
     }
   });
-  function viderFormPr() { const f = $("#formPr"); f.reset(); f.id.value = ""; f.images.value = ""; $("#apercuPhoto").textContent = ""; $("#titreFormPr").firstChild.textContent = "Nouveau produit "; $("#annulerPr").hidden = true; }
+  function viderFormPr() { const f = $("#formPr"); f.reset(); f.elements.id.value = ""; f.elements.images.value = ""; $("#apercuPhoto").textContent = ""; $("#titreFormPr").firstChild.textContent = "Nouveau produit "; $("#annulerPr").hidden = true; }
   $("#annulerPr").addEventListener("click", viderFormPr);
 
   function deposerPhoto(fichier) {
@@ -494,21 +496,21 @@ textarea{min-height:80px;resize:vertical}
   }
   $("#formPr").addEventListener("submit", function (e) {
     e.preventDefault();
-    const f = e.target, action = e.submitter ? e.submitter.value : "brouillon";
-    if (!f.nom.value.trim()) { message("#msgPr", "Le nom de la cuvée est obligatoire.", "erreur"); return; }
+    const f = e.target, ch = f.elements, action = e.submitter ? e.submitter.value : "brouillon";
+    if (!ch.nom.value.trim()) { message("#msgPr", "Le nom de la cuvée est obligatoire.", "erreur"); return; }
     const boutons = f.querySelectorAll('button[type="submit"]'); boutons.forEach(function (b) { b.disabled = true; });
     message("#msgPr", "Enregistrement…");
-    const fichier = f.fichier.files[0];
+    const fichier = ch.fichier.files[0];
     let dejaLa = [];
-    try { dejaLa = JSON.parse(f.images.value || "[]"); } catch (e) { dejaLa = []; }
+    try { dejaLa = JSON.parse(ch.images.value || "[]"); } catch (e) { dejaLa = []; }
     (fichier ? deposerPhoto(fichier).then(function (u) { return [u].concat(dejaLa.slice(1)); })
              : Promise.resolve(dejaLa)).then(function (images) {
       const d = {statut: action, images: images};
-      CHAMPS_PR.forEach(function (k) { d[k] = f[k].value.trim() || null; });
-      d.type = f.type.value;
-      d.sources = f.sources.value.split("\n").map(function (x) { return x.trim(); }).filter(Boolean);
-      return f.id.value
-        ? rest("produits?id=eq." + f.id.value, {method: "PATCH", headers: {Prefer: "return=minimal"}, body: JSON.stringify(d)})
+      CHAMPS_PR.forEach(function (k) { d[k] = ch[k].value.trim() || null; });
+      d.type = ch.type.value;
+      d.sources = ch.sources.value.split("\n").map(function (x) { return x.trim(); }).filter(Boolean);
+      return ch.id.value
+        ? rest("produits?id=eq." + ch.id.value, {method: "PATCH", headers: {Prefer: "return=minimal"}, body: JSON.stringify(d)})
         : rest("produits", {method: "POST", headers: {Prefer: "return=minimal"}, body: JSON.stringify(d)});
     }).then(function () {
       message("#msgPr", action === "publie" ? "Enregistré et publié : la fiche apparaît dans le catalogue." : "Enregistré en brouillon.", "ok");
