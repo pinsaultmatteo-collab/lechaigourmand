@@ -9,7 +9,7 @@ Les fiches sont écrites en dur dans la page (et non chargées en JavaScript)
 pour que les moteurs de recherche les indexent. Le JavaScript ne fait que
 filtrer, chercher et ouvrir le détail.
 """
-import html, json, re, unicodedata
+import html, json, os, re, unicodedata, urllib.request
 from pathlib import Path
 
 SOURCE_GABARIT = "cave-a-vin.html"     # d'où l'on reprend la nav et le pied de page
@@ -172,6 +172,60 @@ VOLET = '''<div class="ref-volet" id="refVolet" hidden>
   </aside>
 </div>'''
 
+SITE_SUPABASE = "https://xdbudbqqwfyfcivnvqzu.supabase.co"
+PLANCHER = 50          # en dessous, on considère que la base a mal répondu
+
+def _cle_publique():
+    """La clé anon vit dans config.js, versionnée : pas de variable à poser."""
+    try:
+        c = open("config.js", encoding="utf-8").read()
+        return re.search(r'supabaseAnonKey:\s*"([^"]*)"', c).group(1)
+    except Exception:
+        return ""
+
+def _depuis_la_base():
+    url = (os.environ.get("SUPABASE_URL") or SITE_SUPABASE).rstrip("/")
+    cle = os.environ.get("SUPABASE_ANON_KEY") or _cle_publique()
+    if not cle:
+        return None
+    req = urllib.request.Request(
+        url + "/rest/v1/produits?select=*&statut=eq.publie&order=rang.asc&limit=2000",
+        headers={"apikey": cle, "Authorization": "Bearer " + cle})
+    with urllib.request.urlopen(req, timeout=20) as r:
+        lignes = json.load(r)
+    produits = []
+    for l in lignes:
+        p = {k: l.get(k) for k in
+             ("nom", "type", "producteur", "appellation", "origine", "cepages",
+              "millesime", "alcool", "contenance", "visuel", "nez", "bouche",
+              "accords", "phrase", "style", "vieillissement", "lot", "prix")}
+        p["id"] = l.get("reference") or l["id"]
+        p["sources"] = l.get("sources") or []
+        p["images"] = l.get("images") or ([l["photo"]] if l.get("photo") else [])
+        p["photos"] = []
+        produits.append(p)
+    return produits
+
+def charger_produits():
+    """Le catalogue vient de la base — c'est là qu'Adrien corrige ses fiches.
+    data/produits.json reste le filet : un déploiement ne doit jamais publier
+    un catalogue vide parce que Supabase a toussé."""
+    fichier = json.load(open("data/produits.json", encoding="utf-8"))
+    try:
+        base = _depuis_la_base()
+    except Exception as err:
+        print(f"  ⚠ base injoignable ({type(err).__name__}) — catalogue lu dans data/produits.json")
+        return fichier
+    if base is None:
+        print("  base non configurée — catalogue lu dans data/produits.json")
+        return fichier
+    if len(base) < PLANCHER:
+        print(f"  ⚠ la base ne rend que {len(base)} fiches (moins de {PLANCHER}) — "
+              "repli sur data/produits.json, l'import a-t-il été lancé ?")
+        return fichier
+    print(f"  catalogue lu depuis la base : {len(base)} fiches publiées")
+    return base
+
 def dedoublonner(produits, bavard=True):
     """Le même vin décrit dans deux lots : on garde la fiche la mieux remplie."""
     garde = {}
@@ -190,7 +244,7 @@ def extraire(source, debut, fin):
     return source[i:j]
 
 def main():
-    produits = json.load(open("data/produits.json"))
+    produits = charger_produits()
     for x in produits:                       # les capitales des PDF, une bonne fois pour toutes
         x["nom"] = titre_propre(court(x.get("nom")))
         if x.get("producteur"):

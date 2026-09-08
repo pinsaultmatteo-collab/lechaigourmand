@@ -91,6 +91,18 @@ textarea{min-height:80px;resize:vertical}
   </section>
 
   <div id="vueApp" hidden>
+    <div class="bloc" id="blocPublier" style="display:flex;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between">
+      <div>
+        <strong style="font-family:var(--serif);font-size:1.1rem">Publier les fiches produits sur le site</strong>
+        <div class="apercu" style="margin-top:.2rem">Les événements et les réservations sont immédiats.
+          Les fiches produits, elles, sont gravées dans les pages pour Google : un clic ici les remet à jour, comptez une minute.</div>
+      </div>
+      <div style="display:flex;gap:.6rem;align-items:center">
+        <button class="btn" id="publierSite" type="button">Publier sur le site</button>
+      </div>
+      <p class="msg" id="msgPublier" style="flex:1 1 100%"></p>
+    </div>
+
     <nav class="onglets" aria-label="Rubriques">
       <button class="onglet actif" data-onglet="reservations">Réservations <span class="pastille" id="nbNouvelles" hidden>0</span></button>
       <button class="onglet" data-onglet="evenements">Événements</button>
@@ -141,7 +153,7 @@ textarea{min-height:80px;resize:vertical}
       <div class="bloc">
         <h2 id="titreFormPr">Nouveau produit <span>visible sur /nos-references une fois publié</span></h2>
         <form id="formPr" class="grille">
-          <input type="hidden" name="id"><input type="hidden" name="photo">
+          <input type="hidden" name="id"><input type="hidden" name="images">
           <div class="champ large"><label>Nom de la cuvée</label><input type="text" name="nom" required maxlength="120"></div>
           <div class="champ"><label>Catégorie</label>
             <select name="type">
@@ -156,11 +168,14 @@ textarea{min-height:80px;resize:vertical}
           <div class="champ"><label>Millésime</label><input type="text" name="millesime" placeholder="2023"></div>
           <div class="champ"><label>Degré (%)</label><input type="text" name="alcool" placeholder="13,5"></div>
           <div class="champ"><label>Contenance</label><input type="text" name="contenance" placeholder="75 cl"></div>
+          <div class="champ"><label>Style</label><input type="text" name="style" placeholder="Bière ambrée, vin orange…"></div>
+          <div class="champ"><label>Vieillissement</label><input type="text" name="vieillissement" placeholder="12 mois en fût"></div>
           <div class="champ large"><label>Phrase pour la carte (accroche)</label><input type="text" name="phrase" maxlength="200"></div>
           <div class="champ"><label>À l'œil</label><textarea name="visuel"></textarea></div>
           <div class="champ"><label>Au nez</label><textarea name="nez"></textarea></div>
           <div class="champ"><label>En bouche</label><textarea name="bouche"></textarea></div>
           <div class="champ"><label>Accords mets & vins</label><textarea name="accords"></textarea></div>
+          <div class="champ large"><label>Sources <em>(une adresse par ligne)</em></label><textarea name="sources" placeholder="https://…"></textarea></div>
           <div class="champ large"><label>Photo (de face, sur fond clair)</label><input type="file" name="fichier" accept="image/*"><span class="apercu" id="apercuPhoto"></span></div>
           <div class="actions large">
             <button class="btn" type="submit" name="action" value="brouillon">Enregistrer en brouillon</button>
@@ -169,6 +184,18 @@ textarea{min-height:80px;resize:vertical}
           </div>
         </form>
         <p class="msg" id="msgPr"></p>
+      </div>
+      <div class="filtres" id="filtresPr">
+        <input type="search" id="chercherPr" placeholder="Chercher un domaine, une appellation, un cépage…"
+               style="flex:1 1 260px;min-width:200px">
+        <select id="typePr" style="width:auto">
+          <option value="">Toutes catégories</option>
+          <option value="rouge">Rouges</option><option value="blanc">Blancs</option>
+          <option value="rose">Rosés</option><option value="bulles">Bulles</option>
+          <option value="moelleux">Moelleux</option><option value="biere">Bières</option>
+          <option value="spiritueux">Spiritueux</option><option value="epicerie">Épicerie</option>
+        </select>
+        <span class="apercu" id="comptePr"></span>
       </div>
       <div class="liste" id="listePr"><p class="vide">Chargement…</p></div>
     </section>
@@ -387,14 +414,30 @@ textarea{min-height:80px;resize:vertical}
   });
 
   // ---------- produits ----------
-  const CHAMPS_PR = ["nom", "type", "producteur", "appellation", "origine", "cepages", "millesime", "alcool", "contenance", "phrase", "visuel", "nez", "bouche", "accords"];
-  function chargerPr() {
-    rest("produits?select=*&order=cree_le.desc&limit=200").then(function (lignes) {
-      const el = $("#listePr");
-      if (!lignes.length) { el.innerHTML = '<p class="vide">Aucun produit ajouté ici — le catalogue principal, lui, est généré depuis les fiches PDF.</p>'; return; }
-      el.innerHTML = lignes.map(function (p) {
+  const CHAMPS_PR = ["nom", "type", "producteur", "appellation", "origine", "cepages", "millesime",
+                     "alcool", "contenance", "phrase", "visuel", "nez", "bouche", "accords",
+                     "style", "vieillissement"];
+  const MAX_AFFICHE = 60;      // 255 fiches d'un coup, personne ne lit ça : on cherche
+  let toutesPr = [];
+
+  function sansAccent(t) { return String(t || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase(); }
+  function afficherPr() {
+    const q = sansAccent($("#chercherPr").value.trim());
+    const mots = q.split(/\s+/).filter(Boolean);
+    const type = $("#typePr").value;
+    const trouves = toutesPr.filter(function (p) {
+      if (type && p.type !== type) return false;
+      if (!mots.length) return true;
+      const foin = sansAccent([p.nom, p.producteur, p.appellation, p.origine, p.cepages, p.millesime].join(" "));
+      return mots.every(function (m) { return foin.indexOf(m) > -1; });
+    });
+    $("#comptePr").textContent = trouves.length + " fiche" + (trouves.length > 1 ? "s" : "") +
+      (trouves.length > MAX_AFFICHE ? " — les " + MAX_AFFICHE + " premières sont affichées" : "");
+    const el = $("#listePr");
+    if (!trouves.length) { el.innerHTML = '<p class="vide">Aucune fiche ne correspond.</p>'; return; }
+    el.innerHTML = trouves.slice(0, MAX_AFFICHE).map(function (p) {
         return '<div class="ligne" data-id="' + p.id + '">' +
-          (p.photo ? '<img class="vignette" src="' + ech(p.photo) + '" alt="">' : '<div class="vignette"></div>') +
+          ((p.images && p.images[0]) ? '<img class="vignette" src="' + ech(p.images[0]) + '" alt="" loading="lazy">' : '<div class="vignette"></div>') +
           "<div><span class=\"lieu\">" + ech(p.type) + '</span><span class="nom">' + ech(p.nom) + "</span>" +
             (p.statut === "brouillon" ? ' <span class="brouillon">· brouillon</span>' : "") +
             '<div class="detail">' + ech([p.producteur, p.appellation || p.origine, p.millesime].filter(Boolean).join(" · ")) + "</div></div>" +
@@ -402,10 +445,20 @@ textarea{min-height:80px;resize:vertical}
             '<button class="btn petit' + (p.statut === "publie" ? " ligne" : "") + '" data-basculer="' + (p.statut === "publie" ? "brouillon" : "publie") + '">' + (p.statut === "publie" ? "Dépublier" : "Publier") + "</button>" +
             '<button class="btn ligne petit" data-modifier>Modifier</button>' +
             '<button class="btn danger petit" data-supprimer>Supprimer</button></div></div>';
-      }).join("");
-      el._donnees = lignes;
+    }).join("");
+  }
+  function chargerPr() {
+    rest("produits?select=*&order=rang.asc&limit=2000").then(function (lignes) {
+      toutesPr = lignes;
+      if (!lignes.length) {
+        $("#listePr").innerHTML = '<p class="vide">La table est vide — lancez l’import décrit dans ADMIN.md.</p>';
+        $("#comptePr").textContent = ""; return;
+      }
+      afficherPr();
     }).catch(function (err) { $("#listePr").innerHTML = '<p class="vide">' + ech(err.message) + "</p>"; });
   }
+  $("#chercherPr").addEventListener("input", afficherPr);
+  $("#typePr").addEventListener("change", afficherPr);
   $("#listePr").addEventListener("click", function (e) {
     const b = e.target.closest("button"); if (!b) return;
     const id = b.closest(".ligne").dataset.id;
@@ -415,16 +468,21 @@ textarea{min-height:80px;resize:vertical}
       if (!confirm("Supprimer ce produit ?")) return;
       rest("produits?id=eq." + id, {method: "DELETE"}).then(chargerPr).catch(function (err) { alert(err.message); });
     } else if (b.hasAttribute("data-modifier")) {
-      const p = $("#listePr")._donnees.find(function (x) { return x.id === id; });
+      const p = toutesPr.find(function (x) { return x.id === id; });
       const f = $("#formPr");
-      f.id.value = p.id; f.photo.value = p.photo || "";
+      f.id.value = p.id;
+      f.images.value = JSON.stringify(p.images || []);
       CHAMPS_PR.forEach(function (k) { f[k].value = p[k] || (k === "type" ? "rouge" : ""); });
-      $("#apercuPhoto").textContent = p.photo ? "Photo actuelle conservée si vous n’en choisissez pas une autre." : "";
+      f.sources.value = (p.sources || []).join("\n");
+      const nb = (p.images || []).length;
+      $("#apercuPhoto").textContent = nb
+        ? nb + " photo" + (nb > 1 ? "s" : "") + " en place — conservée" + (nb > 1 ? "s" : "") + " si vous n’en choisissez pas une autre."
+        : "";
       $("#titreFormPr").firstChild.textContent = "Modifier le produit ";
       $("#annulerPr").hidden = false; f.scrollIntoView({behavior: "smooth"});
     }
   });
-  function viderFormPr() { const f = $("#formPr"); f.reset(); f.id.value = ""; f.photo.value = ""; $("#apercuPhoto").textContent = ""; $("#titreFormPr").firstChild.textContent = "Nouveau produit "; $("#annulerPr").hidden = true; }
+  function viderFormPr() { const f = $("#formPr"); f.reset(); f.id.value = ""; f.images.value = ""; $("#apercuPhoto").textContent = ""; $("#titreFormPr").firstChild.textContent = "Nouveau produit "; $("#annulerPr").hidden = true; }
   $("#annulerPr").addEventListener("click", viderFormPr);
 
   function deposerPhoto(fichier) {
@@ -441,10 +499,14 @@ textarea{min-height:80px;resize:vertical}
     const boutons = f.querySelectorAll('button[type="submit"]'); boutons.forEach(function (b) { b.disabled = true; });
     message("#msgPr", "Enregistrement…");
     const fichier = f.fichier.files[0];
-    (fichier ? deposerPhoto(fichier) : Promise.resolve(f.photo.value || null)).then(function (photo) {
-      const d = {statut: action, photo: photo};
+    let dejaLa = [];
+    try { dejaLa = JSON.parse(f.images.value || "[]"); } catch (e) { dejaLa = []; }
+    (fichier ? deposerPhoto(fichier).then(function (u) { return [u].concat(dejaLa.slice(1)); })
+             : Promise.resolve(dejaLa)).then(function (images) {
+      const d = {statut: action, images: images};
       CHAMPS_PR.forEach(function (k) { d[k] = f[k].value.trim() || null; });
       d.type = f.type.value;
+      d.sources = f.sources.value.split("\n").map(function (x) { return x.trim(); }).filter(Boolean);
       return f.id.value
         ? rest("produits?id=eq." + f.id.value, {method: "PATCH", headers: {Prefer: "return=minimal"}, body: JSON.stringify(d)})
         : rest("produits", {method: "POST", headers: {Prefer: "return=minimal"}, body: JSON.stringify(d)});
@@ -453,6 +515,22 @@ textarea{min-height:80px;resize:vertical}
       viderFormPr(); chargerPr();
     }).catch(function (err) { message("#msgPr", err.message, "erreur"); })
       .finally(function () { boutons.forEach(function (b) { b.disabled = false; }); });
+  });
+
+  // ---------- publication du catalogue ----------
+  // Les fiches produits vivent dans les pages HTML, pour que Google les lise.
+  // Ce bouton demande à Vercel de régénérer le site depuis la base.
+  $("#publierSite").addEventListener("click", function () {
+    const b = $("#publierSite");
+    b.disabled = true; message("#msgPublier", "Demande envoyée, le site se régénère…");
+    fetch("/api/publier", {method: "POST", headers: {Authorization: "Bearer " + session.access_token}})
+      .then(function (r) { return r.json().then(function (j) { return {ok: r.ok, j: j}; }); })
+      .then(function (rep) {
+        if (!rep.ok) throw new Error(rep.j.erreur || "La publication a échoué.");
+        message("#msgPublier", "C’est parti — les fiches seront en ligne dans une minute environ.", "ok");
+      })
+      .catch(function (err) { message("#msgPublier", err.message, "erreur"); })
+      .finally(function () { setTimeout(function () { b.disabled = false; }, 20000); });
   });
 
   // ---------- démarrage ----------

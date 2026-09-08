@@ -44,6 +44,25 @@ Compter **vingt minutes**, une seule fois.
 - Poussez `config.js` et redéployez. Sans courriel, les réservations restent visibles dans l'onglet
   *Réservations* du back-office, avec une pastille sur le nombre de nouvelles.
 
+## 2 bis. Faire passer le catalogue en base (une seule fois)
+
+Les 254 fiches vivaient dans un fichier du dépôt. Pour qu'Adrien puisse les corriger lui-même :
+
+1. **SQL Editor** → collez `supabase/migration-produits.sql` → *Run* (ajoute six colonnes manquantes).
+2. Dans un terminal, à la racine du site :
+
+   ```
+   export SUPABASE_SERVICE_KEY='la-cle-service_role'
+   python3 outils/importer_produits.py
+   ```
+
+   255 fiches partent en base, avec leurs photos et leurs sources. Rejouable sans créer de doublons.
+3. Sur Vercel → *Settings → Git → Deploy Hooks* : créez un hook nommé `back-office` sur la branche `main`,
+   copiez son adresse, et ajoutez-la en variable d'environnement `VERCEL_DEPLOY_HOOK`.
+
+À partir de là, le site est **régénéré depuis la base à chaque déploiement**. Si Supabase ne répond pas,
+le build retombe sur `data/produits.json` plutôt que d'échouer.
+
 ## 3. Ce que fait chaque onglet
 
 - **Réservations** — reçues par le formulaire du site. Statut *nouvelle → confirmée / annulée* ; le client
@@ -51,8 +70,10 @@ Compter **vingt minutes**, une seule fois.
 - **Événements** — la programmation de l'agenda et du bandeau d'accueil. *Brouillon* = invisible ;
   *Publier* = en ligne dans la minute. Les passés disparaissent seuls du site. Plus besoin de toucher
   au tableau `PROGRAMMATION` de `site.js` : il ne sert plus que de repli si la base ne répond pas.
-- **Produits** — s'ajoutent en tête de leur catégorie sur `/nos-references`, avec la même fiche que les
-  autres. La photo est redimensionnée par le navigateur à l'affichage : une prise de face sur fond clair
+- **Produits** — les 254 fiches du catalogue, cherchables par domaine, appellation ou cépage, plus celles
+  qu'Adrien ajoute. Modifier une fiche puis cliquer **Publier sur le site** : le catalogue est reconstruit
+  en une minute environ. Ce détour existe parce que les fiches sont écrites dans les pages HTML — c'est ce
+  qui les rend lisibles par Google. Les événements et les réservations, eux, sont immédiats. La photo est redimensionnée par le navigateur à l'affichage : une prise de face sur fond clair
   suffit. Le catalogue principal, lui, reste généré depuis les fiches PDF (`data/produits.json`).
 
 ## Sécurité, en deux lignes

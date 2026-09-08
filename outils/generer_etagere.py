@@ -18,7 +18,7 @@ from urllib.parse import quote
 
 sys.path.insert(0, str(Path(__file__).parent))
 from generer_catalogue import (titre_propre, court, SINGULIER, silhouette,
-                               dedoublonner, carte_cachee, VOLET)
+                               dedoublonner, carte_cachee, VOLET, charger_produits)
 
 # Deux rangs de quatre, d'abord les signatures puis les régionales : la vitrine
 # « Tout voir ».
@@ -103,7 +103,7 @@ def carte(p, rang, vitrines):
 
 def main():
     produits = {}
-    for x in dedoublonner(json.load(open("data/produits.json"))):
+    for x in dedoublonner(charger_produits()):
         x["nom"] = titre_propre(court(x["nom"]))
         if x.get("producteur"):
             x["producteur"] = titre_propre(court(x["producteur"]))

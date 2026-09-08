@@ -11,5 +11,6 @@
         }
       ]
     }
-  ]
+  ],
+  "buildCommand": "python3 outils/generer_catalogue.py && python3 outils/generer_etagere.py"
 }
