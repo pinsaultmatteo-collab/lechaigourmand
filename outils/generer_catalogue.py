@@ -9,7 +9,7 @@ Les fiches sont écrites en dur dans la page (et non chargées en JavaScript)
 pour que les moteurs de recherche les indexent. Le JavaScript ne fait que
 filtrer, chercher et ouvrir le détail.
 """
-import html, json, os, re, unicodedata, urllib.request
+import datetime, html, json, os, re, unicodedata, urllib.request
 from pathlib import Path
 
 SOURCE_GABARIT = "cave-a-vin.html"     # d'où l'on reprend la nav et le pied de page
