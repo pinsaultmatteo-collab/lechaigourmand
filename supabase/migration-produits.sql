@@ -16,8 +16,11 @@ alter table public.produits add column if not exists prix          text;
 alter table public.produits add column if not exists rang          integer;  -- ordre d'affichage, laisse libre
 
 -- une fiche par reference : l'import peut etre rejoue sans creer de doublons
+-- index simple et non partiel : un index partiel ne peut pas servir a un
+-- ON CONFLICT, et l'import s'en sert pour ne pas creer de doublons.
+-- Les NULL sont distincts en PostgreSQL : les fiches sans reference cohabitent.
 create unique index if not exists produits_reference_idx
-  on public.produits (reference) where reference is not null;
+  on public.produits (reference);
 
 -- la colonne photo (une seule URL) est remplacee par images (plusieurs) ;
 -- on la garde pour ne rien casser, mais elle n'est plus alimentee.
