@@ -1,7 +1,7 @@
--- Répare les accents des 12 événements de septembre.
--- Le premier import est passé par un presse-papiers mal encodé :
--- « à » y est devenu « √† ». Rien n'est supprimé, on ne fait que corriger le texte.
--- À coller dans Supabase → SQL Editor → Run.
+-- Repare les accents des 12 evenements de septembre.
+-- Le premier import est passe par un presse-papiers mal encode ;
+-- les caracteres accentues y ont ete abimes. Rien n'est supprime : on corrige le texte.
+-- A coller dans Supabase -> SQL Editor -> Run.
 
 update public.evenements set titre = 'Afterwork Latino', description = 'Le comptoir passe à l''heure latine — tapas, verres et rythmes qui réchauffent.', heure = 'dès 17h', reservation = false
   where date = '2026-09-03' and lieu = 'francazal';
