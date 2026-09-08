@@ -1,5 +1,5 @@
 -- ============================================================
--- Correction : l'index unique sur « reference » etait partiel
+-- Correction : l'index unique sur " reference " etait partiel
 -- (where reference is not null), et PostgreSQL refuse d'utiliser
 -- un index partiel pour un ON CONFLICT. L'import echouait donc.
 --
