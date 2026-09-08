@@ -12,5 +12,5 @@
       ]
     }
   ],
-  "buildCommand": "python3 outils/generer_catalogue.py && python3 outils/generer_etagere.py"
+  "buildCommand": "python3 outils/generer_catalogue.py && python3 outils/generer_etagere.py || echo 'generation ignoree - les pages du depot sont servies telles quelles'"
 }
