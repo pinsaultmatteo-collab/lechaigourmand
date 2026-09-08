@@ -289,7 +289,7 @@ def main():
     illustres = sum(1 for p in produits if p.get("images"))
 
     page = f'''<!DOCTYPE html>
-<!-- {ORIGINE['source']} · {ORIGINE['nombre']} fiches · fabriqué {'sur Vercel' if os.environ.get('VERCEL') else 'en local'} -->
+<!-- {ORIGINE['source']} · {ORIGINE['nombre']} fiches · fabriqué {'sur Vercel' if os.environ.get('VERCEL') else 'en local'} le {datetime.datetime.now(datetime.timezone.utc).strftime('%d/%m/%Y a %Hh%M UTC')} -->
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
