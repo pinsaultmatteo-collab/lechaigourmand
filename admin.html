@@ -128,6 +128,11 @@ textarea{min-height:80px;resize:vertical}
         </form>
         <p class="msg" id="msgEv"></p>
       </div>
+      <div class="filtres" id="filtresEv">
+        <button class="actif" data-periode="avenir">À venir</button>
+        <button data-periode="passes">Passés</button>
+        <button data-periode="tout">Tout</button>
+      </div>
       <div class="liste" id="listeEv"><p class="vide">Chargement…</p></div>
     </section>
 
@@ -301,13 +306,40 @@ textarea{min-height:80px;resize:vertical}
   });
 
   // ---------- événements ----------
+  let periodeEv = "avenir";
+  $("#filtresEv").addEventListener("click", function (e) {
+    const b = e.target.closest("button"); if (!b) return;
+    periodeEv = b.dataset.periode;
+    $("#filtresEv").querySelectorAll("button").forEach(function (x) { x.classList.toggle("actif", x === b); });
+    chargerEv();
+  });
   function chargerEv() {
-    rest("evenements?select=*&order=date.desc&limit=200").then(function (lignes) {
+    // du plus proche au plus lointain : c'est la prochaine soirée qu'on vient voir.
+    // Les passés, eux, se lisent du plus récent au plus ancien.
+    const jour = aujourdHui();
+    const filtre = periodeEv === "avenir" ? "&date=gte." + jour : periodeEv === "passes" ? "&date=lt." + jour : "";
+    const ordre = periodeEv === "passes" ? "date.desc" : "date.asc";
+    rest("evenements?select=*" + filtre + "&order=" + ordre + "&limit=200").then(function (lignes) {
       const el = $("#listeEv");
-      if (!lignes.length) { el.innerHTML = '<p class="vide">Aucun événement pour l’instant.</p>'; return; }
+      if (!lignes.length) {
+        el.innerHTML = '<p class="vide">Aucun événement ' +
+          (periodeEv === "avenir" ? "à venir — le prochain se crée juste au-dessus." : "sur cette période.") + "</p>";
+        el._donnees = []; return;
+      }
+      // en mode « tout », les passés viennent après les à-venir plutôt qu'avant
+      if (periodeEv === "tout") {
+        const avenir = lignes.filter(function (e) { return e.date >= jour; });
+        const passes = lignes.filter(function (e) { return e.date < jour; }).reverse();
+        lignes = avenir.concat(passes);
+      }
+      let separateur = periodeEv === "tout";
       el.innerHTML = lignes.map(function (ev) {
-        return '<div class="ligne" data-id="' + ev.id + '">' +
-          '<div class="heure" style="font-size:.95rem">' + ev.date.split("-").reverse().slice(0, 2).join("/") + "</div>" +
+        let entete = "";
+        if (separateur && ev.date < jour) { entete = '<p class="jour">Passés</p>'; separateur = false; }
+        return entete +
+          '<div class="ligne" data-id="' + ev.id + '">' +
+          '<div class="heure" style="font-size:.95rem">' + ev.date.slice(8) + "/" + ev.date.slice(5, 7) +
+            (ev.date.slice(0, 4) === String(new Date().getFullYear()) ? "" : '<br><span style="font-size:.62rem;letter-spacing:.1em">' + ev.date.slice(0, 4) + "</span>") + "</div>" +
           "<div><span class=\"lieu " + ev.lieu + '">' + LIEUX[ev.lieu] + '</span><span class="nom">' + ech(ev.titre) + "</span>" +
             (ev.statut === "brouillon" ? ' <span class="brouillon">· brouillon</span>' : "") +
             '<div class="detail">' + ech(ev.heure) + (ev.reservation ? " · sur réservation" : "") + "</div>" +
