@@ -15,9 +15,11 @@ Compter **vingt minutes**, une seule fois.
 1. supabase.com → *New project*. Région **West EU (Paris)**, mot de passe base : gardez-le, il ne servira plus.
 2. Menu **SQL Editor** → *New query* → collez tout `supabase/schema.sql` → *Run*.
    Ça crée les trois tables, les droits, le rangement des photos, et recopie la programmation de septembre.
-3. Menu **Authentication → Users → Add user** : l'adresse et le mot de passe d'Adrien (et les vôtres).
+3. Menu **Authentication → Sign In / Providers → Email** : décochez **Allow new users to sign up**.
+   Sans ça, n'importe qui pourrait se créer un compte depuis l'extérieur et écrire dans la base.
+4. Menu **Authentication → Users → Add user** : l'adresse et le mot de passe d'Adrien (et les vôtres).
    Cochez *Auto confirm user*. C'est l'identifiant du back-office.
-4. Menu **Project settings → API** : notez trois valeurs.
+5. Menu **Project settings → API** : notez trois valeurs.
    - *Project URL* — `https://xxxx.supabase.co`
    - *anon public* — la clé publique
    - *service_role* — la clé secrète. **Jamais dans le code, jamais dans un mail.**

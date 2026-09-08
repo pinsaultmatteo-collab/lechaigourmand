@@ -3,6 +3,6 @@
 // « anon » ne donne que les droits définis dans supabase/schema.sql
 // (lire ce qui est publié). La clé de service, elle, reste sur Vercel.
 window.CHAI = {
-  supabaseUrl: "",        // ex. https://abcdefghij.supabase.co
+  supabaseUrl: "https://xdbudbqqwfyfcivnvqzu.supabase.co",
   supabaseAnonKey: "",    // Project settings → API → anon public
 };
