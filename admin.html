@@ -39,7 +39,7 @@ textarea{min-height:80px;resize:vertical}
 .coche input{width:auto}
 .actions{display:flex;gap:.6rem;flex-wrap:wrap;align-items:center;margin-top:1rem}
 .btn{border:0;border-radius:99px;padding:.7rem 1.4rem;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;font-weight:500;background:var(--bordeaux);color:var(--creme)}
-.btn.ligne{background:none;color:var(--brun);border:1px solid rgba(122,99,85,.45)}
+.btn.contour{background:none;color:var(--brun);border:1px solid rgba(122,99,85,.45)}
 .btn.danger{background:none;color:var(--rouge);border:1px solid rgba(176,65,62,.5)}
 .btn.petit{padding:.45rem .9rem;font-size:.64rem}
 .btn[disabled]{opacity:.5;cursor:wait}
@@ -138,8 +138,8 @@ textarea{min-height:80px;resize:vertical}
           <label class="coche"><input type="checkbox" name="reservation"> Sur réservation</label>
           <div class="actions large">
             <button class="btn" type="submit" name="action" value="brouillon">Enregistrer en brouillon</button>
-            <button class="btn ligne" type="submit" name="action" value="publie">Enregistrer et publier</button>
-            <button class="btn ligne petit" type="button" id="annulerEv" hidden>Annuler la modification</button>
+            <button class="btn contour" type="submit" name="action" value="publie">Enregistrer et publier</button>
+            <button class="btn contour petit" type="button" id="annulerEv" hidden>Annuler la modification</button>
           </div>
         </form>
         <p class="msg" id="msgEv"></p>
@@ -183,8 +183,8 @@ textarea{min-height:80px;resize:vertical}
           <div class="champ large"><label>Photo (de face, sur fond clair)</label><input type="file" name="fichier" accept="image/*"><span class="apercu" id="apercuPhoto"></span></div>
           <div class="actions large">
             <button class="btn" type="submit" name="action" value="brouillon">Enregistrer en brouillon</button>
-            <button class="btn ligne" type="submit" name="action" value="publie">Enregistrer et publier</button>
-            <button class="btn ligne petit" type="button" id="annulerPr" hidden>Annuler la modification</button>
+            <button class="btn contour" type="submit" name="action" value="publie">Enregistrer et publier</button>
+            <button class="btn contour petit" type="button" id="annulerPr" hidden>Annuler la modification</button>
           </div>
         </form>
         <p class="msg" id="msgPr"></p>
@@ -394,8 +394,8 @@ textarea{min-height:80px;resize:vertical}
             '<div class="detail">' + ech(ev.heure) + (ev.reservation ? " · sur réservation" : "") + "</div>" +
             (ev.description ? '<div class="message">' + ech(ev.description) + "</div>" : "") + "</div>" +
           '<div class="cotes">' +
-            '<button class="btn petit' + (ev.statut === "publie" ? " ligne" : "") + '" data-basculer="' + (ev.statut === "publie" ? "brouillon" : "publie") + '">' + (ev.statut === "publie" ? "Dépublier" : "Publier") + "</button>" +
-            '<button class="btn ligne petit" data-modifier>Modifier</button>' +
+            '<button class="btn petit' + (ev.statut === "publie" ? " contour" : "") + '" data-basculer="' + (ev.statut === "publie" ? "brouillon" : "publie") + '">' + (ev.statut === "publie" ? "Dépublier" : "Publier") + "</button>" +
+            '<button class="btn contour petit" data-modifier>Modifier</button>' +
             '<button class="btn danger petit" data-supprimer>Supprimer</button></div></div>';
       }).join("");
       el._donnees = lignes;
@@ -403,7 +403,7 @@ textarea{min-height:80px;resize:vertical}
   }
   $("#listeEv").addEventListener("click", function (e) {
     const b = e.target.closest("button"); if (!b) return;
-    const ligne = b.closest(".ligne");
+    const ligne = b.closest("[data-id]");
     if (!ligne) { crier("Bouton hors ligne événement — rechargez la page."); return; }
     const id = ligne.dataset.id;
     if (b.dataset.basculer) {
@@ -467,8 +467,8 @@ textarea{min-height:80px;resize:vertical}
             (p.statut === "brouillon" ? ' <span class="brouillon">· brouillon</span>' : "") +
             '<div class="detail">' + ech([p.producteur, p.appellation || p.origine, p.millesime].filter(Boolean).join(" · ")) + "</div></div>" +
           '<div class="cotes">' +
-            '<button class="btn petit' + (p.statut === "publie" ? " ligne" : "") + '" data-basculer="' + (p.statut === "publie" ? "brouillon" : "publie") + '">' + (p.statut === "publie" ? "Dépublier" : "Publier") + "</button>" +
-            '<button class="btn ligne petit" data-modifier>Modifier</button>' +
+            '<button class="btn petit' + (p.statut === "publie" ? " contour" : "") + '" data-basculer="' + (p.statut === "publie" ? "brouillon" : "publie") + '">' + (p.statut === "publie" ? "Dépublier" : "Publier") + "</button>" +
+            '<button class="btn contour petit" data-modifier>Modifier</button>' +
             '<button class="btn danger petit" data-supprimer>Supprimer</button></div></div>';
     }).join("");
   }
@@ -486,7 +486,7 @@ textarea{min-height:80px;resize:vertical}
   $("#typePr").addEventListener("change", afficherPr);
   $("#listePr").addEventListener("click", function (e) {
     const b = e.target.closest("button"); if (!b) return;
-    const ligne = b.closest(".ligne");
+    const ligne = b.closest("[data-id]");
     if (!ligne) { crier("Bouton hors ligne produit — rechargez la page."); return; }
     const id = ligne.dataset.id;
     if (b.dataset.basculer) {
