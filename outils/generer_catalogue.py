@@ -206,6 +206,8 @@ def _depuis_la_base():
         produits.append(p)
     return produits
 
+ORIGINE = {"source": "fichier", "nombre": 0}
+
 def charger_produits():
     """Le catalogue vient de la base — c'est là qu'Adrien corrige ses fiches.
     data/produits.json reste le filet : un déploiement ne doit jamais publier
@@ -215,15 +217,19 @@ def charger_produits():
         base = _depuis_la_base()
     except Exception as err:
         print(f"  ⚠ base injoignable ({type(err).__name__}) — catalogue lu dans data/produits.json")
+        ORIGINE.update(source="fichier (base injoignable)", nombre=len(fichier))
         return fichier
     if base is None:
         print("  base non configurée — catalogue lu dans data/produits.json")
+        ORIGINE.update(source="fichier (base non configurée)", nombre=len(fichier))
         return fichier
     if len(base) < PLANCHER:
         print(f"  ⚠ la base ne rend que {len(base)} fiches (moins de {PLANCHER}) — "
               "repli sur data/produits.json, l'import a-t-il été lancé ?")
+        ORIGINE.update(source="fichier (base trop maigre)", nombre=len(fichier))
         return fichier
     print(f"  catalogue lu depuis la base : {len(base)} fiches publiées")
+    ORIGINE.update(source="base", nombre=len(base))
     return base
 
 def dedoublonner(produits, bavard=True):
@@ -283,6 +289,7 @@ def main():
     illustres = sum(1 for p in produits if p.get("images"))
 
     page = f'''<!DOCTYPE html>
+<!-- {ORIGINE['source']} · {ORIGINE['nombre']} fiches · fabriqué {'sur Vercel' if os.environ.get('VERCEL') else 'en local'} -->
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
