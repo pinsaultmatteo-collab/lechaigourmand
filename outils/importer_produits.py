@@ -2,17 +2,18 @@
 # -*- coding: utf-8 -*-
 """Envoie les 254 fiches de data/produits.json dans la table Supabase.
 
-À lancer une seule fois, depuis votre machine, avec la clé de service dans
-l'environnement — elle ne touche ni le dépôt ni le navigateur :
+À lancer une seule fois, depuis votre machine :
 
-    export SUPABASE_SERVICE_KEY='la-cle-service_role'
     python3 outils/importer_produits.py
+
+Le script demande la clé secrète et l'attend au clavier : rien à composer,
+et elle ne passe ni par l'historique du terminal, ni par le dépôt.
 
 Rejouable sans danger : les fiches sont appariées sur leur `reference`
 (l'identifiant d'origine), donc un second passage met à jour au lieu de
 dupliquer. Options : --simuler pour voir sans écrire.
 """
-import json, os, sys, urllib.request, urllib.error
+import getpass, json, os, sys, urllib.request, urllib.error
 
 URL = "https://xdbudbqqwfyfcivnvqzu.supabase.co"
 TAILLE_LOT = 40          # PostgREST accepte de gros lots, on reste raisonnable
@@ -20,6 +21,26 @@ TAILLE_LOT = 40          # PostgREST accepte de gros lots, on reste raisonnable
 CHAMPS = ("nom", "type", "producteur", "appellation", "origine", "cepages",
           "millesime", "alcool", "contenance", "visuel", "nez", "bouche",
           "accords", "phrase", "style", "vieillissement", "lot", "prix")
+
+def verifier_cle(cle):
+    """Deux formats coexistent chez Supabase : les nouvelles clés « sb_secret_… »
+    et les anciens jetons JWT. On refuse surtout de partir avec une clé publique."""
+    if cle.startswith("sb_secret_"):
+        return None
+    if cle.startswith("sb_publishable_"):
+        return "C'est la clé PUBLIABLE. Il faut la clé secrète (sb_secret_…)."
+    if cle.count(".") == 2:                       # ancien format, un JWT
+        import base64
+        try:
+            charge = cle.split(".")[1]
+            role = json.loads(base64.urlsafe_b64decode(charge + "=" * (-len(charge) % 4))).get("role")
+        except Exception:
+            return "Cette clé est illisible."
+        if role == "service_role":
+            return ("Cette clé est une ancienne clé service_role, désactivée le 08/09/2026.\n"
+                    "  Prenez la nouvelle clé secrète (sb_secret_…) dans Supabase.")
+        return f"Cette clé a le rôle « {role} », il faut la clé secrète."
+    return "Cette clé n'a pas la forme attendue (sb_secret_…)."
 
 def ligne(p, rang):
     d = {c: (p.get(c) or None) for c in CHAMPS}
@@ -47,14 +68,13 @@ def main():
     simuler = "--simuler" in sys.argv
     cle = os.environ.get("SUPABASE_SERVICE_KEY", "").strip()
     if not cle and not simuler:
-        sys.exit("SUPABASE_SERVICE_KEY manquante.\n"
-                 "  export SUPABASE_SERVICE_KEY='...'  puis relancez.")
+        # demandée au clavier plutôt que par une variable d'environnement :
+        # rien à composer, et la clé ne passe pas dans l'historique du terminal
+        cle = getpass.getpass("Collez la clé secrète Supabase (rien ne s'affiche) : ").strip()
     if cle:
-        import base64
-        charge = cle.split(".")[1]
-        role = json.loads(base64.urlsafe_b64decode(charge + "=" * (-len(charge) % 4))).get("role")
-        if role != "service_role":
-            sys.exit(f"Cette clé a le rôle « {role} », il faut la clé service_role.")
+        souci = verifier_cle(cle)
+        if souci:
+            sys.exit(souci)
 
     produits = json.load(open("data/produits.json", encoding="utf-8"))
     lignes = [ligne(p, i) for i, p in enumerate(produits)]

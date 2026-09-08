@@ -52,11 +52,11 @@ Les 254 fiches vivaient dans un fichier du dépôt. Pour qu'Adrien puisse les co
 2. Dans un terminal, à la racine du site :
 
    ```
-   export SUPABASE_SERVICE_KEY='la-cle-service_role'
    python3 outils/importer_produits.py
    ```
 
-   255 fiches partent en base, avec leurs photos et leurs sources. Rejouable sans créer de doublons.
+   Le script demande la clé secrète et l'attend au clavier — rien ne s'affiche pendant que vous collez,
+   c'est normal. 255 fiches partent en base avec leurs photos et leurs sources. Rejouable sans doublons.
 3. Sur Vercel → *Settings → Git → Deploy Hooks* : créez un hook nommé `back-office` sur la branche `main`,
    copiez son adresse, et ajoutez-la en variable d'environnement `VERCEL_DEPLOY_HOOK`.
 
