@@ -73,6 +73,10 @@ textarea{min-height:80px;resize:vertical}
 </style>
 </head>
 <body>
+<div id="alerte" role="alert" hidden
+     style="position:fixed;left:0;right:0;bottom:0;z-index:99;padding:.9rem 1.2rem;
+            background:#b0413e;color:#fff;font-size:.9rem;display:flex;gap:1rem;
+            align-items:center;justify-content:space-between"></div>
 <header class="tete">
   <h1>Le Chai Gourmand <small>back-office</small></h1>
   <div class="qui" id="qui" hidden></div>
@@ -204,6 +208,24 @@ textarea{min-height:80px;resize:vertical}
 
 <script>
 (function () {
+  // Rien ne doit échouer en silence : ce qui casse s'affiche à l'écran.
+  function crier(texte) {
+    const a = document.getElementById("alerte");
+    if (!a) return;
+    a.innerHTML = "<span>" + String(texte).slice(0, 300) +
+      "</span><button type=\"button\" style=\"background:none;border:1px solid #fff;color:#fff;" +
+      "border-radius:99px;padding:.3rem .9rem;cursor:pointer\">Fermer</button>";
+    a.hidden = false;
+    a.querySelector("button").onclick = function () { a.hidden = true; };
+  }
+  window.addEventListener("error", function (e) {
+    crier("Un problème est survenu : " + (e.message || "erreur inconnue") +
+          " — prévenez Mattéo en lui donnant cette phrase.");
+  });
+  window.addEventListener("unhandledrejection", function (e) {
+    crier("Requête en échec : " + ((e.reason && e.reason.message) || e.reason));
+  });
+
   const C = window.CHAI || {};
   const $ = function (s, r) { return (r || document).querySelector(s); };
   const ech = function (t) { return String(t == null ? "" : t).replace(/[&<>"]/g, function (c) { return {"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"}[c]; }); };
@@ -381,7 +403,9 @@ textarea{min-height:80px;resize:vertical}
   }
   $("#listeEv").addEventListener("click", function (e) {
     const b = e.target.closest("button"); if (!b) return;
-    const id = b.closest(".ligne").dataset.id;
+    const ligne = b.closest(".ligne");
+    if (!ligne) { crier("Bouton hors ligne événement — rechargez la page."); return; }
+    const id = ligne.dataset.id;
     if (b.dataset.basculer) {
       rest("evenements?id=eq." + id, {method: "PATCH", headers: {Prefer: "return=minimal"}, body: JSON.stringify({statut: b.dataset.basculer})}).then(chargerEv).catch(function (err) { alert(err.message); });
     } else if (b.hasAttribute("data-supprimer")) {
@@ -462,7 +486,9 @@ textarea{min-height:80px;resize:vertical}
   $("#typePr").addEventListener("change", afficherPr);
   $("#listePr").addEventListener("click", function (e) {
     const b = e.target.closest("button"); if (!b) return;
-    const id = b.closest(".ligne").dataset.id;
+    const ligne = b.closest(".ligne");
+    if (!ligne) { crier("Bouton hors ligne produit — rechargez la page."); return; }
+    const id = ligne.dataset.id;
     if (b.dataset.basculer) {
       rest("produits?id=eq." + id, {method: "PATCH", headers: {Prefer: "return=minimal"}, body: JSON.stringify({statut: b.dataset.basculer})}).then(chargerPr).catch(function (err) { alert(err.message); });
     } else if (b.hasAttribute("data-supprimer")) {
