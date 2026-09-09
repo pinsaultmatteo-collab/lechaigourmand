@@ -76,9 +76,10 @@ textarea{min-height:80px;resize:vertical}
 </head>
 <body>
 <div id="alerte" role="alert" hidden
-     style="position:fixed;left:0;right:0;bottom:0;z-index:99;padding:.9rem 1.2rem;
-            background:#b0413e;color:#fff;font-size:.9rem;display:flex;gap:1rem;
-            align-items:center;justify-content:space-between"></div>
+     style="position:fixed;right:1rem;bottom:1rem;z-index:99;max-width:min(420px,calc(100vw - 2rem));
+            padding:.8rem 1rem;border-radius:14px;background:#b0413e;color:#fff;font-size:.86rem;
+            line-height:1.4;display:flex;gap:.8rem;align-items:flex-start;
+            box-shadow:0 18px 40px -18px rgba(0,0,0,.55)"></div>
 <header class="tete">
   <h1>Le Chai Gourmand <small>back-office</small></h1>
   <div class="qui" id="qui" hidden></div>
@@ -211,21 +212,31 @@ textarea{min-height:80px;resize:vertical}
 <script>
 (function () {
   // Rien ne doit échouer en silence : ce qui casse s'affiche à l'écran.
+  // Une notification discrète, en bas à droite, qui s'efface seule au bout de
+  // douze secondes : un back-office ne doit pas rester barré de rouge.
+  let minuteurAlerte = null;
   function crier(texte) {
     const a = document.getElementById("alerte");
     if (!a) return;
-    a.innerHTML = "<span>" + String(texte).slice(0, 300) +
-      "</span><button type=\"button\" style=\"background:none;border:1px solid #fff;color:#fff;" +
-      "border-radius:99px;padding:.3rem .9rem;cursor:pointer\">Fermer</button>";
+    a.innerHTML = "<span style=\"flex:1\">" + String(texte).slice(0, 300) +
+      "</span><button type=\"button\" aria-label=\"Fermer\" style=\"background:none;border:0;" +
+      "color:#fff;font-size:1.2rem;line-height:1;cursor:pointer;padding:0 .2rem\">&times;</button>";
     a.hidden = false;
     a.querySelector("button").onclick = function () { a.hidden = true; };
+    clearTimeout(minuteurAlerte);
+    minuteurAlerte = setTimeout(function () { a.hidden = true; }, 12000);
   }
+  // On ne relaie que ce qui vient de cette page : une extension du navigateur
+  // ou une ressource tierce ne doit pas alarmer Adrien.
   window.addEventListener("error", function (e) {
-    crier("Un problème est survenu : " + (e.message || "erreur inconnue") +
-          " — prévenez Mattéo en lui donnant cette phrase.");
+    if (e.filename && e.filename.indexOf(location.origin) !== 0) return;
+    if (!e.message) return;
+    crier("Un problème est survenu : " + e.message + " — prévenez Mattéo.");
   });
   window.addEventListener("unhandledrejection", function (e) {
-    crier("Requête en échec : " + ((e.reason && e.reason.message) || e.reason));
+    const m = (e.reason && e.reason.message) || e.reason;
+    if (!m || /abort|network/i.test(String(m))) return;
+    crier("Requête en échec : " + m);
   });
 
   const C = window.CHAI || {};
@@ -458,7 +469,8 @@ textarea{min-height:80px;resize:vertical}
       const foin = sansAccent([p.nom, p.producteur, p.appellation, p.origine, p.cepages, p.millesime].join(" "));
       return mots.every(function (m) { return foin.indexOf(m) > -1; });
     });
-    $("#comptePr").textContent = trouves.length + " fiche" + (trouves.length > 1 ? "s" : "") +
+    $("#comptePr").textContent =
+      trouves.length + " sur " + toutesPr.length + " fiche" + (toutesPr.length > 1 ? "s" : "") +
       (trouves.length > MAX_AFFICHE ? " — les " + MAX_AFFICHE + " premières sont affichées" : "");
     const el = $("#listePr");
     if (!trouves.length) { el.innerHTML = '<p class="vide">Aucune fiche ne correspond.</p>'; return; }
