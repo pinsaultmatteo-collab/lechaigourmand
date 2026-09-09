@@ -1,0 +1,15 @@
+{
+  "name": "Le Chai Gourmand",
+  "short_name": "Le Chai",
+  "description": "Bar à tapas, cave à vin et épicerie fine à Cugnaux, près de Toulouse.",
+  "lang": "fr",
+  "start_url": "/",
+  "display": "browser",
+  "theme_color": "#1a0f14",
+  "background_color": "#f6efe2",
+  "icons": [
+    { "src": "/icone-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icone-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}

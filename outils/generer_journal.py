@@ -287,7 +287,10 @@ def inscrire_au_plan(articles):
 def main():
     global ICONE
     gabarit = open(GABARIT).read()
-    ICONE = re.search(r'<link rel="icon"[^>]*>', gabarit).group(0)
+    # icône, icône iOS et manifeste : quatre balises depuis que ce sont de
+    # vrais fichiers et non plus une data: URI.
+    ICONE = "\n".join(re.findall(
+        r'<link rel="(?:icon|apple-touch-icon|manifest)"[^>]*>', gabarit))
     nav = extraire(gabarit, "<!-- ==================== NAVIGATION", "</header>")
     nav = nav.replace(' aria-current="page"', '')
     nav_index = nav.replace('<li><a href="/journal">Journal</a></li>',
