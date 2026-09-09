@@ -19,7 +19,7 @@ from generer_catalogue import extraire
 SOURCE = Path("contenu/journal")
 DOSSIER = Path("journal")
 GABARIT = "cave-a-vin.html"
-SITE = "https://lechaigourmand.vercel.app"
+SITE = "https://chai-gourmand.fr"
 
 MOIS = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet",
         "août", "septembre", "octobre", "novembre", "décembre"]

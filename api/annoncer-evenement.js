@@ -38,7 +38,7 @@ function annonce(ev) {
     bouton: { texte: ev.reservation ? "Réserver ma place" : "Voir l'agenda", lien: SITE + "/agenda" },
     pied: `Le Chai Gourmand — Cugnaux, près de Toulouse<br>
       <a href="tel:+33685362265" style="color:#7c2140;text-decoration:none">06 85 36 22 65</a> ·
-      <a href="${SITE}" style="color:#7c2140;text-decoration:none">lechaigourmand.vercel.app</a><br>
+      <a href="${SITE}" style="color:#7c2140;text-decoration:none">chai-gourmand.fr</a><br>
       <a href="__DESINSCRIPTION__" style="color:#7a6355">Se désinscrire</a>`,
   });
 }

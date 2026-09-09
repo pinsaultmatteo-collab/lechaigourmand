@@ -6,4 +6,4 @@ Allow: /
 Disallow: /admin
 Disallow: /api/
 
-Sitemap: https://lechaigourmand.vercel.app/sitemap.xml
+Sitemap: https://chai-gourmand.fr/sitemap.xml

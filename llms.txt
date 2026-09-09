@@ -16,7 +16,7 @@
 - **Cave** : environ 300 références de vignerons indépendants, dominante Sud-Ouest (Fronton, Gaillac, Cahors),
   conseil personnalisé du caviste, épicerie fine (conserves de la mer, charcuteries ibériques,
   fromages affinés, huiles et douceurs). 254 d'entre elles sont détaillées en ligne sur
-  https://lechaigourmand.vercel.app/nos-references — répartition : 85 rouges, 86 blancs, 17 rosés,
+  https://chai-gourmand.fr/nos-references — répartition : 85 rouges, 86 blancs, 17 rosés,
   11 bulles, 2 moelleux, 21 bières artisanales, 24 spiritueux, 8 produits d'épicerie fine.
   Les prix ne sont pas publiés en ligne : ils sont donnés en boutique.
 - **La carte (septembre 2026)** : planches à partager fromage/charcuterie/mixte en deux formats
@@ -40,23 +40,23 @@
 
 ## Pages
 
-- [Accueil](https://lechaigourmand.vercel.app/) : présentation de la maison et des deux adresses
-- [Bar à tapas](https://lechaigourmand.vercel.app/bar-a-tapas) : la carte des tapas et les prix
-- [Cave à vin](https://lechaigourmand.vercel.app/cave-a-vin) : la cave, l'épicerie fine, le click & collect
-- [Nos références](https://lechaigourmand.vercel.app/nos-references) : le catalogue complet de la cave,
+- [Accueil](https://chai-gourmand.fr/) : présentation de la maison et des deux adresses
+- [Bar à tapas](https://chai-gourmand.fr/bar-a-tapas) : la carte des tapas et les prix
+- [Cave à vin](https://chai-gourmand.fr/cave-a-vin) : la cave, l'épicerie fine, le click & collect
+- [Nos références](https://chai-gourmand.fr/nos-references) : le catalogue complet de la cave,
   254 fiches détaillées (domaine, appellation, cépages, millésime, degré, notes de dégustation,
   accords mets & vins), filtrables par catégorie et cherchables par domaine, appellation ou cépage
-- [Brunch](https://lechaigourmand.vercel.app/brunch) : le brunch du samedi à L'Annexe (menu, prix, réservation)
-- [Traiteur](https://lechaigourmand.vercel.app/traiteur) : le service traiteur tapas & vins
+- [Brunch](https://chai-gourmand.fr/brunch) : le brunch du samedi à L'Annexe (menu, prix, réservation)
+- [Traiteur](https://chai-gourmand.fr/traiteur) : le service traiteur tapas & vins
 [//]: # (journal:début)
-- [Journal](https://lechaigourmand.vercel.app/journal) : les conseils du caviste, 6 articles
-  - [Que boire avec des tapas ? Le guide des accords qui marchent vraiment](https://lechaigourmand.vercel.app/journal/accords-tapas-vin) — Une planche, ce sont dix produits différents dans la même assiette. Voici comment trouver la bouteille qui les tient tous ensemble.
-  - [Où boire un verre à Cugnaux : ce que change une cave à manger](https://lechaigourmand.vercel.app/journal/boire-un-verre-cugnaux) — Une cave à manger, ce n'est ni un bar ni un restaurant. C'est un endroit où le vin décide du reste.
-  - [Offrir du vin : composer un coffret qui fait mouche](https://lechaigourmand.vercel.app/journal/composer-coffret-cadeau-vin) — Offrir une bouteille au hasard, c'est offrir un objet. Composer un coffret, c'est offrir une intention.
-  - [Lire une étiquette de vin sans se tromper](https://lechaigourmand.vercel.app/journal/lire-etiquette-vin) — Tout est écrit dessus, à condition de savoir dans quel ordre lire. Décryptage d'une étiquette, ligne par ligne.
-  - [Le Languedoc-Roussillon, l'autre grand vignoble du Sud](https://lechaigourmand.vercel.app/journal/vins-languedoc-roussillon) — Longtemps jugé au litre, le Languedoc est devenu l'un des vignobles les plus intéressants de France. Voici comment s'y retrouver.
-  - [Conserver ses bouteilles quand on n'a pas de cave](https://lechaigourmand.vercel.app/journal/conserver-bouteilles-sans-cave) — Pas de cave, pas de grave. Mais quelques erreurs de rangement suffisent à abîmer une bonne bouteille en un été.
+- [Journal](https://chai-gourmand.fr/journal) : les conseils du caviste, 6 articles
+  - [Que boire avec des tapas ? Le guide des accords qui marchent vraiment](https://chai-gourmand.fr/journal/accords-tapas-vin) — Une planche, ce sont dix produits différents dans la même assiette. Voici comment trouver la bouteille qui les tient tous ensemble.
+  - [Où boire un verre à Cugnaux : ce que change une cave à manger](https://chai-gourmand.fr/journal/boire-un-verre-cugnaux) — Une cave à manger, ce n'est ni un bar ni un restaurant. C'est un endroit où le vin décide du reste.
+  - [Offrir du vin : composer un coffret qui fait mouche](https://chai-gourmand.fr/journal/composer-coffret-cadeau-vin) — Offrir une bouteille au hasard, c'est offrir un objet. Composer un coffret, c'est offrir une intention.
+  - [Lire une étiquette de vin sans se tromper](https://chai-gourmand.fr/journal/lire-etiquette-vin) — Tout est écrit dessus, à condition de savoir dans quel ordre lire. Décryptage d'une étiquette, ligne par ligne.
+  - [Le Languedoc-Roussillon, l'autre grand vignoble du Sud](https://chai-gourmand.fr/journal/vins-languedoc-roussillon) — Longtemps jugé au litre, le Languedoc est devenu l'un des vignobles les plus intéressants de France. Voici comment s'y retrouver.
+  - [Conserver ses bouteilles quand on n'a pas de cave](https://chai-gourmand.fr/journal/conserver-bouteilles-sans-cave) — Pas de cave, pas de grave. Mais quelques erreurs de rangement suffisent à abîmer une bonne bouteille en un été.
 [//]: # (journal:fin)
 
-- [Nos adresses](https://lechaigourmand.vercel.app/nos-adresses) : adresses, horaires et itinéraires des deux établissements
-- [Agenda](https://lechaigourmand.vercel.app/agenda) : brunchs, soirées dégustation et événements à venir
+- [Nos adresses](https://chai-gourmand.fr/nos-adresses) : adresses, horaires et itinéraires des deux établissements
+- [Agenda](https://chai-gourmand.fr/agenda) : brunchs, soirées dégustation et événements à venir

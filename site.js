@@ -774,7 +774,7 @@ function chaiSupabase(){
           "organizer": {
             "@type": "Organization",
             "name": "Le Chai Gourmand",
-            "url": "https://lechaigourmand.vercel.app/"
+            "url": "https://chai-gourmand.fr/"
           }
         };
       })

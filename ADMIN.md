@@ -39,7 +39,7 @@ Compter **vingt minutes**, une seule fois.
   | `SUPABASE_URL` | l'URL du projet |
   | `SUPABASE_SERVICE_KEY` | la clé *service_role* |
   | `BREVO_API_KEY` | *facultatif* — la clé API Brevo (v3) qui envoie tous les courriels |
-  | `COURRIEL_EXPEDITEUR` | l'adresse d'envoi, **validée chez Brevo** (ex. `bonjour@lechaigourmand.fr`) |
+  | `COURRIEL_EXPEDITEUR` | l'adresse d'envoi, **validée chez Brevo** (ex. `bonjour@chai-gourmand.fr`) |
   | `COURRIEL_MAISON` | l'adresse d'Adrien, qui reçoit l'alerte à chaque réservation |
   | `VERCEL_DEPLOY_HOOK` | l'adresse du hook de déploiement (voir 2 bis) |
 

@@ -7,7 +7,7 @@
 //   COURRIEL_EXPEDITEUR                  adresse d'envoi, validée chez Brevo
 //   COURRIEL_MAISON                      adresse qui reçoit les alertes (Adrien)
 
-const SITE = "https://lechaigourmand.vercel.app";
+const SITE = "https://chai-gourmand.fr";
 const MAISON = "Le Chai Gourmand";
 const TELEPHONE = "06 85 36 22 65";
 
@@ -80,7 +80,7 @@ function gabarit({ titre, chapeau, corps, bouton, pied }) {
     <tr><td style="padding:18px 28px 26px;border-top:1px solid rgba(122,99,85,.2);color:#7a6355;font-size:13px;line-height:1.6">
       ${pied || `${ech(MAISON)} — Cugnaux, près de Toulouse<br>
         <a href="tel:+33685362265" style="color:#7c2140;text-decoration:none">${TELEPHONE}</a> ·
-        <a href="${SITE}" style="color:#7c2140;text-decoration:none">lechaigourmand.vercel.app</a>`}
+        <a href="${SITE}" style="color:#7c2140;text-decoration:none">chai-gourmand.fr</a>`}
     </td></tr>
   </table>
   <div style="max-width:560px;margin-top:14px;color:#7a6355;font-size:11px;line-height:1.5">

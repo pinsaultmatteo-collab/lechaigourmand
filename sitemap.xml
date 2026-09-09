@@ -1,92 +1,92 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://lechaigourmand.vercel.app/</loc>
+    <loc>https://chai-gourmand.fr/</loc>
     <lastmod>2026-08-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://lechaigourmand.vercel.app/bar-a-tapas</loc>
+    <loc>https://chai-gourmand.fr/bar-a-tapas</loc>
     <lastmod>2026-08-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://lechaigourmand.vercel.app/cave-a-vin</loc>
+    <loc>https://chai-gourmand.fr/cave-a-vin</loc>
     <lastmod>2026-08-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://lechaigourmand.vercel.app/nos-references</loc>
+    <loc>https://chai-gourmand.fr/nos-references</loc>
     <lastmod>2026-08-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://lechaigourmand.vercel.app/brunch</loc>
+    <loc>https://chai-gourmand.fr/brunch</loc>
     <lastmod>2026-08-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://lechaigourmand.vercel.app/traiteur</loc>
+    <loc>https://chai-gourmand.fr/traiteur</loc>
     <lastmod>2026-08-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://lechaigourmand.vercel.app/nos-adresses</loc>
+    <loc>https://chai-gourmand.fr/nos-adresses</loc>
     <lastmod>2026-08-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://lechaigourmand.vercel.app/agenda</loc>
+    <loc>https://chai-gourmand.fr/agenda</loc>
     <lastmod>2026-08-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <!-- journal:début -->
   <url>
-    <loc>https://lechaigourmand.vercel.app/journal</loc>
+    <loc>https://chai-gourmand.fr/journal</loc>
     <lastmod>2026-09-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://lechaigourmand.vercel.app/journal/accords-tapas-vin</loc>
+    <loc>https://chai-gourmand.fr/journal/accords-tapas-vin</loc>
     <lastmod>2026-09-01</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://lechaigourmand.vercel.app/journal/boire-un-verre-cugnaux</loc>
+    <loc>https://chai-gourmand.fr/journal/boire-un-verre-cugnaux</loc>
     <lastmod>2026-09-01</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://lechaigourmand.vercel.app/journal/composer-coffret-cadeau-vin</loc>
+    <loc>https://chai-gourmand.fr/journal/composer-coffret-cadeau-vin</loc>
     <lastmod>2026-09-01</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://lechaigourmand.vercel.app/journal/lire-etiquette-vin</loc>
+    <loc>https://chai-gourmand.fr/journal/lire-etiquette-vin</loc>
     <lastmod>2026-09-01</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://lechaigourmand.vercel.app/journal/vins-languedoc-roussillon</loc>
+    <loc>https://chai-gourmand.fr/journal/vins-languedoc-roussillon</loc>
     <lastmod>2026-09-01</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://lechaigourmand.vercel.app/journal/conserver-bouteilles-sans-cave</loc>
+    <loc>https://chai-gourmand.fr/journal/conserver-bouteilles-sans-cave</loc>
     <lastmod>2026-09-01</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
