@@ -998,80 +998,12 @@ function chaiSupabase(){
       window.scrollBy(0, -90);
     }
   }
-  // ---- fiches ajoutées depuis le back-office (table « produits ») ----
-  // Le catalogue généré reste la référence ; ces cartes s'y ajoutent au chargement.
-  const base = chaiSupabase();
-  if (base) {
-    const ech = function (t) {
-      return String(t == null ? "" : t).replace(/[&<>"]/g, function (c) {
-        return {"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"}[c];
-      });
-    };
-    const LIBELLE = {rouge: "Rouge", blanc: "Blanc", rose: "Rosé", bulles: "Bulles", moelleux: "Moelleux",
-                     biere: "Bière", spiritueux: "Spiritueux", epicerie: "Épicerie"};
-    const TEINTE = {rouge: "#6b2436", blanc: "#c9a876", rose: "#c56a74", bulles: "#8a6c3e", moelleux: "#b8862b",
-                    biere: "#8b5e2a", spiritueux: "#7a6355", epicerie: "#5a6b3f"};
-    function silhouette(type) {
-      const c = TEINTE[type] || "#7a6355";
-      return '<svg class="ref-silhouette" viewBox="0 0 120 160" aria-hidden="true">' +
-        '<path d="M50 16h20v34c0 14 15 18 15 38v40a9 9 0 0 1-9 9H44a9 9 0 0 1-9-9V88c0-20 15-24 15-38z" fill="' + c + '"/>' +
-        '<rect x="34" y="92" width="52" height="36" rx="3" fill="#fdf9f0" opacity=".92"/>' +
-        '<rect x="42" y="102" width="36" height="3" rx="1.5" fill="#7a6355" opacity=".55"/>' +
-        '<rect x="46" y="110" width="28" height="2.5" rx="1.2" fill="#7a6355" opacity=".4"/></svg>';
-    }
-    function ligne(k, v) { return v ? '<div class="fd-ligne"><dt>' + k + "</dt><dd>" + ech(v) + "</dd></div>" : ""; }
-    function note(k, v) { return v ? '<div class="fd-note"><h4>' + k + "</h4><p>" + ech(v) + "</p></div>" : ""; }
-    function carteProduit(p) {
-      const meta = [p.appellation || p.origine, p.millesime, p.alcool ? p.alcool + " %" : "", p.contenance]
-        .filter(Boolean).join(" · ");
-      const cherche = sansAccent([p.nom, p.producteur, p.origine, p.appellation, p.cepages, p.millesime].filter(Boolean).join(" "));
-      const visuel = p.photo
-        ? '<img src="' + ech(p.photo) + '" alt="' + ech(p.nom) + '" loading="lazy" decoding="async" width="675" height="900">'
-        : silhouette(p.type);
-      const detail =
-        '<dl class="fd-fiche">' + ligne("Producteur", p.producteur) + ligne("Origine", p.origine) +
-        ligne("Appellation", p.appellation) + ligne("Cépages", p.cepages) + ligne("Millésime", p.millesime) +
-        ligne("Degré", p.alcool ? p.alcool + " % vol." : "") + ligne("Contenance", p.contenance) + "</dl>" +
-        ((p.visuel || p.nez || p.bouche)
-          ? '<div class="fd-degustation">' + note("À l’œil", p.visuel) + note("Au nez", p.nez) + note("En bouche", p.bouche) + "</div>" : "") +
-        (p.accords ? '<div class="fd-accords"><h4>Accords mets &amp; vins</h4><p>' + ech(p.accords) + "</p></div>" : "");
-      const art = document.createElement("article");
-      art.className = "ref-carte";
-      art.dataset.type = p.type;
-      art.dataset.cherche = cherche;
-      if (p.photo) art.dataset.vues = p.photo;
-      art.innerHTML =
-        '<div class="ref-visuel">' + visuel + "</div>" +
-        '<div class="ref-corps">' +
-          '<span class="b-type ' + ech(p.type) + '">' + (LIBELLE[p.type] || p.type) + "</span>" +
-          '<h3 class="ref-nom">' + ech(p.nom) + "</h3>" +
-          (p.producteur ? '<p class="ref-domaine">' + ech(p.producteur) + "</p>" : "") +
-          (meta ? '<p class="ref-meta">' + ech(meta) + "</p>" : "") +
-          (p.phrase || p.bouche ? '<p class="ref-phrase">' + ech(p.phrase || p.bouche) + "</p>" : "") +
-          '<p class="ref-prix">Prix en boutique</p>' +
-          '<button class="ref-ouvrir" type="button" aria-expanded="false">La fiche complète <span aria-hidden="true">→</span></button>' +
-        "</div>" +
-        '<div class="ref-detail" hidden>' + detail + "</div>";
-      return art;
-    }
-    base.lire("produits?select=*&statut=eq.publie&order=cree_le.desc", 4000)
-      .then(function (lignes) {
-        if (!lignes.length) return;
-        // les nouveautés passent en tête de leur catégorie : devant le premier du même type
-        lignes.reverse().forEach(function (p) {
-          const art = carteProduit(p);
-          const premier = cartes.find(function (c) { return c.dataset.type === p.type; });
-          if (premier) { premier.before(art); cartes.splice(cartes.indexOf(premier), 0, art); }
-          else { grille.appendChild(art); cartes.push(art); }
-          const nb = document.querySelector('.ref-filtres [data-ref="' + p.type + '"] .filtre-nb');
-          if (nb) nb.textContent = String(Number(nb.textContent) + 1);
-        });
-        const tous = document.querySelector('.ref-filtres [data-ref="tous"] .filtre-nb');
-        if (tous) tous.textContent = String(Number(tous.textContent) + lignes.length);
-        appliquer(true);
-      })
-      .catch(function () { /* la base ne répond pas : le catalogue généré suffit */ });
-  }
+  // Le catalogue est écrit dans la page au moment du déploiement, depuis la
+  // base — c'est ce qui le rend lisible par Google. Une injection côté
+  // navigateur ferait doublon avec ces mêmes fiches : elle a été retirée.
+  // Une fiche ajoutée ou corrigée dans le back-office paraît au déploiement
+  // suivant, que le bouton « Publier sur le site » déclenche.
+
 
 })();
 

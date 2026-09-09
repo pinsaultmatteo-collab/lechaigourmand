@@ -4,8 +4,8 @@ resume: Offrir une bouteille au hasard, c'est offrir un objet. Composer un coffr
 categorie: Bien choisir
 date: 2026-09-01
 lecture: 5
-image: /images/coffret-1770-istoria-corbieres.webp
-alt: Coffret cadeau composé de bouteilles et de produits d'épicerie fine
+image: /images/selection-bouteilles-coffret.webp
+alt: Sélection de bouteilles alignées sur une table du Chai Gourmand, prêtes à composer un coffret
 ---
 Le vin est le cadeau le plus offert et le plus mal offert de France. Non par manque de bonne volonté, mais
 parce qu'on choisit en général la seule chose qu'on connaisse : ce que **soi** on aime boire. Voici comment
