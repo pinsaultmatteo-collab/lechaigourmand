@@ -1987,6 +1987,7 @@ input[type="date"]::-webkit-calendar-picker-indicator{margin-left:auto}
 }
 .resa-merci h3{font-family:var(--serif);font-weight:600;font-size:1.6rem;color:var(--brun);margin-bottom:.6rem}
 .resa-merci p{font-family:var(--serif);font-style:italic;color:var(--brun-doux);line-height:1.55;max-width:38ch;margin:0 auto}
+.resa-merci p + p{margin-top:.7rem}
 .resa-merci .btn{margin-top:1.4rem}
 /* iOS Safari zoome sur tout champ dont le texte fait moins de 16 px dès qu'il
    reçoit le focus — et une page zoomée se balade ensuite de gauche à droite.

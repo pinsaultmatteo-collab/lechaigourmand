@@ -321,42 +321,52 @@ function chaiSupabase(){
   }
 
   /* ---------- newsletter ----------
-     Le formulaire est prêt côté interface. Pour collecter réellement les
-     adresses, renseigner NEWSLETTER_ENDPOINT avec l'URL d'un service
-     (Brevo, Mailchimp, Formspree…) — en attendant, l'adresse est gardée
-     localement et un message de confirmation s'affiche. */
-  const NEWSLETTER_ENDPOINT = "";
+     L'adresse part vers /api/newsletter, qui l'enregistre dans la base et
+     envoie le mot de bienvenue avec son lien de désinscription. Si le réseau
+     flanche, on garde l'adresse localement pour ne pas la perdre. */
   const formNl = document.getElementById("formNewsletter");
   if(formNl){
     formNl.addEventListener("submit", function(e){
       e.preventDefault();
       const champ = formNl.querySelector('input[type="email"]');
+      const bouton = formNl.querySelector('button[type="submit"]');
       const msg = formNl.parentElement.querySelector(".newsletter-msg");
       const email = (champ.value || "").trim();
+      function dire(texte){ if(msg) msg.textContent = texte; }
       if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
-        if(msg) msg.textContent = "Hmm, cette adresse ne semble pas valide — on réessaie ?";
+        dire("Hmm, cette adresse ne semble pas valide — on réessaie ?");
+        champ.focus();
         return;
       }
-      function merci(){
-        if(msg) msg.textContent = "Merci ! Vous serez prévenu·e des prochains rendez-vous du Chai.";
-        champ.value = "";
-      }
-      if(NEWSLETTER_ENDPOINT){
-        fetch(NEWSLETTER_ENDPOINT, {
-          method: "POST",
-          headers: {"Content-Type": "application/json", "Accept": "application/json"},
-          body: JSON.stringify({email: email})
-        }).then(merci).catch(function(){
-          if(msg) msg.textContent = "Oups, petit souci technique — réessayez dans un instant.";
-        });
-      }else{
+      function garderDeCote(){
         try{
           const attente = JSON.parse(localStorage.getItem("chai-newsletter") || "[]");
           if(attente.indexOf(email) === -1) attente.push(email);
           localStorage.setItem("chai-newsletter", JSON.stringify(attente));
-        }catch(err){ /* stockage indisponible : le message suffit */ }
-        merci();
+        }catch(err){ /* stockage indisponible : tant pis */ }
       }
+      bouton.disabled = true;
+      dire("Un instant…");
+      fetch("/api/newsletter", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+          email: email,
+          site_web: (formNl.elements.site_web && formNl.elements.site_web.value) || "",
+          source: document.body.dataset.page || location.pathname.replace(/^\//, "") || "accueil"
+        })
+      }).then(function(r){ return r.json().catch(function(){ return {}; }).then(function(d){ return {ok: r.ok, d: d}; }); })
+        .then(function(res){
+          if(!res.ok){ dire(res.d.erreur || "Oups, petit souci technique — réessayez dans un instant."); return; }
+          dire("Merci ! Vous serez prévenu·e des prochains rendez-vous du Chai.");
+          champ.value = "";
+        })
+        .catch(function(){
+          garderDeCote();
+          dire("Adresse notée — la confirmation partira dès que la connexion revient.");
+          champ.value = "";
+        })
+        .then(function(){ bouton.disabled = false; });
     });
   }
 
@@ -1066,7 +1076,7 @@ function chaiSupabase(){
         '<button class="ref-volet-fermer" type="button" data-fermer aria-label="Fermer">×</button>' +
         '<p class="resa-sur-titre">Réserver une table</p>' +
         '<h2 class="resa-titre" id="resaTitre">On vous garde <span class="accent-script">une place.</span></h2>' +
-        '<p class="resa-intro">Dites-nous où, quand et combien vous serez : on vous rappelle pour confirmer.</p>' +
+        '<p class="resa-intro">Dites-nous où, quand et combien vous serez : on vous confirme la table dans la foulée.</p>' +
         '<form class="resa-form" novalidate>' +
           '<div class="resa-champ"><span class="resa-legende">Établissement</span>' +
             '<div class="resa-lieux">' +
@@ -1153,7 +1163,9 @@ function chaiSupabase(){
             "<h3>C’est noté, " + d.nom.trim().split(" ")[0].replace(/[<>]/g, "") + ".</h3>" +
             "<p>" + CHAI_LIEUX[d.lieu] + ", le " + p[2] + "/" + p[1] + " à " + d.heure.replace(":", "h") +
             ", " + d.couverts + (Number(d.couverts) > 1 ? " personnes" : " personne") +
-            ". On vous rappelle au " + d.telephone.replace(/[<>]/g, "") + " pour confirmer.</p>" +
+            ".</p><p>" + (d.email
+              ? "La confirmation arrive par e-mail à " + d.email.replace(/[<>]/g, "") + " dès qu’Adrien a validé la table."
+              : "On vous rappelle au " + d.telephone.replace(/[<>]/g, "") + " pour confirmer.") + "</p>" +
             '<button class="btn btn-plein" type="button" data-fermer>Fermer</button></div>';
         })
         .catch(function (err) {

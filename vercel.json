@@ -1,6 +1,12 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
+  "rewrites": [
+    {
+      "source": "/desinscription",
+      "destination": "/api/desinscription"
+    }
+  ],
   "headers": [
     {
       "source": "/images/(.*)",

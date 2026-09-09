@@ -38,8 +38,13 @@ Compter **vingt minutes**, une seule fois.
   | --- | --- |
   | `SUPABASE_URL` | l'URL du projet |
   | `SUPABASE_SERVICE_KEY` | la clé *service_role* |
-  | `BREVO_API_KEY` | *facultatif* — une clé Brevo pour recevoir un courriel à chaque réservation |
-  | `RESERVATION_EMAIL` | *facultatif* — l'adresse qui reçoit ces courriels (doit être un expéditeur validé chez Brevo) |
+  | `BREVO_API_KEY` | *facultatif* — la clé API Brevo (v3) qui envoie tous les courriels |
+  | `COURRIEL_EXPEDITEUR` | l'adresse d'envoi, **validée chez Brevo** (ex. `bonjour@lechaigourmand.fr`) |
+  | `COURRIEL_MAISON` | l'adresse d'Adrien, qui reçoit l'alerte à chaque réservation |
+  | `VERCEL_DEPLOY_HOOK` | l'adresse du hook de déploiement (voir 2 bis) |
+
+  `RESERVATION_EMAIL` reste accepté comme ancien nom de `COURRIEL_MAISON` et `COURRIEL_EXPEDITEUR`.
+  Sans `BREVO_API_KEY`, tout continue de fonctionner : simplement, aucun courriel ne part.
 
 - Poussez `config.js` et redéployez. Sans courriel, les réservations restent visibles dans l'onglet
   *Réservations* du back-office, avec une pastille sur le nombre de nouvelles.
@@ -63,18 +68,44 @@ Les 254 fiches vivaient dans un fichier du dépôt. Pour qu'Adrien puisse les co
 À partir de là, le site est **régénéré depuis la base à chaque déploiement**. Si Supabase ne répond pas,
 le build retombe sur `data/produits.json` plutôt que d'échouer.
 
+## 2 ter. Les courriels (une seule fois)
+
+1. **SQL Editor** → collez `supabase/migration-courriels.sql` → *Run*. Cela crée la table `abonnes`
+   et les colonnes qui gardent trace des courriels déjà envoyés.
+2. Créez un compte sur [brevo.com](https://www.brevo.com) — la formule gratuite couvre 300 courriels par
+   jour, très au-delà des besoins. *Senders, Domains & Dedicated IPs* → ajoutez l'adresse d'expédition et
+   validez-la par le lien reçu. Idéalement, authentifiez aussi le domaine (SPF + DKIM) : sans cela, une
+   partie des messages tombe en indésirables.
+3. *SMTP & API → API Keys* → créez une clé v3, et posez-la sur Vercel en `BREVO_API_KEY`.
+4. Redéployez.
+
+Pour regarder les six modèles de courriel sans rien envoyer :
+
+```
+node outils/apercu_courriels.js
+```
+
 ## 3. Ce que fait chaque onglet
 
-- **Réservations** — reçues par le formulaire du site. Statut *nouvelle → confirmée / annulée* ; le client
-  n'est pas prévenu automatiquement, c'est l'appel qui confirme (le formulaire le dit).
+- **Réservations** — reçues par le formulaire du site ; Adrien en est averti par courriel dans la foulée.
+  Basculer le statut sur *Confirmée* envoie au client sa confirmation, sur *Annulée* son annulation —
+  une seule fois par statut, rebasculer le menu ne renvoie rien. Si le client n'a pas laissé d'adresse,
+  la notification le dit : il faut l'appeler.
 - **Événements** — la programmation de l'agenda et du bandeau d'accueil. *Brouillon* = invisible ;
-  *Publier* = en ligne dans la minute. Les passés disparaissent seuls du site. Plus besoin de toucher
+  *Publier* = en ligne dans la minute. Une fois l'événement publié, **Annoncer aux abonnés** envoie
+  l'invitation à toute la liste — chacun reçoit son propre message, personne ne voit les autres adresses.
+  La ligne indique ensuite la date de l'envoi et le nombre de destinataires. Les passés disparaissent seuls du site. Plus besoin de toucher
   au tableau `PROGRAMMATION` de `site.js` : il ne sert plus que de repli si la base ne répond pas.
 - **Produits** — les 254 fiches du catalogue, cherchables par domaine, appellation ou cépage, plus celles
   qu'Adrien ajoute. Modifier une fiche puis cliquer **Publier sur le site** : le catalogue est reconstruit
   en une minute environ. Ce détour existe parce que les fiches sont écrites dans les pages HTML — c'est ce
   qui les rend lisibles par Google. Les événements et les réservations, eux, sont immédiats. La photo est redimensionnée par le navigateur à l'affichage : une prise de face sur fond clair
   suffit. Le catalogue principal, lui, reste généré depuis les fiches PDF (`data/produits.json`).
+
+- **Abonnés** — les adresses laissées dans le formulaire de la lettre d'information (bas de la page
+  d'accueil et de l'agenda). On peut les exporter en CSV, désinscrire quelqu'un qui le demande de vive
+  voix, ou effacer une adresse. Chaque courriel envoyé porte son lien de désinscription : le visiteur
+  se retire seul, sans passer par Adrien — c'est une obligation légale, pas une option.
 
 ## Sécurité, en deux lignes
 

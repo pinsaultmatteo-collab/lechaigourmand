@@ -11,6 +11,9 @@
 <style>
 :root{--bordeaux:#7c2140;--creme:#f6efe2;--papier:#fdf9f0;--brun:#33241f;--brun-doux:#7a6355;--or:#c9a876;--or-sombre:#8a6c3e;--vert:#4f7a4a;--rouge:#b0413e;--serif:"Cormorant Garamond",serif;--sans:"Jost",sans-serif}
 *{box-sizing:border-box;margin:0;padding:0}
+/* hidden doit gagner : sinon une pastille vide ou le bandeau d'alerte
+   restent affichés parce que leur display est déclaré plus loin. */
+[hidden]{display:none !important}
 body{font-family:var(--sans);font-weight:300;color:var(--brun);background:var(--creme);min-height:100vh}
 a{color:var(--bordeaux)}
 button{font-family:var(--sans);cursor:pointer}
@@ -114,6 +117,7 @@ textarea{min-height:80px;resize:vertical}
       <button class="onglet actif" data-onglet="reservations">Réservations <span class="pastille" id="nbNouvelles" hidden>0</span></button>
       <button class="onglet" data-onglet="evenements">Événements</button>
       <button class="onglet" data-onglet="produits">Produits</button>
+      <button class="onglet" data-onglet="abonnes">Abonnés <span class="pastille" id="nbAbonnes" hidden>0</span></button>
     </nav>
 
     <!-- ===== réservations ===== -->
@@ -206,6 +210,26 @@ textarea{min-height:80px;resize:vertical}
       </div>
       <div class="liste" id="listePr"><p class="vide">Chargement…</p></div>
     </section>
+
+    <!-- ===== abonnés à la lettre d'information ===== -->
+    <section class="vue" id="vue-abonnes" hidden>
+      <div class="bloc">
+        <h2>Lettre d'information <span>les adresses collectées sur le site</span></h2>
+        <p class="apercu" id="resumeAb" style="margin:.2rem 0 1rem">Chargement…</p>
+        <div style="display:flex;gap:.6rem;flex-wrap:wrap">
+          <button class="btn contour petit" type="button" id="exporterAb">Exporter en CSV</button>
+          <button class="btn contour petit" type="button" id="rafraichirAb">Rafraîchir</button>
+        </div>
+        <p class="apercu" style="margin-top:1rem">Pour annoncer une soirée à tout ce monde : onglet
+          <strong>Événements</strong>, bouton <strong>Annoncer</strong> sur l'événement publié.</p>
+      </div>
+      <div class="filtres" id="filtresAb">
+        <button class="actif" data-etat="actif">Inscrits</button>
+        <button data-etat="desinscrit">Désinscrits</button>
+        <button data-etat="tout">Tout</button>
+      </div>
+      <div class="liste" id="listeAb"><p class="vide">Chargement…</p></div>
+    </section>
   </div>
 </main>
 
@@ -215,17 +239,19 @@ textarea{min-height:80px;resize:vertical}
   // Une notification discrète, en bas à droite, qui s'efface seule au bout de
   // douze secondes : un back-office ne doit pas rester barré de rouge.
   let minuteurAlerte = null;
-  function crier(texte) {
+  function toast(texte, bon) {
     const a = document.getElementById("alerte");
     if (!a) return;
+    a.style.background = bon ? "#2f6b4f" : "#b0413e";
     a.innerHTML = "<span style=\"flex:1\">" + String(texte).slice(0, 300) +
       "</span><button type=\"button\" aria-label=\"Fermer\" style=\"background:none;border:0;" +
       "color:#fff;font-size:1.2rem;line-height:1;cursor:pointer;padding:0 .2rem\">&times;</button>";
     a.hidden = false;
     a.querySelector("button").onclick = function () { a.hidden = true; };
     clearTimeout(minuteurAlerte);
-    minuteurAlerte = setTimeout(function () { a.hidden = true; }, 12000);
+    minuteurAlerte = setTimeout(function () { a.hidden = true; }, bon ? 7000 : 12000);
   }
+  function crier(texte) { toast(texte, false); }
   // On ne relaie que ce qui vient de cette page : une extension du navigateur
   // ou une ressource tierce ne doit pas alarmer Adrien.
   window.addEventListener("error", function (e) {
@@ -296,6 +322,23 @@ textarea{min-height:80px;resize:vertical}
   }
   const rest = function (chemin, options) { return api("/rest/v1/" + chemin, options); };
 
+  // Nos routes à nous (/api/…) : elles envoient les courriels et gardent la clé
+  // Brevo côté serveur. Le jeton de session prouve qu'on est bien connecté.
+  function maison(chemin, corps, deuxieme) {
+    return fetch(chemin, {
+      method: "POST",
+      headers: {"Content-Type": "application/json", Authorization: "Bearer " + (session ? session.access_token : "")},
+      body: JSON.stringify(corps || {})
+    }).then(function (r) {
+      if (r.status === 401 && !deuxieme) return rafraichir().then(function () { return maison(chemin, corps, true); });
+      return r.text().then(function (t) {
+        let j = {}; try { j = t ? JSON.parse(t) : {}; } catch (e) {}
+        if (!r.ok) { const e = new Error(j.erreur || ("erreur " + r.status)); e.donnees = j; throw e; }
+        return j;
+      });
+    });
+  }
+
   // ---------- écrans ----------
   function afficherConnexion() { $("#vueConnexion").hidden = false; $("#vueApp").hidden = true; $("#qui").hidden = true; }
   function afficherApp() {
@@ -305,7 +348,7 @@ textarea{min-height:80px;resize:vertical}
     $("#sortir").addEventListener("click", function () {
       api("/auth/v1/logout", {method: "POST"}).catch(function () {}).finally(function () { oublier(); afficherConnexion(); });
     });
-    chargerResa(); chargerEv(); chargerPr();
+    chargerResa(); chargerEv(); chargerPr(); chargerAb();
   }
 
   $("#formConnexion").addEventListener("submit", function (e) {
@@ -360,11 +403,28 @@ textarea{min-height:80px;resize:vertical}
       el.innerHTML = html;
     }).catch(function (err) { $("#listeResa").innerHTML = '<p class="vide">' + ech(err.message) + "</p>"; });
   }
+  // Le statut ne passe plus en direct par la base : /api/statut-reservation
+  // enregistre le changement et envoie au client sa confirmation ou son annulation.
+  const DIT = {
+    envoye: "courriel envoyé au client",
+    "deja envoye": "le client avait déjà été prévenu",
+    "sans adresse": "pas d'adresse : prévenez-le par téléphone",
+    "non configure": "courriel non configuré (clé Brevo manquante)",
+    aucun: ""
+  };
   $("#listeResa").addEventListener("change", function (e) {
     const sel = e.target.closest("[data-statut]"); if (!sel) return;
-    const id = sel.closest(".ligne").dataset.id;
-    rest("reservations?id=eq." + id, {method: "PATCH", headers: {Prefer: "return=minimal"}, body: JSON.stringify({statut: sel.value})})
-      .then(chargerResa).catch(function (err) { alert(err.message); });
+    const ligne = sel.closest("[data-id]");
+    if (!ligne) { crier("Menu hors ligne réservation — rechargez la page."); return; }
+    sel.disabled = true;
+    maison("/api/statut-reservation", {id: ligne.dataset.id, statut: sel.value})
+      .then(function (rep) {
+        const suite = DIT[rep.courriel] || "";
+        if (suite) toast((sel.value === "confirmee" ? "Confirmée" : sel.value === "annulee" ? "Annulée" : "Enregistrée") + " — " + suite,
+                         rep.courriel === "envoye");
+        chargerResa();
+      })
+      .catch(function (err) { sel.disabled = false; crier(err.message); });
   });
 
   // ---------- événements ----------
@@ -404,10 +464,16 @@ textarea{min-height:80px;resize:vertical}
             (ev.date.slice(0, 4) === String(new Date().getFullYear()) ? "" : '<br><span style="font-size:.62rem;letter-spacing:.1em">' + ev.date.slice(0, 4) + "</span>") + "</div>" +
           "<div><span class=\"lieu " + ev.lieu + '">' + LIEUX[ev.lieu] + '</span><span class="nom">' + ech(ev.titre) + "</span>" +
             (ev.statut === "brouillon" ? ' <span class="brouillon">· brouillon</span>' : "") +
-            '<div class="detail">' + ech(ev.heure) + (ev.reservation ? " · sur réservation" : "") + "</div>" +
+            '<div class="detail">' + ech(ev.heure) + (ev.reservation ? " · sur réservation" : "") +
+              (ev.annonce_envoyee ? ' · <span style="color:#2f6b4f">annoncé le ' + new Date(ev.annonce_envoyee).toLocaleDateString("fr-FR") +
+                 " à " + (ev.annonce_nombre || 0) + " abonné" + ((ev.annonce_nombre || 0) > 1 ? "s" : "") + "</span>" : "") + "</div>" +
             (ev.description ? '<div class="message">' + ech(ev.description) + "</div>" : "") + "</div>" +
           '<div class="cotes">' +
             '<button class="btn petit' + (ev.statut === "publie" ? " contour" : "") + '" data-basculer="' + (ev.statut === "publie" ? "brouillon" : "publie") + '">' + (ev.statut === "publie" ? "Dépublier" : "Publier") + "</button>" +
+            (ev.statut === "publie" && ev.date >= jour
+              ? '<button class="btn contour petit" data-annoncer' + (ev.annonce_envoyee ? ' data-deja="1"' : "") + ">" +
+                (ev.annonce_envoyee ? "Renvoyer l’annonce" : "Annoncer aux abonnés") + "</button>"
+              : "") +
             '<button class="btn contour petit" data-modifier>Modifier</button>' +
             '<button class="btn danger petit" data-supprimer>Supprimer</button></div></div>';
       }).join("");
@@ -424,6 +490,19 @@ textarea{min-height:80px;resize:vertical}
     } else if (b.hasAttribute("data-supprimer")) {
       if (!confirm("Supprimer cet événement ?")) return;
       rest("evenements?id=eq." + id, {method: "DELETE"}).then(chargerEv).catch(function (err) { alert(err.message); });
+    } else if (b.hasAttribute("data-annoncer")) {
+      const ev = ($("#listeEv")._donnees || []).find(function (x) { return x.id === id; }) || {};
+      const deja = b.hasAttribute("data-deja");
+      if (!confirm((deja ? "L’annonce est déjà partie. La renvoyer" : "Envoyer l’annonce") +
+                   " à tous les abonnés ?\n\n« " + (ev.titre || "") + " »")) return;
+      b.disabled = true; b.textContent = "Envoi…";
+      maison("/api/annoncer-evenement", {id: id, forcer: deja})
+        .then(function (rep) {
+          toast(rep.envoyes ? "Annonce envoyée à " + rep.envoyes + " abonné" + (rep.envoyes > 1 ? "s" : "") + "."
+                            : (rep.message || "Aucun abonné pour l’instant."), true);
+          chargerEv();
+        })
+        .catch(function (err) { crier(err.message); chargerEv(); });
     } else if (b.hasAttribute("data-modifier")) {
       const ev = ($("#listeEv")._donnees || []).find(function (x) { return x.id === id; });
       if (!ev) { message("#msgEv", "Événement introuvable — rechargez la page.", "erreur"); return; }
@@ -431,7 +510,7 @@ textarea{min-height:80px;resize:vertical}
       ch.id.value = ev.id; ch.date.value = ev.date; ch.heure.value = ev.heure || ""; ch.lieu.value = ev.lieu;
       ch.titre.value = ev.titre; ch.description.value = ev.description || ""; ch.reservation.checked = !!ev.reservation;
       $("#titreFormEv").firstChild.textContent = "Modifier l’événement ";
-      $("#annulerEv").hidden = false; f.scrollIntoView({behavior: "smooth"});
+      $("#annulerEv").hidden = false; $("#formEv").scrollIntoView({behavior: "smooth"});
     }
   });
   function viderFormEv() { const f = $("#formEv"); f.reset(); f.elements.id.value = ""; $("#titreFormEv").firstChild.textContent = "Nouvel événement "; $("#annulerEv").hidden = true; }
@@ -568,6 +647,85 @@ textarea{min-height:80px;resize:vertical}
   // ---------- publication du catalogue ----------
   // Les fiches produits vivent dans les pages HTML, pour que Google les lise.
   // Ce bouton demande à Vercel de régénérer le site depuis la base.
+  // ---------- abonnés à la lettre d'information ----------
+  // Les adresses arrivent par le formulaire du site ; ici on les consulte,
+  // on les exporte, et on peut désinscrire quelqu'un qui le demande de vive voix.
+  let etatAb = "actif";
+  $("#filtresAb").addEventListener("click", function (e) {
+    const b = e.target.closest("button"); if (!b) return;
+    etatAb = b.dataset.etat;
+    $("#filtresAb").querySelectorAll("button").forEach(function (x) { x.classList.toggle("actif", x === b); });
+    chargerAb();
+  });
+  $("#rafraichirAb").addEventListener("click", chargerAb);
+
+  function chargerAb() {
+    const filtre = etatAb === "tout" ? "" : "&statut=eq." + etatAb;
+    rest("abonnes?select=id,email,statut,source,cree_le,desinscrit_le" + filtre + "&order=cree_le.desc&limit=2000")
+      .then(function (lignes) {
+        $("#listeAb")._donnees = lignes;
+        return rest("abonnes?select=id&statut=eq.actif&limit=2000").then(function (actifs) {
+          const pastille = $("#nbAbonnes");
+          pastille.hidden = !actifs.length; pastille.textContent = actifs.length;
+          $("#resumeAb").textContent = actifs.length
+            ? actifs.length + " personne" + (actifs.length > 1 ? "s reçoivent" : " reçoit") + " les annonces du Chai."
+            : "Personne n’est encore inscrit — le formulaire est en bas de la page d’accueil et de l’agenda.";
+          const el = $("#listeAb");
+          if (!lignes.length) {
+            el.innerHTML = '<p class="vide">Aucune adresse ' +
+              (etatAb === "actif" ? "inscrite pour l’instant." : etatAb === "desinscrit" ? "désinscrite." : "enregistrée.") + "</p>";
+            return;
+          }
+          el.innerHTML = lignes.map(function (a) {
+            return '<div class="ligne' + (a.statut !== "actif" ? " annulee" : "") + '" data-id="' + a.id + '">' +
+              '<div><span class="nom">' + ech(a.email) + "</span>" +
+                (a.statut !== "actif" ? ' <span class="brouillon">· désinscrit' +
+                   (a.desinscrit_le ? " le " + new Date(a.desinscrit_le).toLocaleDateString("fr-FR") : "") + "</span>" : "") +
+                '<div class="detail">inscrit le ' + new Date(a.cree_le).toLocaleDateString("fr-FR") +
+                (a.source ? " · depuis « " + ech(a.source) + " »" : "") + "</div></div>" +
+              '<div class="cotes">' +
+                (a.statut === "actif"
+                  ? '<button class="btn contour petit" data-desinscrire>Désinscrire</button>'
+                  : '<button class="btn contour petit" data-reinscrire>Réinscrire</button>') +
+                '<button class="btn danger petit" data-effacer>Effacer</button></div></div>';
+          }).join("");
+        });
+      })
+      .catch(function (err) { $("#listeAb").innerHTML = '<p class="vide">' + ech(err.message) + "</p>"; });
+  }
+
+  $("#listeAb").addEventListener("click", function (e) {
+    const b = e.target.closest("button"); if (!b) return;
+    const ligne = b.closest("[data-id]");
+    if (!ligne) { crier("Bouton hors ligne abonné — rechargez la page."); return; }
+    const id = ligne.dataset.id;
+    if (b.hasAttribute("data-effacer")) {
+      if (!confirm("Effacer définitivement cette adresse ?")) return;
+      rest("abonnes?id=eq." + id, {method: "DELETE"}).then(chargerAb).catch(function (err) { crier(err.message); });
+      return;
+    }
+    const vers = b.hasAttribute("data-desinscrire") ? "desinscrit" : "actif";
+    rest("abonnes?id=eq." + id, {
+      method: "PATCH", headers: {Prefer: "return=minimal"},
+      body: JSON.stringify({statut: vers, desinscrit_le: vers === "desinscrit" ? new Date().toISOString() : null})
+    }).then(chargerAb).catch(function (err) { crier(err.message); });
+  });
+
+  $("#exporterAb").addEventListener("click", function () {
+    const lignes = $("#listeAb")._donnees || [];
+    if (!lignes.length) { crier("Rien à exporter dans cette vue."); return; }
+    const csv = "email;statut;source;inscrit le\n" + lignes.map(function (a) {
+      return [a.email, a.statut, a.source || "", new Date(a.cree_le).toLocaleDateString("fr-FR")]
+        .map(function (v) { return '"' + String(v).replace(/"/g, '""') + '"'; }).join(";");
+    }).join("\n");
+    // \ufeff : sans lui, Excel lit les accents de travers.
+    const url = URL.createObjectURL(new Blob(["\ufeff" + csv], {type: "text/csv;charset=utf-8"}));
+    const a = document.createElement("a");
+    a.href = url; a.download = "abonnes-le-chai-" + aujourdHui() + ".csv";
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+  });
+
   $("#publierSite").addEventListener("click", function () {
     const b = $("#publierSite");
     b.disabled = true; message("#msgPublier", "Demande envoyée, le site se régénère…");

@@ -9,7 +9,10 @@
 //   SUPABASE_URL          https://xxxx.supabase.co
 //   SUPABASE_SERVICE_KEY  clé « service_role » (Project settings → API)
 //   BREVO_API_KEY         facultatif : envoie un courriel à chaque réservation
-//   RESERVATION_EMAIL     facultatif : adresse qui reçoit ces courriels
+//   COURRIEL_EXPEDITEUR   adresse d'envoi, validée chez Brevo
+//   COURRIEL_MAISON       adresse qui reçoit l'alerte (à défaut RESERVATION_EMAIL)
+
+const { SITE, ech, jourFr, gabarit, lignesFiche, envoyer } = require("./_courriel.js");
 
 const LIEUX = {
   francazal: { nom: "Le Chai — Francazal", horaires: { 2: [10, 21], 3: [10, 21], 4: [10, 23], 5: [10, 23], 6: [10, 23] } },
@@ -60,27 +63,35 @@ async function enregistrer(d) {
   return (await r.json())[0];
 }
 
+// Alerte à la maison. Confort, jamais bloquant : si Brevo répond mal, la
+// réservation est déjà enregistrée et visible dans le back-office.
 async function prevenir(d) {
-  if (!process.env.BREVO_API_KEY || !process.env.RESERVATION_EMAIL) return;
+  const heure = d.heure.replace(":", "h");
+  const html = gabarit({
+    titre: "Nouvelle réservation",
+    chapeau: `<strong>${LIEUX[d.lieu].nom}</strong> — ${jourFr(d.date)} à ${heure}`,
+    corps:
+      lignesFiche([
+        ["Couverts", d.couverts],
+        ["Nom", d.nom],
+        ["Téléphone", d.telephone],
+        ["E-mail", d.email || "— non communiqué"],
+      ]) +
+      (d.message
+        ? `<p style="margin:18px 0 0;padding:14px 16px;background:#f6efe2;border-radius:12px;font-size:15px;line-height:1.6">« ${ech(d.message)} »</p>`
+        : ""),
+    bouton: { texte: "Confirmer dans le back-office", lien: SITE + "/admin" },
+    pied: d.email
+      ? "Répondre à ce message écrit directement au client."
+      : "Le client n'a pas laissé d'adresse : rappelez-le au téléphone.",
+  });
   const [a, m, j] = d.date.split("-");
-  const texte =
-    `Nouvelle réservation — ${LIEUX[d.lieu].nom}\n\n` +
-    `Le ${j}/${m}/${a} à ${d.heure}, ${d.couverts} couvert(s)\n` +
-    `Nom : ${d.nom}\nTéléphone : ${d.telephone}\n` +
-    (d.email ? `E-mail : ${d.email}\n` : "") +
-    (d.message ? `\nMessage :\n${d.message}\n` : "") +
-    `\nÀ confirmer dans le back-office : https://lechaigourmand.vercel.app/admin`;
-  await fetch("https://api.brevo.com/v3/smtp/email", {
-    method: "POST",
-    headers: { "api-key": process.env.BREVO_API_KEY, "Content-Type": "application/json" },
-    body: JSON.stringify({
-      sender: { name: "Site Le Chai Gourmand", email: process.env.RESERVATION_EMAIL },
-      to: [{ email: process.env.RESERVATION_EMAIL }],
-      replyTo: d.email ? { email: d.email, name: d.nom } : undefined,
-      subject: `Réservation ${j}/${m} ${d.heure} — ${d.nom} (${d.couverts} couv.)`,
-      textContent: texte,
-    }),
-  }).catch(() => {});                                   // le courriel n'est qu'un confort : jamais bloquant
+  await envoyer({
+    a: process.env.COURRIEL_MAISON || process.env.RESERVATION_EMAIL,
+    sujet: `Réservation ${j}/${m} ${heure} — ${d.nom} (${d.couverts} couv.)`,
+    html,
+    repondreA: d.email || undefined,
+  }).catch((err) => console.error("alerte réservation non envoyée", err));
 }
 
 module.exports = async (req, res) => {
@@ -104,7 +115,7 @@ module.exports = async (req, res) => {
   if (probleme) return res.status(400).json({ erreur: probleme });
   try {
     const ligne = await enregistrer(d);
-    await prevenir(d);
+    if (process.env.COURRIEL_MAISON || process.env.RESERVATION_EMAIL) await prevenir(d);
     return res.status(201).json({ ok: true, id: ligne.id });
   } catch (err) {
     console.error(err);
