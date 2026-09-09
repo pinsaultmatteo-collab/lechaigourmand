@@ -69,6 +69,8 @@ textarea{min-height:80px;resize:vertical}
 .connexion p{color:var(--brun-doux);margin-bottom:1.2rem;font-size:.92rem}
 .vignette{width:54px;height:72px;object-fit:cover;border-radius:6px;background:#eee}
 .apercu{font-size:.8rem;color:var(--brun-doux)}
+/* iOS zoome sur les champs sous 16 px : on les remonte en mobile */
+@media (max-width:760px){input,select,textarea{font-size:16px}}
 @media (max-width:640px){.ligne{grid-template-columns:auto 1fr}.ligne .cotes{grid-column:1/-1;justify-content:flex-start}}
 </style>
 </head>

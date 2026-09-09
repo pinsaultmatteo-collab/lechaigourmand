@@ -1961,6 +1961,18 @@ a.ref-plus{text-decoration:none}
 .resa-merci h3{font-family:var(--serif);font-weight:600;font-size:1.6rem;color:var(--brun);margin-bottom:.6rem}
 .resa-merci p{font-family:var(--serif);font-style:italic;color:var(--brun-doux);line-height:1.55;max-width:38ch;margin:0 auto}
 .resa-merci .btn{margin-top:1.4rem}
+/* iOS Safari zoome sur tout champ dont le texte fait moins de 16 px dès qu'il
+   reçoit le focus — et une page zoomée se balade ensuite de gauche à droite.
+   16 px pile suffit à l'en empêcher, sans verrouiller le zoom du visiteur
+   (ce qu'il ne faut jamais faire : c'est une aide à la lecture). */
+@media (max-width:760px){
+  .resa-champ input,.resa-champ select,.resa-champ textarea,
+  .ref-recherche input,
+  .newsletter-form input,
+  input[type="text"],input[type="email"],input[type="tel"],
+  input[type="date"],input[type="search"],select,textarea{font-size:16px}
+}
+
 @media (max-width:560px){
   .resa-deux,.resa-lieux{grid-template-columns:1fr}
   .resa-actions .btn{width:100%;justify-content:center}

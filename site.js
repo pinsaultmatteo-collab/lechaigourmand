@@ -943,7 +943,7 @@ function chaiSupabase(){
 
     volet.hidden = false;
     chaiGelerLaPage();
-    const fermer = volet.querySelector("[data-fermer]");
+    const fermer = volet.querySelector("button[data-fermer]");
     if (fermer) fermer.focus();
   }
 
@@ -1171,8 +1171,13 @@ function chaiSupabase(){
     }
     volet.hidden = false;
     chaiGelerLaPage();
-    const premier = volet.querySelector("#resaDate");
-    if (premier) premier.focus();
+    // On ne met surtout pas le focus sur le champ date : sur iOS cela ouvre le
+    // sélecteur de calendrier et déclenche le zoom automatique. Le bouton de
+    // fermeture est le point d'entrée habituel d'un dialogue, et il est neutre.
+    // [data-fermer] est aussi porté par le fond du volet, qui n'est pas
+    // focalisable : on vise le bouton.
+    const fermeture = volet.querySelector("button[data-fermer]");
+    if (fermeture) fermeture.focus();
   }
   function fermer() {
     if (!volet || volet.hidden) return;
