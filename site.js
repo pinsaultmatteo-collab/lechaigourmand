@@ -6,6 +6,28 @@ const CHAI_HORAIRES = {
 };
 const CHAI_LIEUX = {francazal: "Le Chai — Francazal", annexe: "L'Annexe — Cézerou"};
 
+/* Geler la page derrière un volet.
+   `overflow:hidden` sur le corps ne suffit pas sur iOS : le doigt continue de
+   faire glisser la page dessous, et le volet, lui, reste fixe — d'où
+   l'impression qu'il bouge. On fige donc vraiment le corps, en mémorisant la
+   position pour la rendre à la fermeture. */
+let CHAI_POSITION_GELEE = 0;
+function chaiGelerLaPage(){
+  CHAI_POSITION_GELEE = window.scrollY || window.pageYOffset || 0;
+  const c = document.body.style;
+  c.position = "fixed";
+  c.top = "-" + CHAI_POSITION_GELEE + "px";
+  c.left = "0";
+  c.right = "0";
+  c.width = "100%";
+  c.overflow = "hidden";
+}
+function chaiDegelerLaPage(){
+  const c = document.body.style;
+  c.position = ""; c.top = ""; c.left = ""; c.right = ""; c.width = ""; c.overflow = "";
+  window.scrollTo(0, CHAI_POSITION_GELEE);
+}
+
 /* Accès en lecture à Supabase (clé publique, droits limités par la base).
    Renvoie null si le site n'est pas encore branché : chaque usage a son repli. */
 function chaiSupabase(){
@@ -920,7 +942,7 @@ function chaiSupabase(){
     }
 
     volet.hidden = false;
-    document.body.style.overflow = "hidden";
+    chaiGelerLaPage();
     const fermer = volet.querySelector("[data-fermer]");
     if (fermer) fermer.focus();
   }
@@ -929,7 +951,7 @@ function chaiSupabase(){
     if (!volet || volet.hidden) return;
     volet.hidden = true;
     voletContenu.innerHTML = "";
-    document.body.style.overflow = "";
+    chaiDegelerLaPage();
     if (declencheur) {
       declencheur.focus();
       declencheur = null;
@@ -1148,14 +1170,14 @@ function chaiSupabase(){
       volet.querySelector("#resaDate").dispatchEvent(new Event("change"));
     }
     volet.hidden = false;
-    document.body.style.overflow = "hidden";
+    chaiGelerLaPage();
     const premier = volet.querySelector("#resaDate");
     if (premier) premier.focus();
   }
   function fermer() {
     if (!volet || volet.hidden) return;
     volet.hidden = true;
-    document.body.style.overflow = "";
+    chaiDegelerLaPage();
     if (declencheur) { declencheur.focus(); declencheur = null; }
   }
 

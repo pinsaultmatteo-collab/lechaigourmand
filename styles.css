@@ -121,7 +121,12 @@ section{position:relative}
   pointer-events:none;
 }
 .hero-visuel{z-index:2}
-.hero-texte{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center}
+/* max-width et min-width sont indispensables ici : un élément flex se
+   dimensionne d'abord sur son contenu, et la rangée de boutons réclamait
+   395 px — le bloc débordait donc de l'écran avant même de pouvoir passer
+   à la ligne, ce qui poussait « près de Toulouse » sur une seconde ligne. */
+.hero-texte{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;
+  max-width:100%;min-width:0}
 .sur-titre{
   display:inline-flex;align-items:center;gap:.8rem;
   font-size:.72rem;letter-spacing:.34em;text-transform:uppercase;font-weight:400;color:var(--or);
@@ -1464,6 +1469,25 @@ h2.titre .accent-script{
    MOBILE — accueil : centrages et lisibilité
    ============================================================ */
 @media (max-width:760px){
+  /* « Cugnaux · Francazal — près de Toulouse » doit tenir d'un seul tenant :
+     coupé en deux, on lit « près de Toulouse » comme une adresse à part.
+     On resserre l'interlettrage plutôt que de laisser le texte passer à la ligne. */
+  /* les deux adresses passaient à la ligne en laissant la puce orpheline
+     en fin de première ligne : on les empile proprement */
+  .hero-adresses{flex-direction:column;gap:.35rem}
+  .hero-adresses .puce{display:none}
+
+  .hero-texte .sur-titre{
+    white-space:nowrap;letter-spacing:.07em;
+    /* la taille suit la largeur de l'écran : la ligne tient d'un seul tenant
+       du petit téléphone à la tablette, sans jamais déborder */
+    font-size:clamp(.40rem,2.05vw,.72rem);
+  }
+
+  /* l'esprit du Chai : la traînée dorée traverse la section en diagonale.
+     Sur une colonne étroite elle ne traverse plus rien et brouille le fond. */
+  .trainee{display:none}
+
   /* l'esprit du Chai : tout centré, chiffres serrés sur une ligne */
   #esprit .esprit-texte{text-align:center}
   #esprit .esprit-texte .entete-section{margin-inline:auto}
@@ -1645,7 +1669,9 @@ a.ref-plus{text-decoration:none}
 @keyframes fondApparait{from{opacity:0}to{opacity:1}}
 .ref-volet-corps{
   position:relative;width:min(720px,100%);height:100%;overflow-y:auto;
-  background:var(--creme);padding:clamp(1.6rem,4vw,2.6rem);
+  overscroll-behavior:contain;
+  -webkit-overflow-scrolling:touch;
+  background:var(--creme);padding:clamp(1.2rem,6vw,2.6rem);
   box-shadow:-30px 0 60px -30px rgba(0,0,0,.6);
   animation:voletEntre .4s var(--transition);
 }
@@ -1884,7 +1910,10 @@ a.ref-plus{text-decoration:none}
 }
 .resa-corps{
   position:relative;width:min(560px,100%);height:100%;overflow-y:auto;
-  background:var(--creme);padding:clamp(1.6rem,4vw,2.6rem);
+  overscroll-behavior:contain;                    /* le geste ne file pas à la page */
+  -webkit-overflow-scrolling:touch;
+  /* même respiration latérale que les sections du site */
+  background:var(--creme);padding:clamp(1.2rem,6vw,2.6rem);
   box-shadow:-30px 0 60px -30px rgba(0,0,0,.6);animation:voletEntre .4s var(--transition);
 }
 .resa-sur-titre{font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;color:var(--bordeaux);font-weight:500}
