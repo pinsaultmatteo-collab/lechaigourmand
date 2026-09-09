@@ -41,6 +41,12 @@ Compter **vingt minutes**, une seule fois.
   | `BREVO_API_KEY` | *facultatif* — la clé API Brevo (v3) qui envoie tous les courriels |
   | `COURRIEL_EXPEDITEUR` | l'adresse d'envoi, **validée chez Brevo** (ex. `bonjour@chai-gourmand.fr`) |
   | `COURRIEL_MAISON` | l'adresse d'Adrien, qui reçoit l'alerte à chaque réservation |
+
+  `COURRIEL_EXPEDITEUR` doit être une adresse **du domaine** (`bonjour@chai-gourmand.fr`), jamais
+  une adresse en webmail gratuit : le SPF de `gmail.com` n'autorise que les serveurs de Google,
+  un envoi parti de Brevo en son nom échoue SPF et DKIM et finit en indésirables. Adrien reçoit
+  quand même tout sur son Gmail — c'est `COURRIEL_MAISON` qui le dit, et la redirection OVH
+  `bonjour@chai-gourmand.fr → lechaigourmand31@gmail.com` lui apporte aussi les réponses.
   | `VERCEL_DEPLOY_HOOK` | l'adresse du hook de déploiement (voir 2 bis) |
 
   `RESERVATION_EMAIL` reste accepté comme ancien nom de `COURRIEL_MAISON` et `COURRIEL_EXPEDITEUR`.

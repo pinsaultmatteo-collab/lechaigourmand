@@ -116,7 +116,9 @@ async function envoyer({ a, sujet, html, repondreA }) {
     body: JSON.stringify({
       sender: { name: MAISON, email: c.expediteur },
       to: [{ email: a }],
-      replyTo: repondreA ? { email: repondreA } : { email: c.maison || c.expediteur },
+      // Par défaut on répond à l'adresse de la maison, jamais à la boîte
+      // personnelle : elle est redirigée vers elle de toute façon.
+      replyTo: repondreA ? { email: repondreA } : { email: c.expediteur },
       subject: sujet,
       htmlContent: html,
     }),
