@@ -1937,6 +1937,20 @@ a.ref-plus{text-decoration:none}
 .resa-champ label,.resa-legende{
   font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--brun-doux);font-weight:500;
 }
+/* Les champs date et heure d'iOS gardent la largeur de leur habillage natif :
+   width:100% ne les réduit pas, et le champ sort de l'écran. On retire cet
+   habillage — le sélecteur natif s'ouvre toujours au toucher — et on recale
+   la valeur à gauche, qu'iOS centre par défaut en débordant de son cadre. */
+input[type="date"],input[type="time"]{
+  -webkit-appearance:none;appearance:none;
+  min-width:0;max-width:100%;
+}
+input[type="date"]::-webkit-date-and-time-value,
+input[type="time"]::-webkit-date-and-time-value{
+  text-align:left;margin:0;min-width:0;
+}
+input[type="date"]::-webkit-calendar-picker-indicator{margin-left:auto}
+
 .resa-champ input,.resa-champ select,.resa-champ textarea{
   width:100%;min-width:0;max-width:100%;
   font-family:var(--sans);font-size:.95rem;font-weight:300;color:var(--brun);
