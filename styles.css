@@ -1659,7 +1659,8 @@ a.ref-plus{text-decoration:none}
 }
 
 /* volet de détail */
-.ref-volet{position:fixed;inset:0;z-index:200;display:flex;justify-content:flex-end}
+.ref-volet{position:fixed;inset:0;z-index:200;display:flex;justify-content:flex-end;
+  overflow:hidden;touch-action:none}
 .ref-volet[hidden]{display:none}
 .ref-volet-fond{
   position:absolute;inset:0;background:rgba(26,15,20,.62);
@@ -1668,8 +1669,10 @@ a.ref-plus{text-decoration:none}
 }
 @keyframes fondApparait{from{opacity:0}to{opacity:1}}
 .ref-volet-corps{
-  position:relative;width:min(720px,100%);height:100%;overflow-y:auto;
+  position:relative;width:min(720px,100%);height:100%;
+  overflow-y:auto;overflow-x:hidden;
   overscroll-behavior:contain;
+  touch-action:pan-y;
   -webkit-overflow-scrolling:touch;
   background:var(--creme);padding:clamp(1.2rem,6vw,2.6rem);
   box-shadow:-30px 0 60px -30px rgba(0,0,0,.6);
@@ -1902,15 +1905,18 @@ a.ref-plus{text-decoration:none}
 /* ============================================================
    RÉSERVATION — module maison (volet construit par site.js)
    ============================================================ */
-.resa-volet{position:fixed;inset:0;z-index:210;display:flex;justify-content:flex-end}
+.resa-volet{position:fixed;inset:0;z-index:210;display:flex;justify-content:flex-end;
+  overflow:hidden;touch-action:none}
 .resa-volet[hidden]{display:none}
 .resa-fond{
   position:absolute;inset:0;background:rgba(26,15,20,.66);
   backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);animation:fondApparait .3s ease;
 }
 .resa-corps{
-  position:relative;width:min(560px,100%);height:100%;overflow-y:auto;
-  overscroll-behavior:contain;                    /* le geste ne file pas à la page */
+  position:relative;width:min(560px,100%);height:100%;
+  overflow-y:auto;overflow-x:hidden;          /* rien ne s'échappe sur les côtés */
+  overscroll-behavior:contain;
+  touch-action:pan-y;                         /* le doigt ne fait que monter et descendre */                    /* le geste ne file pas à la page */
   -webkit-overflow-scrolling:touch;
   /* même respiration latérale que les sections du site */
   background:var(--creme);padding:clamp(1.2rem,6vw,2.6rem);
@@ -1920,13 +1926,20 @@ a.ref-plus{text-decoration:none}
 .resa-titre{font-family:var(--serif);font-weight:600;font-size:clamp(1.6rem,3.4vw,2.1rem);line-height:1.15;color:var(--brun);margin:.3rem 0 .4rem}
 .resa-titre .accent-script{color:var(--or-sombre)}
 .resa-intro{font-family:var(--serif);font-style:italic;color:var(--brun-doux);line-height:1.5;margin-bottom:1.4rem}
-.resa-form{display:grid;gap:1rem}
-.resa-champ{display:grid;gap:.4rem}
+/* min-width:0 partout dans le formulaire. Un élément de grille vaut par
+   défaut min-width:auto : il refuse de devenir plus étroit que son contenu.
+   Or iOS donne aux champs date et heure une largeur intrinsèque considérable
+   — la grille s'élargissait donc au-delà du volet, le contenu débordait à
+   droite, et la page devenait baladeuse. */
+.resa-form{display:grid;gap:1rem;min-width:0}
+.resa-champ{display:grid;gap:.4rem;min-width:0}
+.resa-form > *,.resa-deux > *,.resa-lieux > *{min-width:0}
 .resa-champ label,.resa-legende{
   font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--brun-doux);font-weight:500;
 }
 .resa-champ input,.resa-champ select,.resa-champ textarea{
-  width:100%;font-family:var(--sans);font-size:.95rem;font-weight:300;color:var(--brun);
+  width:100%;min-width:0;max-width:100%;
+  font-family:var(--sans);font-size:.95rem;font-weight:300;color:var(--brun);
   background:var(--papier);border:1px solid rgba(122,99,85,.3);border-radius:12px;
   padding:.75rem .95rem;transition:border-color .3s,box-shadow .3s;
 }
@@ -1934,8 +1947,8 @@ a.ref-plus{text-decoration:none}
   outline:none;border-color:var(--bordeaux);box-shadow:0 0 0 3px rgba(124,33,64,.12);
 }
 .resa-champ textarea{min-height:88px;resize:vertical}
-.resa-deux{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
-.resa-lieux{display:grid;grid-template-columns:1fr 1fr;gap:.7rem}
+.resa-deux{display:grid;grid-template-columns:1fr 1fr;gap:1rem;min-width:0}
+.resa-lieux{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;min-width:0}
 .resa-lieu{position:relative;cursor:pointer}
 .resa-lieu input{position:absolute;opacity:0;inset:0;width:100%;height:100%;cursor:pointer}
 .resa-lieu span{
