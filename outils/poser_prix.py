@@ -91,8 +91,11 @@ def main():
         print(f"  ✗ {probleme}")
         sys.exit(1)
 
-    envoyes, rates = 0, []
-    for f in fiches:
+    # Une fiche par requête : à 255 requêtes, la barre évite de se demander si
+    # la machine a planté. Elle se réécrit sur place, sans dérouler l'écran.
+    total, envoyes, rates = len(fiches), 0, []
+    print()
+    for i, f in enumerate(fiches, 1):
         try:
             patcher(f["id"], f.get("prix"), cle)
             envoyes += 1
@@ -100,7 +103,9 @@ def main():
             rates.append((f["id"], err.code, err.read()[:120].decode("utf-8", "replace")))
         except Exception as err:
             rates.append((f["id"], "—", str(err)[:120]))
-    print(f"  ✓ {envoyes} fiches mises à jour dans Supabase")
+        plein = round(28 * i / total)
+        print(f"\r  [{'█' * plein}{'·' * (28 - plein)}] {i}/{total}", end="", flush=True)
+    print(f"\r  ✓ {envoyes} fiches mises à jour dans Supabase" + " " * 20)
     for ref, code, detail in rates[:10]:
         print(f"    ✗ {ref} : {code} {detail}")
 
