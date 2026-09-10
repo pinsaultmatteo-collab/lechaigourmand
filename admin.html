@@ -182,6 +182,7 @@ textarea{min-height:80px;resize:vertical}
           <div class="champ"><label>Millésime</label><input type="text" name="millesime" placeholder="2023"></div>
           <div class="champ"><label>Degré (%)</label><input type="text" name="alcool" placeholder="13,5"></div>
           <div class="champ"><label>Contenance</label><input type="text" name="contenance" placeholder="75 cl"></div>
+          <div class="champ"><label>Prix (€) <em>vide = « prix en boutique »</em></label><input type="text" name="prix" inputmode="decimal" placeholder="13,50"></div>
           <div class="champ"><label>Style</label><input type="text" name="style" placeholder="Bière ambrée, vin orange…"></div>
           <div class="champ"><label>Vieillissement</label><input type="text" name="vieillissement" placeholder="12 mois en fût"></div>
           <div class="champ large"><label>Phrase pour la carte (accroche)</label><input type="text" name="phrase" maxlength="200"></div>
@@ -535,7 +536,7 @@ textarea{min-height:80px;resize:vertical}
 
   // ---------- produits ----------
   const CHAMPS_PR = ["nom", "type", "producteur", "appellation", "origine", "cepages", "millesime",
-                     "alcool", "contenance", "phrase", "visuel", "nez", "bouche", "accords",
+                     "alcool", "contenance", "prix", "phrase", "visuel", "nez", "bouche", "accords",
                      "style", "vieillissement"];
   const MAX_AFFICHE = 60;      // 255 fiches d'un coup, personne ne lit ça : on cherche
   let toutesPr = [];
@@ -561,7 +562,9 @@ textarea{min-height:80px;resize:vertical}
           ((p.images && p.images[0]) ? '<img class="vignette" src="' + ech(p.images[0]) + '" alt="" loading="lazy">' : '<div class="vignette"></div>') +
           "<div><span class=\"lieu\">" + ech(p.type) + '</span><span class="nom">' + ech(p.nom) + "</span>" +
             (p.statut === "brouillon" ? ' <span class="brouillon">· brouillon</span>' : "") +
-            '<div class="detail">' + ech([p.producteur, p.appellation || p.origine, p.millesime].filter(Boolean).join(" · ")) + "</div></div>" +
+            '<div class="detail">' + ech([p.producteur, p.appellation || p.origine, p.millesime].filter(Boolean).join(" · ")) +
+              (p.prix ? ' · <strong style="color:var(--bordeaux)">' + ech(String(p.prix).replace(".", ",")) + " €</strong>"
+                      : ' · <span style="color:var(--or-sombre)">prix en boutique</span>') + "</div></div>" +
           '<div class="cotes">' +
             '<button class="btn petit' + (p.statut === "publie" ? " contour" : "") + '" data-basculer="' + (p.statut === "publie" ? "brouillon" : "publie") + '">' + (p.statut === "publie" ? "Dépublier" : "Publier") + "</button>" +
             '<button class="btn contour petit" data-modifier>Modifier</button>' +
@@ -636,6 +639,12 @@ textarea{min-height:80px;resize:vertical}
       const d = {statut: action, images: images};
       CHAMPS_PR.forEach(function (k) { d[k] = ch[k].value.trim() || null; });
       d.type = ch.type.value;
+      // « 13,50 € » au clavier français devient « 13.5 » en base : le site
+      // remet la virgule à l'affichage. Vide ou illisible = prix en boutique.
+      if (d.prix) {
+        const n = parseFloat(d.prix.replace(",", ".").replace(/[^\d.]/g, ""));
+        d.prix = isFinite(n) && n > 0 ? String(n) : null;
+      }
       d.sources = ch.sources.value.split("\n").map(function (x) { return x.trim(); }).filter(Boolean);
       return ch.id.value
         ? rest("produits?id=eq." + ch.id.value, {method: "PATCH", headers: {Prefer: "return=minimal"}, body: JSON.stringify(d)})

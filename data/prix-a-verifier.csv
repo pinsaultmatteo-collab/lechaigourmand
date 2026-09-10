@@ -1,0 +1,256 @@
+etat;score;fiche;type;producteur;millesime;tarif retenu;prix;autre candidat;prix autre
+aucun;0.00;Ambrée Artisanale;biere;La Gorge Fraîche.;;;;;
+aucun;0.00;Blanche Artisanale;biere;La Gorge Fraîche.;;;;"La Gorge Fraîche - Blanche - ""Blanche"" 33Cl";3.50
+sur;1.00;Blanche Bio;biere;La Gorge Fraîche.;;"La Gorge Fraîche - Blanche - ""Blanche"" 33Cl";3.50;"Domaine De Pierre Blanche - Rouge - IGP Syrah ""Barral"" 75Cl";13.50
+doute;1.00;Blonde Bio;biere;La Gorge Fraîche.;;"La Gorge Fraîche - Blonde - ""Blonde BIO"" 33Cl";3.50;"La Gorge Fraîche - Blonde - ""Lager"" 33Cl";3.80
+doute;0.73;Blonde artisanale;biere;La Gorge Fraîche.;;"La Gorge Fraîche - Blonde - ""Blonde Cassique"" 33Cl";3.50;"La Gorge Fraîche - Blonde - ""Lager"" 33Cl";3.80
+aucun;0.00;Blonde infusée aux herbes & épices;biere;Collaboration Maison Noilly Prat.;;;;;
+aucun;0.00;Hiver - au sirop d’érable pur;biere;La Gorge Fraîche.;;;;"La Gorge Fraîche - Speciale Noel - ""Hiver"" 33Cl";3.80
+aucun;0.00;LA CUVÉE DES FADAS;biere;LA CUVÉE DES FADAS.;;;;;
+doute;1.00;LA GORGE FRAÎCHE;biere;LA GORGE FRAÎCHE.;;"La Gorge Fraîche - Ambre - ""Ambré"" 33Cl";3.50;"La Gorge Fraîche - Blonde - ""Lager"" 33Cl";3.80
+doute;1.00;LA PETITE MIDINETTE;biere;LA PETITE MIDINETTE.;;"La Gorge Fraîche - Triple - ""La Petite Midinette"" 33Cl";3.50;"La Gorge Fraîche - Triple - ""La Petite Midinette"" 75Cl";8.00
+doute;0.50;La Barriquade Lactique;biere;La Gorge Fraîche.;;"La Gorge Fraîche - Blonde - ""La Barriquade Lager"" 33Cl";3.80;"La Gorge Fraîche - Blonde - ""La Triple Barriquade"" 33Cl";3.80
+aucun;0.00;La Blonde qui a tout sauf l’alcool;biere;La Gorge Fraîche.;;;;"La Gorge Fraîche - Blonde - ""Lager"" 33Cl";3.80
+doute;1.00;La Petite Midinette - Triple;biere;La Gorge Fraîche.;;"La Gorge Fraîche - Triple - ""La Petite Midinette"" 75Cl";8.00;"La Gorge Fraîche - Triple - ""La Petite Midinette"" 33Cl";3.50
+aucun;0.00;La Tramontane;biere;Bière vieillie en fût de whisky.;;;;;
+aucun;0.00;La Triple Barriquée;biere;La Gorge Fraîche.;;;;"La Gorge Fraîche - Blonde - ""La Triple Barriquade"" 33Cl";3.80
+aucun;0.00;Loulou - Bière Blonde Artisanale;biere;Bière de Montpellier / brassée à Béziers.;;;;"La Gorge Fraîche - Blonde - ""Lager"" 33Cl";3.80
+doute;0.48;Méridional Lager;biere;La Gorge Fraîche.;;"La Gorge Fraîche - Blonde - ""Lager"" 33Cl";3.80;"La Gorge Fraîche - Blonde - ""La Barriquade Lager"" 33Cl";3.80
+doute;0.52;Méridional Sour;biere;La Gorge Fraîche.;;"La Gorge Fraîche - Blonde Sour - ""Sour 33Cl";3.80;;
+aucun;0.00;Red Grape Ale;biere;;;;;;
+doute;0.48;Rose Mont Rose - Rosé Wine Ale;biere;Languedoc · .;;"La Gorge Fraîche - Blonde - ""Wine Ale"" 75Cl";19.00;;
+sur;0.82;Stout Artisanale;biere;La Gorge Fraîche.;;"La Gorge Fraîche - Stout - ""Stout"" 33Cl";3.50;;
+sur;0.96;BOURGOGNE CHARDONNAY VIEILLES VIGNES;blanc;Domaine du Château Philippe le Hardi.;2023;Bourgogne Chardonnay Vieilles Vignes Tc 2023;23.00;"Domaine Perrachon & Fils - Bulle - Blanc De Blanc ""Crémant De Bourgogne""  75Cl";18.00
+doute;0.76;Beaujolais Blanc 2024;blanc;Laurent Perrachon & Fils.;2024;"Domaine Perrachon & Fils - Blanc - Beaujolais Blanc - ""Terre De Loys"" 75 Cl";13.00;Domaine Perrachon & Fils - Blanc - Beaujolais Villages Rouge 750 Ml 2025 Terre De Loyse;11.00
+doute;0.47;CEZ White Blend;blanc;Ernst Gouws & Co.;;Ernst Gouws - Cez Blanc 2023 Vin D'Afrique Du Sud - Blanc - Afrique Du Sud;19.00;;
+sur;0.82;CHABLIS 2023;blanc;Domaine du Château Philippe le Hardi.;2023;Chablis 2023;29.00;;
+sur;0.90;CORTON-CHARLEMAGNE GRAND CRU 2020;blanc;Domaine du Château Philippe le Hardi.;2020;Corton Charlemagne Grand Cru Blc 2020;240.00;;
+doute;0.65;Canio Bianco Basilicata IGP 2024;blanc;Vigneti del Vulture.;;"Fantini Group Farnese - Blanc - ""Canio Bianco"" Basilicata Bianco 75 Cl";18.00;;
+sur;0.73;Château Duhart-Milon — Pauillac;rouge;Domaines Barons de Rothschild Lafite.;;Duhart Milon 2023 AOC Pauillac Rouge - Rouge - France;160.00;;
+sur;0.79;Château Grand-Puy Ducasse — Pauillac;rouge;Château Grand-Puy Ducasse — CA Grands Crus.;;Cht.Grd Puy Ducasse 15 AOC Pauillac Rouge - Rouge - France;60.00;;
+sur;1.00;Château Gruaud Larose;rouge;Château Gruaud Larose.;2010;Chateau Gruaud Larose 2010 AOC Saint Julien Rouge - Rouge - France;160.00;;
+doute;0.55;Château La Dominique — Saint-Émilion;rouge;Château La Dominique — famille Clément Fayat.;;La Dominique 20 Cb6 G13  AOC St Emilion Grand Cru Rouge - Rouge - France;65.00;;
+aucun;0.00;Château Musar Red 2018;rouge;Château Musar — famille Hochar.;2018;;;Mas D'En Janeil Red Eur 2017 AOC/AOP Ctes Roussillon Vil - Rouge - France;40.00
+sur;1.00;Château Pichon Baron;rouge;Château Pichon Baron.;2017;Chateau Pichon Baron 2017 AOC Pauillac Rouge - Rouge - France;210.00;;
+aucun;0.00;Château Pilet — Bordeaux;rouge;C.V. Jean Queyrens & Fils.;;;;Château La Guillaumette - Rouge - AOC Bordeaux Merlot 2022 75Cl;13.50
+sur;0.83;Château Pontet-Canet — Pauillac;rouge;Château Pontet-Canet — famille Tesseron.;;Chateau Pontet Canet 2017 AOC Pauillac Rouge - Rouge - France;175.00;;
+sur;1.00;Château Prieuré-Lichine;rouge;Château Prieuré-Lichine.;2020;Chateau Prieure Lichine 2020 AOC Margaux Rouge - Rouge - France;60.00;;
+sur;1.00;Château Soutard;rouge;Château Soutard.;2022;Chateau Soutard 2022 AOC St Emilion Grand Cru Rouge - Rouge - France;230.00;;
+sur;0.89;Château-Thébaud 2022;blanc;Domaine de la Grenaudière / Vignoble Ollivier-Cottenceau.;2022;"Domaine De La Grenaudiere - Blanc - Muscadet ""Château Thebaud"" 75Cl";18.00;;
+doute;0.69;Clisson 2019;blanc;Domaine de la Grenaudière / Vignoble Ollivier-Cottenceau.;2019;"Domaine De La Grenaudiere - Blanc - ""Clisson"" 75Cl";18.00;;
+sur;0.79;Clos Fourtet;rouge;Clos Fourtet - Famille Cuvelier.;2021;Chateau Clos Fourtet 2021AOC St Emilion Grand Cru Rouge - Rouge - France;150.00;;
+doute;0.47;Codorníu — Albariño Organic Wine;blanc;Codorníu — Raventós Codorníu.;;Codorniu Albarino Non Millesim D.O. Costers Del Segre - Blanc - Espagne;14.00;Codorniu Grenache Non Millesim;14.00
+sur;1.00;Cuvée G Blanc;blanc;Vignobles Gueissard.;;"Domaine Gueissard - Blanc - Cotes De Provence ""Cuvée G"" 75Cl";16.00;"Domaine De La Grenaudiere - Blanc - ""La Cuvee Des Copains"" 75Cl";18.00
+sur;0.89;CÔTE-RÔTIE PIERRE BLANCHE 2023;rouge;Domaine de Pierre Blanche - Xavier Mourier.;2023;Domaine De Pierre Blanche - Rouge - AOP Côte-Rôtie 75Cl;59.00;;
+sur;0.83;DE BICKNELL - CHARDONNAY 2022;blanc;Le Clos des Grives.;2022;Jura Cotes Du Jura Blanc Chardonnay De Bicknell 2022;30.00;;
+sur;0.77;DOMAINE DE NIZAS BLANC;blanc;François Lurton.;2024;"Le Domaine De Nizas - Blanc - AOP Languedoc ""Le Domaine De Nizas"" 75 Cl";21.00;;
+sur;0.89;DRAINE - SAVAGNIN OUILLÉ 2023;blanc;Le Clos des Grives.;2023;"Jura Cotes Du Jura Blanc Savagnin Ouille 2023 ""Draine""";31.00;;
+sur;0.82;Domaine Laffitte Gros & Petit Manseng;blanc;Domaine Laffitte — Les Frères Laffitte.;2025;"Domaine Lafﬁtte - Blanc - IGP Côtes De Gascogne ""Gros Et Petit Manseng"" 75Cl";12.00;;
+sur;0.85;Domaine de Targuerie Sec 2024;blanc;;;"Domaine De Targuerie - Blanc - IGP Côtes De Gascogne ""Melody"" Demi-Sec 75Cl";12.00;;
+aucun;0.00;Domäne Wachau — Grüner Veltliner;blanc;Domäne Wachau.;;;;;
+sur;1.00;Ernst Gouws & Co — Chenin Blanc;blanc;Ernst Gouws & Co.;;"Ernst Gouws & Co - Blanc - ""Chenin Blanc"" Stellenbosch 75 Cl";19.00;;
+doute;0.57;Fontanilles Blanc 2025;blanc;Le Cellier du Pic · IGP Pays d’Oc.;2025;"Le Cellier Du Pic - Blanc - ""Fontanille"" 75Cl";7.00;;
+sur;1.00;GOOD MOOD BLANC;blanc;Cellier du Pic.;2025;Le Cellier du Pic - Good Mood Blanc IGP Pays d'Oc 2025;9.00;;
+sur;1.00;Gran Lurton Cabernet Sauvignon Gran;rouge;Bodega Piedra Negra — François Lurton.;2018;"Bodega Piedra Negra - Rouge - ""Gran Lurton - Cabernet Sauvignon"" Los Chacayes 75Cl";23.00;Gran Lurton Tinto Cabernet-Sauvignon Eur 2018 Vin Argentin - Rouge - Argentine;23.00
+sur;0.86;Hacienda Araucano — Clo de Lolol;rouge;Hacienda Araucano — Domaines François Lurton.;;"Hacienda Araucano - Rouge - ""Clo De Lolol"" Vallée De Lolol 75Cl";29.00;;
+sur;0.83;Hermanos Lurton Verdejo 2024;blanc;Hermanos Lurton.;2024;Hermanos Lurton Verdejo BIO D.O. Rueda - Blanc - Espagne;16.00;;
+aucun;0.00;Humo Blanco Cabernet Franc 2022;rouge;Hacienda Araucano / François Lurton.;;;;"Château Franc Baudron - Rouge - ""Ancestral"" Saint-Emilion 75 Cl";17.00
+sur;0.85;Humo Blanco Edición Limitada Pinot Noir 2022;rouge;Hacienda Araucano / François Lurton.;;Humo Blanco Edicion Limitada Pinot Noir Demeter Eur 2022 Vin Du Chili - Rouge - Chili;19.00;;
+doute;0.58;Humo Blanco Organic Chardonnay 2023;blanc;Hacienda Araucano / François Lurton.;;"Hacienda Araucano - Blanc - ""Humo Blanco - Chardonnay"" Vallée De Lolol 75Cl";18.00;"Hacienda Araucano - Blanc - ""Humo Blanco - Sauvignon"" Vallée De Lolol 75Cl";18.00
+doute;0.57;Humo Blanco Organic Sauvignon Blanc 2024;blanc;Hacienda Araucano / François Lurton.;;"Hacienda Araucano - Blanc - ""Humo Blanco - Sauvignon"" Vallée De Lolol 75Cl";18.00;"Hacienda Araucano - Blanc - ""Humo Blanco - Chardonnay"" Vallée De Lolol 75Cl";18.00
+aucun;0.00;JURA'NADA - SAVAGNIN NATURÉ 2022;blanc;Le Clos des Grives.;2022;;;Jura Magnum Savagnin Jura Nada 2022;64.00
+sur;1.00;Kendall-Jackson — Vintner’s Reserve;blanc;Kendall-Jackson.;;Kendall Jackson Vintners Reserve Chardonnay 2023 Vin De Californie Jackson - Blanc - Californie;33.00;;
+aucun;0.00;L'Éphémère Blanc;blanc;Domaine d'En Ségur — Lionel Barre.;2024;;;"Domaine Lafﬁtte - Blanc - IGP Côtes De Gascogne ""Gros Et Petit Manseng"" 75Cl";12.00
+doute;0.72;LE MUSCARIS 2025;blanc;Famille d'Exéa / Domaines d'Exéa.;2025;Atelier D'Exea - Le Muscaris 2025 75 Cl;12.00;;
+sur;0.76;LES HAUTS DE JANEIL;blanc;François Lurton - Mas Janeil.;;"Les Hauts De Janeil- Blanc - IGP Côtes Catalane ""Sauvignon Blanc, Grenache"" 75 Cl";12.00;;
+aucun;0.00;LONGITUDE;blanc;Hommes & Terres du Sud.;2025;;;;
+sur;0.85;La Cuvée des Copains 2022;blanc;Domaine de la Grenaudière.;2022;"Domaine De La Grenaudiere - Blanc - ""La Cuvee Des Copains"" 75Cl";18.00;;
+sur;1.00;La Grenouille;blanc;Domaine de la Grenaudière.;2025;"Domaine De La Grenaudiere - Blanc - Muscadet ""La Grenouille"" 75Cl";9.90;;
+sur;1.00;Lavradores de Feitoria Douro Branco 2024;blanc;Lavradores de Feitoria.;;Lavradores De Feitoria Branco 2024 D.O.C. Douro - Blanc - Portugal;15.00;;
+sur;0.90;Les Fumées Blanches Les Calcaires;blanc;Domaines François Lurton.;2025;"Domaine Les Fumées Blanches - Blanc - IGP Côtes De Gascogne ""Calcaire"" 75 Cl";14.00;;
+sur;0.93;Les Fumées Blanches Sauvignon Blanc;blanc;Domaines François Lurton.;2025;"Domaine Les Fumées Blanches - Blanc - IGP Côtes De Gascogne ""Sauvignon Blanc"" 75 Cl";12.00;"Domaine Les Fumées Blanches - Blanc - IGP Côtes De Gascogne ""Calcaire"" 75 Cl";14.00
+sur;0.84;Les Fumées Blanches Vin Orange;blanc;Domaines François Lurton.;2025;"Domaine Les Fumées Blanches - Orange - IGP Côtes De Gascogne ""Vin Orange"" 75 Cl";14.00;;
+aucun;0.00;Les Hauts de Janeil - Grenache & Sauvignon 2024;blanc;MAS JANEIL / FRANÇOIS LURTON.;;;;"Les Hauts De Janeil- Blanc - IGP Côtes Catalane ""Sauvignon Blanc, Grenache"" 75 Cl";12.00
+doute;0.61;Levantine de Musar 2021;rouge;Château Musar — famille Hochar.;2021;"Château  Musar - Rouge - ""Levantine De Musar"" Vallée De Bekaa 75 Cl";33.00;;
+sur;0.86;Lumà Grillo 2025;blanc;Cantine Cellaro.;;"Fantini Group Farnese - Blanc - ""Luma Grillo"" Sicilia 75 Cl";12.90;;
+doute;0.61;MARSANNE BARRAL 2025;blanc;Domaines Xavier Mourier - Domaine de Pierre Blanche.;2025;IGP Coll Rhod Marsanne Barral 0.75 L;11.00;;
+aucun;0.00;MAZET DE NIZAS BLANC;blanc;François Lurton.;2024;;;;
+sur;0.88;MERCUREY « LA BRIGADIÈRE » 2022;blanc;Domaine du Château Philippe le Hardi.;2022;Mercurey Blanc La Brigadiere 2022;32.00;;
+sur;0.82;MEURSAULT 2023;blanc;Domaine du Château Philippe le Hardi.;2023;Meursault Blanc 2023;78.00;;
+sur;0.85;MUSICIENNE - CHARDONNAY 2019;blanc;Le Clos des Grives.;2019;"Jura Cotes Du Jura Chardonnay ""Musicienne"" 2019";30.00;;
+doute;0.68;Mas Janeil C2 2021;rouge;MAS JANEIL / FRANÇOIS LURTON.;;"Mas Janeil - Rouge - IGP Côtes Catalane ""C2"" 75 Cl";18.00;;
+doute;0.46;Musar Jeune White 2022;blanc;Château Musar — famille Hochar.;2022;"Château  Musar - Blanc - ""Musar Jeune Blanc "" Vallée De Bekaa 75 Cl";30.00;;
+doute;0.47;Mâcon-Villages « Vieilles Vignes » 2023;blanc;Famille Perrachon.;2023;"Domaine Perrachon & Fils - Blanc - ""Macon Village"" 75 Cl";16.00;;
+aucun;0.00;Mélody Gros Manseng;blanc;MÉLODY / DOMAINES FRANÇOIS LURTON.;;;;"Domaine De Targuerie - Blanc - IGP Côtes De Gascogne ""Melody"" Demi-Sec 75Cl";12.00
+doute;0.64;N°9 SAUVIGNON 2025;blanc;Famille d'Exéa / Domaines d'Exéa.;2025;Atelier D'Exea - N°9 Sauvignon 2025 Bd 75 Cl;12.00;Rouquet'S - Blanc - Sauvignon Blanc IGP Pays D'Oc 2025;8.00
+doute;0.54;Oenops APLA Dry White 2025;blanc;Oenops Wines.;2025;Oenops Wines - Apla Blanc 2025;22.00;;
+sur;1.00;Oysterman;blanc;Vignoble Ollivier-Cottenceau.;2025;"Domaine De La Grenaudiere - Blanc - Muscadet ""Oysterman"" 75Cl";9.00;;
+sur;1.00;Petite Lily - Château Climens;blanc;Château Climens.;2023;"Château Climens - Blanc - ""Petite Lily"" 75 Cl";25.00;;
+sur;0.92;Piedra Negra Alta Colección Torrontés;blanc;Bodega Piedra Negra — François Lurton.;2023;"Bodega Piedra Negra - Blanc - ""Alta Coleccion Torrontés"" Mendoza 75 Cl";18.00;;
+aucun;0.00;Piedra Negra Jackot Organic 2022;blanc;Bodega Piedra Negra — François Lurton.;2022;;;Arroyo Grande Jackot BIO Eur 2022 Vin Argentin - Blanc - Argentine;18.00
+aucun;0.00;Pouilly-Fuissé 1er Cru « Vers Cras » 2023;blanc;Famille Perrachon.;2023;;;"Domaine Perrachon & Fils - Blanc - ""Pouilly-Fuissé"" 1Er Cru 75 Cl";38.00
+aucun;0.00;Pouilly-Fuissé « Vieilles Vignes » 2024;blanc;Famille Perrachon.;2024;;;"Domaine Perrachon & Fils - Blanc - ""Pouilly-Fuissé"" 75 Cl";27.00
+aucun;0.00;Pradorey — Origen;rouge;Pradorey — Real Sitio de Ventosilla S.A.;;;;Pradorey;50.00
+sur;0.87;Rouquet’s Cabernet Sauvignon 2025;rouge;Le Cellier du Pic · IGP Pays d’Oc.;2025;Rouquet'S - Rouge - Cabernet Sauvignon IGP Pays D'Oc 2025;8.00;"Bodega Piedra Negra - Rouge - ""Gran Lurton - Cabernet Sauvignon"" Los Chacayes 75Cl";23.00
+sur;0.83;Rouquet’s Sauvignon 2025;blanc;Le Cellier du Pic · IGP Pays d’Oc.;2025;Rouquet'S - Blanc - Sauvignon Blanc IGP Pays D'Oc 2025;8.00;Rouquet'S - Blanc - Viognier IGP Pays D'Oc 2025;8.00
+sur;0.85;Rouquet’s Viognier 2025;blanc;Le Cellier du Pic · IGP Pays d’Oc.;2025;Rouquet'S - Blanc - Viognier IGP Pays D'Oc 2025;8.00;"IGP COLL RHOD VIOGNIER ""Peyss""";21.00
+sur;0.92;SAINT-AUBIN « EN VESVEAU » 2023;blanc;Domaine du Château Philippe le Hardi.;2023;Saint-Aubin En Vesveau 2023;48.00;;
+sur;0.81;SANTENAY 1ER CRU « LA COMME » 2023;blanc;Domaine du Château Philippe le Hardi.;2023;Santenay 1Er Cru La Comme Blanc BIO;63.00;;
+sur;0.84;SOLITAIRE - SAVAGNIN 2023;blanc;Le Clos des Grives.;2023;"Jura Cotes Du Jura Blanc Savagnin ""Solitaire"" 2023";45.00;;
+doute;0.64;Saint Clair Pioneer Block 10 Twin Hills Chardonnay;blanc;;;Saint Clair Pioneer Block 10 Chardonnay 2023;29.00;;
+doute;0.71;Saint Clair Vicar’s Choice Sauvignon Blanc 2023;blanc;Saint Clair Family Estate.;;"Saint Clair - Blanc - ""Vicar’S Choice Sauvignon Blanc"" Marlborough Valley 75 Cl";20.00;;
+doute;0.69;Shumi Tsinandali 2024;blanc;Shumi Winery / Shumi Estate Cellars.;2024;"Shumi Winery - Blanc - ""Tsinandali"" 75Cl";19.00;;
+sur;0.83;VIN JAUNE 2018;blanc;Le Clos des Grives.;2018;Jura Cotes Du Jura Vin Jaune 2018;79.00;;
+doute;0.72;Viña Progreso Revolution Albariño 2020;blanc;Viña Progreso — Gabriel Pisano.;2020;Vina Progreso - Revolution Albarino 2024;14.00;;
+aucun;0.00;Yalumba The Y Series Viognier 2021;blanc;Yalumba — famille Hill-Smith.;2021;;;;
+doute;0.61;Yalumba — The Y Series Shiraz;rouge;Yalumba — famille Hill-Smith.;;Yalumba - Y Serie Shiraz 2022 Vin Australie Negocianuk - Rouge - Australie;18.00;;
+doute;0.49;Zéro by Les Fumées Blanches Sauvignon Blanc;blanc;Domaines François Lurton.;;"Domaine Les Fumées Blanches - Blanc Zero - IGP Côtes De Gascogne ""Zero"" 75 Cl";12.00;Le Cellier du Pic - Z De Zero;12.00
+doute;0.50;À Grands Pas Chardonnay 2025;blanc;Le Cellier du Pic · Vin de France.;2025;A Grand Pas - Blanc - Chardonnay 2025 75 Cl;9.90;;
+sur;1.00;Bulles de Phénomène;bulles;Domaine de la Grenaudière PRODUIT Bulles de Phénomène.;;"Domaine De La Grenaudiere - Bulle Desalcoolise - ""Bulles De Phénomène"" 75Cl";20.00;;
+sur;0.79;CRÉMANT DU JURA BLANC;bulles;Le Clos des Grives.;;Jura Cremant Du Jura Blanc BIO;31.00;"Domaine Perrachon & Fils - Bulle - Blanc De Blanc ""Crémant De Bourgogne""  75Cl";18.00
+aucun;0.00;Cá del Console Prosecco Extra Dry - non millésimé;bulles;Botter.;;;;Corvezzo Diamas Prosecco Extra Dry BIO;16.00
+aucun;0.00;Cá del Console Prosecco Rosé Extra Dry;bulles;;;;;Corvezzo Diamas Prosecco Extra Dry BIO;16.00
+sur;0.75;Diamas Prosecco DOC Extra Dry - non millésimé;bulles;Corvezzo.;;Corvezzo Diamas Prosecco Extra Dry BIO;16.00;;
+sur;0.88;Le Brut Nature Rosé;bulles;Vignobles Gueissard.;2022;Domaine Gueissard - Petillant - Brut Nature Rose 2023 75 Cl;34.00;;
+doute;1.00;Solicello Moscato d’Asti 2025;bulles;Moscato d’Asti DOCG.;;Neirano Moscato D'Asti Solicello 2025;13.00;"Neirano - Perlant Blanc - ""Moscato D'Asti"" Solicello 75 Cl";14.00
+aucun;0.00;Vezzo Blanc de Blancs Brut - non millésimé;bulles;Casa Vinicola Corvezzo.;;;;Corvezzo - Vezzo Spumante Blanc De Blancs;11.00
+aucun;0.00;Vezzo Vino Bianco Spumante Brut - non millésimé;bulles;Casa Vinicola Corvezzo.;;;;Vinos Del Paseante - La Gresca;13.00
+doute;0.59;Vinos del Paseante La Gresca Cava Brut;bulles;Vinos del Paseante / Raventós Codorníu.;;Vinos Del Paseante - La Gresca;13.00;;
+aucun;0.00;Z de Zéro 2024;bulles;Pétillant désalcoolisé — Viognier & Sauvignon.;2024;;;"Domaine Les Fumées Blanches - Blanc Zero - IGP Côtes De Gascogne ""Zero"" 75 Cl";12.00
+doute;0.49;MIEL DE BOURGOGNE;epicerie;Domaine du Château Philippe le Hardi.;;Miel Pot De 130 Gr;12.00;;
+doute;0.61;PUR JUS DE RAISINS - CARIGNAN;epicerie;;;Jus De Raisin Carignan Rouge 50Cl;7.90;;
+doute;0.58;PUR JUS DE RAISINS - GRENACHE;epicerie;;;Jus De Raisin Grenache Rouge 25Cl;3.50;Jus De Raisin Carignan Rouge 50Cl;7.90
+doute;0.56;PUR JUS DE RAISINS - SAUVIGNON;epicerie;;;Jus De Raisin Sauvignon Blanc 50Cl;6.00;Jus De Raisin Carignan Rouge 50Cl;7.90
+doute;0.59;PUR JUS DE RAISINS - SYRAH;epicerie;;;Jus De Raisin Syrah Rouge 25Cl;3.50;;
+doute;1.00;VERGER DE THAU;epicerie;VERGER DE THAU.;;Les Vergers De Thau Jus D'Abricot;2.80;Les Vergers De Thau Jus De Tomate;2.80
+sur;1.00;VERGER DE THAU - JUS DE PÊCHE;epicerie;Verger de Thau.;;Les Vergers De Thau Jus De Peche;2.80;;
+doute;0.73;VERGER DE THAU - JUS DE RAISIN;epicerie;Verger de Thau.;;Les Vergers De Thau Jus De Poire;2.80;Les Vergers De Thau Jus De Tomate;2.80
+aucun;0.00;MACVIN DU JURA;moelleux;Le Clos des Grives.;;;;;
+sur;0.99;Madame de Rayne — Sauternes;moelleux;Château de Rayne Vigneau.;;Madame De Rayne 2015 C6 AOC Sauterne Blanc - Blanc - France;30.00;;
+doute;0.62;Canio Rosato Basilicata IGP 2024;rose;Vigneti del Vulture.;;"Fantini Group Farnese - Rose - ""Canio Rosato"" Basilicata Rosato 75 Cl";18.00;;
+sur;1.00;Cuvée G Rosé;rose;Vignobles Gueissard.;2025;"Domaine Gueissard - Rose - Cotes De Provence ""Cuvée G"" 75Cl";16.00;"Domaine Gueissard - Rose - Cotes De Provence ""Cuvée G"" Magnum 150Cl";37.00
+sur;1.00;Domaine Gueissard - Bandol Rosé;rose;Vignobles Gueissard.;2024;Domaine Gueissard - Rose - Bandol 2024 75 Cl;21.00;;
+doute;0.57;Fontanilles Rosé 2024;rose;Le Cellier du Pic · IGP Pays d’Oc.;2024;"Le Cellier Du Pic - Rose - ""Fontanille"" 75Cl";7.00;;
+sur;1.00;GOOD MOOD ROSÉ;rose;Cellier du Pic.;2025;Le Cellier du Pic - Good Mood Rose IGP Pays d'Oc 2025;9.00;;
+sur;1.00;GRAND FIDÈLE ORIGINE;rose;Domaine Grand Fidèle.;;"Domaine De Grand Fidéle - Rose - Languedoc ""Origine"" 75Cl";9.50;;
+sur;1.00;Galabert Rosé;rose;Le Cellier du Pic / Les Vignerons du Pic.;2024;Le Cellier du Pic - Galabert Rose Psl 2024;13.00;;
+aucun;0.00;LA CORDÉE / GALABERT ROSÉ;rose;Deux références présentes sur les deux photos isolées.;;;;;
+sur;1.00;LE SOUVIGNIER GRIS;rose;Éxéa.;;Atelier D'Exea - Le Souvignier Gris 2025 75 Cl;12.00;;
+aucun;0.00;LE SOUVIGNIER GRIS 2025;rose;Famille d'Exéa / Domaines d'Exéa.;2025;;;Atelier D'Exea - Le Souvignier Gris 2025 75 Cl;12.00
+sur;1.00;Le Petit G Rosé;rose;Vignobles Gueissard.;2025;"Domaine Gueissard - Rose - IGP Méditerranée ""Le Petit G""  75Cl";9.00;;
+aucun;0.00;Minuty Prestige Rosé;rose;Château Minuty.;2023;;;"Domaine Gueissard - Rose - Cotes De Provence ""Cuvée G"" 75Cl";16.00
+sur;1.00;N°9 GRENACHE GRIS;rose;Éxéa.;;Atelier D'Exea - N°9 Grenache Gris 2025 Bd 75 Cl;12.00;Atelier D'Exea - Le Souvignier Gris 2025 75 Cl;12.00
+doute;0.51;Prestige Rosé — Côtes de Provence;rose;Identification impossible : seule la contre-étiquette est visible.;;"Domaine Gueissard - Rose - Cotes De Provence ""Les Papilles"" 75Cl";15.00;"Domaine Gueissard - Rose - Cotes De Provence ""Cuvée G"" 75Cl";16.00
+doute;0.91;Rose di Bacco Lambrusco dell’Emilia Rosso;rose;Amabile.;;"Chiarli - Rouge - "" Rose Di Bacco Lambrusco Amabile"" Lambrusco Dell'Emilia 75 Cl";9.90;Chiarli Rose Di Bacco Lambrusco Amabile IGT Lambrusco Dell'Emilia - Rouge - Italie;9.90
+aucun;0.00;Veneto d’Estate Rosé Trevenezie IGT 2024;rose;Casa Vinicola Corvezzo.;;;;"Corvezzo -Rose - ""Vento D'Estate Rosato"" Venezia 75 Cl";13.50
+doute;0.58;Zéro by Les Fumées Blanches Rosé;rose;Domaines François Lurton.;;"Domaine Les Fumées Blanches - Rose Zero - IGP Côtes De Gascogne ""Zero Rosé"" 75 Cl";14.00;Le Cellier du Pic - Z De Zero;12.00
+sur;0.94;ALOXE-CORTON « LES BRUNETTES ET PLANCHOTS » 2023;rouge;Domaine du Château Philippe le Hardi.;2023;Aloxe-Corton Les Brunettes Et Planchots 2023;63.00;;
+sur;1.00;APLA Rouge 2023;rouge;Oenops Wines.;;Oenops Wines - Apla Rouge 2023;22.00;;
+sur;0.93;BEAUNE 1ER CRU « CLOS DU ROI » 2022;rouge;Domaine du Château Philippe le Hardi.;2022;Beaune 1Er Cru Clos Du Roi 2022;62.00;;
+sur;0.85;BOURGOGNE PINOT NOIR VIEILLES VIGNES 2023;rouge;Domaine du Château Philippe le Hardi.;2023;Bourgogne Pinot Noir Vieilles Vignes;23.00;Bourgogne Chardonnay Vieilles Vignes Tc 2023;23.00
+sur;1.00;Beaujolais-Villages « Terre de Loyse »;rouge;Laurent Perrachon & Fils.;2025;Domaine Perrachon & Fils - Blanc - Beaujolais Villages Rouge 750 Ml 2025 Terre De Loyse;11.00;;
+aucun;0.00;Beaujolais-Villages « Terre de Loyse »;rouge;Laurent Perrachon & Fils.;;;;Domaine Perrachon & Fils - Blanc - Beaujolais Villages Rouge 750 Ml 2025 Terre De Loyse;11.00
+doute;0.86;Bodega Piedra Negra — Chacayes;rouge;Bodega Piedra Negra — Domaines François Lurton.;;"Bodega Piedra Negra - Rouge - ""Chacayes"" Los Chacayes Grand Cru 75 Cl";120.00;"Bodega Piedra Negra - Rouge - ""Gran Lurton - Cabernet Sauvignon"" Los Chacayes 75Cl";23.00
+doute;0.59;Brouilly « Vieilles Vignes »;rouge;Famille Perrachon - Laurent Perrachon & Fils.;2025;"Domaine Perrachon & Fils - Rouge - Brouilly ""Famille Perachon"" 75 Cl";15.00;;
+aucun;0.00;CEZ Red — Shiraz, Grenache & Cinsault;rouge;Ernst Gouws & Co.;;;;Mas D'En Janeil Red Eur 2017 AOC/AOP Ctes Roussillon Vil - Rouge - France;40.00
+sur;0.97;CHAMBOLLE-MUSIGNY « LES CONDEMENNES »;rouge;Domaine du Château Philippe le Hardi.;2020;Chambolle-Musigny Condemennes 2020;115.00;;
+sur;0.84;CHANT DE LUNE;rouge;Château d'Argens - Domaines d'Éxéa.;;Chant De Lune - Chateau Argens 2022 75 Cl;19.90;;
+sur;1.00;CHÂTEAU D'ASSAS;rouge;Les Vignerons du Pic.;2023;Le Cellier du Pic - Château Assas Classique Rouge 2023;15.00;;
+sur;0.89;CLOS DE VOUGEOT GRAND CRU 2019;rouge;Domaine du Château Philippe le Hardi.;2019;Clos De Vougeot Grand Cru 2019;200.00;;
+doute;0.63;COTEAUX BOURGUIGNONS GAMAY 2024;rouge;Maison Philippe le Hardi.;2024;Coteaux Bourguignon Rouge 2024;15.00;;
+sur;0.88;CROZES-HERMITAGE LA MUSELLE 2024;rouge;La Croix de Garde - Xavier Mourier.;2024;"La Croix De Garde - Rouge - AOP Crozes-Hermitage ""La Muselle"" 75Cl";27.00;;
+aucun;0.00;Cambria — Julia’s Vineyard Pinot Noir;rouge;Cambria Estate Winery.;;;;Jackson Family Wines Cambria Pinot Noir 2021 Santa Maria Valley Cambria - Rouge - Californie;53.00
+sur;0.84;Campo Eliseo — Contracorriente;rouge;Bodegas Campo Eliseo — François Lurton.;;Campo Eliseo Contracorriente Do Toro BIO D.O. Toro - Rouge - Espagne;25.00;;
+sur;1.00;Canio — Aglianico del Vulture;rouge;Vigneti del Vulture.;;"Fantini Group Farnese - Rouge - ""Canio Aglianico"" Aglianico Del Vulture 75 Cl";18.00;;
+doute;0.51;Ca’ Vittoria Appassimento Limited Edition;rouge;Puglia Rosso.;;Botter Ca Vittoria Appassimento 2025 I.G.T. Puglia - Rouge - Italie;15.00;;
+sur;1.00;Château Desmirail — Margaux Grand Cru;rouge;Château Desmirail.;;Chateau Desmirail 20 Cb6 AOC Margaux Rouge - Rouge - France;48.00;;
+sur;0.82;Château La Guillaumette;rouge;Château La Guillaumette - Famille Artigue.;2022;Château La Guillaumette - Rouge - AOC Bordeaux Merlot 2022 75Cl;13.50;;
+sur;1.00;Château de Gardegan;rouge;Château de Gardegan / François-Thomas Bon.;2019;Château De Gardegan - Rouge - Castillon, Côtes De Bordeaux 2019 75Cl;17.00;;
+aucun;0.00;Codorníu — Red Grenache Organic Wine;rouge;Codorníu — Raventós Codorníu.;;;;Mas D'En Janeil Red Eur 2017 AOC/AOP Ctes Roussillon Vil - Rouge - France;40.00
+doute;0.72;Cortonesi La Mannella Rosso di Montalcino;rouge;;;Cortonesi Rosso Di Montalcino 2023 D.O.C Rosso Di Montalcino - Rouge - Italie;26.00;;
+doute;0.61;DES BOIS - TROUSSEAU / PINOT NOIR 2024;rouge;Le Clos des Grives.;2024;"Jura Cotes Du Jura Rouge ""Des Bois"" 2024 Pulsar Trousseau";27.00;;
+aucun;0.00;DES BOIS - TROUSSEAU / POULSARD 2023;rouge;Le Clos des Grives.;2023;;;"Jura Cotes Du Jura Rouge ""Des Bois"" 2024 Pulsar Trousseau";27.00
+sur;1.00;Domaine Gueissard - Bandol Rouge;rouge;Vignobles Gueissard.;2021;Domaine Gueissard - Rouge - Bandol 2021 75 Cl;26.00;;
+doute;0.66;Domaine de Targuerie Rouge 2024;rouge;;;"Domaine De Targuerie - Rouge - IGP Côtes De Gascogne ""Rouge"" 75Cl";14.00;;
+aucun;0.00;Domenico Clerico — Barolo Ginestra “Ciabot;rouge;Domenico Clerico.;;;;Clerico Barolo 18 Mag D.O.C. Barolo - Rouge - Italie;180.00
+aucun;0.00;Domenico Clerico — Barolo del Comune di;rouge;Domenico Clerico.;;;;Clerico Barolo 18 Mag D.O.C. Barolo - Rouge - Italie;180.00
+sur;1.00;Domäne Wachau — Blauer Zweigelt;rouge;Domäne Wachau.;;DomäNe Wachau Blauer Zweigelt Terrassen 2022 Wachau - Rouge - Autriche;21.00;;
+sur;1.00;Ernst Gouws & Co — Pinotage;rouge;Ernst Gouws & Co.;;"Ernst Gouws & Co - Rouge - ""Pinotage"" Stellenbosch 75 Cl";18.00;;
+sur;0.88;FONT-JILLARDE 2022;rouge;Lou Gaëlou - Domaines Xavier Mourier.;2022;"Lou Gaëlou - Rouge - Châteauneuf-Du-Pape ""Font -Jillarde"" 75 Cl";39.00;;
+sur;1.00;Fleurie « Vieilles Vignes »;rouge;Laurent Perrachon & Fils.;2024;"Domaine Perrachon & Fils - Rouge - Fleurie ""Vieilles Vignes""  75 Cl";15.00;;
+doute;0.56;Fontanilles Rouge 2025;rouge;Le Cellier du Pic · IGP Pays d’Oc.;2025;"Le Cellier Du Pic - Rouge - ""Fontanille"" 75Cl";7.00;;
+sur;0.88;Fugue de Nénin;rouge;Château Nénin — Domaines Delon.;;Fugue Nenin 2021 AOC Pomerol - Rouge - France;38.00;;
+sur;0.79;GEVREY-CHAMBERTIN 1ER CRU « PETITE CHAPELLE » 2019;rouge;Domaine du Château Philippe le Hardi.;2019;Gevrey-Chambertin 1Er Cru Pte Chapelle 2019;120.00;;
+sur;0.94;GEVREY-CHAMBERTIN « ES MUROTS » 2019;rouge;Domaine du Château Philippe le Hardi.;2019;Gevrey-Chambertin Es Murots 2019;78.00;;
+aucun;0.00;GIGONDAS LES FÉTOULES 2020;rouge;Les Galets Pourpres - Domaines Xavier Mourier.;2020;;;Les Galets Pourpres « Gigondas »;29.00
+sur;1.00;GOOD MOOD ROUGE;rouge;Cellier du Pic.;2025;Le Cellier du Pic - Good Mood Cinsault Rouge IGP Pays d'Oc 2025;9.00;;
+doute;1.00;GRAND FIDÈLE;rouge;Domaine Grand Fidèle.;;"Domaine De Grand Fidéle - Rouge - Languedoc ""Esprit Terroir"" 75Cl";14.00;"Domaine De Grand Fidéle - Rouge - Languedoc ""Altitude"" Syrah 75Cl";9.00
+sur;1.00;GRAND FIDÈLE ALTITUDE;rouge;Domaine Grand Fidèle.;;"Domaine De Grand Fidéle - Rouge - Languedoc ""Altitude"" Syrah 75Cl";9.00;;
+sur;1.00;Gran Sasso Montepulciano d’Abruzzo DOC;rouge;Organic.;;"Fantini Group Farnese - Rouge - ""Gran Sasso"" Montepulciano D'Abruzzo 75 Cl";16.00;;
+sur;0.89;HERMITAGE LES ROUIES 2022;rouge;La Croix de Garde - Xavier Mourier.;2022;"La Croix De Garde - Rouge - AOP Hermitage ""Les Rouies"" 75Cl";79.00;;
+doute;0.87;Hermanos Lurton Tempranillo 2022;rouge;Hermanos Lurton.;2022;"Hermanos Lurton - Rouge - ""Tempranillo"" 75Cl";16.00;Hermanos Lurton Tempranillo D.O. Toro - Rouge - Espagne;16.00
+sur;0.90;Il Palazzo Chianti DOCG 2022;rouge;Azienda Agricola Il Palazzo.;;"Il Palazzo - Rouge - ""Il Palazzo - Chianti"" 75 Cl";13.50;;
+sur;1.00;Juliénas « Les Vignes Centenaires »;rouge;Laurent Perrachon & Fils.;2023;Domaine Perrachon & Fils -  Julienas 750 Ml 2023 Les Vignes Centenaires;20.00;;
+doute;0.55;LATITUDE;rouge;Hommes & Terres du Sud.;2025;Le Cellier du Pic - Latitude Rouge 2025;12.00;;
+doute;0.71;LE CLOS ROUGE;rouge;François Lurton.;2022;"Le Domaine De Nizas - Rouge - AOP Languedoc-Pézenas ""Le Clos Rouge"" 75 Cl";15.00;Chateau Clos Fourtet 2021AOC St Emilion Grand Cru Rouge - Rouge - France;150.00
+doute;0.59;LES GALETS POURPRES - CÔTES DU RHÔNE;rouge;Domaines Xavier Mourier - Les Galets Pourpres.;;Les Galets Pourpres « Gigondas »;29.00;;
+sur;1.00;Lavradores de Feitoria Douro Tinto 2022;rouge;Lavradores de Feitoria.;;Lavradores De Feitoria Tinto 2022 D.O.C. Douro - Rouge - Portugal;16.00;;
+sur;1.00;Les Caselles Rouge;rouge;Le Cellier du Pic / Les Vignerons du Pic.;2024;Le Cellier du Pic - Les Caselles Rouge Terrasses Du Larzac;19.00;;
+sur;0.90;Lupo Meraviglia Due di Due Puglia Rosso;rouge;;;"Botter Casa Vinicola - Rouge - ""Lupo Meraviglia Due Di Due"" Puglia 75 Cl";12.90;;
+sur;0.88;MERCUREY « LES CHENEAULTS » 2022;rouge;Domaine du Château Philippe le Hardi.;2022;Mercurey Rouge Les Cheneaults 2022;32.00;;
+doute;0.46;Mas Janeil 2009;rouge;JACQUES & FRANÇOIS LURTON.;;Mas Janeil Crv 10 AOC/AOP Ctes Roussillon Vil - Rouge - France;45.00;"Mas D'En Janeil - Rouge - ""Maury"" 75 Cl";20.00
+sur;0.83;Mas Janeil 2017;rouge;MAS JANEIL / FRANÇOIS LURTON.;;Mas D'En Janeil Red Eur 2017 AOC/AOP Ctes Roussillon Vil - Rouge - France;40.00;Chateau Pontet Canet 2017 AOC Pauillac Rouge - Rouge - France;175.00
+sur;0.88;Mas Janeil Arrels 2021;rouge;MAS JANEIL / FRANÇOIS LURTON.;;Mas D’En Janeil – Rouge- IGP Cote Catalane Arrels 2021;26.00;;
+aucun;0.00;Maury Janeil 2022;moelleux;MAS JANEIL / FRANÇOIS LURTON.;;;;;
+sur;1.00;Morgon « Corcelette »;rouge;Laurent Perrachon & Fils.;2024;"Domaine Perrachon & Fils - Rouge - Morgon ""Corcelette"" 75 Cl";15.00;;
+sur;1.00;Moulin-à-Vent « Les Burdelines »;rouge;Laurent Perrachon & Fils.;2022;"Domaine Perrachon & Fils - Rouge - Moulin À Vent ""Les Burdelines"" 75 Cl";22.00;;
+aucun;0.00;Oenops APLA Red 2023;rouge;Oenops Wines.;2023;;;Mas D'En Janeil Red Eur 2017 AOC/AOP Ctes Roussillon Vil - Rouge - France;40.00
+sur;0.82;POMMARD 2022;rouge;Domaine du Château Philippe le Hardi.;2022;Pommard Tc 2022;72.00;;
+sur;0.86;Pelissero Munfrina Dolcetto d’Alba 2021;rouge;Giorgio Pelissero.;;"Pelissero - Rouge - ""Munfrina Dolcetto D’Alba"" Dolcetto D’Alba 75 Cl";22.00;;
+aucun;0.00;Pelissero — Piani Barbera d’Alba;rouge;Azienda Agricola Vitivinicola Pelissero.;;;;"Pelissero - Rouge - ""Munfrina Dolcetto D’Alba"" Dolcetto D’Alba 75 Cl";22.00
+aucun;0.00;Pelissero — Tulin Barbera d’Alba;rouge;Azienda Agricola Vitivinicola Pelissero.;;;;"Pelissero - Rouge - ""Munfrina Dolcetto D’Alba"" Dolcetto D’Alba 75 Cl";22.00
+sur;0.76;Persevero - Château La Grâce Fonrazade;rouge;Château La Grâce Fonrazade - François-Thomas Bon.;2020;"Château La Grace Fonrazase - Rouge - ""Persevero"" Saint-Emilion Grand Cru 75Cl";35.00;;
+sur;0.92;Piedra Negra Alta Colección Malbec;rouge;Bodega Piedra Negra — François Lurton.;2025;"Bodega Piedra Negra - Rouge - ""Alta Coleccion Malbec"" Mendoza 75 Cl";18.00;;
+doute;0.48;Posidone Organic Primitivo Puglia IGT 2024;rouge;Casa Vinicola Corvezzo.;;"Corvezzo -Rouge - ""Posidone Primitivo"" Puglia 75 Cl";12.50;;
+aucun;0.00;Pradorey — Finca La Mina Reserva;rouge;Bodega y Viñedos Pradorey — Real Sitio de Ventosilla.;;;;Pradorey;50.00
+sur;0.86;Rouquet’s Merlot 2025;rouge;Le Cellier du Pic · IGP Pays d’Oc.;2025;Rouquet'S - Rouge - Merlot IGP Pays D'Oc 2025;8.00;Château La Guillaumette - Rouge - AOC Bordeaux Merlot 2022 75Cl;13.50
+sur;0.87;Rouquet’s Pinot Noir 2025;rouge;Le Cellier du Pic · IGP Pays d’Oc.;2025;Rouquet'S - Rouge -Pinot Noir IGP Pays D'Oc 2025;8.00;Rouquet'S - Rouge - Cabernet Sauvignon IGP Pays D'Oc 2025;8.00
+doute;0.64;SABLET 2M 2023;rouge;Les Galets Pourpres - Domaines Xavier Mourier.;2023;"Sablet Côtes Du Rhône Vill. "" 2M "" 0.75 L 2023 AOP Crd";16.00;;
+sur;0.91;SAINT-JOSEPH LES CABOLES 2023;rouge;Domaine de Pierre Blanche - Xavier Mourier.;2023;Domaine De Pierre Blanche - Rouge - AOP Saint Joseph « Les Caboles » 75Cl;29.00;;
+sur;0.83;SYRAH BARRAL 2024;rouge;Domaines Xavier Mourier - Domaine de Pierre Blanche.;2024;"Domaine De Pierre Blanche - Rouge - IGP Syrah ""Barral"" 75Cl";13.50;IGP Coll Rhod Marsanne Barral 0.75 L;11.00
+sur;0.75;Saint Clair Origin Pinot Noir 2022;rouge;Saint Clair Family Estate.;;Saint Clair Origin Pinot Noir 2022 Vin Nelle Zelande - Rouge - Nouvelle Zélande;24.00;;
+sur;1.00;Saint Hubert Rouge;rouge;Le Cellier du Pic / Les Vignerons du Pic.;2024;"Le Cellier Du Pic - Rouge - Pic Saint-Loup ""Saint Hubert"" 75Cl";14.50;"Le Cellier Du Pic - Rouge - Pic Saint-Loup ""Saint Hubert"" Magnum 150Cl";33.00
+aucun;0.00;Saint-Amour « Amoureux de Peynet »;rouge;Laurent Perrachon & Fils.;2024;;;;
+aucun;0.00;Saragat Monica Isola dei Nuraghi IGT 2023;rouge;Atzei.;;;;;
+doute;0.72;Shumi Saperavi 2023;rouge;Shumi Winery / Shumi Estate Cellars.;2023;Shumi Winery - Saperavi Rouge Vins Georgiens - Rouge - Georgie;21.00;;
+doute;0.88;Tornatore Etna Rosso 2022;rouge;Azienda Agricola Francesco Tornatore.;;Tornatore - Rouge - Tornatore Etna Rosso 75Cl;26.00;Tornatore Etna Rosso;26.00
+sur;0.89;VOSNE-ROMANÉE 2023;rouge;Domaine du Château Philippe le Hardi.;2023;Vosne Romanee Rouge 2023;105.00;;
+doute;0.62;Vezzo Pinot Nero Trevenezie IGT 2024;rouge;Casa Vinicola Corvezzo.;;"Corvezzo - Rouge - ""Vezzo Pinot Nero"" Trevenezie 75 Cl";9.90;;
+sur;0.89;Viña Eguía — Rioja Tempranillo;rouge;Bodegas Eguía S.L.;;Muriel Vina Eguia Tempranillo 2022 D.O.C. Rioja - Rouge - Espagne;13.00;;
+sur;1.00;Viña Progreso Revolution Tannat 2021;rouge;Viña Progreso — Gabriel Pisano.;2021;Vina Progreso - Revolution Tannat 2021 Vin D'Uruguay - Rouge - Uruguay;18.00;;
+aucun;0.00;Yalumba Samuel’s Collection Barossa Bush;rouge;Yalumba — famille Hill-Smith.;2020;;;Yalumb Samuel'S Co Gren 20 Vin Australie Negocianuk - Rouge - Australie;30.00
+doute;0.55;À Grands Pas Carignan 2025;rouge;Le Cellier du Pic · Vin de France.;2025;A Grand Pas - Rouge - Carignan Noir 2025 75Cl;9.90;;
+aucun;0.00;ACTO 1903 Special Reserve - 6 ans;spiritueux;Pardela Rum Collection / Pardela Spirits.;;;;Acto - Rhum - Rhum Panama Acto 1903;52.00
+doute;1.00;Belle Gnôle;spiritueux;Belle Gnôle / Coquetelers.;;Belle Gnole Calvados 70 Cl - 46% AOC Calvados - Alcool - France - 46°;57.00;Belle Gnole Liqueur Framboise-Poivre 70 Cl - 22% - Liqueur - France - 22.00°;48.00
+doute;0.53;Bistro Vodka - La Fine Vodka;spiritueux;Marque Bistro, distribuée par Pardela Spirits / Domaines François Lurton.;;Bistro Vodka 70Cl 40% Alcools >18% - Vodka - France - 40°;47.00;;
+doute;0.63;Black Tears Dry Spiced;spiritueux;"Black Tears / The Island Rum Company ; distribution France : Pardela Spirits.";;Black Tears - Rhum - Spiced Rhum De Cuba;38.00;Island Rum - Black Tears Rum Super Dry 40% 70Cl;38.00
+sur;1.00;Black Tears Super Dry;spiritueux;"Black Tears / The Island Rum Company ; distribution France : Pardela Spirits.";;Island Rum - Black Tears Rum Super Dry 40% 70Cl;38.00;;
+aucun;0.00;Distilleria Marzadro;spiritueux;Distilleria Marzadro.;;;;;
+aucun;0.00;François Lurton;rose;Bodega Piedra Negra / Domaines François Lurton.;;;;;
+aucun;0.00;Gold of Mauritius Classic Edition;spiritueux;Litchquor Ltd, The Mount Pamplemousses, île Maurice.;;;;;
+aucun;0.00;Guappo della Costiera;spiritueux;Lider S.r.l.;;;;;
+aucun;0.00;La Progresiva de Vigía Mezcla 13;spiritueux;Bodega Vigía / The Island Rum Company.;;;;Island Rum Progresiva 41% 70Clrum De Cuba - Rum - Cuba - 41°;75.00
+doute;0.53;Los Tres Toños;spiritueux;Tequila Selecto de Amatitán S.A. de C.V. / distillerie Santa Rosa.;;Los 3 Tonos Tequila Blanco 38% 70Cl Tequila Mexique - Alcool - Mexique - 38°;49.00;Los 3 Tonos Tequila Reposado 38% 70Cl Tequila Mexique - Alcool - Mexique - 38°;55.00
+doute;0.89;Maison Boutelleau;spiritueux;Maison Boutelleau / Établissements Tiffon.;;Tiffon Cognac Boutelleau VSOP Cognac - Alcool - France - 40°;58.00;;
+doute;0.80;Maison Cabanel;spiritueux;J. Cabanel & Cie / Maison Cabanel.;;"Cabanel - ""Menthe"" - Liqueur De Menthe Artisanale 70Cl";25.00;"Cabanel - ""Orange"" - Liqueur D'Orange Artisanale 70Cl";25.00
+aucun;0.00;Marcati;spiritueux;Marcati.;;;;;
+aucun;0.00;OAOA Lagoon Delight;spiritueux;OAOA.;;;;Spi Oaoa Spiced Rhum 35% 70 Clalcools >18% - Alcool - France - 35°;40.00
+sur;0.77;Récapet;spiritueux;Domaine de Targuerie / Domaines François Lurton.;2015;Recapet Domaine De Targuerie Armagnac BIO 42,5% 50Cl Bas Armagnac - Alcool - France - 42.5°;58.00;Recapet Armagnac Baco 42% 70Cl Armagnac - Alcool - France - 42°;61.00
+doute;0.67;Récapet;spiritueux;Domaines François Lurton / Récapet.;;Recapet Armagnac Colombard 42% 70Cl Bas Armagnac - Alcool - France - 42°;62.00;Recapet Domaine De Targuerie Armagnac BIO 42,5% 50Cl Bas Armagnac - Alcool - France - 42.5°;58.00
+doute;1.00;Silvio Carta;spiritueux;Silvio Carta S.r.l.;;Silvio Carta - Aperitivo Aspide Spritz 12.5% 1L Alcool > 18% Italie - Alcool - Italie - 12.5°;29.00;;
+sur;0.72;Sorgin Yellow Gin & Sauvignon;spiritueux;"Sabine et François Lurton / Sorgin ; distribution Pardela Spirits.";;Sorgin Yellow Eu/Fr C6 42.3% Gin - France;70.00;;
+aucun;0.00;Sorgin — Gin de Terroirs / Gin & Sauvignon;spiritueux;Sabine Jaren et François Lurton — Sorgin Ltd / Pardela Spirits.;;;;;
+aucun;0.00;Spike;spiritueux;The Bottler.;;;;;
+doute;0.47;Sérum Ancon 10 Años;spiritueux;Marque Sérum.;;Serum Ancon 10Y 40% 70 Clrum Panama - Rum - Panama - 40°;65.00;;
+aucun;0.00;Toschi Vignola;spiritueux;Toschi Vignola.;;;;;
+doute;1.00;Two Stacks;spiritueux;Two Stacks Irish Whiskey.;;Two Stacks - Spi - Double Irish Cream Liqueur Irlande 70Cl;32.00;;

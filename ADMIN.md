@@ -91,6 +91,28 @@ Pour regarder les six modèles de courriel sans rien envoyer :
 node outils/apercu_courriels.js
 ```
 
+## 2 quater. Les prix (à refaire à chaque nouveau tarif)
+
+Le fournisseur envoie sa liste de prix par courriel, en PDF. Trois commandes :
+
+```
+python3 outils/lire_tarifs.py       # contrôle : ce que le PDF donne
+python3 outils/apparier_prix.py     # rapproche les fiches et les tarifs
+python3 outils/poser_prix.py --base # pose les prix, dans le fichier ET dans Supabase
+```
+
+Le rapprochement ne retient que ce qui est net. Les fiches douteuses restent en
+« prix en boutique » et attendent dans `data/prix-a-verifier.csv`, colonne `etat` :
+`sur` (posé), `doute` (candidat trouvé, à confirmer), `aucun` (rien dans le tarif).
+Corriger un doute se fait à la main dans le back-office, onglet *Produits*.
+
+Un prix faux étant pire que pas de prix, les garde-fous sont volontairement
+sévères : la couleur est éliminatoire, le format aussi (une magnum coûte le
+double), et deux fiches ne peuvent pas se partager la même ligne de tarif.
+
+Après `--base`, cliquez **Publier sur le site** dans le back-office : les prix
+sont écrits dans les pages HTML, comme le reste du catalogue.
+
 ## 3. Ce que fait chaque onglet
 
 - **Réservations** — reçues par le formulaire du site ; Adrien en est averti par courriel dans la foulée.
@@ -103,7 +125,8 @@ node outils/apercu_courriels.js
   La ligne indique ensuite la date de l'envoi et le nombre de destinataires. Les passés disparaissent seuls du site. Plus besoin de toucher
   au tableau `PROGRAMMATION` de `site.js` : il ne sert plus que de repli si la base ne répond pas.
 - **Produits** — les 254 fiches du catalogue, cherchables par domaine, appellation ou cépage, plus celles
-  qu'Adrien ajoute. Modifier une fiche puis cliquer **Publier sur le site** : le catalogue est reconstruit
+  qu'Adrien ajoute. Le champ **Prix** accepte la virgule (`13,50`) ; laissé vide, la fiche affiche
+  « prix en boutique ». La liste rappelle le prix de chaque fiche, pour repérer les manques d'un coup d'œil. Modifier une fiche puis cliquer **Publier sur le site** : le catalogue est reconstruit
   en une minute environ. Ce détour existe parce que les fiches sont écrites dans les pages HTML — c'est ce
   qui les rend lisibles par Google. Les événements et les réservations, eux, sont immédiats. La photo est redimensionnée par le navigateur à l'affichage : une prise de face sur fond clair
   suffit. Le catalogue principal, lui, reste généré depuis les fiches PDF (`data/produits.json`).

@@ -89,6 +89,29 @@ def ligne_meta(p):
     if p.get("contenance"): bouts.append(court(p["contenance"]))
     return " · ".join(b for b in bouts if b)
 
+def prix_nombre(p):
+    """Le prix en nombre, ou None. Tolère « 13,50 » comme « 13.5 » : Adrien
+    saisit au clavier français dans le back-office."""
+    brut = str(p.get("prix") or "").replace(",", ".").replace("€", "").strip()
+    try:
+        v = float(brut)
+    except ValueError:
+        return None
+    return v if v > 0 else None
+
+def prix_lisible(p):
+    """« 23 € » pour un compte rond, « 13,50 € » sinon."""
+    v = prix_nombre(p)
+    if v is None:
+        return None
+    return (f"{v:.0f} €" if abs(v - round(v)) < 0.005
+            else f"{v:.2f} €".replace(".", ","))
+
+def bloc_prix(p, classe="ref-prix"):
+    v = prix_lisible(p)
+    return (f'<p class="{classe}">{v}</p>' if v
+            else f'<p class="{classe} sur-place">Prix en boutique</p>')
+
 def bloc_detail(p):
     """Le détail complet, présent dans la page (donc indexable) et ouvert au clic."""
     d = []
@@ -141,7 +164,7 @@ def carte(p):
       {f'<p class="ref-domaine">{e(court(p["producteur"]))}</p>' if p.get("producteur") else ''}
       {f'<p class="ref-meta">{e(ligne_meta(p))}</p>' if ligne_meta(p) else ''}
       {f'<p class="ref-phrase">{e(phrase)}</p>' if phrase else ''}
-      <p class="ref-prix">Prix en boutique</p>
+      {bloc_prix(p)}
       <button class="ref-ouvrir" type="button" aria-expanded="false">La fiche complète <span aria-hidden="true">→</span></button>
     </div>
     <div class="ref-detail" hidden>{bloc_detail(p)}</div>
@@ -159,7 +182,7 @@ def carte_cachee(p):
         <span class="b-type {t}">{SINGULIER[t]}</span>
         <h3 class="ref-nom">{e(p["nom"])}</h3>
         {f'<p class="ref-domaine">{e(court(p["producteur"]))}</p>' if p.get("producteur") else ''}
-        <p class="ref-prix">Prix en boutique</p>
+        {bloc_prix(p)}
       </div>
       <div class="ref-detail" hidden>{bloc_detail(p)}</div>
     </article>'''
@@ -213,6 +236,11 @@ def charger_produits():
     data/produits.json reste le filet : un déploiement ne doit jamais publier
     un catalogue vide parce que Supabase a toussé."""
     fichier = json.load(open("data/produits.json", encoding="utf-8"))
+    # Pour vérifier une mise en page sans toucher à la base : CHAI_SOURCE=fichier
+    if os.environ.get("CHAI_SOURCE") == "fichier":
+        print("  CHAI_SOURCE=fichier — catalogue lu dans data/produits.json")
+        ORIGINE.update(source="fichier (demandé)", nombre=len(fichier))
+        return fichier
     try:
         base = _depuis_la_base()
     except Exception as err:
@@ -282,6 +310,15 @@ def main():
              "brand": {"@type": "Brand", "name": x["producteur"]} if x.get("producteur") else None,
              "category": LIBELLES.get(x["type"], ""),
              "description": (x.get("phrase") or x.get("bouche") or "")[:200] or None,
+             # Une offre seulement quand le prix est su : mieux vaut pas de prix
+             # dans les résultats Google qu'un prix faux.
+             "offers": {
+                 "@type": "Offer",
+                 "price": f"{prix_nombre(x):.2f}",
+                 "priceCurrency": "EUR",
+                 "availability": "https://schema.org/InStoreOnly",
+                 "seller": {"@type": "Organization", "name": "Le Chai Gourmand"},
+             } if prix_nombre(x) else None,
          }.items() if v}}
         for i, x in enumerate(produits)], ensure_ascii=False)
 
@@ -437,7 +474,8 @@ def main():
 
     <p class="etagere-note rv" style="margin-top:clamp(2rem,4vw,3rem)">
       Toute la cave et l’épicerie fine, sélectionnées une à une par Adrien.
-      Les prix sont donnés en boutique, où il vous conseillera avec plaisir.
+      Les prix affichés s’entendent à la bouteille, TTC ; pour les autres, un mot
+      au comptoir suffit — c’est aussi l’occasion d’un conseil.
     </p>
 
     <div class="centre-cta rv">

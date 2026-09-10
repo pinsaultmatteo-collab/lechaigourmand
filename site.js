@@ -916,7 +916,10 @@ function chaiSupabase(){
           (badge ? badge.outerHTML : "") +
           (nom ? '<h2 class="fdv-titre" id="refVoletTitre">' + nom.textContent + "</h2>" : "") +
           (domaine ? '<p class="fdv-domaine">' + domaine.textContent + "</p>" : "") +
-          (prix ? '<p class="fdv-prix">' + prix.textContent + "</p>" : "") +
+          // on recopie la classe : « prix en boutique » ne se compose pas
+          // comme un vrai prix
+          (prix ? '<p class="fdv-prix' + (prix.classList.contains("sur-place") ? " sur-place" : "") +
+                  '">' + prix.textContent + "</p>" : "") +
         "</div>" +
       "</div>" +
       (detail ? detail.innerHTML : "") +
