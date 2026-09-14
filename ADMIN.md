@@ -113,6 +113,28 @@ double), et deux fiches ne peuvent pas se partager la même ligne de tarif.
 Après `--base`, cliquez **Publier sur le site** dans le back-office : les prix
 sont écrits dans les pages HTML, comme le reste du catalogue.
 
+## 2 quinquies. La mesure d'audience
+
+Google Analytics 4, propriété `chai-gourmand-ga4`, identifiant `G-9T2LYJ61YV`.
+Tout tient dans `mesure.js`, chargé par les quinze pages du site — jamais par `/admin`.
+
+En France, la CNIL interdit de déposer un cookie de mesure avant le consentement :
+le script de Google **n'est pas chargé** tant que le visiteur n'a pas accepté, et
+refuser ne charge rien du tout. Le choix est gardé dans le navigateur, pas dans un
+cookie, et se change par le lien *Mesure d'audience* en bas de page.
+
+Deux événements maison, en plus des mesures automatiques de GA4 :
+
+| Événement | Déclenché quand | Paramètres |
+| --- | --- | --- |
+| `reservation` | une table est réservée depuis le site | `lieu`, `couverts`, `jour`, `heure`, `avec_email` |
+| `inscription_newsletter` | une adresse rejoint la lettre | `origine` (la page) |
+
+Aucune donnée personnelle n'y figure : ni nom, ni téléphone, ni adresse e-mail.
+
+Dans GA4, il reste à marquer ces deux événements comme **événements clés**
+(*Admin → Événements*), sans quoi ils sont comptés mais pas suivis comme conversions.
+
 ## 3. Ce que fait chaque onglet
 
 - **Réservations** — reçues par le formulaire du site ; Adrien en est averti par courriel dans la foulée.

@@ -358,6 +358,11 @@ function chaiSupabase(){
       }).then(function(r){ return r.json().catch(function(){ return {}; }).then(function(d){ return {ok: r.ok, d: d}; }); })
         .then(function(res){
           if(!res.ok){ dire(res.d.erreur || "Oups, petit souci technique — réessayez dans un instant."); return; }
+          // Mesure : une inscription de plus. On envoie la page d'origine,
+          // jamais l'adresse.
+          if (window.chaiEvenement) chaiEvenement("inscription_newsletter", {
+            origine: document.body.dataset.page || location.pathname.replace(/^\//, "") || "accueil"
+          });
           dire("Merci ! Vous serez prévenu·e des prochains rendez-vous du Chai.");
           champ.value = "";
         })
@@ -1159,6 +1164,15 @@ function chaiSupabase(){
         .then(function (r) { return r.json().then(function (j) { return {ok: r.ok, j: j}; }); })
         .then(function (rep) {
           if (!rep.ok) throw new Error(rep.j && rep.j.erreur ? rep.j.erreur : "Une erreur est survenue.");
+          // Mesure : une table réservée. Aucune donnée personnelle n'est
+          // transmise — ni nom, ni téléphone, ni adresse.
+          if (window.chaiEvenement) chaiEvenement("reservation", {
+            lieu: d.lieu,
+            couverts: Number(d.couverts) || null,
+            jour: d.date,
+            heure: d.heure,
+            avec_email: Boolean(d.email)
+          });
           const p = d.date.split("-");
           volet.querySelector(".resa-corps").innerHTML =
             '<button class="ref-volet-fermer" type="button" data-fermer aria-label="Fermer">×</button>' +
