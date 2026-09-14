@@ -2017,39 +2017,3 @@ input[type="date"]::-webkit-calendar-picker-indicator{margin-left:auto}
   .resa-deux,.resa-lieux{grid-template-columns:1fr}
   .resa-actions .btn{width:100%;justify-content:center}
 }
-
-/* ==================== BANDEAU DE MESURE D'AUDIENCE ====================
-   En bas, discret, jamais en travers du contenu. Les deux boutons ont le
-   même poids visuel : la CNIL demande que refuser soit aussi simple
-   qu'accepter, et un « Refuser » en gris pâle ne l'est pas. */
-.cookies{
-  position:fixed;left:50%;bottom:0;z-index:120;
-  width:min(680px,100%);
-  transform:translate(-50%,110%);
-  transition:transform .45s cubic-bezier(.2,.8,.25,1);
-  display:flex;flex-wrap:wrap;align-items:center;gap:1rem 1.4rem;
-  padding:1.1rem clamp(1.1rem,3vw,1.6rem);
-  padding-bottom:calc(1.1rem + env(safe-area-inset-bottom));
-  background:var(--papier);color:var(--brun);
-  border:1px solid rgba(201,168,118,.45);border-bottom:0;
-  border-radius:18px 18px 0 0;
-  box-shadow:0 -18px 50px -26px rgba(51,36,31,.55);
-}
-.cookies.visible{transform:translate(-50%,0)}
-.cookies-mot{flex:1 1 300px;min-width:0;font-size:.86rem;line-height:1.55;color:var(--brun-doux)}
-.cookies-choix{display:flex;gap:.6rem;flex:0 0 auto}
-.cookies-choix .btn{padding:.7rem 1.5rem;font-size:.68rem;white-space:nowrap}
-
-@media (max-width:620px){
-  .cookies{
-    width:100%;border-radius:16px 16px 0 0;
-    gap:.9rem;padding:1rem 1.1rem;
-    padding-bottom:calc(1rem + env(safe-area-inset-bottom));
-  }
-  .cookies-mot{flex:1 1 100%;font-size:.82rem}
-  .cookies-choix{flex:1 1 100%}
-  .cookies-choix .btn{flex:1 1 0;text-align:center;justify-content:center}
-}
-@media (prefers-reduced-motion:reduce){
-  .cookies{transition:none}
-}

@@ -118,10 +118,10 @@ sont écrits dans les pages HTML, comme le reste du catalogue.
 Google Analytics 4, propriété `chai-gourmand-ga4`, identifiant `G-9T2LYJ61YV`.
 Tout tient dans `mesure.js`, chargé par les quinze pages du site — jamais par `/admin`.
 
-En France, la CNIL interdit de déposer un cookie de mesure avant le consentement :
-le script de Google **n'est pas chargé** tant que le visiteur n'a pas accepté, et
-refuser ne charge rien du tout. Le choix est gardé dans le navigateur, pas dans un
-cookie, et se change par le lien *Mesure d'audience* en bas de page.
+Le suivi démarre au chargement, sans bandeau de consentement : choix assumé par le
+client, qui en porte la responsabilité. Le code du bandeau conforme à la CNIL — pas
+de script Google avant accord, refus sans aucun appel, retrait en un clic — reste
+dans l'historique git, commit `1b1fb0b`, et se remet en place en une révocation.
 
 Deux événements maison, en plus des mesures automatiques de GA4 :
 
