@@ -49,11 +49,17 @@ def main():
     if code == 401:
         print("  ✗ Clé refusée par Brevo. Reprenez-la dans SMTP & API → API Keys.")
         sys.exit(1)
-    if code >= 400:
+
+    if code < 400:
+        existants = (liste or {}).get("webhooks", [])
+    elif "document_not_found" in str(liste):
+        # Brevo répond 400 « Webhook record does not exist » quand il n'y en a
+        # aucun, au lieu de rendre une liste vide. Ce n'est pas une panne :
+        # c'est précisément le cas où l'on vient en créer un.
+        existants = []
+    else:
         print(f"  ✗ Brevo répond {code} : {liste}")
         sys.exit(1)
-
-    existants = (liste or {}).get("webhooks", [])
     if "--lister" in sys.argv:
         if not existants:
             print("  Aucun webhook transactionnel pour l'instant.")
