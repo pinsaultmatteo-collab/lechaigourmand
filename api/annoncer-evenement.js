@@ -79,6 +79,7 @@ module.exports = async (req, res) => {
       sujet: ev.titre + " — " + jourFr(ev.date),
       html: annonce(ev),
       lienDesinscription: (d) => SITE + "/desinscription?jeton=" + d.jeton,
+      etiquette: "newsletter-annonce",
     });
     if (!envoyes) return res.status(503).json({ erreur: raison || "Envoi impossible." });
 

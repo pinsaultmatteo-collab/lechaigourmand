@@ -24,6 +24,7 @@ const { courrielConfirmation, courrielAnnulation } = require("../api/statut-rese
 const { annonce } = require("../api/annoncer-evenement.js").gabarits;
 const { bienvenue } = require("../api/newsletter.js").gabarits;
 const { page } = require("../api/desinscription.js").gabarits;
+const { alerte: alerteRebond } = require("../api/rebond-courriel.js").gabarits;
 
 // L'alerte à la maison est construite dans reserver.js ; on la rejoue ici à
 // l'identique pour la voir aussi.
@@ -44,7 +45,9 @@ const modeles = {
   "3-annulation-client.html": courrielAnnulation(resa),
   "4-bienvenue-newsletter.html": bienvenue(SITE + "/desinscription?jeton=exemple"),
   "5-annonce-evenement.html": annonce(ev).replace(/__DESINSCRIPTION__/g, SITE + "/desinscription?jeton=exemple"),
-  "6-desinscription.html": page({
+  "6-alerte-rebond.html": alerteRebond({ ...resa, heure: "20:00:00", couverts: 8 },
+                                 "550 5.1.1 unknown recipient", "hard_bounce"),
+  "7-desinscription.html": page({
     titre: "Se désinscrire", jeton: "exemple", bouton: "Confirmer",
     texte: "Confirmez que <strong>camille@exemple.fr</strong> ne doit plus recevoir les rendez-vous du Chai.",
   }),

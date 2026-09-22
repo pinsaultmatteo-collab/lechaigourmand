@@ -230,6 +230,7 @@ textarea{min-height:80px;resize:vertical}
       <div class="filtres" id="filtresAb">
         <button class="actif" data-etat="actif">Inscrits</button>
         <button data-etat="desinscrit">Désinscrits</button>
+        <button data-etat="rebond">Adresses mortes</button>
         <button data-etat="tout">Tout</button>
       </div>
       <div class="liste" id="listeAb"><p class="vide">Chargement…</p></div>
@@ -398,7 +399,10 @@ textarea{min-height:80px;resize:vertical}
           "<div><span class=\"lieu " + r.lieu + '">' + LIEUX[r.lieu] + "</span><span class=\"nom\">" + ech(r.nom) + "</span> · " + r.couverts + " couv." +
             '<div class="detail"><a href="tel:' + ech(r.telephone.replace(/\s/g, "")) + '">' + ech(r.telephone) + "</a>" +
             (r.email ? ' · <a href="mailto:' + ech(r.email) + '">' + ech(r.email) + "</a>" : "") +
-            ' · reçue le ' + new Date(r.cree_le).toLocaleDateString("fr-FR") + "</div>" +
+            ' · reçue le ' + new Date(r.cree_le).toLocaleDateString("fr-FR") +
+            (r.courriel_rebond ? '</div><div class="detail" style="color:#b0413e">⚠ la confirmation n’est pas arrivée' +
+              (r.courriel_rebond_motif ? " (" + ech(r.courriel_rebond_motif.slice(0, 70)) + ")" : "") +
+              " — appelez le client" : "") + "</div>" +
             (r.message ? '<div class="message">« ' + ech(r.message) + " »</div>" : "") + "</div>" +
           '<div class="cotes"><select data-statut>' +
             ["nouvelle", "confirmee", "annulee"].map(function (s) { return '<option value="' + s + '"' + (r.statut === s ? " selected" : "") + ">" + {nouvelle: "Nouvelle", confirmee: "Confirmée", annulee: "Annulée"}[s] + "</option>"; }).join("") +
@@ -673,7 +677,7 @@ textarea{min-height:80px;resize:vertical}
 
   function chargerAb() {
     const filtre = etatAb === "tout" ? "" : "&statut=eq." + etatAb;
-    rest("abonnes?select=id,email,statut,source,cree_le,desinscrit_le" + filtre + "&order=cree_le.desc&limit=2000")
+    rest("abonnes?select=id,email,statut,source,cree_le,desinscrit_le,rebond_le,rebond_motif" + filtre + "&order=cree_le.desc&limit=2000")
       .then(function (lignes) {
         $("#listeAb")._donnees = lignes;
         return rest("abonnes?select=id&statut=eq.actif&limit=2000").then(function (actifs) {
@@ -691,14 +695,19 @@ textarea{min-height:80px;resize:vertical}
           el.innerHTML = lignes.map(function (a) {
             return '<div class="ligne' + (a.statut !== "actif" ? " annulee" : "") + '" data-id="' + a.id + '">' +
               '<div><span class="nom">' + ech(a.email) + "</span>" +
-                (a.statut !== "actif" ? ' <span class="brouillon">· désinscrit' +
+                (a.statut === "desinscrit" ? ' <span class="brouillon">· désinscrit' +
                    (a.desinscrit_le ? " le " + new Date(a.desinscrit_le).toLocaleDateString("fr-FR") : "") + "</span>" : "") +
+                (a.statut === "rebond" ? ' <span class="brouillon" style="color:#b0413e">· adresse morte' +
+                   (a.rebond_le ? " depuis le " + new Date(a.rebond_le).toLocaleDateString("fr-FR") : "") + "</span>" : "") +
                 '<div class="detail">inscrit le ' + new Date(a.cree_le).toLocaleDateString("fr-FR") +
-                (a.source ? " · depuis « " + ech(a.source) + " »" : "") + "</div></div>" +
+                (a.source ? " · depuis « " + ech(a.source) + " »" : "") +
+                (a.rebond_motif ? ' · <span style="color:#b0413e">' + ech(a.rebond_motif.slice(0, 80)) + "</span>" : "") +
+                "</div></div>" +
               '<div class="cotes">' +
                 (a.statut === "actif"
                   ? '<button class="btn contour petit" data-desinscrire>Désinscrire</button>'
-                  : '<button class="btn contour petit" data-reinscrire>Réinscrire</button>') +
+                  : '<button class="btn contour petit" data-reinscrire>' +
+                    (a.statut === "rebond" ? "Réessayer" : "Réinscrire") + "</button>") +
                 '<button class="btn danger petit" data-effacer>Effacer</button></div></div>';
           }).join("");
         });
@@ -719,7 +728,10 @@ textarea{min-height:80px;resize:vertical}
     const vers = b.hasAttribute("data-desinscrire") ? "desinscrit" : "actif";
     rest("abonnes?id=eq." + id, {
       method: "PATCH", headers: {Prefer: "return=minimal"},
-      body: JSON.stringify({statut: vers, desinscrit_le: vers === "desinscrit" ? new Date().toISOString() : null})
+      body: JSON.stringify({statut: vers,
+        desinscrit_le: vers === "desinscrit" ? new Date().toISOString() : null,
+        rebond_le: vers === "actif" ? null : undefined,
+        rebond_motif: vers === "actif" ? null : undefined})
     }).then(chargerAb).catch(function (err) { crier(err.message); });
   });
 

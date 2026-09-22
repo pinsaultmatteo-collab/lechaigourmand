@@ -78,6 +78,7 @@ module.exports = async (req, res) => {
         a: email,
         sujet: "Bienvenue au Chai Gourmand",
         html: bienvenue(SITE + "/desinscription?jeton=" + jeton),
+        etiquette: "newsletter-bienvenue",
       }).catch((err) => console.error("bienvenue non envoyée", err));   // jamais bloquant
     }
     return res.status(200).json({ ok: true });

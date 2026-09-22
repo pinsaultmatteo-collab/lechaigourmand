@@ -95,6 +95,7 @@ module.exports = async (req, res) => {
             ? `Réservation confirmée — ${jourFr(r.date)} à ${String(r.heure).slice(0, 5).replace(":", "h")}`
             : `Réservation annulée — ${jourFr(r.date)}`,
           html: statut === "confirmee" ? courrielConfirmation(r) : courrielAnnulation(r),
+          etiquette: statut === "confirmee" ? "reservation-confirmation" : "reservation-annulation",
         });
         if (envoi.envoye) {
           courriel = "envoye";

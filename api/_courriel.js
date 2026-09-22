@@ -107,7 +107,10 @@ function config() {
 
 // Rend null si Brevo n'est pas configuré : le site continue de fonctionner,
 // simplement sans courriel — jamais d'échec bloquant pour le visiteur.
-async function envoyer({ a, sujet, html, repondreA }) {
+// L'étiquette voyage avec le message et revient dans le webhook de rebond :
+// c'est elle qui dit s'il s'agissait d'une confirmation de réservation ou
+// d'une lettre d'information. Sans elle, un rebond serait anonyme.
+async function envoyer({ a, sujet, html, repondreA, etiquette }) {
   const c = config();
   if (!c.cle || !c.expediteur) return { envoye: false, raison: "Brevo non configuré" };
   const r = await fetch("https://api.brevo.com/v3/smtp/email", {
@@ -121,6 +124,7 @@ async function envoyer({ a, sujet, html, repondreA }) {
       replyTo: repondreA ? { email: repondreA } : { email: c.expediteur },
       subject: sujet,
       htmlContent: html,
+      tags: etiquette ? [etiquette] : undefined,
     }),
   });
   if (!r.ok) throw new Error("brevo " + r.status + " " + (await r.text()).slice(0, 200));
@@ -133,7 +137,7 @@ async function envoyer({ a, sujet, html, repondreA }) {
 // Brevo sait faire ça en une requête (« messageVersions »), ce qui tient
 // largement dans le temps d'exécution d'une fonction Vercel. Si l'API refuse
 // ce format, on retombe sur des envois un par un, par petits paquets.
-async function envoyerEnNombre({ destinataires, sujet, html, lienDesinscription }) {
+async function envoyerEnNombre({ destinataires, sujet, html, lienDesinscription, etiquette }) {
   const c = config();
   if (!c.cle || !c.expediteur) return { envoyes: 0, raison: "Brevo non configuré" };
   const entetes = { "api-key": c.cle, "Content-Type": "application/json", accept: "application/json" };
@@ -146,7 +150,8 @@ async function envoyerEnNombre({ destinataires, sujet, html, lienDesinscription 
       await Promise.all(lot.slice(i, i + 8).map((d) =>
         fetch("https://api.brevo.com/v3/smtp/email", {
           method: "POST", headers: entetes,
-          body: JSON.stringify({ sender: expediteur, to: [{ email: d.email }], subject: sujet, htmlContent: pourUn(d) }),
+          body: JSON.stringify({ sender: expediteur, to: [{ email: d.email }], subject: sujet,
+                                 htmlContent: pourUn(d), tags: etiquette ? [etiquette] : undefined }),
         }).then((r) => { if (!r.ok) throw new Error("brevo " + r.status); })
       ));
     }
@@ -161,6 +166,7 @@ async function envoyerEnNombre({ destinataires, sujet, html, lienDesinscription 
         sender: expediteur,
         subject: sujet,
         htmlContent: html,
+        tags: etiquette ? [etiquette] : undefined,
         messageVersions: lot.map((d) => ({ to: [{ email: d.email }], htmlContent: pourUn(d) })),
       }),
     });

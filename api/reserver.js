@@ -94,6 +94,7 @@ async function prevenir(d) {
     sujet: `Réservation ${j}/${m} ${heure} — ${d.nom} (${d.couverts} couv.)`,
     html,
     repondreA: d.email || undefined,
+    etiquette: "alerte-maison",
   }).catch((err) => console.error("alerte réservation non envoyée", err));
 }
 

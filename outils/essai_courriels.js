@@ -205,6 +205,82 @@ const verifier = (nom, condition, vu) => essais.push({ nom, ok: !!condition, vu 
     nom: "Camille Estève", telephone: "06 12 34 56 78", email: "pas-une-adresse" } }, r);
   verifier("réservation, adresse illisible → refusée", r.code === 400, r.corps);
 
+  // 12. les rebonds signalés par Brevo
+  process.env.BREVO_WEBHOOK_JETON = "jeton-de-test";
+  const rebond = require("../api/rebond-courriel.js");
+  const demain7 = new Date(Date.now() + 7 * 864e5).toISOString().slice(0, 10);
+  const resaVive = { id: "99999999-8888-7777-6666-555555555555", lieu: "francazal",
+                     date: demain7, heure: "20:00:00", couverts: 8, nom: "Camille Estève",
+                     telephone: "06 12 34 56 78", email: "camille@exemple.fr",
+                     courriel_rebond: null };
+
+  global.fetch = async (url, o = {}) => {
+    journal.push({ url: String(url), methode: o.method || "GET", corps: o.body ? JSON.parse(o.body) : null });
+    const u = String(url);
+    if (u.includes("api.brevo.com")) return rep(201, {});
+    for (const [motif, valeur] of Object.entries(base)) if (u.includes(motif)) return rep(200, valeur);
+    return rep(200, []);
+  };
+  const appel = (corps, jeton = "jeton-de-test") =>
+    ({ method: "POST", headers: { "x-chai-jeton": jeton }, body: corps });
+
+  // sans le bon jeton, rien ne passe
+  r = reponse();
+  await rebond(appel({ event: "hard_bounce", email: "x@y.fr" }, "faux"), r);
+  verifier("rebond → jeton invalide refusé", r.code === 401, r.code);
+
+  // une confirmation de réservation qui rebondit prévient la maison
+  base = { "reservations?select=*": [resaVive] };
+  journal.length = 0; r = reponse();
+  await rebond(appel({ event: "hard_bounce", email: "Camille@Exemple.fr", reason: "unknown recipient",
+                       tags: ["reservation-confirmation"] }), r);
+  const alerteRebond = journal.find((a) => a.url.includes("brevo"));
+  verifier("rebond réservation → 200", r.code === 200, r.corps);
+  verifier("rebond réservation → maison prévenue",
+    alerteRebond && alerteRebond.corps.to[0].email === "adrien@exemple.fr", alerteRebond && alerteRebond.corps.to);
+  verifier("rebond réservation → le téléphone est dans l'alerte",
+    alerteRebond && alerteRebond.corps.htmlContent.includes("06 12 34 56 78"), null);
+  const trace = journal.find((a) => a.methode === "PATCH" && a.url.includes("reservations"));
+  verifier("rebond réservation → consigné", trace && trace.corps.courriel_rebond, trace && trace.corps);
+
+  // deux fois le même rebond : une seule alerte
+  base = { "reservations?select=*": [{ ...resaVive, courriel_rebond: "2026-09-22T10:00:00Z" }] };
+  journal.length = 0; r = reponse();
+  await rebond(appel({ event: "hard_bounce", email: "camille@exemple.fr", tags: ["reservation-confirmation"] }), r);
+  verifier("rebond déjà signalé → pas de seconde alerte",
+    !journal.some((a) => a.url.includes("brevo")), r.corps);
+
+  // un simple retard ne dérange personne
+  journal.length = 0; r = reponse();
+  await rebond(appel({ event: "soft_bounce", email: "camille@exemple.fr", tags: ["reservation-confirmation"] }), r);
+  verifier("retard passager → ignoré", journal.length === 0 && /ignor/.test(r.corps.traites[0]), r.corps);
+
+  // une adresse de la lettre qui rebondit sort de la liste
+  base = { "abonnes?select=id,statut": [{ id: "a1", statut: "actif" }] };
+  journal.length = 0; r = reponse();
+  await rebond(appel({ event: "hard_bounce", email: "morte@exemple.fr", reason: "mailbox not found",
+                       tags: ["newsletter-annonce"] }), r);
+  const retire = journal.find((a) => a.methode === "PATCH" && a.url.includes("abonnes"));
+  verifier("rebond lettre → abonné retiré", retire && retire.corps.statut === "rebond", retire && retire.corps);
+  verifier("rebond lettre → motif conservé",
+    retire && /mailbox not found/.test(retire.corps.rebond_motif || ""), retire && retire.corps);
+  verifier("rebond lettre → la maison n'est pas dérangée",
+    !journal.some((a) => a.url.includes("brevo")), null);
+
+  // une désinscription faite chez Brevo se répercute chez nous
+  journal.length = 0; r = reponse();
+  await rebond(appel({ event: "unsubscribed", email: "parti@exemple.fr" }), r);
+  const desinscrit = journal.find((a) => a.methode === "PATCH" && a.url.includes("abonnes"));
+  verifier("désinscription Brevo → répercutée",
+    desinscrit && desinscrit.corps.statut === "desinscrit", desinscrit && desinscrit.corps);
+
+  // Brevo envoie parfois un lot
+  base = { "abonnes?select=id,statut": [{ id: "a2", statut: "actif" }] };
+  journal.length = 0; r = reponse();
+  await rebond(appel([{ event: "delivered", email: "ok@exemple.fr" },
+                      { event: "hard_bounce", email: "morte2@exemple.fr", tags: ["newsletter-annonce"] }]), r);
+  verifier("lot d'événements → traité en entier", r.code === 200 && r.corps.traites.length === 2, r.corps);
+
   const rates = essais.filter((e) => !e.ok);
   essais.forEach((e) => console.log((e.ok ? "  ✓ " : "  ✗ ") + e.nom + (e.ok ? "" : "   → " + JSON.stringify(e.vu))));
   console.log("\n" + (essais.length - rates.length) + "/" + essais.length + " essais passés");

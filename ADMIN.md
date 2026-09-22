@@ -135,6 +135,39 @@ Aucune donnée personnelle n'y figure : ni nom, ni téléphone, ni adresse e-mai
 Dans GA4, il reste à marquer ces deux événements comme **événements clés**
 (*Admin → Événements*), sans quoi ils sont comptés mais pas suivis comme conversions.
 
+## 2 sexies. Les rebonds (une seule fois)
+
+Brevo sait dire quand un message n'arrive pas. Sans ça, une confirmation partie
+dans le vide passe pour envoyée — c'est exactement ce qui est arrivé à une grosse
+tablée en septembre 2026.
+
+1. **SQL Editor** → collez `supabase/migration-rebonds.sql` → *Run*.
+2. Sur Vercel, ajoutez la variable **`BREVO_WEBHOOK_JETON`** : une longue chaîne au
+   hasard, que vous inventez. Elle sert de mot de passe entre Brevo et le site.
+   Redéployez.
+3. Chez Brevo → *Transactional → Settings → Webhooks* → **Add a new webhook** :
+   - URL : `https://chai-gourmand.fr/api/rebond-courriel?jeton=LE_JETON`
+   - Événements à cocher : **Hard bounce**, **Soft bounce**, **Blocked**,
+     **Spam**, **Invalid email**, **Error**, **Unsubscribed**
+   - Si Brevo propose d'ajouter un en-tête personnalisé, préférez-le au jeton dans
+     l'URL : `x-chai-jeton: LE_JETON`, et retirez alors le `?jeton=` de l'adresse.
+     Une URL finit dans des journaux, pas un en-tête.
+
+L'ordre compte : la variable d'abord, le webhook ensuite. Une route qui répond
+« non configuré » finit par être coupée par Brevo.
+
+Ce qui se passe ensuite, tout seul :
+
+| Situation | Réaction |
+| --- | --- |
+| Une confirmation de réservation rebondit | Adrien reçoit une alerte avec le téléphone du client, et la ligne est signalée en rouge dans l'onglet *Réservations* |
+| Une adresse de la lettre rebondit | Elle passe en « adresse morte » et ne reçoit plus rien |
+| Quelqu'un se désinscrit depuis un courriel Brevo | La désinscription est répercutée dans l'onglet *Abonnés* |
+| Un simple retard (*soft bounce*, *deferred*) | Rien : Brevo réessaie seul |
+
+Une adresse morte se remet en service par le bouton **Réessayer** de l'onglet
+*Abonnés* — utile quand la boîte du client était juste pleine.
+
 ## 3. Ce que fait chaque onglet
 
 - **Réservations** — reçues par le formulaire du site ; Adrien en est averti par courriel dans la foulée.
@@ -155,7 +188,8 @@ Dans GA4, il reste à marquer ces deux événements comme **événements clés**
   suffit. Le catalogue principal, lui, reste généré depuis les fiches PDF (`data/produits.json`).
 
 - **Abonnés** — les adresses laissées dans le formulaire de la lettre d'information (bas de la page
-  d'accueil et de l'agenda). On peut les exporter en CSV, désinscrire quelqu'un qui le demande de vive
+  d'accueil et de l'agenda). Le filtre *Adresses mortes* liste celles que Brevo a signalées comme
+  injoignables ; elles ne reçoivent plus rien, et **Réessayer** les remet en service. On peut les exporter en CSV, désinscrire quelqu'un qui le demande de vive
   voix, ou effacer une adresse. Chaque courriel envoyé porte son lien de désinscription : le visiteur
   se retire seul, sans passer par Adrien — c'est une obligation légale, pas une option.
 
