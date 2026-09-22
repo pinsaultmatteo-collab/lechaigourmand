@@ -20,9 +20,15 @@
 const { SITE, TELEPHONE, LIEUX, base, gabarit, lignesFiche, jourFr, ech,
         envoyer } = require("./_courriel.js");
 
-// Les pannes définitives. « soft_bounce » et « deferred » sont des retards :
-// Brevo réessaie tout seul, et prévenir à chaque fois serait du bruit.
-const PERDUS = new Set(["hard_bounce", "blocked", "invalid_email", "spam", "error"]);
+// Brevo écrit ses événements de deux façons selon l'endroit : « hardBounce »
+// quand on s'abonne, « hard_bounce » dans la charge reçue. On aplatit les deux
+// avant de comparer, plutôt que de parier sur l'orthographe du jour.
+const aplatir = (e) => String(e || "").toLowerCase().replace(/[^a-z]/g, "");
+
+// Les pannes définitives. Un retard — soft bounce, deferred — n'en est pas
+// une : Brevo réessaie tout seul, et prévenir à chaque fois serait du bruit.
+const PERDUS = new Set(["hardbounce", "blocked", "invalidemail", "invalid", "spam", "error"]
+  .map(aplatir));
 
 const RESERVATION = new Set(["reservation-confirmation", "reservation-annulation"]);
 const LETTRE = new Set(["newsletter-bienvenue", "newsletter-annonce"]);
@@ -60,7 +66,8 @@ function alerte(r, motif, evenement) {
 }
 
 async function traiter(e) {
-  const evenement = String(e.event || "").toLowerCase();
+  const evenement = String(e.event || "");
+  const genre = aplatir(evenement);
   const email = String(e.email || "").trim().toLowerCase();
   const motif = String(e.reason || e.message || "").slice(0, 300);
   const etiquettes = [].concat(e.tags || e.tag || []).map(String);
@@ -68,7 +75,7 @@ async function traiter(e) {
 
   // Une désinscription faite depuis le pied de page de Brevo doit se refléter
   // chez nous, sans quoi la personne recevrait la prochaine annonce.
-  if (evenement === "unsubscribed") {
+  if (genre === "unsubscribed") {
     await base("abonnes?email=eq." + encodeURIComponent(email), {
       method: "PATCH", headers: { Prefer: "return=minimal" },
       body: JSON.stringify({ statut: "desinscrit", desinscrit_le: new Date().toISOString() }),
@@ -76,7 +83,7 @@ async function traiter(e) {
     return "désinscrit";
   }
 
-  if (!PERDUS.has(evenement)) return "ignoré (" + evenement + ")";
+  if (!PERDUS.has(genre)) return "ignoré (" + evenement + ")";
 
   const versLettre = etiquettes.some((t) => LETTRE.has(t));
   const versReservation = etiquettes.some((t) => RESERVATION.has(t));

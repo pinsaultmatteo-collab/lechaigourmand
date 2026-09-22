@@ -274,6 +274,13 @@ const verifier = (nom, condition, vu) => essais.push({ nom, ok: !!condition, vu 
   verifier("désinscription Brevo → répercutée",
     desinscrit && desinscrit.corps.statut === "desinscrit", desinscrit && desinscrit.corps);
 
+  // Brevo n'écrit pas ses événements de la même façon partout
+  base = { "abonnes?select=id,statut": [{ id: "a3", statut: "actif" }] };
+  journal.length = 0; r = reponse();
+  await rebond(appel({ event: "hardBounce", email: "morte3@exemple.fr", tags: ["newsletter-annonce"] }), r);
+  verifier("orthographe « hardBounce » → comprise aussi",
+    journal.some((a) => a.methode === "PATCH" && a.url.includes("abonnes")), r.corps);
+
   // Brevo envoie parfois un lot
   base = { "abonnes?select=id,statut": [{ id: "a2", statut: "actif" }] };
   journal.length = 0; r = reponse();

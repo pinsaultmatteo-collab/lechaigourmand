@@ -145,13 +145,25 @@ tablée en septembre 2026.
 2. Sur Vercel, ajoutez la variable **`BREVO_WEBHOOK_JETON`** : une longue chaîne au
    hasard, que vous inventez. Elle sert de mot de passe entre Brevo et le site.
    Redéployez.
-3. Chez Brevo → *Transactional → Settings → Webhooks* → **Add a new webhook** :
-   - URL : `https://chai-gourmand.fr/api/rebond-courriel?jeton=LE_JETON`
-   - Événements à cocher : **Hard bounce**, **Soft bounce**, **Blocked**,
-     **Spam**, **Invalid email**, **Error**, **Unsubscribed**
-   - Si Brevo propose d'ajouter un en-tête personnalisé, préférez-le au jeton dans
-     l'URL : `x-chai-jeton: LE_JETON`, et retirez alors le `?jeton=` de l'adresse.
-     Une URL finit dans des journaux, pas un en-tête.
+3. Déclarez le webhook chez Brevo. Le menu se déplace au fil des versions de leur
+   interface ; l'API, elle, ne bouge pas :
+
+   ```
+   python3 outils/brancher_webhook.py
+   ```
+
+   Le script demande la clé API Brevo puis le jeton, au clavier, et crée le webhook
+   sur les bons événements (`hardBounce`, `blocked`, `spam`, `invalid`,
+   `unsubscribed`). Relancé, il met à jour celui qui existe au lieu d'en créer un
+   second. `--lister` montre les webhooks en place, `--supprimer ID` en retire un.
+
+   À la main, si vous préférez : Brevo → l'engrenage en haut à droite → *Settings*
+   → *Webhooks* → **Add a new webhook**, type *Transactional*, adresse
+   `https://chai-gourmand.fr/api/rebond-courriel?jeton=LE_JETON`.
+
+   Brevo ne sait pas ajouter d'en-tête personnalisé à ses webhooks : le jeton
+   voyage donc dans l'URL. C'est pour cette raison qu'il doit être long et
+   n'ouvrir que cette route.
 
 L'ordre compte : la variable d'abord, le webhook ensuite. Une route qui répond
 « non configuré » finit par être coupée par Brevo.
