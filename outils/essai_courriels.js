@@ -187,6 +187,24 @@ const verifier = (nom, condition, vu) => essais.push({ nom, ok: !!condition, vu 
   verifier("réservation piégée → rien n'est écrit", journal.length === 0, journal.length);
   verifier("réservation piégée → réponse anodine", r.code === 200 && r.corps.ok, r.corps);
 
+  // L'adresse est obligatoire depuis qu'une grosse tablée n'a jamais reçu sa
+  // confirmation. Le navigateur la réclame, mais rien n'empêche de poster
+  // directement sur la route : le serveur doit refuser lui aussi.
+  journal.length = 0; r = reponse();
+  await reserver({ method: "POST", headers: {}, body: {
+    lieu: "francazal", date: jeudi, heure: "20:00", couverts: "4",
+    nom: "Camille Estève", telephone: "06 12 34 56 78" } }, r);
+  verifier("réservation sans adresse → refusée", r.code === 400, r.corps);
+  verifier("réservation sans adresse → rien n'est écrit", journal.length === 0, journal.length);
+  verifier("réservation sans adresse → le dit clairement",
+    /adresse e-mail/i.test((r.corps || {}).erreur || ""), r.corps);
+
+  journal.length = 0; r = reponse();
+  await reserver({ method: "POST", headers: {}, body: {
+    lieu: "francazal", date: jeudi, heure: "20:00", couverts: "4",
+    nom: "Camille Estève", telephone: "06 12 34 56 78", email: "pas-une-adresse" } }, r);
+  verifier("réservation, adresse illisible → refusée", r.code === 400, r.corps);
+
   const rates = essais.filter((e) => !e.ok);
   essais.forEach((e) => console.log((e.ok ? "  ✓ " : "  ✗ ") + e.nom + (e.ok ? "" : "   → " + JSON.stringify(e.vu))));
   console.log("\n" + (essais.length - rates.length) + "/" + essais.length + " essais passés");

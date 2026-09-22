@@ -1084,7 +1084,7 @@ function chaiSupabase(){
         '<button class="ref-volet-fermer" type="button" data-fermer aria-label="Fermer">×</button>' +
         '<p class="resa-sur-titre">Réserver une table</p>' +
         '<h2 class="resa-titre" id="resaTitre">On vous garde <span class="accent-script">une place.</span></h2>' +
-        '<p class="resa-intro">Dites-nous où, quand et combien vous serez : on vous confirme la table dans la foulée.</p>' +
+        '<p class="resa-intro">Dites-nous où, quand et combien vous serez : la confirmation vous arrive par e-mail dès qu’Adrien a validé la table.</p>' +
         '<form class="resa-form" novalidate>' +
           '<div class="resa-champ"><span class="resa-legende">Établissement</span>' +
             '<div class="resa-lieux">' +
@@ -1104,7 +1104,7 @@ function chaiSupabase(){
           "</div>" +
           '<div class="resa-deux">' +
             '<div class="resa-champ"><label for="resaTel">Téléphone</label><input type="tel" id="resaTel" name="telephone" autocomplete="tel" required></div>' +
-            '<div class="resa-champ"><label for="resaEmail">E-mail <em>(facultatif)</em></label><input type="email" id="resaEmail" name="email" autocomplete="email"></div>' +
+            '<div class="resa-champ"><label for="resaEmail">E-mail</label><input type="email" id="resaEmail" name="email" autocomplete="email" required></div>' +
           "</div>" +
           '<div class="resa-champ"><label for="resaMessage">Un mot pour nous <em>(facultatif)</em></label>' +
             '<textarea id="resaMessage" name="message" placeholder="Anniversaire, poussette, allergie, table en terrasse…"></textarea></div>' +
@@ -1158,6 +1158,9 @@ function chaiSupabase(){
       if (heure.disabled || !d.heure) { erreur.textContent = "Choisissez un jour d’ouverture et une heure."; return; }
       if (!d.nom || d.nom.trim().length < 2) { erreur.textContent = "Indiquez un nom."; form.nom.focus(); return; }
       if (!/^\+?[\d\s.()-]{9,20}$/.test(d.telephone || "")) { erreur.textContent = "Un numéro de téléphone nous permet de vous rappeler."; form.telephone.focus(); return; }
+      // L'adresse est obligatoire depuis qu'une grosse tablée est restée sans
+      // confirmation : c'est par là que part le message quand Adrien valide.
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test((d.email || "").trim())) { erreur.textContent = "Une adresse e-mail est nécessaire : c’est là que part la confirmation."; form.email.focus(); return; }
       const bouton = form.querySelector('button[type="submit"]');
       bouton.disabled = true; bouton.textContent = "Envoi en cours…";
       fetch("/api/reserver", {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify(d)})

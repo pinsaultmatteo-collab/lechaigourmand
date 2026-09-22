@@ -139,8 +139,9 @@ Dans GA4, il reste à marquer ces deux événements comme **événements clés**
 
 - **Réservations** — reçues par le formulaire du site ; Adrien en est averti par courriel dans la foulée.
   Basculer le statut sur *Confirmée* envoie au client sa confirmation, sur *Annulée* son annulation —
-  une seule fois par statut, rebasculer le menu ne renvoie rien. Si le client n'a pas laissé d'adresse,
-  la notification le dit : il faut l'appeler.
+  une seule fois par statut, rebasculer le menu ne renvoie rien. L'adresse e-mail est obligatoire
+  depuis le 22/09/2026 ; les réservations plus anciennes peuvent en manquer, et la notification le dit
+  alors clairement : il faut appeler.
 - **Événements** — la programmation de l'agenda et du bandeau d'accueil. *Brouillon* = invisible ;
   *Publier* = en ligne dans la minute. Une fois l'événement publié, **Annoncer aux abonnés** envoie
   l'invitation à toute la liste — chacun reçoit son propre message, personne ne voit les autres adresses.

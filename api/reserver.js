@@ -41,7 +41,10 @@ function verifier(d) {
   if (!Number.isInteger(couverts) || couverts < 1 || couverts > 40) return "Le nombre de couverts n'est pas valide.";
   if (d.nom.length < 2) return "Indiquez un nom.";
   if (!/^\+?[\d\s.()-]{9,20}$/.test(d.telephone)) return "Le numéro de téléphone semble incorrect.";
-  if (d.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.email)) return "L'adresse e-mail semble incorrecte.";
+  // Obligatoire : c'est la seule voie de la confirmation quand Adrien valide.
+  // Une grosse tablée est passée à travers faute d'adresse.
+  if (!d.email) return "Indiquez une adresse e-mail : la confirmation part par là.";
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.email)) return "L'adresse e-mail semble incorrecte.";
   return null;
 }
 
