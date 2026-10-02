@@ -53,26 +53,6 @@ function chaiSupabase(){
   "use strict";
   const reduit = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  /* ---------- diagnostic de fluidité (temporaire) ----------
-     ?allege=grain,anim,ombres,flou ou ?allege=tout : retire des effets
-     décoratifs, et s'en souvient le temps de l'onglet pour qu'on puisse
-     parcourir tout le site ainsi. ?allege=non rétablit. Voir styles.css. */
-  (function allege(){
-    const TOUS = ["grain", "anim", "ombres", "flou"];
-    let choix = null;
-    try {
-      const demande = new URLSearchParams(location.search).get("allege");
-      if (demande !== null) {
-        choix = demande === "tout" ? TOUS : demande.split(",").filter(function(x){ return TOUS.indexOf(x) > -1; });
-        if (demande === "non" || !choix.length) sessionStorage.removeItem("chai-allege");
-        else sessionStorage.setItem("chai-allege", choix.join(","));
-      }
-      const garde = sessionStorage.getItem("chai-allege");
-      choix = garde ? garde.split(",") : [];
-    } catch (e) { choix = []; }
-    choix.forEach(function(x){ document.documentElement.classList.add("allege-" + x); });
-  })();
-
   /* ---------- année du footer ---------- */
   const annee = document.getElementById("annee");
   if(annee) annee.textContent = new Date().getFullYear();
