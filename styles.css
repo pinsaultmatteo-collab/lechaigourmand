@@ -42,20 +42,25 @@ section{position:relative}
 
 /* ---------- grain ---------- */
 .grain{
-  position:fixed;inset:-50%;width:200%;height:200%;
+  /* Une tuile de bruit précalculée (images/grain.png), à la taille de
+     l'écran, immobile. Avant : un filtre SVG recalculé par le navigateur,
+     sur un calque de quatre écrans de surface, animé sans fin et posé
+     par-dessus toute la page — de quoi faire accrocher le défilement pour
+     un effet visible à 4,5 % d'opacité. */
+  position:fixed;inset:0;
   pointer-events:none;z-index:120;opacity:.045;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
-  animation:grain 8s steps(10) infinite;
+  background:url("/images/grain.png") 0 0 / 128px 128px repeat;
 }
-@keyframes grain{
-  0%,100%{transform:translate(0,0)}10%{transform:translate(-2%,-3%)}
   30%{transform:translate(3%,-1%)}50%{transform:translate(-1%,2%)}
   70%{transform:translate(2%,3%)}90%{transform:translate(-3%,1%)}
 }
 
 /* ---------- barre de progression (le vin monte) ---------- */
 .jauge{
-  position:fixed;top:0;left:0;height:3px;width:0%;z-index:200;
+  /* scaleX se compose sans recalcul de mise en page ; width en imposait un
+     à chaque événement de défilement. */
+  position:fixed;top:0;left:0;height:3px;width:100%;z-index:200;
+  transform:scaleX(0);transform-origin:0 50%;
   background:linear-gradient(90deg,var(--bordeaux-sombre),var(--bordeaux-vif),var(--or));
   box-shadow:0 0 12px rgba(157,44,80,.7);
 }
@@ -68,8 +73,10 @@ section{position:relative}
   transition:background .5s,padding .5s,box-shadow .5s;
 }
 .nav.plein{
-  background:rgba(26,15,20,.88);
-  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  /* Plus de backdrop-filter : un flou sur un en-tête fixe se recalcule à
+     chaque image pendant que la page défile dessous. À 95 % d'opacité, la
+     différence ne se voit pas ; le défilement, si. */
+  background:rgba(26,15,20,.95);
   padding:.8rem clamp(1.2rem,4vw,3.5rem);
   box-shadow:0 1px 0 rgba(201,168,118,.18);
 }
@@ -1569,7 +1576,7 @@ h2.titre .accent-script{
   display:flex;flex-wrap:wrap;align-items:center;justify-content:center;
   gap:.8rem clamp(.8rem,2vw,1.6rem);
   padding:1rem clamp(.8rem,2vw,1.4rem);margin-bottom:clamp(1.6rem,3vw,2.4rem);
-  background:rgba(246,239,226,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  background:rgba(246,239,226,.97);
   border:1px solid rgba(122,99,85,.18);border-radius:18px;
   box-shadow:0 14px 30px -22px rgba(51,36,31,.4);
 }
@@ -2056,4 +2063,21 @@ input[type="date"]::-webkit-calendar-picker-indicator{margin-left:auto}
   .ml-ligne{grid-template-columns:1fr;gap:.2rem;padding:.7rem 0}
   .ml-ligne dt{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase}
   .ml-choix .btn{flex:1 1 100%;text-align:center;justify-content:center}
+}
+
+/* ==================== DÉCORS AU REPOS ====================
+   Tonneau, vagues, bulles, poussières tournent en boucle. Hors de l'écran,
+   personne ne les voit mais le navigateur les calcule quand même : site.js
+   pose .au-repos sur leur section dès qu'elle sort du champ. */
+.au-repos,.au-repos *,.au-repos *::before,.au-repos *::after{animation-play-state:paused !important}
+
+/* ==================== CATALOGUE : 254 CARTES ====================
+   Les cartes hors de l'écran ne sont ni mises en page ni peintes ; le
+   navigateur retient leur taille une fois vue, pour que la barre de
+   défilement ne saute pas. Les estimations sont les hauteurs médianes
+   mesurées : une estimation trop basse ferait grandir chaque carte en
+   entrant à l'écran, et la page sauterait en plein défilement. */
+.ref-carte{content-visibility:auto;contain-intrinsic-size:auto 706px}
+@media (max-width:760px){
+  .ref-carte{contain-intrinsic-size:auto 598px}
 }

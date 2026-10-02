@@ -69,45 +69,101 @@ function chaiSupabase(){
   const etincelles = document.querySelectorAll(".etincelle");
   const traineeLongueur = traineePath ? traineePath.getTotalLength() : 0;
   const sectionEsprit = document.getElementById("esprit");
+  /* La traînée est masquée sur mobile (display:none) : inutile de calculer
+     sa comète à chaque image. On le sait une fois, puis à chaque
+     redimensionnement. */
+  const traineeSvg = traineePath ? traineePath.closest("svg") : null;
+  let traineeVisible = false;
+  function mesurerTrainee(){
+    traineeVisible = !!(traineeSvg && sectionEsprit && getComputedStyle(traineeSvg).display !== "none");
+  }
+  mesurerTrainee();
+
+  /* Une seule passe par image, quel que soit le nombre d'événements de
+     défilement — un trackpad en envoie plusieurs par image. Et dans cette
+     passe, toutes les lectures de géométrie d'abord, toutes les écritures
+     ensuite : les alterner forçait le navigateur à recalculer la mise en
+     page jusqu'à trois fois par événement. */
+  let prevue = false;
+  let dernierVerre = -1, dernierTrainee = -1;
+
   function surScroll(){
+    if(prevue) return;
+    prevue = true;
+    requestAnimationFrame(peindre);
+  }
+
+  function peindre(){
+    prevue = false;
+
+    /* ---------- lectures ---------- */
     const y = window.scrollY;
     const vh = window.innerHeight;
+    const hauteur = jauge ? document.documentElement.scrollHeight - vh : 0;
+    const rVerre = (vinScroll && verreWrap) ? verreWrap.getBoundingClientRect() : null;
+    const rEsprit = traineeVisible ? sectionEsprit.getBoundingClientRect() : null;
+
+    /* ---------- écritures ---------- */
     if(nav) nav.classList.toggle("plein", y > 40);
-    if(jauge){
-      const h = document.documentElement.scrollHeight - vh;
-      jauge.style.width = (h > 0 ? (y / h) * 100 : 0) + "%";
-    }
+    if(jauge) jauge.style.transform = "scaleX(" + (hauteur > 0 ? Math.min(1, y / hauteur) : 0) + ")";
+
     /* le verre se remplit pendant qu'on le croise à l'écran */
-    if(vinScroll && verreWrap){
-      const r = verreWrap.getBoundingClientRect();
-      let p = (vh - r.top) / (vh * 0.75);
-      p = Math.max(0, Math.min(1, p));
-      if(reduit) p = 1;
-      vinScroll.style.transform = "translateY(" + Math.round((1 - p) * 138) + "px)";
-      if(verreSante) verreSante.classList.toggle("visible", p >= 0.99);
-    }
-    /* la traînée dorée se dessine en travers de la section esprit
-       (cadence calée sur le scroll : tracé complet après ~60 % du bloc) */
-    if(traineePath && sectionEsprit){
-      const r = sectionEsprit.getBoundingClientRect();
-      let p = (vh * 0.9 - r.top) / (r.height * 0.6);
-      p = Math.max(0, Math.min(1, p));
-      if(reduit) p = 1;
-      traineePath.style.strokeDashoffset = 1 - p;
-      if(traineeHalo) traineeHalo.style.strokeDashoffset = 1 - p;
-      if(traineeComete){
-        const pt = traineePath.getPointAtLength(p * traineeLongueur);
-        traineeComete.setAttribute("cx", pt.x);
-        traineeComete.setAttribute("cy", pt.y);
-        traineeComete.style.opacity = (!reduit && p > 0.02 && p < 0.98) ? 1 : 0;
+    if(rVerre){
+      let p = (vh - rVerre.top) / (vh * 0.75);
+      p = reduit ? 1 : Math.max(0, Math.min(1, p));
+      p = Math.round(p * 500) / 500;
+      if(p !== dernierVerre){
+        dernierVerre = p;
+        vinScroll.style.transform = "translateY(" + Math.round((1 - p) * 138) + "px)";
+        if(verreSante) verreSante.classList.toggle("visible", p >= 0.99);
       }
-      etincelles.forEach(function(e){
-        e.classList.toggle("visible", p >= parseFloat(e.dataset.seuil));
-      });
+    }
+
+    /* la traînée dorée se dessine en travers de la section esprit
+       (cadence calée sur le scroll : tracé complet après ~60 % du bloc).
+       Rien n'est réécrit tant que la section reste hors champ : getPointAtLength
+       est l'appel le plus coûteux de toute la page. */
+    if(rEsprit){
+      let p = (vh * 0.9 - rEsprit.top) / (rEsprit.height * 0.6);
+      p = reduit ? 1 : Math.max(0, Math.min(1, p));
+      p = Math.round(p * 1000) / 1000;
+      if(p !== dernierTrainee){
+        dernierTrainee = p;
+        traineePath.style.strokeDashoffset = 1 - p;
+        if(traineeHalo) traineeHalo.style.strokeDashoffset = 1 - p;
+        if(traineeComete){
+          const pt = traineePath.getPointAtLength(p * traineeLongueur);
+          traineeComete.setAttribute("cx", pt.x);
+          traineeComete.setAttribute("cy", pt.y);
+          traineeComete.style.opacity = (!reduit && p > 0.02 && p < 0.98) ? 1 : 0;
+        }
+        etincelles.forEach(function(e){
+          e.classList.toggle("visible", p >= parseFloat(e.dataset.seuil));
+        });
+      }
     }
   }
   window.addEventListener("scroll", surScroll, {passive:true});
-  surScroll();
+  window.addEventListener("resize", function(){ mesurerTrainee(); surScroll(); }, {passive:true});
+  peindre();
+
+  /* ---------- décors au repos hors de l'écran ----------
+     Les animations en boucle (tonneau, vagues, poussières, goutte, anneaux)
+     tournent même quand personne ne les regarde. On fige leur section dès
+     qu'elle sort du champ, on la relance quand elle y revient. */
+  if("IntersectionObserver" in window){
+    const sections = new Set();
+    document.querySelectorAll(".tonneau,.vague,.bulle,.poussiere,.goutte,.anneau").forEach(function(el){
+      const s = el.closest("section, header, footer") || el.parentElement;
+      if(s) sections.add(s);
+    });
+    if(sections.size){
+      const veille = new IntersectionObserver(function(entrees){
+        entrees.forEach(function(e){ e.target.classList.toggle("au-repos", !e.isIntersecting); });
+      }, {rootMargin: "120px 0px"});
+      sections.forEach(function(s){ veille.observe(s); });
+    }
+  }
 
   /* ---------- menu mobile ---------- */
   const burger = document.getElementById("burger");
