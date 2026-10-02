@@ -191,12 +191,16 @@ python3 outils/generer_mentions.py
 Elle reprend la navigation et le pied de page du gabarit, comme le catalogue et
 le journal : une page légale qui dériverait du reste du site aurait l'air oubliée.
 
-**Sept champs restent à compléter** — ils figurent tous sur l'extrait Kbis du
-client : raison sociale, forme juridique, siège, SIRET, RCS, TVA et licence de
-débit de boissons. Ils se renseignent en haut de `outils/generer_mentions.py`,
-dans le dictionnaire `IDENTITE` ; tant qu'une valeur vaut `None`, la page affiche
-« à compléter » en rouge plutôt que d'inventer. Relancez le script après, et
-poussez.
+L'identité juridique vient du registre national des entreprises (SIREN
+990 748 394) et se trouve en tête de `outils/generer_mentions.py`, dans le
+dictionnaire `IDENTITE`. Le directeur de la publication est, de par la loi, le
+représentant légal — pour une SAS, son président : **Dylan Galliez**. Si la
+présidence change, c'est la ligne à modifier.
+
+Seule la **licence de débit de boissons** manque : elle n'est pas au registre,
+elle figure sur le permis délivré par la mairie. Tant qu'elle vaut `None`, la
+ligne n'est pas affichée. Une fois le numéro connu, renseignez-le, relancez le
+script et poussez.
 
 La page promet au visiteur qu'il peut refuser la mesure d'audience : le bouton
 est au bas de la page, et le refus est tenu — le script de Google n'est alors

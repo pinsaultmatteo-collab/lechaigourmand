@@ -20,16 +20,23 @@ SITE = "https://chai-gourmand.fr"
 # ---------------------------------------------------------------------------
 # À COMPLÉTER PAR LE CLIENT — demandez-lui son extrait Kbis, tout y figure.
 # ---------------------------------------------------------------------------
+# Relevé sur le registre national des entreprises (SIREN 990 748 394), le
+# 02/10/2026. Le directeur de la publication est, de par la loi, le
+# représentant légal : pour une SAS, son président.
 IDENTITE = {
-    "raison_sociale":      None,   # ex. « Le Chai Gourmand SARL »
-    "forme_juridique":     None,   # ex. « SARL au capital de 5 000 € »
-    "siege":               None,   # l'adresse du siège, si différente de Francazal
-    "siret":               None,   # 14 chiffres
-    "rcs":                 None,   # ex. « RCS Toulouse 912 345 678 »
-    "tva":                 None,   # ex. « FR12912345678 »
-    "directeur":           "Adrien Casole",
-    "licence":             None,   # ex. « Licence IV n° … » (débit de boissons)
+    "raison_sociale":      "Le Chai Gourmand",
+    "forme_juridique":     "SAS (société par actions simplifiée) au capital de 500 €",
+    "siege":               "14 rue de Cezerou, 31270 Cugnaux",
+    "siret":               "990 748 394 00014",
+    "rcs":                 "990 748 394 R.C.S. Toulouse",
+    "tva":                 "FR03990748394",
+    "directeur":           "Dylan Galliez, président",
+    "licence":             None,   # ex. « Licence IV n° … » — absente du registre
 }
+
+# Champs que la page tait plutôt que de les afficher vides : la licence n'est
+# pas au registre, elle se trouve sur le permis délivré par la mairie.
+FACULTATIFS = {"licence"}
 
 TELEPHONE = "06 85 36 22 65"
 TELEPHONE_LIEN = "+33685362265"
@@ -49,6 +56,8 @@ def e(t):
 def valeur(cle, intitule):
     """Une ligne de la fiche d'identité, ou la mention qu'il manque."""
     v = IDENTITE.get(cle)
+    if not v and cle in FACULTATIFS:
+        return ""
     contenu = (e(v) if v else
                '<span class="ml-manque">à compléter</span>')
     return f'<div class="ml-ligne"><dt>{e(intitule)}</dt><dd>{contenu}</dd></div>'
@@ -255,12 +264,15 @@ def main():
     pied = pied.replace("</section>\n\n</body>", "</section>")
 
     io.open(SORTIE, "w", encoding="utf-8").write(page(nav, pied))
-    manquants = [k for k, v in IDENTITE.items() if not v]
+    manquants = [k for k, v in IDENTITE.items() if not v and k not in FACULTATIFS]
+    tus = [k for k, v in IDENTITE.items() if not v and k in FACULTATIFS]
     print(f"  ✓ {SORTIE}")
     if manquants:
         print(f"  ⚠ {len(manquants)} champ(s) à compléter dans outils/generer_mentions.py :")
         for k in manquants:
             print(f"      {k}")
+    if tus:
+        print(f"  · non affiché(s) faute de valeur : {', '.join(tus)}")
 
 
 if __name__ == "__main__":
