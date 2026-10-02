@@ -180,6 +180,29 @@ Ce qui se passe ensuite, tout seul :
 Une adresse morte se remet en service par le bouton **Réessayer** de l'onglet
 *Abonnés* — utile quand la boîte du client était juste pleine.
 
+## 2 septies. Les mentions légales
+
+La page vit à `/mentions-legales` et se fabrique par :
+
+```
+python3 outils/generer_mentions.py
+```
+
+Elle reprend la navigation et le pied de page du gabarit, comme le catalogue et
+le journal : une page légale qui dériverait du reste du site aurait l'air oubliée.
+
+**Sept champs restent à compléter** — ils figurent tous sur l'extrait Kbis du
+client : raison sociale, forme juridique, siège, SIRET, RCS, TVA et licence de
+débit de boissons. Ils se renseignent en haut de `outils/generer_mentions.py`,
+dans le dictionnaire `IDENTITE` ; tant qu'une valeur vaut `None`, la page affiche
+« à compléter » en rouge plutôt que d'inventer. Relancez le script après, et
+poussez.
+
+La page promet au visiteur qu'il peut refuser la mesure d'audience : le bouton
+est au bas de la page, et le refus est tenu — le script de Google n'est alors
+plus chargé du tout. C'est la seule porte de sortie depuis le retrait du bandeau,
+et elle doit le rester tant que la page l'annonce.
+
 ## 3. Ce que fait chaque onglet
 
 - **Réservations** — reçues par le formulaire du site ; Adrien en est averti par courriel dans la foulée.

@@ -60,3 +60,4 @@
 
 - [Nos adresses](https://chai-gourmand.fr/nos-adresses) : adresses, horaires et itinéraires des deux établissements
 - [Agenda](https://chai-gourmand.fr/agenda) : brunchs, soirées dégustation et événements à venir
+- [Mentions légales](https://chai-gourmand.fr/mentions-legales) : éditeur, hébergeur, données personnelles et mesure d'audience

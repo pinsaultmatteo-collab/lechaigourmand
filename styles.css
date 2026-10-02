@@ -2017,3 +2017,43 @@ input[type="date"]::-webkit-calendar-picker-indicator{margin-left:auto}
   .resa-deux,.resa-lieux{grid-template-columns:1fr}
   .resa-actions .btn{width:100%;justify-content:center}
 }
+
+/* ==================== MENTIONS LÉGALES ====================
+   Une page de texte long : on resserre la colonne pour qu'elle se lise, et
+   on garde la typographie de la maison plutôt qu'un pavé administratif. */
+.ml-page{padding-top:clamp(7rem,12vw,9rem)}
+.ml-contenu{max-width:760px}
+.ml-titre{
+  font-family:var(--serif);font-weight:600;font-size:clamp(2rem,5vw,2.9rem);
+  color:var(--brun);line-height:1.15;margin:.8rem 0 .6rem;
+}
+.ml-chapeau{font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--brun-doux);line-height:1.6}
+.ml-bloc{margin-top:clamp(2.2rem,5vw,3rem)}
+.ml-bloc h2{
+  font-family:var(--serif);font-weight:600;font-size:1.35rem;color:var(--bordeaux);
+  padding-bottom:.5rem;border-bottom:1px solid rgba(201,168,118,.4);margin-bottom:1rem;
+}
+.ml-bloc p{line-height:1.7;color:#4a382f;margin-bottom:.9rem}
+.ml-bloc a{color:var(--bordeaux);text-decoration:underline;text-underline-offset:.18em}
+.ml-bloc code{font-size:.9em;background:rgba(201,168,118,.18);padding:.1em .4em;border-radius:5px}
+.ml-fiche{margin:.2rem 0 1rem}
+.ml-ligne{
+  display:grid;grid-template-columns:minmax(140px,30%) 1fr;gap:1rem;
+  padding:.65rem 0;border-bottom:1px dotted rgba(122,99,85,.25);
+}
+.ml-ligne dt{color:var(--brun-doux);font-size:.88rem;letter-spacing:.02em}
+.ml-ligne dd{color:#4a382f;line-height:1.6}
+/* Ce qui manque doit sauter aux yeux, pas se fondre dans la page. */
+.ml-manque{
+  background:rgba(176,65,62,.12);color:#8e2f2c;font-size:.82rem;font-weight:500;
+  letter-spacing:.08em;text-transform:uppercase;padding:.2em .6em;border-radius:99px;
+}
+.ml-choix{display:flex;flex-wrap:wrap;gap:.8rem;align-items:center;margin-top:1.2rem}
+.ml-choix .btn{padding:.75rem 1.6rem;font-size:.68rem}
+.ml-etat{font-size:.88rem;color:var(--brun-doux);font-style:italic}
+
+@media (max-width:620px){
+  .ml-ligne{grid-template-columns:1fr;gap:.2rem;padding:.7rem 0}
+  .ml-ligne dt{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase}
+  .ml-choix .btn{flex:1 1 100%;text-align:center;justify-content:center}
+}
