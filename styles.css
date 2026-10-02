@@ -729,12 +729,16 @@ h2.titre .accent-script{
   .brunch{grid-template-columns:1fr}
 }
 @media (max-width:760px){
+  /* Le menu plein écran reste posé sur la page, invisible, quand il est
+     fermé. Son flou d'arrière-plan n'est donc appliqué qu'à l'ouverture :
+     Chrome ignore un flou à opacité nulle, Safari continue de le calculer
+     pendant tout le défilement. */
   .nav-liens{
-    position:fixed;inset:0;background:rgba(26,15,20,.97);backdrop-filter:blur(16px);
+    position:fixed;inset:0;background:rgba(26,15,20,.97);
     flex-direction:column;justify-content:center;gap:2rem;
     opacity:0;pointer-events:none;transition:opacity .4s;
   }
-  .nav-liens.ouvert{opacity:1;pointer-events:auto}
+  .nav-liens.ouvert{opacity:1;pointer-events:auto;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
   .nav-liens a{font-size:1rem}
   .burger{display:block;margin-left:auto}
   .carte-colonnes{grid-template-columns:1fr}
@@ -2081,3 +2085,17 @@ input[type="date"]::-webkit-calendar-picker-indicator{margin-left:auto}
 @media (max-width:760px){
   .ref-carte{contain-intrinsic-size:auto 598px}
 }
+
+/* ==================== DIAGNOSTIC DE FLUIDITÉ (temporaire) ====================
+   ?allege=grain,anim,ombres,flou — ou ?allege=tout — retire un effet
+   décoratif à la fois pour trouver, dans le vrai navigateur du client, celui
+   qui fait accrocher le défilement. ?allege=non rétablit tout. Sans paramètre,
+   rien ne change. À retirer une fois la cause trouvée. */
+html.allege-grain .grain{display:none}
+html.allege-anim .tonneau,html.allege-anim .vague,html.allege-anim .bulle,
+html.allege-anim .poussiere,html.allege-anim .anneau,
+html.allege-anim .indice-scroll .goutte::after{animation:none!important}
+html.allege-ombres .verre,html.allege-ombres .embleme,html.allege-ombres .verre-scroll svg,
+html.allege-ombres .coffret-visuel svg,html.allege-ombres .ref-silhouette,
+html.allege-ombres .trainee-trait,html.allege-ombres .trainee-comete{filter:none!important}
+html.allege-flou *{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
