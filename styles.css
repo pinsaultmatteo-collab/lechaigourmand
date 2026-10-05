@@ -464,6 +464,7 @@ h2.titre .accent-script{
   font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;
   color:var(--or-sombre);font-weight:500;
 }
+.b-prix.chiffre{font-family:var(--serif);font-size:1.15rem;font-weight:600;color:var(--bordeaux);letter-spacing:0;text-transform:none}
 .etagere-note{text-align:center;margin-top:1.6rem;font-family:var(--serif);font-style:italic;color:var(--brun-doux)}
 
 /* click & collect */

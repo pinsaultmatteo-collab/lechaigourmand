@@ -69,8 +69,8 @@ qu'un vin — c'est aussi pour ça qu'une cave sérieuse tient des bières.
 
 Quand vous commandez une planche au Chai, la question qu'on vous pose n'est pas « rouge ou blanc ? » mais
 « vous êtes plutôt vif ou plutôt rond ? ». C'est une question plus utile : elle dit ce que vous aimez, pas
-ce que vous croyez devoir commander. Le reste, Adrien s'en occupe — il connaît les [références de la
-cave](/nos-references) une par une, et il sait laquelle va tomber juste avec ce qu'il y a dans votre assiette.
+ce que vous croyez devoir commander. Le reste, on s'en occupe — on connaît les [références de la
+cave](/nos-references) une par une, et on sait laquelle va tomber juste avec ce qu'il y a dans votre assiette.
 
 Le plus simple reste encore de venir goûter. La [carte des tapas](/bar-a-tapas) change au fil des arrivages,
 et la cave aussi.

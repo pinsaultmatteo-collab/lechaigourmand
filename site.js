@@ -1140,7 +1140,7 @@ function chaiSupabase(){
         '<button class="ref-volet-fermer" type="button" data-fermer aria-label="Fermer">×</button>' +
         '<p class="resa-sur-titre">Réserver une table</p>' +
         '<h2 class="resa-titre" id="resaTitre">On vous garde <span class="accent-script">une place.</span></h2>' +
-        '<p class="resa-intro">Dites-nous où, quand et combien vous serez : la confirmation vous arrive par e-mail dès qu’Adrien a validé la table.</p>' +
+        '<p class="resa-intro">Dites-nous où, quand et combien vous serez : la confirmation vous arrive par e-mail dès que nous avons validé la table.</p>' +
         '<form class="resa-form" novalidate>' +
           '<div class="resa-champ"><span class="resa-legende">Établissement</span>' +
             '<div class="resa-lieux">' +
@@ -1240,7 +1240,7 @@ function chaiSupabase(){
             "<p>" + CHAI_LIEUX[d.lieu] + ", le " + p[2] + "/" + p[1] + " à " + d.heure.replace(":", "h") +
             ", " + d.couverts + (Number(d.couverts) > 1 ? " personnes" : " personne") +
             ".</p><p>" + (d.email
-              ? "La confirmation arrive par e-mail à " + d.email.replace(/[<>]/g, "") + " dès qu’Adrien a validé la table."
+              ? "La confirmation arrive par e-mail à " + d.email.replace(/[<>]/g, "") + " dès que nous avons validé la table."
               : "On vous rappelle au " + d.telephone.replace(/[<>]/g, "") + " pour confirmer.") + "</p>" +
             '<button class="btn btn-plein" type="button" data-fermer>Fermer</button></div>';
         })

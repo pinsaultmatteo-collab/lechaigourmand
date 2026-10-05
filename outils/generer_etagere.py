@@ -18,7 +18,8 @@ from urllib.parse import quote
 
 sys.path.insert(0, str(Path(__file__).parent))
 from generer_catalogue import (titre_propre, court, SINGULIER, silhouette,
-                               dedoublonner, carte_cachee, VOLET, charger_produits)
+                               dedoublonner, carte_cachee, VOLET, charger_produits,
+                               prix_lisible)
 
 # Deux rangs de quatre, d'abord les signatures puis les régionales : la vitrine
 # « Tout voir ».
@@ -98,7 +99,7 @@ def carte(p, rang, vitrines):
         <span class="b-type {p["type"]}">{SINGULIER[p["type"]]}</span>
         <h3 class="b-nom">{e(p["nom"])}</h3>
         <p class="b-region">{e(region(p))}</p>
-        <p class="b-prix">Prix en boutique</p>
+        {f'<p class="b-prix chiffre">{prix_lisible(p)}</p>' if prix_lisible(p) else '<p class="b-prix">Prix en boutique</p>'}
       </a>'''
 
 def main():

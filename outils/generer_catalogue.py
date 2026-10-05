@@ -231,7 +231,33 @@ def _depuis_la_base():
 
 ORIGINE = {"source": "fichier", "nombre": 0}
 
+DETOURE = "images/cave/detoure"
+
+def _version_detouree(chemin):
+    nom = os.path.basename(chemin or "")
+    if (chemin or "").startswith("/images/cave/") and os.path.exists(os.path.join(DETOURE, nom)):
+        return "/images/cave/detoure/" + nom
+    return chemin
+
+def avec_detourage(produits):
+    """Les bouteilles détourées vivent sous images/cave/detoure/, à côté des
+    photos d'origine, et c'est au moment de fabriquer les pages qu'on les
+    substitue. Deux raisons de ne pas écraser les originales :
+    · les images sont servies avec un cache d'un an marqué « immutable » : un
+      visiteur qui avait déjà vu le catalogue garderait l'ancienne photo ;
+    · la base garde les chemins d'origine — supprimer le dossier suffit à
+      revenir en arrière, sans rien toucher dans Supabase.
+    Les photos envoyées depuis le back-office (stockées chez Supabase) ne sont
+    pas concernées : elles gardent leur chemin."""
+    for p in produits:
+        if p.get("images"):
+            p["images"] = [_version_detouree(i) for i in p["images"]]
+    return produits
+
 def charger_produits():
+    return avec_detourage(_charger_produits())
+
+def _charger_produits():
     """Le catalogue vient de la base — c'est là qu'Adrien corrige ses fiches.
     data/produits.json reste le filet : un déploiement ne doit jamais publier
     un catalogue vide parce que Supabase a toussé."""
@@ -408,7 +434,7 @@ def main():
       <h1 class="entree e2">Chaque bouteille,<br><span class="accent-script">et son histoire.</span></h1>
       <p class="chapeau entree e3">
         Vins de vignerons indépendants, bières artisanales, spiritueux et épicerie fine —
-        avec les notes de dégustation et les accords conseillés par Adrien.
+        avec les notes de dégustation et les accords conseillés par la maison.
         Cherchez un domaine, une appellation, un cépage.
       </p>
       <div class="hero-chips entree e4" aria-label="En bref">
@@ -469,12 +495,12 @@ def main():
     </div>
 
     <p class="ref-vide" id="refVide" hidden>
-      Aucune référence ne correspond — essayez un autre domaine, ou demandez à Adrien,
+      Aucune référence ne correspond — essayez un autre domaine, ou demandez au comptoir,
       la cave en compte bien davantage en boutique.
     </p>
 
     <p class="etagere-note rv" style="margin-top:clamp(2rem,4vw,3rem)">
-      Toute la cave et l’épicerie fine, sélectionnées une à une par Adrien.
+      Toute la cave et l’épicerie fine, sélectionnées une à une par la maison.
       Les prix affichés s’entendent à la bouteille, TTC ; pour les autres, un mot
       au comptoir suffit — c’est aussi l’occasion d’un conseil.
     </p>

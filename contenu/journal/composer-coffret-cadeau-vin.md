@@ -54,7 +54,7 @@ Une seule, mais choisie. Un cru classé, un vin de vigneron rare, un flacon qu'o
 ## Ce que change un coffret composé sur mesure
 
 Chez nous, il n'y a pas de coffret tout prêt sur une étagère. Vous dites l'occasion, le budget et le goût
-de la personne, et Adrien compose — bouteille par bouteille, produit par produit — en piochant dans la
+de la personne, et on compose — bouteille par bouteille, produit par produit — en piochant dans la
 [cave](/nos-references) et dans les rayons de l'épicerie fine. L'emballage est fait sur place, prêt à offrir.
 
 C'est aussi valable pour les entreprises : cadeaux aux collaborateurs ou aux clients, à l'unité comme en

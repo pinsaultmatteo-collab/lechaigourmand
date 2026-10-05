@@ -207,6 +207,32 @@ est au bas de la page, et le refus est tenu — le script de Google n'est alors
 plus chargé du tout. C'est la seule porte de sortie depuis le retrait du bandeau,
 et elle doit le rester tant que la page l'annonce.
 
+## 2 octies. Les bouteilles détourées
+
+Les photos du catalogue sont détourées : la bouteille seule, sur le fond crème des
+cartes, sans le mur gris ni la ligne de table des prises de vue. Pour de nouvelles
+photos (par exemple les faces avant qui manquent), déposez les HEIC dans
+`contenu-visuel/photos-produits-bouteilles/`, puis :
+
+```
+python3 outils/detourer_bouteilles.py IMG_3201 IMG_3202
+python3 outils/generer_catalogue.py && python3 outils/generer_etagere.py
+```
+
+Sans argument, le script refait tout le catalogue (230 photos, quelques minutes).
+
+Trois choses à savoir :
+
+- on repart **toujours de l'original HEIC**, jamais de l'image du site : le
+  recadrage automatique du début avait coupé la capsule de 22 bouteilles ;
+- les versions détourées vont dans `images/cave/detoure/`, **sans écraser** les
+  originales — les images sont servies avec un cache d'un an « immutable », un
+  visiteur garderait sinon l'ancienne photo ;
+- la base garde les chemins d'origine, c'est la fabrication des pages qui
+  substitue la version détourée. Supprimer le dossier suffit à revenir en arrière.
+
+Les photos envoyées depuis le back-office ne sont pas détourées automatiquement.
+
 ## 3. Ce que fait chaque onglet
 
 - **Réservations** — reçues par le formulaire du site ; Adrien en est averti par courriel dans la foulée.
