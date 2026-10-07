@@ -75,6 +75,10 @@ textarea{min-height:80px;resize:vertical}
 .connexion p{color:var(--brun-doux);margin-bottom:1.2rem;font-size:.92rem}
 .vignette{width:54px;height:72px;object-fit:cover;border-radius:6px;background:#eee}
 .apercu{font-size:.8rem;color:var(--brun-doux)}
+.photo-ev{display:flex;gap:1rem;align-items:flex-start;flex-wrap:wrap}
+.photo-ev-apercu{width:168px;aspect-ratio:16/10;object-fit:cover;border-radius:10px;border:1px solid rgba(122,99,85,.25);background:#eee}
+.photo-ev-actions{display:flex;flex-direction:column;gap:.5rem;align-items:flex-start;min-width:0}
+.vignette-ev{width:64px;aspect-ratio:16/10;object-fit:cover;border-radius:6px;margin-top:.45rem;display:block}
 /* iOS zoome sur les champs sous 16 px : on les remonte en mobile */
 @media (max-width:760px){input,select,textarea{font-size:16px}}
 @media (max-width:640px){.ligne{grid-template-columns:auto 1fr}.ligne .cotes{grid-column:1/-1;justify-content:flex-start}}
@@ -145,6 +149,17 @@ textarea{min-height:80px;resize:vertical}
             <select name="lieu"><option value="francazal">Le Chai — Francazal</option><option value="annexe">L'Annexe — Cézerou</option></select></div>
           <div class="champ large"><label>Titre</label><input type="text" name="titre" required maxlength="120"></div>
           <div class="champ large"><label>Description</label><textarea name="description" maxlength="600"></textarea></div>
+          <div class="champ large"><label>Photo <em>(facultative — affichée dans l’agenda)</em></label>
+            <input type="hidden" name="image">
+            <div class="photo-ev">
+              <img class="photo-ev-apercu" id="apercuPhotoEv" alt="" hidden>
+              <div class="photo-ev-actions">
+                <input type="file" name="photo" accept="image/*">
+                <button class="btn contour petit" type="button" id="retirerPhotoEv" hidden>Retirer la photo</button>
+                <span class="apercu" id="etatPhotoEv"></span>
+              </div>
+            </div>
+          </div>
           <label class="coche"><input type="checkbox" name="reservation"> Sur réservation</label>
           <div class="actions large">
             <button class="btn" type="submit" name="action" value="brouillon">Enregistrer en brouillon</button>
@@ -475,7 +490,8 @@ textarea{min-height:80px;resize:vertical}
             '<div class="detail">' + ech(ev.heure) + (ev.reservation ? " · sur réservation" : "") +
               (ev.annonce_envoyee ? ' · <span style="color:#2f6b4f">annoncé le ' + new Date(ev.annonce_envoyee).toLocaleDateString("fr-FR") +
                  " à " + (ev.annonce_nombre || 0) + " abonné" + ((ev.annonce_nombre || 0) > 1 ? "s" : "") + "</span>" : "") + "</div>" +
-            (ev.description ? '<div class="message">' + ech(ev.description) + "</div>" : "") + "</div>" +
+            (ev.description ? '<div class="message">' + ech(ev.description) + "</div>" : "") +
+            (ev.image ? '<img class="vignette-ev" src="' + ech(ev.image) + '" alt="" loading="lazy">' : "") + "</div>" +
           '<div class="cotes">' +
             '<button class="btn petit' + (ev.statut === "publie" ? " contour" : "") + '" data-basculer="' + (ev.statut === "publie" ? "brouillon" : "publie") + '">' + (ev.statut === "publie" ? "Dépublier" : "Publier") + "</button>" +
             (ev.statut === "publie" && ev.date >= jour
@@ -517,11 +533,69 @@ textarea{min-height:80px;resize:vertical}
       const ch = $("#formEv").elements;
       ch.id.value = ev.id; ch.date.value = ev.date; ch.heure.value = ev.heure || ""; ch.lieu.value = ev.lieu;
       ch.titre.value = ev.titre; ch.description.value = ev.description || ""; ch.reservation.checked = !!ev.reservation;
+      ch.photo.value = ""; ch.image.value = ev.image || ""; ch.image.dataset.initiale = ev.image || "";
+      montrerPhotoEv(ev.image || "");
       $("#titreFormEv").firstChild.textContent = "Modifier l’événement ";
       $("#annulerEv").hidden = false; $("#formEv").scrollIntoView({behavior: "smooth"});
     }
   });
-  function viderFormEv() { const f = $("#formEv"); f.reset(); f.elements.id.value = ""; $("#titreFormEv").firstChild.textContent = "Nouvel événement "; $("#annulerEv").hidden = true; }
+  function viderFormEv() {
+    const f = $("#formEv"); f.reset(); f.elements.id.value = ""; f.elements.image.value = "";
+    f.elements.image.dataset.initiale = "";
+    montrerPhotoEv("");
+    $("#titreFormEv").firstChild.textContent = "Nouvel événement "; $("#annulerEv").hidden = true;
+  }
+
+  /* ---------- la photo d'un événement ----------
+     Une photo d'iPhone pèse 3 à 8 Mo : on la réduit dans le navigateur avant
+     l'envoi — 1600 px de large au plus, en WebP (JPEG si le navigateur ne sait
+     pas l'encoder). L'agenda se charge vite, et le stockage reste léger. */
+  function montrerPhotoEv(url) {
+    const img = $("#apercuPhotoEv");
+    img.hidden = !url; if (url) img.src = url; else img.removeAttribute("src");
+    $("#retirerPhotoEv").hidden = !url;
+    $("#etatPhotoEv").textContent = "";
+  }
+  function reduirePhoto(fichier) {
+    return createImageBitmap(fichier, {imageOrientation: "from-image"}).catch(function () {
+      throw new Error("Cette photo n’a pas pu être lue. Si elle vient d’un iPhone (HEIC), " +
+                      "envoyez-la depuis Safari, ou exportez-la d’abord en JPEG.");
+    }).then(function (bmp) {
+      const echelle = Math.min(1, 1600 / Math.max(bmp.width, bmp.height));
+      const c = document.createElement("canvas");
+      c.width = Math.round(bmp.width * echelle); c.height = Math.round(bmp.height * echelle);
+      c.getContext("2d").drawImage(bmp, 0, 0, c.width, c.height);
+      if (bmp.close) bmp.close();
+      const versBlob = function (type, q) { return new Promise(function (ok) { c.toBlob(ok, type, q); }); };
+      // Safari renvoie du PNG sans prévenir quand il ne sait pas faire du WebP
+      return versBlob("image/webp", 0.82).then(function (b) {
+        return (b && b.type === "image/webp") ? b : versBlob("image/jpeg", 0.85);
+      });
+    });
+  }
+  function deposerPhotoEv(fichier) {
+    return reduirePhoto(fichier).then(function (blob) {
+      const ext = blob.type === "image/webp" ? "webp" : "jpg";
+      const chemin = "evenements/" + Date.now() + "-" + Math.random().toString(36).slice(2, 8) + "." + ext;
+      return api("/storage/v1/object/produits/" + chemin, {
+        method: "POST", body: blob, headers: {"Content-Type": blob.type, "x-upsert": "true"}
+      }).then(function () { return C.supabaseUrl + "/storage/v1/object/public/produits/" + chemin; });
+    });
+  }
+  $("#formEv").elements.photo.addEventListener("change", function (e) {
+    const fichier = e.target.files[0];
+    if (!fichier) return;
+    // aperçu immédiat ; l'envoi, lui, attend l'enregistrement
+    const img = $("#apercuPhotoEv");
+    img.src = URL.createObjectURL(fichier); img.hidden = false;
+    $("#retirerPhotoEv").hidden = false;
+    $("#etatPhotoEv").textContent = "Envoyée à l’enregistrement.";
+  });
+  $("#retirerPhotoEv").addEventListener("click", function () {
+    const f = $("#formEv"); f.elements.photo.value = ""; f.elements.image.value = "";
+    montrerPhotoEv("");
+    $("#etatPhotoEv").textContent = "La photo sera retirée à l’enregistrement.";
+  });
   $("#annulerEv").addEventListener("click", viderFormEv);
   $("#formEv").addEventListener("submit", function (e) {
     e.preventDefault();
@@ -529,13 +603,28 @@ textarea{min-height:80px;resize:vertical}
     const d = {date: ch.date.value, heure: ch.heure.value.trim(), lieu: ch.lieu.value, titre: ch.titre.value.trim(),
                description: ch.description.value.trim(), reservation: ch.reservation.checked, statut: action};
     if (!d.date || !d.titre) { message("#msgEv", "Une date et un titre, au minimum.", "erreur"); return; }
-    const requete = ch.id.value
-      ? rest("evenements?id=eq." + ch.id.value, {method: "PATCH", headers: {Prefer: "return=minimal"}, body: JSON.stringify(d)})
-      : rest("evenements", {method: "POST", headers: {Prefer: "return=minimal"}, body: JSON.stringify(d)});
-    requete.then(function () {
+    const fichier = ch.photo.files[0];
+    const boutons = e.target.querySelectorAll('button[type="submit"]');
+    boutons.forEach(function (b) { b.disabled = true; });
+    message("#msgEv", fichier ? "Envoi de la photo…" : "Enregistrement…");
+    // La photo n'entre dans l'enregistrement que si elle existe ou vient d'être
+    // retirée : un événement sans photo s'enregistre même avant la migration.
+    const avait = !!ch.image.dataset.initiale;
+    (fichier ? deposerPhotoEv(fichier) : Promise.resolve(ch.image.value || null)).then(function (url) {
+      if (url || avait) d.image = url;
+      return ch.id.value
+        ? rest("evenements?id=eq." + ch.id.value, {method: "PATCH", headers: {Prefer: "return=minimal"}, body: JSON.stringify(d)})
+        : rest("evenements", {method: "POST", headers: {Prefer: "return=minimal"}, body: JSON.stringify(d)});
+    }).then(function () {
       message("#msgEv", action === "publie" ? "Enregistré et publié : il apparaît sur le site dès maintenant." : "Enregistré en brouillon.", "ok");
       viderFormEv(); chargerEv();
-    }).catch(function (err) { message("#msgEv", err.message, "erreur"); });
+    }).catch(function (err) {
+      // sans la colonne image, la base refuse tout l'enregistrement : on le dit clairement
+      const m = /image/.test(err.message) && /column|colonne|schema/i.test(err.message)
+        ? "La base n’accepte pas encore les photos : lancez supabase/migration-photos-evenements.sql dans Supabase."
+        : err.message;
+      message("#msgEv", m, "erreur");
+    }).finally(function () { boutons.forEach(function (b) { b.disabled = false; }); });
   });
 
   // ---------- produits ----------

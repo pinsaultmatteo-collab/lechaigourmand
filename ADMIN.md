@@ -241,7 +241,12 @@ Les photos envoyées depuis le back-office ne sont pas détourées automatiqueme
   depuis le 22/09/2026 ; les réservations plus anciennes peuvent en manquer, et la notification le dit
   alors clairement : il faut appeler.
 - **Événements** — la programmation de l'agenda et du bandeau d'accueil. *Brouillon* = invisible ;
-  *Publier* = en ligne dans la minute. Une fois l'événement publié, **Annoncer aux abonnés** envoie
+  *Publier* = en ligne dans la minute. Chaque événement peut porter une **photo** : elle s'affiche
+  sur sa carte de l'agenda, dans l'aperçu du calendrier, dans « le prochain rendez-vous » et dans le
+  courriel d'annonce. Le navigateur la réduit avant l'envoi (1600 px, WebP), inutile de la préparer.
+  Une photo HEIC d'iPhone passe depuis Safari, pas depuis Chrome — le message le dit. Pour qu'elle soit
+  enregistrée, `supabase/migration-photos-evenements.sql` doit avoir été lancé une fois.
+  Une fois l'événement publié, **Annoncer aux abonnés** envoie
   l'invitation à toute la liste — chacun reçoit son propre message, personne ne voit les autres adresses.
   La ligne indique ensuite la date de l'envoi et le nombre de destinataires. Les passés disparaissent seuls du site. Plus besoin de toucher
   au tableau `PROGRAMMATION` de `site.js` : il ne sert plus que de repli si la base ne répond pas.

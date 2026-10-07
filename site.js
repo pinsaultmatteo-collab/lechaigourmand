@@ -491,12 +491,15 @@ function chaiSupabase(){
     if(!base) return Promise.resolve(PROGRAMMATION);
     const depuis = new Date(); depuis.setHours(0,0,0,0);
     const jour = depuis.toISOString().slice(0,10);
-    return base.lire("evenements?select=date,heure,lieu,titre,description,reservation"
+    // select=* plutôt que la liste des colonnes : tant que la migration des
+    // photos n'est pas passée, demander « image » ferait échouer toute la
+    // lecture, et l'agenda retomberait sur l'ancien programme écrit en dur.
+    return base.lire("evenements?select=*"
                      + "&statut=eq.publie&date=gte." + jour + "&order=date.asc")
       .then(function(lignes){
         return lignes.map(function(l){
           return {date: l.date, lieu: l.lieu, titre: l.titre, desc: l.description || "",
-                  heure: l.heure || "", resa: !!l.reservation};
+                  heure: l.heure || "", resa: !!l.reservation, image: l.image || ""};
         });
       })
       .catch(function(){ return PROGRAMMATION; });
@@ -521,7 +524,8 @@ function chaiSupabase(){
     const p = ev.date.split("-");
     const d = new Date(+p[0], +p[1] - 1, +p[2]);
     if(d >= aujourdHui){
-      evenements.push({date: d, lieu: ev.lieu, titre: ev.titre, desc: ev.desc, heure: ev.heure, resa: !!ev.resa});
+      evenements.push({date: d, lieu: ev.lieu, titre: ev.titre, desc: ev.desc, heure: ev.heure, resa: !!ev.resa,
+                       image: photoSure(ev.image)});
     }
   });
 
@@ -536,7 +540,8 @@ function chaiSupabase(){
       desc: "En terrasse : formule complète à 25 € — du jus artisanal à la brioche perdue.",
       heure: "le midi · 25 €",
       recurrence: "Tous les samedis",
-      resa: true
+      resa: true,
+      image: "/images/brunch-annexe-table-planches.webp"
     });
     samedi = ajouterJours(samedi, 7);
   }
@@ -575,6 +580,22 @@ function chaiSupabase(){
   function badgeLieu(ev){
     return '<span class="ev-lieu ' + ev.lieu + '"><span class="pastille ' + ev.lieu + '"></span>' + nomsLieux[ev.lieu] + '</span>';
   }
+  /* La photo vient du back-office : on n'accepte que le stockage du site ou
+     ses propres images, et on échappe les guillemets avant de l'écrire dans
+     un attribut. */
+  function photoSure(url){
+    url = String(url || "");
+    const c = window.CHAI || {};
+    const stockage = c.supabaseUrl ? c.supabaseUrl.replace(/\/$/, "") + "/storage/v1/object/public/" : null;
+    if(!url || !(url.indexOf("/images/") === 0 || (stockage && url.indexOf(stockage) === 0))) return "";
+    return url.replace(/"/g, "%22").replace(/[<>]/g, "");
+  }
+  function photoEv(ev, classe){
+    if(!ev.image) return "";
+    return '<div class="' + classe + '"><img src="' + ev.image + '" alt="' + ev.titre.replace(/"/g, "&quot;")
+      + '" loading="lazy" decoding="async"></div>';
+  }
+
   function metaEv(ev){
     return '<div class="ev-meta">'
       + '<span>' + fmtJour.format(ev.date) + ' · ' + ev.heure + '</span>'
@@ -590,7 +611,8 @@ function chaiSupabase(){
     let html = "";
     affiches.forEach(function(ev, i){
       const mois = fmtMois.format(ev.date).replace(".", "");
-      html += '<article class="evenement" data-lieu="' + ev.lieu + '" style="--d:' + (i * 0.06) + 's">'
+      html += '<article class="evenement' + (ev.image ? ' a-photo' : '') + '" data-lieu="' + ev.lieu + '" style="--d:' + (i * 0.06) + 's">'
+        + photoEv(ev, "ev-photo")
         + '<div class="ev-date" aria-hidden="true">'
         +   '<div class="ev-jour">' + ev.date.getDate() + '</div>'
         +   '<span class="ev-mois">' + mois + '</span>'
@@ -646,7 +668,8 @@ function chaiSupabase(){
     function afficherApercu(i){
       const ev = teaser[i];
       apercuEl.innerHTML =
-          '<span class="apercu-lieu ev-lieu ' + ev.lieu + '"><span class="pastille ' + ev.lieu + '"></span>' + nomsLieux[ev.lieu] + '</span>'
+          photoEv(ev, "apercu-photo")
+        + '<span class="apercu-lieu ev-lieu ' + ev.lieu + '"><span class="pastille ' + ev.lieu + '"></span>' + nomsLieux[ev.lieu] + '</span>'
         + '<p class="apercu-titre-ev">' + ev.titre + '</p>'
         + '<p class="apercu-desc">' + ev.desc + '</p>'
         + '<p class="apercu-quand">' + fmtDateLongue.format(ev.date) + ' · ' + ev.heure
@@ -682,8 +705,10 @@ function chaiSupabase(){
   if(prochainEl && evenements.length){
     const ev = evenements[0];
     const mois = fmtMois.format(ev.date).replace(".", "");
+    prochainEl.classList.toggle("a-photo", !!ev.image);
     prochainEl.innerHTML =
-      '<div class="prdv-date" aria-hidden="true">'
+      photoEv(ev, "prdv-photo")
+      + '<div class="prdv-date" aria-hidden="true">'
       +   '<div class="ev-jour">' + ev.date.getDate() + '</div>'
       +   '<span class="ev-mois">' + mois + '</span>'
       +   '<span class="ev-semaine">' + fmtJour.format(ev.date).slice(0,3) + '.</span>'
@@ -718,6 +743,7 @@ function chaiSupabase(){
       if(evs.length){
         evs.forEach(function(ev){
           html += '<div class="apercu-ev">'
+            + photoEv(ev, "apercu-photo")
             + badgeLieu(ev)
             + '<h3 class="ev-titre">' + ev.titre + '</h3>'
             + '<p class="ev-desc">' + ev.desc + '</p>'
@@ -819,6 +845,7 @@ function chaiSupabase(){
           "name": ev.titre,
           "description": ev.desc,
           "startDate": iso(ev.date),
+          "image": ev.image ? [ev.image.indexOf("/") === 0 ? "https://chai-gourmand.fr" + ev.image : ev.image] : undefined,
           "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
           "eventStatus": "https://schema.org/EventScheduled",
           "location": {

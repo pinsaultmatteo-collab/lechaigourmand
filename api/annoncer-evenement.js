@@ -26,6 +26,12 @@ function annonce(ev) {
     titre: "Un rendez-vous au Chai",
     chapeau: `<strong>${ech(ev.titre)}</strong>`,
     corps:
+      // la photo de l'événement, si Adrien en a mis une ; https seulement,
+      // une messagerie bloquerait de toute façon le reste
+      (/^https:\/\//.test(ev.image || "")
+        ? `<img src="${ech(ev.image)}" alt="${ech(ev.titre)}" width="504" ` +
+          `style="display:block;width:100%;max-width:504px;height:auto;border-radius:12px;margin:0 0 18px">`
+        : "") +
       lignesFiche([
         ["Quand", jourFr(ev.date) + (ev.heure ? " à " + String(ev.heure).replace(":", "h") : "")],
         ["Où", lieu.nom],

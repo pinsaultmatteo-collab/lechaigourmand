@@ -101,6 +101,21 @@ const verifier = (nom, condition, vu) => essais.push({ nom, ok: !!condition, vu 
   verifier("annonce → plus de repère à remplacer",
     !envoi.corps.messageVersions[0].htmlContent.includes("__DESINSCRIPTION__"), null);
 
+  // 6 bis. la photo de l'événement entre dans l'annonce ; une adresse non https, non
+  base["evenements?select=*"] = [{ ...ev, statut: "publie",
+    image: "https://xdbudbqqwfyfcivnvqzu.supabase.co/storage/v1/object/public/produits/evenements/a.webp" }];
+  journal.length = 0; r = reponse();
+  await annoncer(requete({ id: ev.id }), r);
+  const avecPhoto = journal.find((a) => a.url.includes("brevo"));
+  verifier("annonce avec photo → l'image est dans le courriel",
+    avecPhoto && avecPhoto.corps.htmlContent.includes("evenements/a.webp"), null);
+  base["evenements?select=*"] = [{ ...ev, statut: "publie", image: "javascript:alert(1)" }];
+  journal.length = 0; r = reponse();
+  await annoncer(requete({ id: ev.id }), r);
+  const piege = journal.find((a) => a.url.includes("brevo"));
+  verifier("annonce, adresse d'image douteuse → écartée",
+    piege && !piege.corps.htmlContent.includes("javascript:"), null);
+
   // 7. déjà annoncé : on prévient au lieu de renvoyer
   base["evenements?select=*"] = [{ ...ev, statut: "publie", annonce_envoyee: "2026-09-08T09:00:00Z", annonce_nombre: 12 }];
   journal.length = 0; r = reponse();
